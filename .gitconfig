@@ -1,0 +1,310 @@
+[core]
+	editor = vim
+	autocrlf = input
+[push]
+	default = simple
+[pull]
+	rebase = false
+[diff]
+	tool = meld
+	guitool = meld
+[color]
+	ui = always
+	branch = always
+	status = always
+	diff = always
+	interactive = always
+	grep = always
+	pager = true
+	decorate = always
+	showbranch = always
+[merge]
+	tool = meld
+	conflictstyle = diff3
+[mergetool "kdiff3"]
+	path = /usr/bin/kdiff3
+	trustExitCode = false
+[difftool "kdiff3"]
+	path = /usr/bin/kdiff3
+	trustExitCode = false
+[difftool "meld"]
+	path = /usr/bin/meld
+	trustExitCode = false
+[difftool]
+	prompt = false
+[mergetool "meld"]
+	path = /usr/bin/meld
+	trustExitCode = false
+[mergetool "vimdiff"]
+	trustExitCode = false
+[mergetool "gvimdiff"]
+	trustExitCode = false
+[mergetool]
+	prompt = false
+[diff "odf"]
+	binary = true
+	textconv = odt2txt
+[difftool "odf"]
+	binary = true
+	textconv = odt2txt
+[alias]
+        # --------------------------
+	# log 
+
+        logl = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
+        logl2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
+
+        logll = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
+        logll2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
+
+
+	l = "log"
+	lf = "log --name-status"
+        alf = "log --name-status --all"
+
+        lg = "logl"
+        lgf = "logl2 --name-status"
+        lgl = "logll"
+        lglf = "logll2 --name-status"
+        lgfl = "lglf"
+
+        alg = "logl --all"
+        algf = "logl2 --name-status --all"
+        algl = "logll2 --all"
+        alglf = "logll2 --name-status --all"
+        algfl = "lglf"
+
+        logls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
+        logl2s = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
+
+        loglls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
+        logll2s = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
+
+        # log with diff of file
+        logd = "log --all --follow -p --"
+
+        lgs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgsf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logl2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgsl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git loglls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgslf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgsfl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+
+        algs = "!bash -c 'git logls --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algsf = "!bash -c 'git logl2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algsl = "!bash -c 'git logll2s --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algslf = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algsfl = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+
+
+	currentbranch = "rev-parse --abbrev-ref HEAD"
+
+        # --------------------------
+	# gvn
+
+	gvn-log = "svn log"
+	gvn-logf = "gvn-log -v"
+	gvn-lg = "gvn-log"
+	gvn-lgf = "gvn-logf"
+	gvn-lf = "gvn-logf"
+	gvn-l = "gvn-log --oneline"
+
+	gvn-commit = "svn dcommit"
+	gvn-co = "gvn-commit"
+
+
+	gvn-fetch = "svn fetch"
+	gvn-fe = "gvn-fetch"
+	gvn-get = "gvn-fetch"
+
+	gvn-status = "status -s"
+	gvn-st = "gvn-status"
+	gvn-revert = "!f(){ git checkout -- $1; };f"
+
+        # -------
+	awk1 = "!awk '{print $1}'"
+	awk2 = "!awk '{print $2}'"
+	awk3 = "!awk '{print $3}'"
+
+        # ------
+	# returns current git-svn branch name
+	gvn-currentbranch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		branch=`git svn info | grep URL | rev | sed \"s,\\/, ,g\" | git awk1 | rev;`; \
+		echo $branch' --"
+
+	# returns 1 if current git-svn branch name matches current git branch name
+	gvn-branchmatch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		branch_git=`git currentbranch`; \
+		branch_svn=`gvn currentbranch`; \
+		if [[ \"$branch_git\" == \"$branch_svn\" ]]; then \
+		  echo 1; \
+		else \
+		  echo 0; \
+		fi' --"
+
+	# print error if current git-svn branch does not match else nothing is printed
+	# ATTENTION: nameing is a limitation that should be fine
+	# master needs to be renamed to trunk!
+	# branch names must match and not called trunk!
+	gvn-check-for-branch-name-match = "!bash -c '\
+		branch_git=`git currentbranch`; \
+		branch_svn=`gvn currentbranch`; \
+		if [[ \"$branch_git\" != \"$branch_svn\" ]]; then \
+                  echo \"ERROR: branches do not match <$branch_git> != <$branch_svn>. Aborting operation.\"; \
+		  exit -1; \
+		fi' --"
+
+	check-for-local-changes = "!bash -c '\
+		changes=`git status --short | grep -v \"??\"`; \
+		if [[ \"$changes\" != \"\" ]]; then \
+		  git status -uno; \
+  		  echo \"ERROR: There are uncommited changes. Aborting operation.\"; \
+  		  exit -1; \
+		fi' --"
+
+	stash-local-changes-if-any = "!bash -c '\
+		changes=`git status --short | grep -v \"??\"`; \
+		if [[ \"$changes\" != \"\" ]]; then \
+  		  git stash; \
+		fi' --"
+
+
+
+        # -------
+	gvn-update = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+		git check-for-local-changes; \
+		git svn fetch; \
+		gvn rebase' --"
+        gvn-up = "gvn-update"
+        gvn-u = "gvn-update"
+
+        # -------
+	gvn-update-stash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+                git stash-local-changes-if-any; \
+		git svn fetch; \
+		gvn rebase; \
+		if [[ \"$changes\" != \"\" ]]; then \
+		  git stash pop; \
+		fi' --"
+        gvn-us = "gvn-update-stash"
+        gvn-ups = "gvn-update-stash"
+	#
+	gvn-update-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+		git check-for-local-changes; \
+		git svn fetch; \
+		gvn rebase; \
+		git svn dcommit' --"
+        gvn-uc = "gvn-update-commit"
+	#
+	gvn-update-commit-stash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+                git stash-local-changes-if-any; \
+		git svn fetch; \
+		gvn rebase; \
+		git svn dcommit; \
+		if [[ \"$changes\" != \"\" ]]; then \
+		  git stash pop; \
+		fi' --"
+        gvn-ucs = "gvn-update-commit-stash"
+        gvn-suc = "gvn-update-commit-stash"
+
+	# -------
+        # usage: gvn-cherry-pick <hash>
+	gvn-cherry-pick = "!bash -c ' \
+		set -x; \
+		set -e; \
+		git check-for-local-changes; \
+		svn_remote_commit_to_pick=\"$1\"; \
+		svn_url=`git log $svn_remote_commit_to_pick^..$svn_remote_commit_to_pick | grep git-svn-id | git awk2 | sed \"s,@, r,g\" | git awk1`; \
+		svn_rev=`git log $svn_remote_commit_to_pick^..$svn_remote_commit_to_pick | grep git-svn-id | git awk2 | sed \"s,@, r,g\" | git awk2`; \
+		svn_project=`git branch -r --contains $svn_remote_commit_to_pick --no-color | git awk1`; \
+		svn_commit_message=`git log -n 1 --format=format:'%B' $svn_remote_commit_to_pick | egrep -v \"git-svn-id\"`; \
+		echo \"CP: $svn_url $svn_rev $svn_project\"; \
+		git cherry-pick $svn_remote_commit_to_pick -n; \
+		if [[ $? == 0 ]]; then \
+		  anything_to_commit=`git status --untracked-files=no --porcelain`; \
+                  if [[ \"$anything_to_commit\" == \"\" ]]; then \
+  		    echo -e \"\nINFO: Cherry-Pick did not change anything. Nothing to commit.\n\"; \
+		  else \
+                    git commit -a -m \"$(echo -e \"[CP: $svn_project $svn_rev] $svn_commit_message \n\n [CPE: $svn_project $svn_rev $svn_url]\")\"; \
+		  fi; \
+		else \
+  		  echo -e \"\nWARNING: Manual rework required. Run gvn-cp-cont.sh when finished.\n\"; \
+		  git status -uno; \
+		  echo -e \"git commit -a -m \"$(echo -e \"[CP: $svn_project $svn_rev (modified)] $svn_commit_message \n\n [CPE: $svn_project $svn_rev $svn_url]\")\"\" > gvn-cp-cont.sh; \
+                  cat gvn-cp-cont.sh; \
+		fi' --"
+        gvn-cp = "gvn-cherry-pick" 
+
+
+        # usage: gvn-clone <full_svn_url_without_trunk_in_std_layout>
+	gvn-clone = "!bash -c 'git svn clone \"$1\" -s .' --"
+	gvn-c = "gvn-clone"
+
+
+        # --------------------------
+        # diff difftool = dd for gvn
+
+	gvn-dd  = "dd"
+        gvn-ddc = "ddc"
+	gvn-ddv = "ddv"
+
+        # --------------------------
+        # diff
+        d = "diff"
+	dc = "diff --cached"
+
+        # --------------------------
+        # difftool -d = dtd - directory difftool
+
+        dtd  = "difftool -d"
+	dtdc = "difftool -d --cached"
+	# version change
+	dtdv = "!f(){ git difftool -d \"$1\"^..\"$1\"; };f"
+
+        # --------------------------
+	# difftool
+
+        dt = "difftool"
+	diff-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git diff $prev_hash^ \"$@\"' --"
+        dp = "diff-prev"
+	difftool-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool $prev_hash^ \"$@\"' --"
+        dtp = "difftool-prev"
+
+
+
+
+        # --------------------------
+	# misc
+
+	ls = "ls-files"
+	stat = "status -s"
+
+	cp = "cherry-pick"
+	dt = "difftool"
+	status-uno = "status -uno"
+	stat = "status-uno"
+	st = "stat"
+	co = "commit"
+
+
+        # --------------------------
+	# stash
+
+	s = "stash"
+	sp = "stash pop"
+	sa = "stash apply"
+	sl = "stash list"
+
+        # --------------------------
+	# finding / greping
+
+	grep-log = "!f(){ git log --all -i --grep=\"$1\"; };f"
+	find = "!f(){ git log --all -i --grep=\"$1\"; git grep \"$1\"; };f"
+
