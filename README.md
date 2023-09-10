@@ -15,4 +15,4 @@ e.g.
 
 ## Requirements
 * git with svn extension
-** e.g. git 2.37 and svn 1.14.
+ * e.g. git 2.37 and svn 1.14.
