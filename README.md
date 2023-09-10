@@ -6,7 +6,7 @@ gvn = Git sVN = git configuration for easier usage of git-svn
 * Copy relevant parts (gvn-) OR more OR all from .gitconfig to ~/.gitconfig OR to local git-svn repository
 
 ## Usage
-gvn \<command (options)
+gvn \<command\> (\<options\>)
 
 e.g.
 * gvn ucs // stash update commit unstash
