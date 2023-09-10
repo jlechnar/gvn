@@ -9,9 +9,9 @@ gvn = Git sVN = git configuration for easier usage of git-svn
 gvn <command> <options>
 
 e.g.
-gvn ucs // stash update commit unstash
-gvn us // stash update unstash
-gvn lgs // show oneline graphical colored log with svn numbers
+* gvn ucs // stash update commit unstash
+* gvn us // stash update unstash
+* gvn lgs // show oneline graphical colored log with svn numbers
 
 ## Requirements
 * git with svn extension
