@@ -1,3 +1,8 @@
+# Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/gvn
+
 [core]
 	editor = vim
 	autocrlf = input
@@ -95,6 +100,13 @@
         algslf = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
         algsfl = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
 
+        # --------------------------
+	# merge
+
+	mdf = "!f(){ git show :1:$1 > $1.BASE; git show :2:$1 > $1.OURS; git show :3:$1 > $1.THEIRS; };f"
+	md = "!f(){ a='================================================================================'; echo \"$a\n$a\nBASE\n$a\"; git diff -1 $1; echo \"$a\n\n$a\nOURS\n$a\"; git diff -2 $1; echo \"$a\n\n$a\nTHEIRS\n$a\"; git diff -3 $1; echo $a; };f"
+	mdd = "dd HEAD..REBASE_HEAD"
+	m = "mergetool"
 
 	currentbranch = "rev-parse --abbrev-ref HEAD"
 
@@ -165,9 +177,32 @@
 		changes=`git status --short | grep -v \"??\"`; \
 		if [[ \"$changes\" != \"\" ]]; then \
   		  git stash; \
+                  echo "1"; \
 		fi' --"
 
+        # --------
+        # create git-svn branch of current branch that must be a a valid git-svn branch name matching with the git branch name
+	# futhermore no local changes must be there
+	gvn-branch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+		git check-for-local-changes; \
+                git svn branch \"$1\"; \
+                remote=`git branch -ra --no-color | egrep \"\\/$1\"`; \
+                git checkout -b \"$1\" $remote' --"
 
+        # -------
+	gvn-rebase = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                set -x; \
+		head_svn=`git svn log --oneline --show-commit --no-abbrev --limit 1 | git awk3`; \
+		head_git=`git rev-parse HEAD`; \
+		is_git_on_top_of_svn_head=`git rev-list $head_git | grep $(git rev-parse $head_svn)`; \
+		if [[ \"\" == \"\" ]]; then \
+		  datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
+		  git tag -a gvnrb_${datetime}_git_${head_git}_to_svn_${head_svn} -m \"git svn rebase tag $datetime (git $head_git rebased to svn $head_svn)\"; \
+		  echo \"Created Tag gvnrb_$datetime (git $head_git rebased to svn $head_svn)\"; \
+		fi; \
+		git svn rebase' --"
 
         # -------
 	gvn-update = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
@@ -183,7 +218,7 @@
 	gvn-update-stash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
 		set -e; \
 		gvn check-for-branch-name-match; \
-                git stash-local-changes-if-any; \
+                changes=`git stash-local-changes-if-any`; \
 		git svn fetch; \
 		gvn rebase; \
 		if [[ \"$changes\" != \"\" ]]; then \
@@ -201,18 +236,18 @@
 		git svn dcommit' --"
         gvn-uc = "gvn-update-commit"
 	#
-	gvn-update-commit-stash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+	gvn-stash-update-commit-unstash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
 		set -e; \
 		gvn check-for-branch-name-match; \
-                git stash-local-changes-if-any; \
+                changes=`git stash-local-changes-if-any`; \
 		git svn fetch; \
 		gvn rebase; \
 		git svn dcommit; \
 		if [[ \"$changes\" != \"\" ]]; then \
 		  git stash pop; \
 		fi' --"
-        gvn-ucs = "gvn-update-commit-stash"
-        gvn-suc = "gvn-update-commit-stash"
+        gvn-ucs = "gvn-stash-update-commit-unstash"
+        gvn-suc = "gvn-stash-update-commit-unstash"
 
 	# -------
         # usage: gvn-cherry-pick <hash>
@@ -242,11 +277,24 @@
 		fi' --"
         gvn-cp = "gvn-cherry-pick" 
 
+        # -----------------------------
+        # add svn to git sandbox
+        # usage: gvn-clone-add <full_svn_url_without_trunk_in_std_layout> <origin_name> <new_trunk_branch_name>
+        gvn-clone-add = "!bash -c ' \
+		set -e; \
+		git check-for-local-changes; \
+		current_branch=`git branch --show-current`; \
+		git svn init \"$1\" -s -R\"$2\" --prefix \"$2\"/ .; \
+		git svn fetch \"$2\"; \
+		git checkout -b \"$3\" \"$2\"/trunk; \
+		git checkout $current_branch' --"
+	gvn-ca = "gvn-clone-add"
 
         # usage: gvn-clone <full_svn_url_without_trunk_in_std_layout>
 	gvn-clone = "!bash -c 'git svn clone \"$1\" -s .' --"
 	gvn-c = "gvn-clone"
 
+	gvn-ls = "ls-files"
 
         # --------------------------
         # diff difftool = dd for gvn
@@ -260,6 +308,19 @@
         d = "diff"
 	dc = "diff --cached"
 
+        diffw = "diff -w -U0 -word-diff-regex=[[^[:space:]]"
+        dw = "diffw"
+        dwnc = "diffw --no-color"
+        diffw2 = "diff --ignore-all-spaces --ignore-blank-lines --ignore-space-change"
+        dw2 = "diffw2"
+
+        # --------------------------
+        diffall = "log --follow -p --"
+        da = "diffall"
+
+        diffallword = "log --follow -p -w -U0 --word-diff-regex=[^[:space:]] --"
+        daw = "diffallword"
+
         # --------------------------
         # difftool -d = dtd - directory difftool
 
@@ -272,11 +333,28 @@
 	# difftool
 
         dt = "difftool"
+        dtc = "difftool --cached"
 	diff-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git diff $prev_hash^ \"$@\"' --"
         dp = "diff-prev"
 	difftool-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool $prev_hash^ \"$@\"' --"
         dtp = "difftool-prev"
+        difftool-dir-prev = "!bash -c 'cd -- \"$GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool -d $prev_hash^ \"$@\"' --"
+        dtdp = "difftool-dir-prev"
 
+        # --------------------------
+        # cat files of revision
+        cat = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                if [[ \"$1\" == \"\" ]]; then \
+                  echo \"ERROR: options missing - check parameters git cat {<rev>} <file>\"; \
+                  exit -1; \
+                elif [[ \"$2\" == \"\" ]]; then \
+                  git show HEAD:$1; \
+                elif [[ \"$3\" != \"\" ]]; then \
+                  echo \"ERROR: too many options - check parameters git cat {<rev>} <file>\"; \
+                  exit -1; \
+                else \
+                  git show $1:$2; \
+                fi' --"
 
 
 
@@ -286,25 +364,36 @@
 	ls = "ls-files"
 	stat = "status -s"
 
-	cp = "cherry-pick"
+	cpc = "cherry-pick"
+	cp = "cherry-pick -n"
 	dt = "difftool"
 	status-uno = "status -uno"
 	stat = "status-uno"
 	st = "stat"
 	co = "commit"
 
+        add-updated = "add -u"
+	addu = "add-updated"
 
         # --------------------------
 	# stash
 
 	s = "stash"
 	sp = "stash pop"
+	sd = "stash drop"
 	sa = "stash apply"
 	sl = "stash list"
+	ss = "stash show -p 0"
 
         # --------------------------
 	# finding / greping
 
 	grep-log = "!f(){ git log --all -i --grep=\"$1\"; };f"
-	find = "!f(){ git log --all -i --grep=\"$1\"; git grep \"$1\"; };f"
+	find-all = "!f(){ git log --all -i --grep=\"$1\"; git grep \"$1\"; };f"
+	find2 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git ls . | grep \"$1\";' --"
+	find = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git ls \"$1\" | grep \"$2\";' --"
+        grepnc = "grep --no-color"
+        gnc = "grepnc"
+        g = "grep"
+        f = "find"
 

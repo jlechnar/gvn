@@ -1,0 +1,79 @@
+
+################################################
+# setup: Setup basic
+.../test_basic
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_basic/server1
+
+################################################
+# setup: create local / sandbox repository
+.../test_basic/server1_create
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_basic/server1/repo .
+ |============================================================================
+Checked out revision 0.
+ '============================================================================
+
+A         trunk
+A         branches
+A         tags
+A         .svnignore
+Adding         branches
+Adding         tags
+Adding         trunk
+Adding         trunk/.svnignore
+Transmitting file data .done
+Committing transaction...
+Committed revision 1.
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_basic/svn_user2
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_basic/server1/repo/trunk .
+ |============================================================================
+A    .svnignore
+Checked out revision 1.
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_basic/git_user2
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone file://.../test_basic/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_basic/git_user2/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/origin/trunk)
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_basic/git_user3
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_basic/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_basic/git_user3/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/git-svn)
+ '============================================================================
+
+
+ .============================================================================
+ |             log with svn revisions
+ | Executing:  git lgs
+ |============================================================================
+* [33m     <HASH>[m [1;34mr1[0m [1;32m2023-09-16 <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (HEAD -> master, origin/trunk)[m
+ '============================================================================
+

@@ -1,5 +1,10 @@
 #!/usr/bin/perl -w
 
+# Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/gvn
+
 use strict;
 use warnings;
 
@@ -41,6 +46,8 @@ while (my $line = <$fh>) {
     }
 }
 
+$revision_length += 1;
+
 # ------------------------------
 while(my $line = <>) {
   if($line =~ /(\<hash\>([^\<]+)\<\/hash\>)/) {
@@ -48,7 +55,7 @@ while(my $line = <>) {
     my $hash = $2;
     my $replacement = "";
     if(exists $db{$hash}) {
-      $replacement = colored(sprintf("r%${revision_length}d", $db{$hash}), 'bold blue');
+      $replacement = colored(sprintf("%-${revision_length}s", "r$db{$hash}"), 'bold blue');
     } else {
       $replacement = sprintf(" %${revision_length}s", "");
     }
