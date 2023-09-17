@@ -1,5 +1,5 @@
 # gvn
-gvn = Git sVN = git configuration for easier usage of git-svn
+GVN = Git sVN = git configuration for easier usage of git-svn
 
 ## Installation under Linux
 * Place bin/* to e.g. ~/bin folder or any other folder that is in executable search path
