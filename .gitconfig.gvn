@@ -1,0 +1,192 @@
+# Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/gvn
+
+[alias]
+        lgs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgsf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logl2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgsl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git loglls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgslf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgsfl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+
+        algs = "!bash -c 'git logls --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algsf = "!bash -c 'git logl2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algsl = "!bash -c 'git logll2s --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algslf = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        algsfl = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+
+        # --------------------------
+	# gvn
+
+	gvn-log = "svn log"
+	gvn-logf = "gvn-log -v"
+	gvn-lg = "gvn-log"
+	gvn-lgf = "gvn-logf"
+	gvn-lf = "gvn-logf"
+	gvn-l = "gvn-log --oneline"
+
+	gvn-commit = "svn dcommit"
+	gvn-co = "gvn-commit"
+
+
+	gvn-fetch = "svn fetch"
+	gvn-fe = "gvn-fetch"
+	gvn-get = "gvn-fetch"
+
+	gvn-status = "status -s"
+	gvn-st = "gvn-status"
+	gvn-revert = "!f(){ git checkout -- $1; };f"
+
+        # ------
+	# returns current git-svn branch name
+	gvn-currentbranch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		branch=`git svn info | grep URL | rev | sed \"s,\\/, ,g\" | git awk1 | rev;`; \
+		echo $branch' --"
+
+	# returns 1 if current git-svn branch name matches current git branch name
+	gvn-branchmatch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		branch_git=`git currentbranch`; \
+		branch_svn=`gvn currentbranch`; \
+		if [[ \"$branch_git\" == \"$branch_svn\" ]]; then \
+		  echo 1; \
+		else \
+		  echo 0; \
+		fi' --"
+
+	# print error if current git-svn branch does not match else nothing is printed
+	# ATTENTION: nameing is a limitation that should be fine
+	# master needs to be renamed to trunk!
+	# branch names must match and not called trunk!
+	gvn-check-for-branch-name-match = "!bash -c '\
+		branch_git=`git currentbranch`; \
+		branch_svn=`gvn currentbranch`; \
+		if [[ \"$branch_git\" != \"$branch_svn\" ]]; then \
+                  echo \"ERROR: branches do not match <$branch_git> != <$branch_svn>. Aborting operation.\"; \
+		  exit -1; \
+		fi' --"
+
+        # --------
+        # create git-svn branch of current branch that must be a a valid git-svn branch name matching with the git branch name
+	# futhermore no local changes must be there
+	gvn-branch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+		git check-for-local-changes; \
+                git svn branch \"$1\"; \
+                remote=`git branch -ra --no-color | egrep \"\\/$1\"`; \
+                git checkout -b \"$1\" $remote' --"
+
+        # -------
+	gvn-rebase = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                set -x; \
+		head_svn=`git svn log --oneline --show-commit --no-abbrev --limit 1 | git awk3`; \
+		head_git=`git rev-parse HEAD`; \
+		is_git_on_top_of_svn_head=`git rev-list $head_git | grep $(git rev-parse $head_svn)`; \
+		if [[ \"\" == \"\" ]]; then \
+		  datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
+		  git tag -a gvnrb_${datetime}_git_${head_git}_to_svn_${head_svn} -m \"git svn rebase tag $datetime (git $head_git rebased to svn $head_svn)\"; \
+		  echo \"Created Tag gvnrb_$datetime (git $head_git rebased to svn $head_svn)\"; \
+		fi; \
+		git svn rebase' --"
+
+        # -------
+	gvn-update = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+		git check-for-local-changes; \
+		git svn fetch; \
+		gvn rebase' --"
+        gvn-up = "gvn-update"
+        gvn-u = "gvn-update"
+
+        # -------
+	gvn-update-stash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+                changes=`git stash-local-changes-if-any`; \
+		git svn fetch; \
+		gvn rebase; \
+		if [[ \"$changes\" != \"\" ]]; then \
+		  git stash pop; \
+		fi' --"
+        gvn-us = "gvn-update-stash"
+        gvn-ups = "gvn-update-stash"
+	#
+	gvn-update-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+		git check-for-local-changes; \
+		git svn fetch; \
+		gvn rebase; \
+		git svn dcommit' --"
+        gvn-uc = "gvn-update-commit"
+	#
+	gvn-stash-update-commit-unstash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		set -e; \
+		gvn check-for-branch-name-match; \
+                changes=`git stash-local-changes-if-any`; \
+		git svn fetch; \
+		gvn rebase; \
+		git svn dcommit; \
+		if [[ \"$changes\" != \"\" ]]; then \
+		  git stash pop; \
+		fi' --"
+        gvn-ucs = "gvn-stash-update-commit-unstash"
+        gvn-suc = "gvn-stash-update-commit-unstash"
+
+	# -------
+        # usage: gvn-cherry-pick <hash>
+	gvn-cherry-pick = "!bash -c ' \
+		set -x; \
+		set -e; \
+		git check-for-local-changes; \
+		svn_remote_commit_to_pick=\"$1\"; \
+		svn_url=`git log $svn_remote_commit_to_pick^..$svn_remote_commit_to_pick | grep git-svn-id | git awk2 | sed \"s,@, r,g\" | git awk1`; \
+		svn_rev=`git log $svn_remote_commit_to_pick^..$svn_remote_commit_to_pick | grep git-svn-id | git awk2 | sed \"s,@, r,g\" | git awk2`; \
+		svn_project=`git branch -r --contains $svn_remote_commit_to_pick --no-color | git awk1`; \
+		svn_commit_message=`git log -n 1 --format=format:'%B' $svn_remote_commit_to_pick | egrep -v \"git-svn-id\"`; \
+		echo \"CP: $svn_url $svn_rev $svn_project\"; \
+		git cherry-pick $svn_remote_commit_to_pick -n; \
+		if [[ $? == 0 ]]; then \
+		  anything_to_commit=`git status --untracked-files=no --porcelain`; \
+                  if [[ \"$anything_to_commit\" == \"\" ]]; then \
+  		    echo -e \"\nINFO: Cherry-Pick did not change anything. Nothing to commit.\n\"; \
+		  else \
+                    git commit -a -m \"$(echo -e \"[CP: $svn_project $svn_rev] $svn_commit_message \n\n [CPE: $svn_project $svn_rev $svn_url]\")\"; \
+		  fi; \
+		else \
+  		  echo -e \"\nWARNING: Manual rework required. Run gvn-cp-cont.sh when finished.\n\"; \
+		  git status -uno; \
+		  echo -e \"git commit -a -m \"$(echo -e \"[CP: $svn_project $svn_rev (modified)] $svn_commit_message \n\n [CPE: $svn_project $svn_rev $svn_url]\")\"\" > gvn-cp-cont.sh; \
+                  cat gvn-cp-cont.sh; \
+		fi' --"
+        gvn-cp = "gvn-cherry-pick" 
+
+        # -----------------------------
+        # add svn to git sandbox
+        # usage: gvn-clone-add <full_svn_url_without_trunk_in_std_layout> <origin_name> <new_trunk_branch_name>
+        gvn-clone-add = "!bash -c ' \
+		set -e; \
+		git check-for-local-changes; \
+		current_branch=`git branch --show-current`; \
+		git svn init \"$1\" -s -R\"$2\" --prefix \"$2\"/ .; \
+		git svn fetch \"$2\"; \
+		git checkout -b \"$3\" \"$2\"/trunk; \
+		git checkout $current_branch' --"
+	gvn-ca = "gvn-clone-add"
+
+        # usage: gvn-clone <full_svn_url_without_trunk_in_std_layout>
+	gvn-clone = "!bash -c 'git svn clone \"$1\" -s .' --"
+	gvn-c = "gvn-clone"
+
+	gvn-ls = "ls-files"
+
+        # --------------------------
+        # diff difftool = dd for gvn
+
+	gvn-dd  = "dd"
+        gvn-ddc = "ddc"
+	gvn-ddv = "ddv"
+
+

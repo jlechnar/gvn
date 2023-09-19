@@ -1,0 +1,180 @@
+# Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/gvn
+
+[alias]
+        # --------------------------
+	# log 
+
+        logl = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
+        logl2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
+
+        logll = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
+        logll2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
+
+
+	l = "log"
+	lf = "log --name-status"
+        alf = "log --name-status --all"
+
+        lg = "logl"
+        lgf = "logl2 --name-status"
+        lgl = "logll"
+        lglf = "logll2 --name-status"
+        lgfl = "lglf"
+
+        alg = "logl --all"
+        algf = "logl2 --name-status --all"
+        algl = "logll2 --all"
+        alglf = "logll2 --name-status --all"
+        algfl = "lglf"
+
+        logls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
+        logl2s = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
+
+        loglls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
+        logll2s = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
+
+        # log with diff of file
+        logd = "log --all --follow -p --"
+
+        # --------------------------
+	# merge
+
+	mdf = "!f(){ git show :1:$1 > $1.BASE; git show :2:$1 > $1.OURS; git show :3:$1 > $1.THEIRS; };f"
+	md = "!f(){ a='================================================================================'; echo \"$a\n$a\nBASE\n$a\"; git diff -1 $1; echo \"$a\n\n$a\nOURS\n$a\"; git diff -2 $1; echo \"$a\n\n$a\nTHEIRS\n$a\"; git diff -3 $1; echo $a; };f"
+	mdd = "dd HEAD..REBASE_HEAD"
+	m = "mergetool"
+
+	currentbranch = "rev-parse --abbrev-ref HEAD"
+
+        # -------
+	awk1 = "!awk '{print $1}'"
+	awk2 = "!awk '{print $2}'"
+	awk3 = "!awk '{print $3}'"
+
+        # -------
+	check-for-local-changes = "!bash -c '\
+		changes=`git status --short | grep -v \"??\"`; \
+		if [[ \"$changes\" != \"\" ]]; then \
+		  git status -uno; \
+  		  echo \"ERROR: There are uncommited changes. Aborting operation.\"; \
+  		  exit -1; \
+		fi' --"
+
+	stash-local-changes-if-any = "!bash -c '\
+		changes=`git status --short | grep -v \"??\"`; \
+		if [[ \"$changes\" != \"\" ]]; then \
+  		  git stash; \
+                  echo "1"; \
+		fi' --"
+
+        # --------------------------
+        # diff
+        d = "diff"
+	dc = "diff --cached"
+
+        diffw = "diff -w -U0 --word-diff-regex=[^[:space:]]"
+        dw = "diffw"
+        dwnc = "diffw --no-color"
+        diffw2 = "diff --ignore-all-space --ignore-blank-lines --ignore-space-change"
+        dw2 = "diffw2"
+
+        # --------------------------
+        diffall = "log --follow -p --"
+        da = "diffall"
+
+        diffallword = "log --follow -p -w -U0 --word-diff-regex=[^[:space:]] --"
+        daw = "diffallword"
+
+        # --------------------------
+        # difftool -d = dtd - directory difftool
+
+        dtd  = "difftool -d"
+	dtdc = "difftool -d --cached"
+	# version change
+	dtdv = "!f(){ git difftool -d \"$1\"^..\"$1\"; };f"
+
+        # --------------------------
+	# difftool
+
+        dt = "difftool"
+        dtc = "difftool --cached"
+	diff-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git diff $prev_hash^ \"$@\"' --"
+        dp = "diff-prev"
+	difftool-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool $prev_hash^ \"$@\"' --"
+        dtp = "difftool-prev"
+        difftool-dir-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool -d $prev_hash^ \"$@\"' --"
+        dtdp = "difftool-dir-prev"
+
+        # --------------------------
+        # cat files of revision
+        cat = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                if [[ \"$1\" == \"\" ]]; then \
+                  echo \"ERROR: options missing - check parameters git cat {<rev>} <file>\"; \
+                  exit -1; \
+                elif [[ \"$2\" == \"\" ]]; then \
+                  git show HEAD:$1; \
+                elif [[ \"$3\" != \"\" ]]; then \
+                  echo \"ERROR: too many options - check parameters git cat {<rev>} <file>\"; \
+                  exit -1; \
+                else \
+                  git show $1:$2; \
+                fi' --"
+
+
+
+        # --------------------------
+	# misc
+
+	ls = "ls-files"
+	stat = "status -s"
+
+	logv = "log --name-status"
+	lv = "logv"
+	log-files = "log -f"
+
+	cpc = "cherry-pick"
+	cp = "cherry-pick -n"
+	dt = "difftool"
+	status-uno = "status -uno"
+	stat = "status-uno"
+	st = "stat"
+	co = "commit"
+
+        add-updated = "add -u"
+	addu = "add-updated"
+
+	alias = "!sh -c '[ $# = 2 ] && git config --global alias.\"$1\" \"$2\" && exit 0 || echo \"usage: git alias <new alias> <original command>\" >&2 && exit 1' -"
+
+
+        # --------------------------
+	# stash
+
+	s = "stash"
+	sp = "stash pop"
+	sd = "stash drop"
+	sa = "stash apply"
+	sl = "stash list"
+	ss = "stash show -p 0"
+
+        # --------------------------
+	# finding / greping
+
+	grep-log = "!f(){ git log --all -i --grep=\"$1\"; };f"
+	find-all = "!f(){ git log --all -i --grep=\"$1\"; git grep \"$1\"; };f"
+	find2 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git ls . | grep \"$1\";' --"
+	find = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git ls \"$1\" | grep \"$2\";' --"
+        grepnc = "grep --no-color"
+        gnc = "grepnc"
+        g = "grep"
+        f = "find"
+
+        # ---------------------------
+        # config
+        config-list = "config --list"
+        config-list-origin = "config --list --show-origin"
+        config-list-scope = "config --list --show-scope"
+        config-list-origin-scope = "config --list --show-origin --show-scope"
+

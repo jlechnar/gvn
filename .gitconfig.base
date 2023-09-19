@@ -1,0 +1,55 @@
+# Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/gvn
+
+[core]
+	editor = vim
+	autocrlf = input
+[push]
+	default = simple
+[pull]
+	rebase = false
+[diff]
+	tool = meld
+	guitool = meld
+[color]
+	ui = always
+	branch = always
+	status = always
+	diff = always
+	interactive = always
+	grep = always
+	pager = true
+	decorate = always
+	showbranch = always
+[merge]
+	tool = meld
+	conflictstyle = diff3
+[mergetool "kdiff3"]
+	path = /usr/bin/kdiff3
+	trustExitCode = false
+[difftool "kdiff3"]
+	path = /usr/bin/kdiff3
+	trustExitCode = false
+[difftool "meld"]
+	path = /usr/bin/meld
+	trustExitCode = false
+[difftool]
+	prompt = false
+[mergetool "meld"]
+	path = /usr/bin/meld
+	trustExitCode = false
+[mergetool "vimdiff"]
+	trustExitCode = false
+[mergetool "gvimdiff"]
+	trustExitCode = false
+[mergetool]
+	prompt = false
+[diff "odf"]
+	binary = true
+	textconv = odt2txt
+[difftool "odf"]
+	binary = true
+	textconv = odt2txt
+
