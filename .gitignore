@@ -1,0 +1,3 @@
+tests/*.tmp
+tests/gvn_cmd.sh
+tests/test_*

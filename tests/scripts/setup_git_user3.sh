@@ -20,5 +20,7 @@ execute "$GVN clone-ns file://$REPO_PATH/trunk ." ""
 
 cat $GVN_BASE/.gitconfig.base >> .git/config
 cat $GVN_BASE/.gitconfig.extensions >> .git/config
-cat $GVN_BASE/.gitconfig.gvn >> .git/config
+cat $GVN_BASE/.gitconfig.gvn | sed "s,gvn_blame.py,$GVN_BLAME,g" >> .git/config
+
+execute "git branch -m trunk" "Rename master to trunk to match name for gvn"
 

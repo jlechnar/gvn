@@ -4,17 +4,29 @@
 # Source:      https://github.com/jlechnar/gvn
 
 [alias]
-        lgs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        lgsf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logl2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        lgsl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git loglls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        lgslf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        lgsfl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-lgs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-lgsf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logl2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-lgsl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git loglls \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-lgslf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-lgsfl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
 
-        algs = "!bash -c 'git logls --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        algsf = "!bash -c 'git logl2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        algsl = "!bash -c 'git logll2s --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        algslf = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
-        algsfl = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        lgs = "gvn-lgs"
+        lgsf = "gvn-lgsf"
+        lgsl = "gvn-lgsl"
+        lgslf = "gvn-lgslf"
+        lgsfl = "gvn-lgsfl"
+
+        gvn-algs = "!bash -c 'git logls --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-algsf = "!bash -c 'git logl2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-algsl = "!bash -c 'git logll2s --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-algslf = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+        gvn-algsfl = "!bash -c 'git logll2s --name-status --all \"$@\" | perl ~/bin/gvn-annotate.pl | less -R' --"
+    
+        algs = "gvn-algs"
+        algsf = "gvn-algsf"
+        algsl = "gvn-algsl"
+        algslf = "gvn-algslf"
+        algsfl = "gvn-algsfl"
 
         # --------------------------
 	# gvn
@@ -189,4 +201,12 @@
         gvn-ddc = "ddc"
 	gvn-ddv = "ddv"
 
+        # -------------------------
+        # blame
+        # below requires python pygmentize !
+	gvn-blame = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; python3 gvn_blame.py -s -a 8 \"$@\"' --"
+	gvn-blame-syntax-intern = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; python3 gvn_blame.py -s -a 8 -p -A \"$@\"' --"
+	gvn-blame-syntax-extern = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; python3 gvn_blame.py -s -a 8 -p -e -A \"$@\"' --"
+	gvn-blame-syntax-extern-debug = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; python3 gvn_blame.py -d -s -p -e -A \"$@\"' --"
+        gvn-bs = "gvn-blame-syntax-extern"
 
