@@ -6,7 +6,7 @@
 [alias]
 
 	# NOTE: adapt below as required
-	gvn-cmd-annotate = "!python3 ~/bin/bin/gvn/gvn_annotate.py"
+	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py"
 	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
 	
 	
