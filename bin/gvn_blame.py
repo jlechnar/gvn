@@ -90,7 +90,7 @@ if __name__ == '__main__':
         elif args.pygmentize_extern:
             code_syntax_highlighted = {}
 
-            filename = ".tmp.gvn_blame." + args.filename
+            filename = args.filename + ".tmp.gvn_blame."
 
             linenrs = {}
             lines_code = {}
