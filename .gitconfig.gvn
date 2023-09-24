@@ -216,3 +216,9 @@
 	gvn-blame-syntax-extern-debug = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; gvn cmd-blame -d -s -p -e -A \"$@\"' --"
         gvn-bs = "gvn-blame-syntax-extern"
 
+	git-blame = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; gvn cmd-blame -a 8 \"$@\"' --"
+	git-blame-syntax-intern = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; gvn cmd-blame -a 8 -p -A \"$@\"' --"
+	git-blame-syntax-extern = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; gvn cmd-blame -a 8 -p -e -A \"$@\"' --"
+	git-blame-syntax-extern-debug = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; gvn cmd-blame -d -p -e -A \"$@\"' --"
+	b = "git-blame"
+	bs = "git-blame-syntax-extern"
