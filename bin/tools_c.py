@@ -56,6 +56,11 @@ class tools_c:
     def debug(self, message):
         print("DEBUG: " + message)
         sys.stdout.flush()
+
+    ###############################################################
+    def warn_debug(self, message):
+        print("DEBUG: " + message, file=sys.stderr)
+        sys.stderr.flush()
         
     ###############################################################
     def is_pathfile_existing(self, pathfile):

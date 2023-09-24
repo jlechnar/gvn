@@ -18,8 +18,4 @@ REPO_PATH=`realpath ../server1/repo`
 # initialize local repository
 execute "$GVN clone file://$REPO_PATH/trunk ." ""
 
-cat $GVN_BASE/.gitconfig.base >> .git/config
-cat $GVN_BASE/.gitconfig.extensions >> .git/config
-cat $GVN_BASE/.gitconfig.gvn >> .git/config
-
-
+source ../scripts/setup_gvn.sh

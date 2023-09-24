@@ -31,49 +31,18 @@ sys.path.insert(0, dirname(realpath(getsourcefile(lambda:0))))
 
 from tools_c import *
 from gvn_exceptions import *
-
-# -----------------------------------------------------------
-class bcolors:
-    data = {}
-    def __init__(self, nocolors, bgalt):
-        self.colors_enabled = not nocolors
-        self.bgalt = bgalt
-        self.data = {}
-        self.data['GIT_HASH'] = '\033[33m'
-        # self.data['SVN_REV'] = '\033[94m'
-        self.data['SVN_REV'] = '\033[1;34m'
-        self.data['USER'] = '\033[2;34m'
-        self.data['DATETIME'] = '\033[1;32m'
-        self.data['LINENR'] = '\033[91m'
-        self.data['NO_COLOR'] = '\033[m'
-        self.data['WHITE_BG'] = '\033[47m'
-        self.data['BRIGHT_WHITE_BG'] = '\033[107m'
-        self.data['ITALIC'] = '\033[3m' 
-        # 48 	Set background color 	Next arguments are 5;<n> or 2;<r>;<g>;<b>, see below
-        self.data['GRAY_BG'] = '\033[48;2;225;225;225m'
-        # self.data['NO_COLOR'] = ''
-
-    def get_bgcolor(self, selection):
-        if self.colors_enabled and self.bgalt:
-            if selection == 0:
-                return ""
-            else:
-                return self.data['GRAY_BG']
-        else:
-            return ""
-        
-    def get_color(self, name):
-        if self.colors_enabled:
-            return self.data[name]
-        else:
-            return ""
-    
+from gvn_colors import *
+from gvn_base import *
+  
 # -----------------------------------------------------------
 if __name__ == '__main__':
             
     try:
+        # -------------------------------------
+        verbose = 0
         tools = tools_c() 
 
+        # -------------------------------------
         parser = argparse.ArgumentParser()
         parser.add_argument("filename", help="filename to git blame", action="store")
         parser.add_argument("hash", help="hash to use for blaming", action="store", nargs="?", default=None)
@@ -87,32 +56,21 @@ if __name__ == '__main__':
         parser.add_argument("--pygmentize_extern_options", "-o", help="additional options for external pygmentized runs", nargs="+")
         args = parser.parse_args()
 
-        if args.debug:
-            print("file: " +  args.filename)
-            if args.hash:
-                print("hash: " + args.hash)
-            # print(' '.join(args.pygmentize_extern_options))
-
-        bc = bcolors(args.nocolors, args.bgalt)
-    
-        verbose = 0
+        # --------------
+        bc = gvn_colors(args.nocolors, args.bgalt)
+        base = gvn_base(tools, args.debug, verbose)
 
         # --------------
+        if args.debug:
+            tools.debug("file: " +  args.filename)
+            if args.hash:
+                tools.debug("hash: " + args.hash)
+            # tools.debug(' '.join(args.pygmentize_extern_options))
+        
+        # --------------
         if args.gitsvn:
-            # get mapping of svn to git
-            git_to_svn_map = {}
-            svn_rev_width = 0
-            command="git log --all --no-color"
-            lines = tools.run_external_command_and_get_results(command, verbose)
-            for line in lines:
-                if m := re.match(r'\s*commit\s+(\S+)(\s+|$)', line):
-                    git_hash = m.group(1)
-                elif m := re.match(r'\s*git-svn-id:\s+([^\@]+)\@(\d+)\s+', line):
-                    svn_rev = m.group(2)
-                    git_to_svn_map[git_hash] = svn_rev
-                    svn_rev_width = max(svn_rev_width, len(svn_rev))
-                    # print(git_hash + " => " + svn_rev)
-
+            base.init_hash_to_svn_rev()
+            
         # --------------
         command = ("git blame -l --root --date=format-local:'%Y-%m-%d %H:%M:%S' ")
 
@@ -237,11 +195,7 @@ if __name__ == '__main__':
                 to_print = ""
                 to_print +=  bc.get_bgcolor(marker) + bc.get_color('GIT_HASH') + git_hash_short + bc.get_color('NO_COLOR') + " "
                 if args.gitsvn:
-                    if git_hash in git_to_svn_map:
-                        svn_rev = "r" + git_to_svn_map[git_hash]
-                    else:
-                        svn_rev = "r???"
-                    to_print += bc.get_color('SVN_REV') + '{:>{srw}}'.format(svn_rev, srw = svn_rev_width) + bc.get_color('NO_COLOR') + " "
+                    to_print += bc.get_color('SVN_REV') + base.map_git_hash_to_svn_rev_print(git_hash) + bc.get_color('NO_COLOR') + " "
                 to_print += bc.get_color('USER') + '{:>{usrw}}'.format(line_m.group(2), usrw = user_width) + bc.get_color('NO_COLOR') + " "
                 to_print += bc.get_color('DATETIME') + line_m.group(3) + bc.get_color('NO_COLOR') + " "
                 to_print += bc.get_color('LINENR') + '{:>5}'.format(line_m.group(4)) + bc.get_color('NO_COLOR') + " "
@@ -260,10 +214,10 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         print("\n")
-        the_tools.error("User Abort detected.")
+        tools.error("User Abort detected.")
         #    except ToolException as e:
         #        the_tools.error("Uncatched Tool Error detected:\n " + str(e)) # this should not happen but catch it here just in case
     except GVNException as e:
-        the_tools.error("Error detected:\n " + str(e))
+        tools.error("Error detected:\n " + str(e))
         #    except BaseException as e:
         #        the_tools.error("Fatal Uncatched Error detected:\n " + str(e))

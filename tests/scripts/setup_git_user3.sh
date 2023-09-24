@@ -18,9 +18,5 @@ REPO_PATH=`realpath ../server1/repo`
 # initialize local repository
 execute "$GVN clone-ns file://$REPO_PATH/trunk ." ""
 
-cat $GVN_BASE/.gitconfig.base >> .git/config
-cat $GVN_BASE/.gitconfig.extensions >> .git/config
-cat $GVN_BASE/.gitconfig.gvn | sed "s,gvn_blame.py,$GVN_BLAME,g" >> .git/config
-
-execute "git branch -m trunk" "Rename master to trunk to match name for gvn"
+source ../scripts/setup_gvn.sh
 

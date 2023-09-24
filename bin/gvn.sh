@@ -40,6 +40,7 @@ if [[ "$cmd" == "clone" ]]; then
   fi
 
   do_clone $from $to "-s"
+  # git branch -m trunk
 elif [[ "$cmd" == "clone-none-standard" || "$cmd" == "clone-ns" || "$cmd" == "clone-none-std" ]]; then
   from=$1
   shift
