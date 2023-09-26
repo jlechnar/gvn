@@ -45,8 +45,11 @@ if __name__ == '__main__':
         base.init_hash_to_svn_rev()
         
         # ---------------------
+        re_hash = re.compile(r'^(.+?)(\<hash\>([^\<]+)\<\/hash\>)(.+?)$')
+
         for line in sys.stdin:
-            if m := re.match(r'^(.+)(\<hash\>([^\<]+)\<\/hash\>)(.+)$', line):
+            m = re_hash.match(line)
+            if m:
                 print( m.group(1) + \
                        bc.get_color('SVN_REV') + \
                        base.map_git_hash_to_svn_rev_print(m.group(3)) + \

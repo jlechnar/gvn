@@ -150,6 +150,20 @@
 
 
         # --------------------------
+	# rebase
+        rbi = "rebase -i"
+        rbc = "rebase -continue"
+
+        # --------------------------
+	# adding/restoring
+        ai = "add -i"
+        rs = "restore --staged"
+
+        # --------------------------
+        # file sizes
+        ll = "!f(){ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4; };f"
+
+        # --------------------------
 	# stash
 
 	s = "stash"

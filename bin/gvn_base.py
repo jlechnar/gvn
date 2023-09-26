@@ -21,12 +21,17 @@ class gvn_base:
         
         command="git log --all --no-color"
         lines = self.tools.run_external_command_and_get_results(command, self.verbose)
-        
+
+        re_commit = re.compile(r'^\s*commit\s+(\S+)(\s|$)')
+        re_git_svn_id = re.compile(r'^\s*git-svn-id:\s+([^\@]+?)\@(\d+)\s')
+
         for line in lines:
-            if m := re.match(r'\s*commit\s+(\S+)(\s+|$)', line):
-                git_hash = m.group(1)
-            elif m := re.match(r'\s*git-svn-id:\s+([^\@]+)\@(\d+)\s+', line):
-                svn_rev = m.group(2)
+            m1 = re_commit.match(line)
+            m2 = re_git_svn_id.match(line)
+            if m1:
+                git_hash = m1.group(1)
+            elif m2:
+                svn_rev = m2.group(2)
                 self.git_to_svn_map[git_hash] = svn_rev
                 self.svn_rev_width = max(self.svn_rev_width, len(svn_rev))
                 if self.debug:

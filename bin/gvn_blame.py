@@ -24,6 +24,7 @@ from pygments.util import ClassNotFound
 from inspect import getsourcefile
 from os.path import realpath
 from os.path import dirname
+from os.path import splitext
 
 # add path where script is located to be able to read all submodules
 # submodules are expected to be located / must be located parallel to this file !
@@ -60,6 +61,9 @@ if __name__ == '__main__':
         bc = gvn_colors(args.nocolors, args.bgalt)
         base = gvn_base(tools, args.debug, verbose)
 
+        if args.debug:
+          verbose = 1
+
         # --------------
         if args.debug:
             tools.debug("file: " +  args.filename)
@@ -90,7 +94,8 @@ if __name__ == '__main__':
         elif args.pygmentize_extern:
             code_syntax_highlighted = {}
 
-            filename = args.filename + ".tmp.gvn_blame."
+            filename_extension = os.path.splitext(args.filename)[1]
+            filename = args.filename + ".tmp.gvn_blame." + filename_extension
 
             linenrs = {}
             lines_code = {}
@@ -120,6 +125,9 @@ if __name__ == '__main__':
             command += " -g " + filename
 
             lines2 = tools.run_external_command_and_get_results(command, verbose)
+
+            if args.debug:
+                print('\n'.join(lines2))
 
             linenr2 = 0
             for line in lines2:
