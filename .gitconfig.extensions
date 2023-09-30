@@ -207,6 +207,12 @@
         egrepnc = "grep -E --no-color"
 
         # ---------------------------
+        # stats
+        stats-unpushed = "!bash -c 'nr=`git diff --stat @{u}..@ | grep '|' | wc -l`; echo $nr;' --"
+
+        unpushed-commits = "log @{push}.. --oneline"
+
+        # ---------------------------
         # branch
         branch-merged-to-current = "git branch --merged"
         branch-not-merged-to-current = "git branch --no-merged"
@@ -217,6 +223,8 @@
         nr-changed-files = "!bash -c 'nr=`git diff --name-only | wc -l`; echo $nr;' --"
         nr-changed-files-cached = "!bash -c 'nr=`git diff --name-only --cached | wc -l`; echo $nr;' --"
         nr-worktrees = "!bash -c 'nr=`git worktree list | wc -l`; echo $nr;' --"
+        nr-unpushed-commits = "!bash -c 'nr=`git log @{push}.. --oneline | wc -l`; echo $nr;' --"
+        nr-unpushed-files = "!bash -c 'nr=`git diff --stat @{u}..@ | grep \"|\" | wc -l`; echo $nr;' --"
 
         # ---------------------------
         # e.g. for bash integration add the following at the end of your ~/.bashrc
@@ -241,8 +249,10 @@
                nr_worktrees=`git nr-worktrees`; \
                nr_changed_files=`git nr-changed-files`; \
                nr_changed_files_cached=`git nr-changed-files-cached`; \
+               nr_unpushed_commits=`git nr-unpushed-commits`; \
+               nr_unpushed_files=`git nr-unpushed-files`; \
                branch_name=`git rev-parse --abbrev-ref HEAD`; \
-               echo \"${branch_name}: W${nr_worktrees}B${nr_branches}_${nr_branches_not_merged}S${nr_stashes}C${nr_changed_files}_${nr_changed_files_cached}\"; \
+               echo \"${branch_name}: W${nr_worktrees} B${nr_branches}/${nr_branches_not_merged} S${nr_stashes} C${nr_changed_files}/${nr_changed_files_cached}/${nr_unpushed_files}_${nr_unpushed_commits}\"; \
              else \
                echo \"\"; \
              fi \
