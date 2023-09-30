@@ -10,6 +10,8 @@ import argparse
 import re
 
 import os
+import subprocess
+from subprocess import run
 import sys
 
 # https://pygments.org/docs/quickstart/
@@ -52,6 +54,7 @@ if __name__ == '__main__':
         parser.add_argument("--bgalt", "-A", help="alternate background color of hash on change, to see different commits easier", action="store_true")
         parser.add_argument("--nocolors", "-n", help="disable color", action="store_true")
         parser.add_argument("--debug", "-d", help="enable debug", action="store_true")
+        parser.add_argument("--verbose", "-v", help="enable verbose", action="store_true")
         parser.add_argument("--pygmentize", "-p", help="enable pygmentize code syntax highlighting", action="store_true")
         parser.add_argument("--pygmentize_extern", "-e", help="use external call for pygmentize", action="store_true")
         parser.add_argument("--pygmentize_extern_options", "-o", help="additional options for external pygmentized runs", nargs="+")
@@ -61,7 +64,7 @@ if __name__ == '__main__':
         bc = gvn_colors(args.nocolors, args.bgalt)
         base = gvn_base(tools, args.debug, verbose)
 
-        if args.debug:
+        if args.verbose:
           verbose = 1
 
         # --------------
@@ -76,17 +79,27 @@ if __name__ == '__main__':
             base.init_hash_to_svn_rev()
             
         # --------------
-        command = ("git blame -l --root --date=format-local:'%Y-%m-%d %H:%M:%S' ")
+        command = ("git blame -l --root --date=format-local:'%Y-%m-%d<SPACE>%H:%M:%S' ")
 
         
         if args.hash:
             command += (" " + args.hash + " ")
         command += args.filename
-        lines = tools.run_external_command_and_get_results(command, verbose)
 
+        if args.verbose:
+            tools.info(command)
+        if args.debug:
+            tools.debug(str(command.split()))
+        
+        p = subprocess.Popen(command.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        lines = []
+        for line_undecoded in p.stdout:
+            line = (line_undecoded.decode()).rstrip()
+            lines += [line]
+           
         # ---------------------
         # ^<hash> (<committer name with spaces> <date time> <line_nr>) code$
-        r_line = re.compile(r"^([0-9a-fA-F]+)\s+\((.+)\s+(\d+-\d+-\d+\s+\d+:\d+:\d+)\s+(\d+)\)(|\s(.+))$")
+        r_line = re.compile(r"^([0-9a-fA-F]+)\s+(\S+\s+)?\((.+)\s+\'(\d+-\d+-\d+)<SPACE>(\d+:\d+:\d+)\'\s+(\d+)\)(|\s(.+))$")
         
         # ---------------------
         if args.nocolors:
@@ -105,39 +118,49 @@ if __name__ == '__main__':
             #except:
 
             linenr = 0
+
             for line in lines:
                 line_m = r_line.match(line)
                 if line_m:
+
                     linenr += 1
-                    linenr_code = line_m.group(4);
-                    code = line_m.group(5);
+                    linenr_code = line_m.group(6);
+                    code = line_m.group(7);
                     
                     linenrs[linenr] = linenr_code
                     lines_code[linenr] = code
                     if args.debug:
-                        print("linenr map: " + str(linenr) + " <=> " + linenr_code)
+                        tools.debug("linenr map: " + str(linenr) + " <=> " + linenr_code)
                     print(code, file=f)
             f.close()
 
-            command = "pygmentize "
+            if args.verbose:
+                tools.info("Line Numbers:" + str(linenr))
+            
+            command2 = "pygmentize "
             if args.pygmentize_extern_options:
-                command += ' '.join(args.pygmentize_extern_options)
-            command += " -g " + filename
-
-            lines2 = tools.run_external_command_and_get_results(command, verbose)
+                command2 += ' '.join(args.pygmentize_extern_options)
+            command2 += " -g " + filename
 
             if args.debug:
-                print('\n'.join(lines2))
+                tools.debug('\n'.join(lines))
 
             linenr2 = 0
-            for line in lines2:
+
+            p = subprocess.Popen(command2.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            for line_undecoded in p.stdout:
+                line = line_undecoded.decode()
+
                 linenr2 += 1
                 linenr_code = linenrs[linenr2]
                 if args.debug:
-                    print("found linenr in highlighted: " + linenr_code)
+                    tools.debug("found linenr in highlighted: " + linenr_code)
 
                 code_syntax_highlighted[linenr_code] = line.rstrip()
                 # print(str(linenr) + ": " + line)
+
+            if args.verbose:
+                tools.info("Line Numbers:" + str(linenr2))
             
             # fix below is required to get it clean in case of line breaks at end of
             while linenr2 < linenr:
@@ -153,8 +176,8 @@ if __name__ == '__main__':
             lexer = None
             try:
                 lexer = guess_lexer_for_filename(args.filename, lines)
-                if args.debug:
-                    print("pygmentize guessed lexer: " + str(lexer))
+                if args.verbose:
+                    tools.info("pygmentize guessed lexer: " + str(lexer))
             except ClassNotFound:
                 pass
             
@@ -163,10 +186,10 @@ if __name__ == '__main__':
             for line in lines:
                 line_m = r_line.match(line)
                 if line_m:
-                    linenr = line_m.group(4);
-                    code = line_m.group(5);
+                    linenr = line_m.group(6);
+                    code = line_m.group(7);
                     if args.debug:
-                        print("found linenr in highlighted: " + linenr)
+                        tools.debug("found linenr in highlighted: " + linenr)
                    
                     if lexer:
                         result = highlight(code, lexer, formatter)
@@ -178,7 +201,7 @@ if __name__ == '__main__':
         for line in lines:
             line_m = r_line.match(line)
             if line_m:
-                user_width = max(user_width, len(line_m.group(2)))
+                user_width = max(user_width, len(line_m.group(3)))
                 
         git_hash_prev = ""
         marker = 0
@@ -204,19 +227,19 @@ if __name__ == '__main__':
                 to_print +=  bc.get_bgcolor(marker) + bc.get_color('GIT_HASH') + git_hash_short + bc.get_color('NO_COLOR') + " "
                 if args.gitsvn:
                     to_print += bc.get_color('SVN_REV') + base.map_git_hash_to_svn_rev_print(git_hash) + bc.get_color('NO_COLOR') + " "
-                to_print += bc.get_color('USER') + '{:>{usrw}}'.format(line_m.group(2), usrw = user_width) + bc.get_color('NO_COLOR') + " "
-                to_print += bc.get_color('DATETIME') + line_m.group(3) + bc.get_color('NO_COLOR') + " "
-                to_print += bc.get_color('LINENR') + '{:>5}'.format(line_m.group(4)) + bc.get_color('NO_COLOR') + " "
+                to_print += bc.get_color('USER') + '{:>{usrw}}'.format(line_m.group(3), usrw = user_width) + bc.get_color('NO_COLOR') + " "
+                to_print += bc.get_color('DATETIME') + line_m.group(4) + " " + line_m.group(5)  + bc.get_color('NO_COLOR') + " "
+                to_print += bc.get_color('LINENR') + '{:>5}'.format(line_m.group(6)) + bc.get_color('NO_COLOR') + " "
                 to_print += "| "
                 if args.nocolors:
-                    to_print += line_m.group(5)
+                    to_print += line_m.group(7)
                 elif args.pygmentize:
-                    linenr = line_m.group(4)
+                    linenr = line_m.group(6)
                     if args.debug:
-                        print("search linenr in highlighted: " + linenr)
+                        tools.debug("search linenr in highlighted: " + linenr)
                     to_print += code_syntax_highlighted[linenr]
                 else:
-                    to_print += line_m.group(5)
+                    to_print += line_m.group(7)
 
                 print(to_print)
 

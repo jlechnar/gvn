@@ -53,6 +53,7 @@
 	awk1 = "!awk '{print $1}'"
 	awk2 = "!awk '{print $2}'"
 	awk3 = "!awk '{print $3}'"
+	awk-1 = "!rev | awk '{print $1}' | rev"
 
         # -------
 	check-for-local-changes = "!bash -c '\
@@ -156,8 +157,15 @@
 
         # --------------------------
 	# adding/restoring
-        ai = "add -i"
+        add-interactive = "add -i"
+        ai = "add-interactive"
+        #
+        add-updated = "add -u"
+        au = "add-updated"
+        #
         rs = "restore --staged"
+        restore-staged-all = "restore --staged :/"
+        rsa = "restore-staged-all"
 
         # --------------------------
         # file sizes
@@ -167,11 +175,22 @@
 	# stash
 
 	s = "stash"
+        # pop = apply + drop
 	sp = "stash pop"
-	sd = "stash drop"
 	sa = "stash apply"
+	sdrop = "stash drop"
 	sl = "stash list"
-	ss = "stash show -p 0"
+        #
+        #stash-diff = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; git stash show -p $id;' --"
+        stash-diff = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; git diff \"stash@{$id}\"^ \"stash@{$id}\";' --"
+        sd = "stash-diff"
+        #
+        stash-difftool = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; git difftool \"stash@{$id}\"^ \"stash@{$id}\";' --"
+        sdt = "stash-difftool"
+        #
+        stash-difftool-dir = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; git difftool -d \"stash@{$id}\"^ \"stash@{$id}\";' --"
+        sdtd = "stash-difftool-dir"
+
 
         # --------------------------
 	# finding / greping
@@ -184,11 +203,77 @@
         gnc = "grepnc"
         g = "grep"
         f = "find"
+        egrep = "grep -E"
+        egrepnc = "grep -E --no-color"
 
+        # ---------------------------
+        # branch
+        branch-merged-to-current = "git branch --merged"
+        branch-not-merged-to-current = "git branch --no-merged"
+
+        nr-stashes = "!bash -c 'nr=`git stash list | wc -l`; echo $nr;' --"
+        nr-branches = "!bash -c 'nr=`git branch --no-color | wc -l`; echo $nr;' --"
+        nr-branches-not-merged = "!bash -c 'nr=`git branch --no-color --no-merged | wc -l`; echo $nr;' --"
+        nr-changed-files = "!bash -c 'nr=`git diff --name-only | wc -l`; echo $nr;' --"
+        nr-changed-files-cached = "!bash -c 'nr=`git diff --name-only --cached | wc -l`; echo $nr;' --"
+        nr-worktrees = "!bash -c 'nr=`git worktree list | wc -l`; echo $nr;' --"
+
+        # ---------------------------
+        # e.g. for bash integration add the following at the end of your ~/.bashrc
+        # txtblu='\[\e[0;34m\]' # Blue
+        # txtgrn='\[\e[0;32m\]' # Green
+        # txtpur='\[\e[0;35m\]' # Purple
+        # txtblk='\[\e[0;30m\]' # Black - Regular
+        # git_prompt() {
+        #   git prompt | sed -e "s/^\(.*\)$/ [ GIT: \1 ]/"
+        # }
+        # PS1="$txtblu \u@\h: $txtgrn\w$txtpur\$(git_prompt)$txtblk $ $txtblk"
+        # unset color_prompt force_color_prompt
+        # 
+        prompt = "!bash -c ' \
+           is_in_git_repo=`git rev-parse --is-inside-work-tree 2> /dev/null`; \
+           if [ \"$is_in_git_repo\" == \"true\" ]; then \
+             is_empty_git_repo=`git rev-list -n 1 --all`; \
+             if [ \"$is_empty_git_repo\" != \"\" ]; then \
+               nr_stashes=`git nr-stashes`; \
+               nr_branches=`git nr-branches`; \
+               nr_branches_not_merged=`git nr-branches-not-merged`; \
+               nr_worktrees=`git nr-worktrees`; \
+               nr_changed_files=`git nr-changed-files`; \
+               nr_changed_files_cached=`git nr-changed-files-cached`; \
+               branch_name=`git rev-parse --abbrev-ref HEAD`; \
+               echo \"${branch_name}: W${nr_worktrees}B${nr_branches}_${nr_branches_not_merged}S${nr_stashes}C${nr_changed_files}_${nr_changed_files_cached}\"; \
+             else \
+               echo \"\"; \
+             fi \
+           else \
+             echo \"\"; \
+           fi;' --"
+        
         # ---------------------------
         # config
         config-list = "config --list"
         config-list-origin = "config --list --show-origin"
         config-list-scope = "config --list --show-scope"
         config-list-origin-scope = "config --list --show-origin --show-scope"
+
+        # ---------------------------
+        # aliases
+        aliases = "!git config --list | grep alias | sort"
+        aliases-names = "!git config --list | grep alias | sed 's,\\., ,g' | sed 's,\\=, ,g' | awk '{print $2}' | sort"
+
+        # ---------------------------
+        # changelog
+        changelog = "shortlog"
+
+        # ---------------------------
+        wl = "worktree list"
+        wa = "!bash -c ' \
+           dir=$1; \
+           shift; \
+           main_path=`git rev-parse --path-format=absolute --show-toplevel`; \
+           cd $main_path; cd ..; cwd=`pwd`; cd $main_path; \
+           path=\"$cwd/$dir\"; \
+           git worktree add $path $@; \
+           ' --"
 
