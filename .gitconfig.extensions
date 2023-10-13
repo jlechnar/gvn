@@ -8,28 +8,56 @@
 	# log 
 
         logl = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
+	# below is with \n at end !
         logl2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
 
         logll = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
+	# below is with \n at end !
         logll2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
 
 
-	l = "log"
-	lf = "log --name-status"
-        alf = "log --name-status --all"
+	# -----------
+        # base
+	lb = "!git --no-pager log && echo \"\""
+	l = "!git lb | less -R"
 
-        lg = "logl"
-        lgf = "logl2 --name-status"
-        lgl = "logll"
-        lglf = "logll2 --name-status"
+	lbf = "!git --no-pager log --name-status && echo \"\""
+	lf = "!git lbf | less -R"
+
+	labf = "!git --no-pager log --name-status --all && echo \"\""
+	laf = "!git lbf | less -R"
+	
+        # -----------
+        # actual
+        lgb = "!git --no-pager logl && echo \"\""
+        lg = "!git lgb | less -R"
+
+        lgbf = "!git --no-pager logl2 --name-status && echo \"\""
+        lgf = "!git lgbf | less -R"
+
+        lgbl = "!git --no-pager logll2 && echo \"\""
+        lgl = "!git lgbl | less -R"
+
+        lgblf = "!git --no-pager logll2 --name-status && echo \"\""
+        lglf = "!git lgblf | less -R"
         lgfl = "lglf"
 
-        alg = "logl --all"
-        algf = "logl2 --name-status --all"
-        algl = "logll2 --all"
-        alglf = "logll2 --name-status --all"
-        algfl = "lglf"
+        # -----------
+        # all
+        lgab = "!git --no-pager logl --all && echo \"\""
+        lga = "!git lgab | less -R"
 
+        lgabf = "!git --no-pager logl2 --name-status --all && echo \"\""
+        lgaf = "!git lgabf | less -R"
+
+        lgabl = "!git --no-pager logll2 --all && echo \"\""
+        lgal = "!git lgabl | less -R"
+
+        lgablf = "!git --no-pager logll2 --name-status --all && echo \"\""
+        lgalf = "!git lgablf | less -R"
+        lgafl = "lgalf"
+
+        # -----------
         logls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
         logl2s = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
 
@@ -47,6 +75,23 @@
 	mdd = "dd HEAD..REBASE_HEAD"
 	m = "mergetool"
 
+        merge-wrapper="!bash -c '\
+          branch_to_merge_to=$1; \
+          if [ `git rev-parse --verify $branch_to_merge_to 2>/dev/null` ]; then \
+            branch_to_merge=`git rev-parse --abbrev-ref HEAD`; \
+            head_branch_to_merge=`git rev-parse HEAD`; \
+            head_branch_to_merge_to=`git rev-parse $branch_to_merge_to`; \
+            if [[ \"$head_branch_to_merge\" != \"$head_branch_to_merge_to\" ]]; then \
+              datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
+              git tag -a git_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to} -m \"git merge tag $datetime (git ${branch_to_merge} ${head_branch_to_merge} to ${branch_to_merge_to} ${head_branch_to_merge_to})\"; \
+              echo \"Created Tag for git merge: git_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to}\"; \
+            fi; \
+            git merge $@; \
+          else \
+            git merge $@; \
+          fi' --"
+
+        # -------
 	currentbranch = "rev-parse --abbrev-ref HEAD"
 
         # -------
@@ -124,6 +169,25 @@
                   git show $1:$2; \
                 fi' --"
 
+
+        # link gvn/bin/git.sh to e.g. ~/bin/git.sh and add following alias to your shell (e.g. bash), this will wrap git rebase to add a tag when starting a rebase to a branch
+        # alias git="~/bin/git.sh"
+
+        rebase-wrapper="!bash -c '\
+          branch_to_rebase_to=$1; \
+          if [ `git rev-parse --verify $branch_to_rebase_to 2>/dev/null` ]; then \
+            branch_to_rebase=`git rev-parse --abbrev-ref HEAD`; \
+            head_branch_to_rebase=`git rev-parse HEAD`; \
+            head_branch_to_rebase_to=`git rev-parse $branch_to_rebase_to`; \
+            if [[ \"$head_branch_to_rebase\" != \"$head_branch_to_rebase_to\" ]]; then \
+              datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
+              git tag -a git_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to} -m \"git rebase tag $datetime (git ${branch_to_rebase} ${head_branch_to_rebase} to ${branch_to_rebase_to} ${head_branch_to_rebase_to})\"; \
+              echo \"Created Tag for git rebase: git_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to}\"; \
+            fi; \
+            git rebase $@; \
+          else \
+            git rebase $@; \
+          fi' --"
 
 
         # --------------------------
@@ -217,14 +281,37 @@
         branch-merged-to-current = "git branch --merged"
         branch-not-merged-to-current = "git branch --no-merged"
 
+        has-upstream ="!bash -c ' \
+                git rev-parse @{u} &> /dev/null; \
+		if [[ \"$?\" == \"0\" ]]; then \
+		  echo 1; \
+		else \
+		  echo 0; \
+		fi' --"
+
         nr-stashes = "!bash -c 'nr=`git stash list | wc -l`; echo $nr;' --"
         nr-branches = "!bash -c 'nr=`git branch --no-color | wc -l`; echo $nr;' --"
         nr-branches-not-merged = "!bash -c 'nr=`git branch --no-color --no-merged | wc -l`; echo $nr;' --"
         nr-changed-files = "!bash -c 'nr=`git diff --name-only | wc -l`; echo $nr;' --"
         nr-changed-files-cached = "!bash -c 'nr=`git diff --name-only --cached | wc -l`; echo $nr;' --"
         nr-worktrees = "!bash -c 'nr=`git worktree list | wc -l`; echo $nr;' --"
-        nr-unpushed-commits = "!bash -c 'nr=`git log @{push}.. --oneline | wc -l`; echo $nr;' --"
-        nr-unpushed-files = "!bash -c 'nr=`git diff --stat @{u}..@ | grep \"|\" | wc -l`; echo $nr;' --"
+
+        nr-unpushed-commits = "!bash -c ' \
+          nr=0; \
+          has_upstream=`git has-upstream`; \
+          if [[ \"$has_upstream\" == \"1\" ]]; then \
+            nr=`git log @{push}.. --oneline | wc -l`; \
+          fi; \
+          echo $nr; \
+          ' --"
+        nr-unpushed-files = "!bash -c ' \
+          nr=0; \
+          has_upstream=`git has-upstream`; \
+          if [[ \"$has_upstream\" == \"1\" ]]; then \
+            nr=`git diff --stat @{u}..@ | grep \"|\" | wc -l`; \
+          fi; \
+          echo $nr; \
+          ' --"
 
         # ---------------------------
         # e.g. for bash integration add the following at the end of your ~/.bashrc
@@ -277,13 +364,23 @@
         changelog = "shortlog"
 
         # ---------------------------
-        wl = "worktree list"
-        wa = "!bash -c ' \
-           dir=$1; \
+        worktree-list = "worktree list"
+        wl = "worktree-list"
+        worktree-add = "!bash -c ' \
+           worktree_name=$1; \
            shift; \
            main_path=`git rev-parse --path-format=absolute --show-toplevel`; \
            cd $main_path; cd ..; cwd=`pwd`; cd $main_path; \
-           path=\"$cwd/$dir\"; \
+           path=\"$cwd/$worktree_name\"; \
            git worktree add $path $@; \
            ' --"
+        wa = "worktree-add"
+
+        # echo -n could be used below for direct "git wg <worktreename> | cd"  => still does not work in shell ???! => gave up
+        worktree-get-path = "!bash -c ' \
+           worktree_name=$1; \
+           worktree_path=`git worktree list | grep \"\\[$worktree_name\\]\" | git awk1`; \
+           echo \"$worktree_path\"; \
+           ' --"
+        wg = "worktree-get-path"
 

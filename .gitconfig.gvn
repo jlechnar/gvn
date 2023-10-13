@@ -10,29 +10,94 @@
 	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
 	
 	
-        gvn-lgs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-lgsf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logl2s --name-status \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-lgsl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git loglls \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-lgslf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-lgsfl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | gvn cmd-annotate | less -R' --"
-
+        gvn-lgsb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | gvn cmd-annotate' --"
+        lgsb = "gvn-lgsb"
+        gvn-lgs = "!bash -c 'gvn lgsb | less -R' --"
         lgs = "gvn-lgs"
-        lgsf = "gvn-lgsf"
-        lgsl = "gvn-lgsl"
-        lgslf = "gvn-lgslf"
-        lgsfl = "gvn-lgsfl"
 
-        gvn-algs = "!bash -c 'git logls --all \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-algsf = "!bash -c 'git logl2s --name-status --all \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-algsl = "!bash -c 'git logll2s --all \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-algslf = "!bash -c 'git logll2s --name-status --all \"$@\" | gvn cmd-annotate | less -R' --"
-        gvn-algsfl = "!bash -c 'git logll2s --name-status --all \"$@\" | gvn cmd-annotate | less -R' --"
-    
-        algs = "gvn-algs"
-        algsf = "gvn-algsf"
-        algsl = "gvn-algsl"
-        algslf = "gvn-algslf"
-        algsfl = "gvn-algsfl"
+        gvn-lgsfb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logl2s --name-status \"$@\" | gvn cmd-annotate' --"
+        lgsfb = "gvn-lgsfb"
+        lgfsb = "gvn-lgsfb"
+        gvn-lgsf = "!bash -c 'gvn lgsfb | less -R' --"
+        lgsf = "gvn-lgsf"
+        lgfs = "gvn-lgsf"
+
+        gvn-lgslb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git loglls \"$@\" | gvn cmd-annotate' --"
+        lgslb = "gvn-lgslb"
+        lglsb = "gvn-lgslb"
+        gvn-lgsl = "!bash -c 'gvn lgslb | less -R' --"
+        lgsl = "gvn-lgsl"
+        lgls = "gvn-lgsl"
+
+        gvn-lgslfb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logll2s --name-status \"$@\" | gvn cmd-annotate' --"
+        gvn-lglsfb = "gvn-lgslfb"
+        gvn-lglfsb = "gvn-lgslfb"
+        gvn-lgflsb = "gvn-lgslfb"
+        gvn-lgsflb = "gvn-lgslfb"
+        gvn-lgfslb = "gvn-lgslfb"
+        lgslfb = "gvn-lgslfb"
+        lglsfb = "gvn-lgslfb"
+        lglfsb = "gvn-lgslfb"
+        lgflsb = "gvn-lgslfb"
+        lgsflb = "gvn-lgslfb"
+        lgfslb = "gvn-lgslfb"
+        gvn-lgslf = "!bash -c 'gvn lgslfb | less -R' --"
+	gvn-lglsf = "gvn-lgslf"
+	gvn-lglfs = "gvn-lgslf"
+	gvn-lgfls = "gvn-lgslf"
+	gvn-lgfsl = "gvn-lgslf"
+	gvn-lgsfl = "gvn-lgslf"
+        lgslf = "gvn-lgslf"
+	lglsf = "gvn-lgslf"
+	lglfs = "gvn-lgslf"
+	lgfls = "gvn-lgslf"
+	lgfsl = "gvn-lgslf"
+	lgsfl = "gvn-lgslf"
+	
+
+        gvn-lgasb = "!bash -c 'git logls --all \"$@\" | gvn cmd-annotate' --"
+        lgasb = "gvn-lgasb"
+        gvn-lgas = "!bash -c 'gvn lgasb | less -R' --"
+        lgas = "gvn-lgas"
+
+        gvn-lgasfb = "!bash -c 'git logl2s --name-status --all \"$@\" | gvn cmd-annotate' --"
+        gvn-lgafsb = "gvn-lgasfb"
+        lgasfb = "gvn-lgasfb"
+        lgafsb = "gvn-lgasfb"
+        gvn-lgasf = "!bash -c 'gvn lgasfb | less -R' --"
+        gvn-lgafs = "gvn-lgasf"
+        lgasf = "gvn-lgasf"
+        lgafs = "gvn-lgasf"
+
+        gvn-lgaslb = "!bash -c 'git logll2s --all \"$@\" | gvn cmd-annotate' --"
+        gvn-lgalsb = "gvn-lgaslb"
+        lgaslb = "gvn-lgaslb"
+        lgalsb = "gvn-lgaslb"
+        gvn-lgasl = "!bash -c 'gvn algslb | less -R' --"
+        gvn-lgals = "gvn-lgasl"
+        lgasl = "gvn-lgasl"
+        lgals = "gvn-lgasl"
+
+        gvn-lgaslfb = "!bash -c 'git logll2s --name-status --all \"$@\" | gvn cmd-annotate' --"
+        gvn-lgalsfb = "gvn-lgaslfb"
+        gvn-lgalfsb = "gvn-lgaslfb"
+        gvn-lgaflsb = "gvn-lgaslfb"
+        gvn-lgafslb = "gvn-lgaslfb"
+        lgaslfb = "gvn-lgaslfb"
+        lgalsfb = "gvn-lgaslfb"
+        lgalfsb = "gvn-lgaslfb"
+        lgaflsb = "gvn-lgaslfb"
+        lgafslb = "gvn-lgaslfb"
+        gvn-lgaslf = "!bash -c 'gvn lgaslfb | less -R' --"
+        gvn-lgalsf = "gvn-lgaslf"
+        gvn-lgalfs = "gvn-lgaslf"
+        gvn-lgafls = "gvn-lgaslf"
+        gvn-lgafsl = "gvn-lgaslf"
+        lgalsf = "gvn-lgaslf"
+        lgalfs = "gvn-lgaslf"
+        lgafls = "gvn-lgaslf"
+        lgafsl = "gvn-lgaslf"
+
 
         # --------------------------
 	# gvn
@@ -97,14 +162,13 @@
 
         # -------
 	gvn-rebase = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                set -x; \
 		head_svn=`git svn log --oneline --show-commit --no-abbrev --limit 1 | git awk3`; \
 		head_git=`git rev-parse HEAD`; \
 		is_git_on_top_of_svn_head=`git rev-list $head_git | grep $(git rev-parse $head_svn)`; \
 		if [[ \"\" == \"\" ]]; then \
 		  datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
-		  git tag -a gvnrb_${datetime}_git_${head_git}_to_svn_${head_svn} -m \"git svn rebase tag $datetime (git $head_git rebased to svn $head_svn)\"; \
-		  echo \"Created Tag gvnrb_$datetime (git $head_git rebased to svn $head_svn)\"; \
+		  git tag -a gvn_rebase_${datetime}_git_${head_git}_to_svn_${head_svn} -m \"git svn rebase tag $datetime (git $head_git rebased to svn $head_svn)\"; \
+		  echo \"Created Tag gvn_rebase_$datetime_${datetime}_git_${head_git}_to_svn_${head_svn}\"; \
 		fi; \
 		git svn rebase' --"
 
@@ -228,3 +292,45 @@
         bsi = "git-blame-syntax-intern"
 	bse = "git-blame-syntax-extern"
 	bs = "bse"
+
+        # --------------------------
+        # worktree
+        gvn-wl = "wl"
+        gvn-wa = "wa"
+        gvn-wg = "wg"
+
+        gvn-wrebase="!bash -c '\
+          branch_to_rebase_to=$1; \
+          if [ `git rev-parse --verify $branch_to_rebase_to 2>/dev/null` ]; then \
+            branch_to_rebase=`git rev-parse --abbrev-ref HEAD`; \
+            head_branch_to_rebase=`git rev-parse HEAD`; \
+            head_branch_to_rebase_to=`git rev-parse $branch_to_rebase_to`; \
+            if [[ \"$head_branch_to_rebase\" != \"$head_branch_to_rebase_to\" ]]; then \
+              datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
+              git tag -a gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to} -m \"git rebase tag $datetime (git ${branch_to_rebase} ${head_branch_to_rebase} to ${branch_to_rebase_to} ${head_branch_to_rebase_to})\"; \
+              echo \"Created Tag for git rebase: gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to}\"; \
+            fi; \
+            git rebase $@; \
+          else \
+            git rebase $@; \
+          fi' --"
+
+        gvn-wr = "wrebase"
+        gvn-wmerge="!bash -c '\
+          branch_to_merge_to=$1; \
+          if [ `git rev-parse --verify $branch_to_merge_to 2>/dev/null` ]; then \
+            branch_to_merge=`git rev-parse --abbrev-ref HEAD`; \
+            head_branch_to_merge=`git rev-parse HEAD`; \
+            head_branch_to_merge_to=`git rev-parse $branch_to_merge_to`; \
+            if [[ \"$head_branch_to_merge\" != \"$head_branch_to_merge_to\" ]]; then \
+              datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
+              git tag -a gvn_worktree_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to} -m \"git merge tag $datetime (git ${branch_to_merge} ${head_branch_to_merge} to ${branch_to_merge_to} ${head_branch_to_merge_to})\"; \
+              echo \"Created Tag for git merge: gvn_worktree_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to}\"; \
+            fi; \
+            git merge --ff-only $@; \
+          else \
+            git merge $@; \
+          fi' --"
+        gvn-wm = "wmerge"
+
+

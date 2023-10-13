@@ -1,0 +1,252 @@
+
+################################################
+# setup: Setup overlay
+.../test_overlay
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_overlay/server1
+
+################################################
+# setup: create local / sandbox repository
+.../test_overlay/server1_create
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_overlay/server1/repo .
+ |============================================================================
+Checked out revision 0.
+ '============================================================================
+
+A         trunk
+A         branches
+A         tags
+A         .svnignore
+Adding         branches
+Adding         tags
+Adding         trunk
+Adding         trunk/.svnignore
+Transmitting file data .done
+Committing transaction...
+Committed revision 1.
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_overlay/svn_user2
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_overlay/server1/repo/trunk .
+ |============================================================================
+A    .svnignore
+Checked out revision 1.
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_overlay/git_user2
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone file://.../test_overlay/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_overlay/git_user2/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/origin/trunk)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_overlay/git_user3
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_overlay/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_overlay/git_user3/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/git-svn)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             init git overlay
+ | Executing:  .../../bin/gito init
+ |============================================================================
+Adding overlay to git repo in .../test_overlay/git_user3 ...
+Initialized empty Git repository in .../test_overlay/git_user3/.overlay/.git/
+make[1]: Entering directory '.../test_overlay/git_user3'
+echo "\n# AUTOMATIC GENERATED FILE - DO NOT EDIT\n\n" > .gitignore
+cat .gitignore_base >> .gitignore
+tail -n +`grep -n -m 1 "add user defined ignores below" .gitignore_overlay | cut -f1 -d:` .gitignore_overlay | grep -v "add user defined ignores below" >> .gitignore
+make[1]: Leaving directory '.../test_overlay/git_user3'
+[master (root-commit) f2f94a8] "init_ignores"
+ 1 file changed, 6 insertions(+)
+ create mode 100644 .gitignore_overlay
+ '============================================================================
+
+
+ .============================================================================
+ |             status git overlay
+ | Executing:  .../../bin/gito status
+ |============================================================================
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m.svnignore[m
+	[31mMakefile[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+ '============================================================================
+
+
+ .============================================================================
+ |             add file to ignore in overlay
+ | Executing:  .../../bin/gito add overlay1.txt
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit file to ignore in overlay
+ | Executing:  .../../bin/gito commit -m 'add_ignore'
+ |============================================================================
+[master bcd1a3f] add_ignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 overlay1.txt
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  .../../bin/gito status
+ |============================================================================
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m.svnignore[m
+	[31mMakefile[m
+	[31mfile.html[m
+	[31mfile.pl[m
+	[31mfile.py[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+ '============================================================================
+
+
+ .============================================================================
+ |             show history
+ | Executing:  .../../bin/gito lgab
+ |============================================================================
+* [33m     bcd1a3f8a[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_ignore[m [1;35m (HEAD -> master)[m
+* [33m     f2f94a82f[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30m"init_ignores"[m [1;35m[m
+ '============================================================================
+
+
+ .============================================================================
+ |             add ignores
+ | Executing:  git add -f .gitignore .gitignore_base
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             add gitignor files
+ | Executing:  git commit -m 'add_gitignore'
+ |============================================================================
+[trunk 247fca1] add_gitignore
+ 2 files changed, 15 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .gitignore_base
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  git status
+ |============================================================================
+On branch trunk
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mMakefile[m
+	[31mfile.html[m
+	[31mfile.pl[m
+	[31mfile.py[m
+	[31moverlay1.txt[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+ '============================================================================
+
+
+ .============================================================================
+ |             show history
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     247fca1ae[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_gitignore[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (git-svn)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             add new file to ignores
+ | Executing:  echo "overlay1.txt" >> .gitignore_overlay
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             update .gitignore
+ | Executing:  make .gitignore
+ |============================================================================
+make[1]: Entering directory '.../test_overlay/git_user3'
+echo "\n# AUTOMATIC GENERATED FILE - DO NOT EDIT\n\n" > .gitignore
+cat .gitignore_base >> .gitignore
+tail -n +`grep -n -m 1 "add user defined ignores below" .gitignore_overlay | cut -f1 -d:` .gitignore_overlay | grep -v "add user defined ignores below" >> .gitignore
+make[1]: Leaving directory '.../test_overlay/git_user3'
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  git status
+ |============================================================================
+On branch trunk
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .gitignore[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mMakefile[m
+	[31mfile.html[m
+	[31mfile.pl[m
+	[31mfile.py[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ '============================================================================
+
+
+ .============================================================================
+ |             show history
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     247fca1ae[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_gitignore[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (git-svn)[m
+ '============================================================================
+

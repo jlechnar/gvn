@@ -24,8 +24,8 @@ ln -s ../gvn_cmd.sh .
 cd git_user3/
 
 ######################
-#execute "git --no-pager lgs" "log with svn revisions"
-# execute "git lgs" "log with svn revisions"
+#execute "git --no-pager lgsb" "log with svn revisions"
+# execute "git lgsb" "log with svn revisions"
 
 echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file.pl

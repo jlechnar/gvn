@@ -1,0 +1,822 @@
+
+################################################
+# setup: Setup worktree
+.../test_worktree
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_worktree/server1
+
+################################################
+# setup: create local / sandbox repository
+.../test_worktree/server1_create
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_worktree/server1/repo .
+ |============================================================================
+Checked out revision 0.
+ '============================================================================
+
+A         trunk
+A         branches
+A         tags
+A         .svnignore
+Adding         branches
+Adding         tags
+Adding         trunk
+Adding         trunk/.svnignore
+Transmitting file data .done
+Committing transaction...
+Committed revision 1.
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_worktree/svn_user2
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_worktree/server1/repo/trunk .
+ |============================================================================
+A    .svnignore
+Checked out revision 1.
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_worktree/git_user2
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone file://.../test_worktree/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_worktree/git_user2/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/origin/trunk)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_worktree/git_user3
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_worktree/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_worktree/git_user3/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/git-svn)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             update commit to svn
+ | Executing:  .../../bin/gvn.sh uc
+ |============================================================================
+Created Tag gvn_rebase_2023_10_13-15_31_42_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7
+Current branch trunk is up to date.
+Committing to file://.../test_worktree/server1/repo/trunk ...
+ '============================================================================
+
+
+ .============================================================================
+ |             update commit to svn
+ | Executing:  .../../bin/gvn.sh uc
+ |============================================================================
+Created Tag gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7
+Current branch trunk is up to date.
+Committing to file://.../test_worktree/server1/repo/trunk ...
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files
+ | Executing:  git commit -m 'files'
+ |============================================================================
+[trunk a1d28bb] files
+ 3 files changed, 15 insertions(+)
+ create mode 100644 file.html
+ create mode 100644 file.pl
+ create mode 100644 file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             update commit to svn
+ | Executing:  .../../bin/gvn.sh uc
+ |============================================================================
+Created Tag gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7
+Current branch trunk is up to date.
+Committing to file://.../test_worktree/server1/repo/trunk ...
+	A	file.html
+	A	file.pl
+	A	file.py
+Committed r2
+	A	file.html
+	A	file.pl
+	A	file.py
+r2 = <HASH> (refs/remotes/git-svn)
+No changes between a1d28bb0f7e1733eb30864a98a08157ea242ffd7 and refs/remotes/git-svn
+Resetting to the latest refs/remotes/git-svn
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user3  5572c40 [trunk]
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test
+ | Executing:  .../../bin/gvn.sh wa test
+ |============================================================================
+Preparing worktree (new branch 'test')
+HEAD is now at 5572c40 files
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user3  5572c40 [trunk]
+.../test_worktree/test       5572c40 [test]
+ '============================================================================
+
+
+ .============================================================================
+ |             get worktree path for test worktree
+ | Executing:  test_worktree=`.../../bin/gvn.sh wg test`
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             get worktree path for trunk worktree
+ | Executing:  trunk_worktree=`.../../bin/gvn.sh wg trunk`
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test worktree
+ | Executing:  cd .../test_worktree/test
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show current dir
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree/test
+ '============================================================================
+
+
+ .============================================================================
+ |             change to trunk worktree
+ | Executing:  cd .../test_worktree/git_user3
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show current dir
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree/git_user3
+ '============================================================================
+
+
+ .============================================================================
+ |             test rebase
+ | Executing:  echo 'subtest'
+ |============================================================================
+subtest
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test worktree
+ | Executing:  cd .../test_worktree/test
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             added new file
+ | Executing:  git add file4.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             changes in test worktree rebase
+ | Executing:  git commit -a -m 'changes_test_worktree_rebase'
+ |============================================================================
+[test 640b24d] changes_test_worktree_rebase
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file4.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             change to trunk worktree
+ | Executing:  cd .../test_worktree/git_user3
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             added new file
+ | Executing:  git add file5.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             changes in trunk worktree rebase
+ | Executing:  git commit -a -m 'changes_trunk_worktree_rebase'
+ |============================================================================
+[trunk baa8612] changes_trunk_worktree_rebase
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file5.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test worktree
+ | Executing:  cd .../test_worktree/test
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             rebase with trunk
+ | Executing:  .../../bin/gvn.sh wrebase trunk
+ |============================================================================
+Created Tag for git rebase: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8
+Auto-merging file.html
+Auto-merging file.py
+CONFLICT (content): Merge conflict in file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             fixed rebase conflict
+ | Executing:  git add file.py
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             finish rebase after fixing conflict - using auto message / same message as before
+ | Executing:  GIT_EDITOR=true git rebase --continue
+ |============================================================================
+[detached HEAD 7349c88] changes_test_worktree_rebase
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file4.pl
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> test)[m
+* [33m     baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (trunk)[m
+[31m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (git-svn)[m
+[32m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[32m|[m[32m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             change to trunk worktree
+ | Executing:  cd .../test_worktree/git_user3
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             merge with test
+ | Executing:  .../../bin/gvn.sh wmerge test
+ |============================================================================
+Created Tag for git merge: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be
+Updating baa8612..7349c88
+Fast-forward
+ file.html | 2 [32m+[m[31m-[m
+ file.py   | 4 [32m++[m[31m--[m
+ file4.pl  | 4 [32m++++[m
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file4.pl
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, test)[m
+* [33m     baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[31m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (git-svn)[m
+[32m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[32m|[m[32m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             update commit to svn
+ | Executing:  .../../bin/gvn.sh uc
+ |============================================================================
+Created Tag gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61
+Current branch trunk is up to date.
+Committing to file://.../test_worktree/server1/repo/trunk ...
+	A	file5.pl
+	M	file.html
+	M	file.py
+Committed r3
+	M	file.html
+	M	file.py
+	A	file5.pl
+r3 = <HASH> (refs/remotes/git-svn)
+	A	file4.pl
+	M	file.html
+	M	file.py
+Committed r4
+	M	file.html
+	M	file.py
+	A	file4.pl
+r4 = <HASH> (refs/remotes/git-svn)
+No changes between 7349c887a9677e84edbdb9e465478ffccdacb7be and refs/remotes/git-svn
+Resetting to the latest refs/remotes/git-svn
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, git-svn)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[31m|[m * [33m   7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61, test)[m
+[31m|[m * [33m   baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[31m|[m[31m/[m  
+
+[31m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+[33m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[33m|[m[33m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             test merge with svn update in between
+ | Executing:  echo 'subtest'
+ |============================================================================
+subtest
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test worktree
+ | Executing:  cd .../test_worktree/test
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             added new file
+ | Executing:  git add file6.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             changes in test worktree merge svn up
+ | Executing:  git commit -a -m 'changes_test_worktree_merge_svn_up'
+ |============================================================================
+[test 3d7097d] changes_test_worktree_merge_svn_up
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file6.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             change to trunk worktree
+ | Executing:  cd .../test_worktree/git_user3
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             git svn update
+ | Executing:  .../../bin/gvn.sh up
+ |============================================================================
+Created Tag gvn_rebase_2023_10_13-15_32_01_git_2a5bca959608d8b2079846866493103c2e8c762c_to_svn_2a5bca959608d8b2079846866493103c2e8c762c
+Current branch trunk is up to date.
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     3d7097dbb[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+* [33m     7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61)[m
+* [33m     baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[31m|[m * [33m   <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, tag: gvn_rebase_2023_10_13-15_32_01_git_2a5bca959608d8b2079846866493103c2e8c762c_to_svn_2a5bca959608d8b2079846866493103c2e8c762c, git-svn)[m
+[31m|[m * [33m   <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[31m|[m[31m/[m  
+
+[31m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+[33m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[33m|[m[33m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             git svn update
+ | Executing:  .../../bin/gvn.sh up
+ |============================================================================
+	A	file.html
+	A	file.pl
+	A	file.py
+r2 = <HASH> (refs/remotes/origin/trunk)
+	M	file.html
+	M	file.py
+	A	file5.pl
+r3 = <HASH> (refs/remotes/origin/trunk)
+	M	file.html
+	M	file.py
+	A	file4.pl
+r4 = <HASH> (refs/remotes/origin/trunk)
+Created Tag gvn_rebase_2023_10_13-15_32_04_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_2a5bca959608d8b2079846866493103c2e8c762c
+ '============================================================================
+
+
+ .============================================================================
+ |             added new file
+ | Executing:  git add file8.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             changes in trunk worktree merge svn change
+ | Executing:  git commit -a -m 'changes_trunk_worktree_merge_svn_change_from_other_svn_sandbox'
+ |============================================================================
+[trunk 26d1e45] changes_trunk_worktree_merge_svn_change_from_other_svn_sandbox
+ 3 files changed, 7 insertions(+), 2 deletions(-)
+ create mode 100644 file8.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             git svn commit from other svn sandbox
+ | Executing:  .../../bin/gvn.sh commit
+ |============================================================================
+Committing to file://.../test_worktree/server1/repo/trunk ...
+	A	file8.pl
+	M	file.html
+	M	file.py
+Committed r5
+	M	file.html
+	M	file.py
+	A	file8.pl
+r5 = <HASH> (refs/remotes/origin/trunk)
+No changes between 26d1e455fdaf68bf2a0acab6fd59d817c58bf13f and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m (HEAD -> trunk, origin/trunk)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_04_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_2a5bca959608d8b2079846866493103c2e8c762c, tag: gvn_rebase_2023_10_13-15_31_42_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             change to trunk worktree
+ | Executing:  cd .../test_worktree/git_user3
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             added new file
+ | Executing:  git add file7.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             changes in trunk worktree merge
+ | Executing:  git commit -a -m 'changes_trunk_worktree_merge_svn_change'
+ |============================================================================
+[trunk b4c3168] changes_trunk_worktree_merge_svn_change
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file7.pl
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     b4c3168ed[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_01_git_2a5bca959608d8b2079846866493103c2e8c762c_to_svn_2a5bca959608d8b2079846866493103c2e8c762c, git-svn)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[31m|[m * [33m   3d7097dbb[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+[31m|[m * [33m   7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61)[m
+[31m|[m * [33m   baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[31m|[m[31m/[m  
+
+[31m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+[33m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[33m|[m[33m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             git svn update and so get conflict and new files from other sandbox
+ | Executing:  .../../bin/gvn.sh up
+ |============================================================================
+	M	file.html
+	M	file.py
+	A	file8.pl
+r5 = <HASH> (refs/remotes/git-svn)
+Created Tag gvn_rebase_2023_10_13-15_32_11_git_b4c3168edda36dab6264391779cb0ddd5ad6db4e_to_svn_8c89dab5a86dcaccef381d1fde32138805101f8b
+Auto-merging file.html
+Auto-merging file.py
+CONFLICT (content): Merge conflict in file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             fixed gvn up conflict - set to common base
+ | Executing:  git add file.py
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             finish rebase after fixing conflict from other sandbox - using auto message / same message as before
+ | Executing:  GIT_EDITOR=true git rebase --continue
+ |============================================================================
+[detached HEAD df21976] changes_trunk_worktree_merge_svn_change
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file7.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             git svn commit
+ | Executing:  .../../bin/gvn.sh commit
+ |============================================================================
+Committing to file://.../test_worktree/server1/repo/trunk ...
+	A	file7.pl
+	M	file.html
+	M	file.py
+Committed r6
+	M	file.html
+	M	file.py
+	A	file7.pl
+r6 = <HASH> (refs/remotes/git-svn)
+No changes between df219769d47bf649ea882273ed556d8458a59e3f and refs/remotes/git-svn
+Resetting to the latest refs/remotes/git-svn
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk, git-svn)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[31m|[m * [33m   b4c3168ed[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_11_git_b4c3168edda36dab6264391779cb0ddd5ad6db4e_to_svn_8c89dab5a86dcaccef381d1fde32138805101f8b)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_01_git_2a5bca959608d8b2079846866493103c2e8c762c_to_svn_2a5bca959608d8b2079846866493103c2e8c762c)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[32m|[m * [33m   3d7097dbb[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+[32m|[m * [33m   7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61)[m
+[32m|[m * [33m   baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[32m|[m[32m/[m  
+
+[32m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[32m|[m[32m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+[34m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[34m|[m[34m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test worktree
+ | Executing:  cd .../test_worktree/test
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[31m|[m * [33m   b4c3168ed[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_11_git_b4c3168edda36dab6264391779cb0ddd5ad6db4e_to_svn_8c89dab5a86dcaccef381d1fde32138805101f8b)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_01_git_2a5bca959608d8b2079846866493103c2e8c762c_to_svn_2a5bca959608d8b2079846866493103c2e8c762c)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[32m|[m * [33m   3d7097dbb[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> test)[m
+[32m|[m * [33m   7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61)[m
+[32m|[m * [33m   baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[32m|[m[32m/[m  
+
+[32m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[32m|[m[32m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+[34m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[34m|[m[34m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             rebase with trunk
+ | Executing:  .../../bin/gvn.sh wrebase trunk
+ |============================================================================
+Created Tag for git rebase: gvn_worktree_rebase_2023_10_13-15_32_15_test_3d7097dbb27bb1434bf0d4ab22bedf945482aae8_to_trunk_286330d56e7974410650e09e79fd48e307e3c861
+Auto-merging file.html
+Auto-merging file.py
+CONFLICT (content): Merge conflict in file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             add changes
+ | Executing:  git add file.py
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             finish rebase
+ | Executing:  GIT_EDITOR=true git rebase --continue
+ |============================================================================
+[detached HEAD 1257d49] changes_test_worktree_merge_svn_up
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file6.pl
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     1257d49d9[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> test)[m
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[31m|[m * [33m   b4c3168ed[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_11_git_b4c3168edda36dab6264391779cb0ddd5ad6db4e_to_svn_8c89dab5a86dcaccef381d1fde32138805101f8b)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_01_git_2a5bca959608d8b2079846866493103c2e8c762c_to_svn_2a5bca959608d8b2079846866493103c2e8c762c)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[32m|[m * [33m   3d7097dbb[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_32_15_test_3d7097dbb27bb1434bf0d4ab22bedf945482aae8_to_trunk_286330d56e7974410650e09e79fd48e307e3c861)[m
+[32m|[m * [33m   7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61)[m
+[32m|[m * [33m   baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[32m|[m[32m/[m  
+
+[32m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[32m|[m[32m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+[34m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[34m|[m[34m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             change to trunk worktree
+ | Executing:  cd .../test_worktree/git_user3
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             merge with test
+ | Executing:  .../../bin/gvn.sh wmerge test
+ |============================================================================
+Created Tag for git merge: gvn_worktree_merge_2023_10_13-15_32_16_trunk_286330d56e7974410650e09e79fd48e307e3c861_to_test_1257d49d96efe3fe4d79c55b5b3c54a106ebad39
+Updating 286330d..1257d49
+Fast-forward
+ file.html | 2 [32m+[m[31m-[m
+ file.py   | 4 [32m++[m[31m--[m
+ file6.pl  | 4 [32m++++[m
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ create mode 100644 file6.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             git svn commit
+ | Executing:  .../../bin/gvn.sh commit
+ |============================================================================
+Committing to file://.../test_worktree/server1/repo/trunk ...
+	A	file6.pl
+	M	file.html
+	M	file.py
+Committed r7
+	M	file.html
+	M	file.py
+	A	file6.pl
+r7 = <HASH> (refs/remotes/git-svn)
+No changes between 1257d49d96efe3fe4d79c55b5b3c54a106ebad39 and refs/remotes/git-svn
+Resetting to the latest refs/remotes/git-svn
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr7[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> trunk, git-svn)[m
+[31m|[m * [33m   1257d49d9[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+[31m|[m[31m/[m  
+
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_32_16_trunk_286330d56e7974410650e09e79fd48e307e3c861_to_test_1257d49d96efe3fe4d79c55b5b3c54a106ebad39)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[32m|[m * [33m   b4c3168ed[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_11_git_b4c3168edda36dab6264391779cb0ddd5ad6db4e_to_svn_8c89dab5a86dcaccef381d1fde32138805101f8b)[m
+[32m|[m[32m/[m  
+
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_32_01_git_2a5bca959608d8b2079846866493103c2e8c762c_to_svn_2a5bca959608d8b2079846866493103c2e8c762c)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[33m|[m * [33m   3d7097dbb[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_32_15_test_3d7097dbb27bb1434bf0d4ab22bedf945482aae8_to_trunk_286330d56e7974410650e09e79fd48e307e3c861)[m
+[33m|[m * [33m   7349c887a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_54_git_7349c887a9677e84edbdb9e465478ffccdacb7be_to_svn_5572c40af84e81f6aa65e6174988f0464702be61)[m
+[33m|[m * [33m   baa861253[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_2023_10_13-15_31_52_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8_to_test_7349c887a9677e84edbdb9e465478ffccdacb7be)[m
+[33m|[m[33m/[m  
+
+[33m|[m * [33m   640b24de0[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_2023_10_13-15_31_51_test_640b24de00352f5fbc60e48ac6e05b4b20649b4a_to_trunk_baa861253f8e2ca8e4bf72948c8409725a364fe8)[m
+[33m|[m[33m/[m  
+
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+[35m|[m * [33m   a1d28bb0f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_47_git_a1d28bb0f7e1733eb30864a98a08157ea242ffd7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+[35m|[m[35m/[m  
+
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_2023_10_13-15_31_45_git_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7_to_svn_7330de13b5d812ba1ee0b2acc93de504c2fd7cf7)[m
+ '============================================================================
+

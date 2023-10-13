@@ -6,6 +6,8 @@
 TARGETS_LOGS=
 TARGETS_LOGS+=basic
 TARGETS_LOGS+=blame
+TARGETS_LOGS+=worktree
+TARGETS_LOGS+=overlay
 
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))
@@ -19,7 +21,8 @@ CWD_REAL = ${PWD}
 always:
 
 %.log: %.sh always
-	echo "GVN=\"$(CWD)/../bin/gvn.sh\"" > gvn_cmd.sh
+	echo "GITO=\"$(CWD)/../bin/gito\"" > gvn_cmd.sh
+	echo "GVN=\"$(CWD)/../bin/gvn.sh\"" >> gvn_cmd.sh
 	echo "GVN_BASE=\"$(CWD)/../\"" >> gvn_cmd.sh
 	echo "GVN_BLAME=\"$(CWD)/../bin/gvn_blame.py\"" >> gvn_cmd.sh
 	echo "GVN_ANNOTATE=\"$(CWD)/../bin/gvn_annotate.py\"" >> gvn_cmd.sh

@@ -25,5 +25,5 @@ cd git_user2/
 
 ######################
 #execute "git --no-pager lgs" "log with svn revisions"
-execute "git lgs" "log with svn revisions"
+execute "git lgsb" "log with svn revisions"
 
