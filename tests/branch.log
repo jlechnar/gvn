@@ -1,0 +1,133 @@
+
+################################################
+# setup: Setup branch
+.../test_branch
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_branch/server1
+
+################################################
+# setup: create local / sandbox repository
+.../test_branch/server1_create
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_branch/server1/repo .
+ |============================================================================
+Checked out revision 0.
+ '============================================================================
+
+A         trunk
+A         branches
+A         tags
+A         .svnignore
+Adding         branches
+Adding         tags
+Adding         trunk
+Adding         trunk/.svnignore
+Transmitting file data .done
+Committing transaction...
+Committed revision 1.
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_branch/svn_user2
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_branch/server1/repo/trunk .
+ |============================================================================
+A    .svnignore
+Checked out revision 1.
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_branch/git_user2
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone file://.../test_branch/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_branch/git_user2/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/origin/trunk)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_branch/git_user3
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_branch/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_branch/git_user3/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/git-svn)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files
+ | Executing:  git commit -m 'files'
+ |============================================================================
+[trunk ef0f369] files
+ 3 files changed, 15 insertions(+)
+ create mode 100644 file.html
+ create mode 100644 file.pl
+ create mode 100644 file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             push to svn
+ | Executing:  .../../bin/gvn.sh uc
+ |============================================================================
+Created Tag gvn_rebase_2023_11_11-21_24_24_git_ef0f369bb432905b6b0f71f88db1335680911dd0_to_svn_00d7b7e8fe36cafe672594a587be3fccfc5d721e
+Current branch trunk is up to date.
+Committing to file://.../test_branch/server1/repo/trunk ...
+	A	file.html
+	A	file.pl
+	A	file.py
+Committed r2
+	A	file.html
+	A	file.pl
+	A	file.py
+r2 = <HASH> (refs/remotes/origin/trunk)
+No changes between ef0f369bb432905b6b0f71f88db1335680911dd0 and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+ '============================================================================
+
+
+ .============================================================================
+ |             create gvn branch test
+ | Executing:  .../../bin/gvn.sh branch test
+ |============================================================================
+Copying file://.../test_branch/server1/repo/trunk at r2 to file://.../test_branch/server1/repo/branches/test...
+r3 = <HASH> (refs/remotes/origin/test)
+ '============================================================================
+

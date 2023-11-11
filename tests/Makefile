@@ -8,6 +8,9 @@ TARGETS_LOGS+=basic
 TARGETS_LOGS+=blame
 TARGETS_LOGS+=worktree
 TARGETS_LOGS+=overlay
+TARGETS_LOGS+=backup
+TARGETS_LOGS+=branch
+TARGETS_LOGS+=branch_worktree
 
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))

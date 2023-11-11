@@ -1,0 +1,223 @@
+
+################################################
+# setup: Setup backup
+.../test_backup
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_backup/server1
+
+################################################
+# setup: create local / sandbox repository
+.../test_backup/server1_create
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_backup/server1/repo .
+ |============================================================================
+Checked out revision 0.
+ '============================================================================
+
+A         trunk
+A         branches
+A         tags
+A         .svnignore
+Adding         branches
+Adding         tags
+Adding         trunk
+Adding         trunk/.svnignore
+Transmitting file data .done
+Committing transaction...
+Committed revision 1.
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_backup/svn_user2
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_backup/server1/repo/trunk .
+ |============================================================================
+A    .svnignore
+Checked out revision 1.
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_backup/git_user2
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone file://.../test_backup/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_backup/git_user2/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/origin/trunk)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_backup/git_user3
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_backup/server1/repo/trunk .
+ |============================================================================
+Initialized empty Git repository in .../test_backup/git_user3/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/git-svn)
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             backup with no change
+ | Executing:  git bb without_changes
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             backup with no change and no title
+ | Executing:  git bb
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files
+ | Executing:  git commit -m 'files'
+ |============================================================================
+[trunk a2f8065] files
+ 3 files changed, 15 insertions(+)
+ create mode 100644 file.html
+ create mode 100644 file.pl
+ create mode 100644 file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             add new file2.pl
+ | Executing:  git add file2.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             backup with change
+ | Executing:  git bb with_changes
+ |============================================================================
+Saved working directory and index state WIP on trunk: a2f8065 files
+On branch trunk.with_changes.2023_11_11-21_24_04
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mnew file:   file2.pl[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   file.py[m
+
+[trunk.with_changes.2023_11_11-21_24_04 54ca61e] Local changes for backup branch
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+ create mode 100644 file2.pl
+On branch trunk
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mnew file:   file2.pl[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   file.py[m
+
+Dropped refs/stash@{0} (e50c86100618760c76ccb2b72868ec64f279fb13)
+ '============================================================================
+
+
+ .============================================================================
+ |             backup with change and no title
+ | Executing:  git bb
+ |============================================================================
+Saved working directory and index state WIP on trunk: a2f8065 files
+On branch trunk.untitled.2023_11_11-21_24_06
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mnew file:   file2.pl[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   file.py[m
+
+[trunk.untitled.2023_11_11-21_24_06 b34d419] Local changes for backup branch
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+ create mode 100644 file2.pl
+On branch trunk
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mnew file:   file2.pl[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   file.py[m
+
+Dropped refs/stash@{0} (69113b3774ccd1937ab9b6eeff061a337d8903cb)
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     b34d419d1[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.2023_11_11-21_24_06)[m
+[31m|[m * [33m   54ca61e04[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.2023_11_11-21_24_04)[m
+[31m|[m[31m/[m  
+
+* [33m     a2f80655f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk, trunk.without_changes.2023_11_11-21_24_04, trunk.untitled.2023_11_11-21_24_04)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             check for wrong branch name
+ | Executing:  git bb \.
+ |============================================================================
+ERROR: unexpected <..> in branch name <trunk...2023_11_11-21_24_06>
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches
+ | Executing:  git lgasb
+ |============================================================================
+* [33m     b34d419d1[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.2023_11_11-21_24_06)[m
+[31m|[m * [33m   54ca61e04[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.2023_11_11-21_24_04)[m
+[31m|[m[31m/[m  
+
+* [33m     a2f80655f[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk, trunk.without_changes.2023_11_11-21_24_04, trunk.untitled.2023_11_11-21_24_04)[m
+ '============================================================================
+

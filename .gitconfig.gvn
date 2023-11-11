@@ -138,14 +138,14 @@
 		fi' --"
 
 	# print error if current git-svn branch does not match else nothing is printed
-	# ATTENTION: nameing is a limitation that should be fine
+	# ATTENTION: naming is a limitation that should be fine
 	# master needs to be renamed to trunk!
 	# branch names must match and not called trunk!
 	gvn-check-for-branch-name-match = "!bash -c '\
 		branch_git=`git currentbranch`; \
 		branch_svn=`gvn currentbranch`; \
 		if [[ \"$branch_git\" != \"$branch_svn\" ]]; then \
-                  echo \"ERROR: branches do not match <$branch_git> != <$branch_svn>. Aborting operation.\"; \
+                  echo \"ERROR: Branch is not a real svn branch as branch name does not match svn remote branch name: <$branch_git> != <$branch_svn>. Aborting operation.\"; \
 		  exit -1; \
 		fi' --"
 
@@ -156,7 +156,7 @@
 		set -e; \
 		gvn check-for-branch-name-match; \
 		git check-for-local-changes; \
-                git svn branch \"$1\"; \
+                git svn branch \"$1\" -m \"Created branch \"$1\"\" ; \
                 remote=`git branch -ra --no-color | egrep \"\\/$1\"`; \
                 git checkout -b \"$1\" $remote' --"
 
@@ -251,11 +251,11 @@
         gvn-clone-add = "!bash -c ' \
 		set -e; \
 		git check-for-local-changes; \
-		current_branch=`git branch --show-current`; \
+		branch_current=`git branch --show-current`; \
 		git svn init \"$1\" -s -R\"$2\" --prefix \"$2\"/ .; \
 		git svn fetch \"$2\"; \
 		git checkout -b \"$3\" \"$2\"/trunk; \
-		git checkout $current_branch' --"
+		git checkout $branch_current' --"
 	gvn-ca = "gvn-clone-add"
 
         # usage: gvn-clone <full_svn_url_without_trunk_in_std_layout>
@@ -295,11 +295,53 @@
 
         # --------------------------
         # worktree
+        gvn-wd = "wd"
         gvn-wl = "wl"
-        gvn-wa = "wa"
         gvn-wg = "wg"
 
-        gvn-wrebase="!bash -c '\
+        # usage: gvn wa <worktree_branch_name>
+        # Adds a worktree with <worktree_branch_name> parallel to the root folder of the current git sandbox.
+        # The name of the folder is "<worktree_branch_name>.<current_branch_name>",
+        # where <current_branch_name> origins from the current branch which must be a real git svn branch and so a real branch in svn.
+        # Note that it is checked that current branch name matches with the current git svn branch name.
+        #
+        # Worktrees are special in case of git svn - for synching (automatic merging/rebasing) we need to know the base of the worktree.
+        # Furthermore, we only allow one parameter no <commit-ish> parameter selection hence it is always forked of the current branch !
+        # Only allow creating a worktree when not on a worktree already that has a base branch.
+        # 
+        # the branch name must not contain spaces or points (.) so that this works properly.
+        gvn-worktree-add = "!bash -c ' \
+           worktree_name=$1; \
+           if [[ $worktree_name =~ \\. ]]; then \
+             echo \"ERROR: Worktree name \"$worktree_name\" must not contain points.\"; \
+             exit -1; \
+           fi; \
+           if [[ $worktree_name =~ \" \" ]]; then \
+             echo \"ERROR: Worktree name \"$worktree_name\" must not contain any spaces.\"; \
+             exit -1; \
+           fi; \
+	   gvn check-for-branch-name-match; \
+	   branch_current=`git branch --show-current`; \
+           branch_current_basename_path=`gvn wg $branch_current`; \
+           branch_current_basename=`basename $branch_current_basename_path`; \
+           branch_current_base_branch=`echo $branch_current_basename | sed \"s,\\., ,g\" | git awk-1`; \
+           if [[ \"$branch_current_base_branch\" == \"$branch_current_basename\" ]]; then \
+             worktree_name2=\"$worktree_name.$branch_current\"; \
+           else \
+             worktree_name2=\"$worktree_name.$branch_current_base_branch\"; \
+             echo \"ERROR: Cannot create worktree, as current branch $branch_current is already based upon $branch_current_base_branch (<$branch_current_basename>)\"; \
+             exit -1; \
+           fi; \
+           main_path=`git rev-parse --path-format=absolute --show-toplevel`; \
+           cd $main_path; cd ..; cwd=`pwd`; cd $main_path; \
+           path=\"$cwd/$worktree_name2\"; \
+           git worktree add $path -b $worktree_name; \
+           ' --"
+        gvn-wa = "gvn-worktree-add"
+
+        # usage: gvn wr <worktree_base_branch>
+        # rebases all local changes after updating to the changes from the worktree_base_branch which is a git svn branch and so a real svn branch
+        gvn-worktree-rebase="!bash -c '\
           branch_to_rebase_to=$1; \
           if [ `git rev-parse --verify $branch_to_rebase_to 2>/dev/null` ]; then \
             branch_to_rebase=`git rev-parse --abbrev-ref HEAD`; \
@@ -314,9 +356,12 @@
           else \
             git rebase $@; \
           fi' --"
+        gvn-wrebase = "gvn-worktree-rebase"
+        gvn-wr = "gvn-worktree-rebase"
 
-        gvn-wr = "wrebase"
-        gvn-wmerge="!bash -c '\
+        # usage: gvn wm <worktree_branch>
+        # merges back changes from a worktree branch that base upon the current branch which is a git svn branch and so a real svn branch
+        gvn-worktree-merge="!bash -c '\
           branch_to_merge_to=$1; \
           if [ `git rev-parse --verify $branch_to_merge_to 2>/dev/null` ]; then \
             branch_to_merge=`git rev-parse --abbrev-ref HEAD`; \
@@ -331,6 +376,54 @@
           else \
             git merge $@; \
           fi' --"
-        gvn-wm = "wmerge"
+        gvn-wmerge = "gvn-worktree-merge"
+        gvn-wm = "gvn-worktree-merge"
 
+        # usage: gvn ws // if on worktree branch not connected to svn (created before with gvn wa <branchname>
+        #        gvn ws <branchname> // if on main branch connected to svn
+        # automatically detects base branch
+        # if branches are related each other it automatically selects and runs gvn worktree-rebase or worktree-merge.
+        gvn-worktree-sync="!bash -c '\
+          branch_to_sync=$1; \
+          branch_current=`git branch --show-current`; \
+          if [ -z $branch_to_sync ]; then \
+            branch_current_basename_path=`gvn wg $branch_current`; \
+            branch_current_basename=`basename $branch_current_basename_path`; \
+            branch_to_sync=`echo $branch_current_basename | sed -r \"s,[^ tab]\\+,,g\" |sed \"s,\\., ,g\" | git awk2`; \
+            if [[ \"$branch_to_sync\" == \"\" ]]; then \
+              echo \"ERROR: Master worktree detected. Could not detect base to sync. Candidates are:\"; \
+              candidates=`git wl | grep \"\\.$branch_current \" | git awk-1 | sed \"s,\\[,  ,g\" | sed \"s,\\],,g\"`; \
+              echo \"$candidates\"; \
+              exit -1; \
+            else \
+              echo \"INFO: Auto-detected branch to sync to be <$branch_to_sync>.\"; \
+            fi \
+          fi; \
+          if [[ \"$branch_to_sync\" == \"$branch_current\" ]]; then \
+            echo \"ERROR: Cannot sync branch to same branch <$branch_to_sync_to> == <$branch_current>.\"; \
+            exit -1; \
+          fi; \
+          \
+          branch_current_basename_path=`gvn wg $branch_current`; \
+          branch_current_basename=`basename $branch_current_basename_path`; \
+          branch_current_base_branch=`echo $branch_current_basename | sed -r \"s,[^ tab]\\+,,g\" | sed \"s,\\., ,g\" | git awk2`; \
+          \
+          branch_to_sync_basename_path=`gvn wg $branch_to_sync`; \
+          branch_to_sync_basename=`basename $branch_to_sync_basename_path`; \
+          branch_to_sync_base_branch=`echo $branch_to_sync_basename | sed -r \"s,[^ tab]\\+,,g\" | sed \"s,\\., ,g\" | git awk2`; \
+          \
+          if [[ \"$branch_current\" == \"$branch_to_sync_base_branch\" ]]; then \
+            echo \"INFO: detected current branch <$branch_current> (<$branch_current_basename>) to be base for branch to sync <$branch_to_sync> (<$branch_to_sync_basename>).\"; \
+            echo \"INFO: merging branch to sync <$branch_to_sync> into current branch <$branch_current>.\"; \
+            gvn wmerge $branch_to_sync; \
+          elif [[ \"$branch_current_base_branch\" == \"$branch_to_sync\" ]]; then \
+            echo \"INFO: detected current branch <$branch_current> (<$branch_current_basename>) to base upon branch to sync <$branch_to_sync> (<$branch_to_sync_basename>).\"; \
+            echo \"INFO: rebasing current branch <$branch_current> onto branch to sync <$branch_to_sync>.\"; \
+            gvn wrebase $branch_to_sync; \
+          else \
+            echo \"ERROR: Could not detect valid sync branches for current <$branch_current> (<$branch_current_basename>) to <$branch_to_sync> (<$branch_to_sync_basename>).\"; \
+            exit -1; \
+          fi' --"
+        gvn-wsync = "gvn-worktree-sync"
+        gvn-ws = "gvn-worktree-sync"
 
