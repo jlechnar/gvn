@@ -168,6 +168,7 @@
         dt = "difftool"
         dtc = "difftool --cached"
 	diff-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git diff $prev_hash^ \"$@\"' --"
+        diffp = "diff-prev"
         dp = "diff-prev"
 	difftool-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool $prev_hash^ \"$@\"' --"
         dtp = "difftool-prev"

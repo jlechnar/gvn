@@ -37,21 +37,22 @@ execute "git commit -m 'files'" "commit new files"
 
 execute "$GVN uc" "push to svn"
 
-set +e
 
-execute "$GVN wa test.with_a_point" "try to create worktree with a point in the name"
-
-set -e
-
-execute "$GVN wa test1" "create worktree from branch test to test2"
+# trunk (svn base)
+#   -> test1 (worktree)
+# test (svn base)
+#   -> test2 (worktree)
+#      -> test3 (worktree) (failing trial)
+# 
+execute "$GVN wa test1" "create worktree from branch trunk to test1"
 
 execute "$GVN branch test" "create gvn branch test"
 
-execute "wt_test=\`$GVN wg test\`" "get worktree path for trunk worktree"
+execute "wt_test=\`$GVN wg test\`" "get worktree path for test worktree"
 
 execute "$GVN wa test2" "create worktree from branch test to test2"
 
-execute "wt_test2=\`$GVN wg test2\`" "get worktree path for test worktree"
+execute "wt_test2=\`$GVN wg test2\`" "get worktree path for test2 worktree"
 
 execute "cd $wt_test2" "change to test2"
 

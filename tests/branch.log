@@ -95,7 +95,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  |             commit new files
  | Executing:  git commit -m 'files'
  |============================================================================
-[trunk ef0f369] files
+[trunk 9f49848] files
  3 files changed, 15 insertions(+)
  create mode 100644 file.html
  create mode 100644 file.pl
@@ -107,7 +107,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  |             push to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_2023_11_11-21_24_24_git_ef0f369bb432905b6b0f71f88db1335680911dd0_to_svn_00d7b7e8fe36cafe672594a587be3fccfc5d721e
+Created Tag gvn_rebase_2023_11_12-20_36_14_git_9f498484a0e73d9f35b6e5f862188f8c17bddb3c_to_svn_b2a7a69257c4323db1565f50e836775ca6f82323
 Current branch trunk is up to date.
 Committing to file://.../test_branch/server1/repo/trunk ...
 	A	file.html
@@ -118,7 +118,7 @@ Committed r2
 	A	file.pl
 	A	file.py
 r2 = <HASH> (refs/remotes/origin/trunk)
-No changes between ef0f369bb432905b6b0f71f88db1335680911dd0 and refs/remotes/origin/trunk
+No changes between 9f498484a0e73d9f35b6e5f862188f8c17bddb3c and refs/remotes/origin/trunk
 Resetting to the latest refs/remotes/origin/trunk
  '============================================================================
 

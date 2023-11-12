@@ -95,7 +95,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  |             commit new files
  | Executing:  git commit -m 'files'
  |============================================================================
-[trunk ae7263f] files
+[trunk 41eeee5] files
  3 files changed, 15 insertions(+)
  create mode 100644 file.html
  create mode 100644 file.pl
@@ -107,7 +107,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  |             push to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_2023_11_11-21_24_49_git_ae7263f589cd0d58b70a42c858a7a532f6d8b0b0_to_svn_a5b03d85c83fe6b3f956c323565b3674739d4aa9
+Created Tag gvn_rebase_2023_11_12-20_36_39_git_41eeee558bece94de41ea4af53dcfe7a7f2343dc_to_svn_f5f89c27f0c3afb98b59d860b7819fdcfcd7c9b4
 Current branch trunk is up to date.
 Committing to file://.../test_branch_worktree/server1/repo/trunk ...
 	A	file.html
@@ -118,25 +118,17 @@ Committed r2
 	A	file.pl
 	A	file.py
 r2 = <HASH> (refs/remotes/origin/trunk)
-No changes between ae7263f589cd0d58b70a42c858a7a532f6d8b0b0 and refs/remotes/origin/trunk
+No changes between 41eeee558bece94de41ea4af53dcfe7a7f2343dc and refs/remotes/origin/trunk
 Resetting to the latest refs/remotes/origin/trunk
  '============================================================================
 
 
  .============================================================================
- |             try to create worktree with a point in the name
- | Executing:  .../../bin/gvn.sh wa test.with_a_point
- |============================================================================
-ERROR: Worktree name test.with_a_point must not contain points.
- '============================================================================
-
-
- .============================================================================
- |             create worktree from branch test to test2
+ |             create worktree from branch trunk to test1
  | Executing:  .../../bin/gvn.sh wa test1
  |============================================================================
 Preparing worktree (new branch 'test1')
-HEAD is now at 953b8cc files
+HEAD is now at 9696d71 files
  '============================================================================
 
 
@@ -150,7 +142,7 @@ r3 = <HASH> (refs/remotes/origin/test)
 
 
  .============================================================================
- |             get worktree path for trunk worktree
+ |             get worktree path for test worktree
  | Executing:  wt_test=`.../../bin/gvn.sh wg test`
  |============================================================================
  '============================================================================
@@ -161,12 +153,12 @@ r3 = <HASH> (refs/remotes/origin/test)
  | Executing:  .../../bin/gvn.sh wa test2
  |============================================================================
 Preparing worktree (new branch 'test2')
-HEAD is now at f0dcf74 Created branch test
+HEAD is now at aa37d37 Created branch test
  '============================================================================
 
 
  .============================================================================
- |             get worktree path for test worktree
+ |             get worktree path for test2 worktree
  | Executing:  wt_test2=`.../../bin/gvn.sh wg test2`
  |============================================================================
  '============================================================================
@@ -174,7 +166,7 @@ HEAD is now at f0dcf74 Created branch test
 
  .============================================================================
  |             change to test2
- | Executing:  cd .../test_branch_worktree/test2.test
+ | Executing:  cd .../test_branch_worktree/test2
  |============================================================================
  '============================================================================
 
@@ -184,7 +176,6 @@ HEAD is now at f0dcf74 Created branch test
  | Executing:  .../../bin/gvn.sh wa test3
  |============================================================================
 ERROR: Branch is not a real svn branch as branch name does not match svn remote branch name: <test2> != <test>. Aborting operation.
-ERROR: Cannot create worktree, as current branch test2 is already based upon test (<test2.test>)
  '============================================================================
 
 
@@ -192,7 +183,7 @@ ERROR: Cannot create worktree, as current branch test2 is already based upon tes
  |             change on test2 worktree
  | Executing:  git commit -a -m 'wt_test2_change'
  |============================================================================
-[test2 3b5c538] wt_test2_change
+[test2 2b7ea8b] wt_test2_change
  1 file changed, 1 insertion(+), 1 deletion(-)
  '============================================================================
 
@@ -208,8 +199,8 @@ ERROR: Cannot create worktree, as current branch test2 is already based upon tes
  |             sync worktree failing due to missing branch name and auto detect fails
  | Executing:  .../../bin/gvn.sh ws
  |============================================================================
-ERROR: Master worktree detected. Could not detect base to sync. Candidates are:
-  test2
+ERROR: Master worktree detected / Could not detect base to sync. Candidates are:
+ test2
  '============================================================================
 
 
@@ -217,14 +208,14 @@ ERROR: Master worktree detected. Could not detect base to sync. Candidates are:
  |             change on test worktree
  | Executing:  git commit -a -m 'wt_test_change'
  |============================================================================
-[test eb1c741] wt_test_change
+[test 4f45940] wt_test_change
  1 file changed, 1 insertion(+), 1 deletion(-)
  '============================================================================
 
 
  .============================================================================
  |             change to test2
- | Executing:  cd .../test_branch_worktree/test2.test
+ | Executing:  cd .../test_branch_worktree/test2
  |============================================================================
  '============================================================================
 
@@ -234,9 +225,10 @@ ERROR: Master worktree detected. Could not detect base to sync. Candidates are:
  | Executing:  .../../bin/gvn.sh ws
  |============================================================================
 INFO: Auto-detected branch to sync to be <test>.
-INFO: detected current branch <test2> (<test2.test>) to base upon branch to sync <test> (<git_user2>).
+INFO: try to sync via rebase <test2> onto <test> for svn base <test>.
+INFO: detected current branch <test2> to base upon branch to sync <test>.
 INFO: rebasing current branch <test2> onto branch to sync <test>.
-Created Tag for git rebase: gvn_worktree_rebase_2023_11_11-21_24_58_test2_3b5c53895fc12adef06e8797e52fe27604fb215a_to_test_eb1c741d7625317591c055db52bcb9a09d4a9d39
+Created Tag for git rebase: gvn_worktree_rebase_2023_11_12-20_36_52_test2_2b7ea8b6ae6022fe9f1f58f615cea2882fbd7ebf_to_test_4f45940f9a216e424d1084a5e5ce23d913c574a6
  '============================================================================
 
 
@@ -251,10 +243,11 @@ Created Tag for git rebase: gvn_worktree_rebase_2023_11_11-21_24_58_test2_3b5c53
  |             sync worktree from test2 to test (merge)
  | Executing:  .../../bin/gvn.sh ws test2
  |============================================================================
-INFO: detected current branch <test> (<git_user2>) to be base for branch to sync <test2> (<test2.test>).
+INFO: try to sync via merge <test2> into <test> for svn base <test>.
+INFO: detected current branch <test> to be base for branch to sync <test2>.
 INFO: merging branch to sync <test2> into current branch <test>.
-Created Tag for git merge: gvn_worktree_merge_2023_11_11-21_24_59_test_eb1c741d7625317591c055db52bcb9a09d4a9d39_to_test2_54022cdb902f7105d63cca9e965d9a2b642de9d1
-Updating eb1c741..54022cd
+Created Tag for git merge: gvn_worktree_merge_2023_11_12-20_36_54_test_4f45940f9a216e424d1084a5e5ce23d913c574a6_to_test2_71e210b5bef5ccb08a01904ec6278579cacf2654
+Updating 4f45940..71e210b
 Fast-forward
  file.py | 2 [32m+[m[31m-[m
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -265,7 +258,8 @@ Fast-forward
  |             sync worktree from test1 to test (abort due to wrong base tree)
  | Executing:  .../../bin/gvn.sh ws test1
  |============================================================================
-ERROR: Could not detect valid sync branches for current <test> (<git_user2>) to <test1> (<test1.trunk>).
+INFO: try to sync via merge <test1> into <test> for svn base <test>.
+ERROR: Detected missmatch in svn base branch <trunk> (<test1>) != <test> (test). Aborted sync (merge) of <test1> into <test>.
  '============================================================================
 
 
@@ -273,14 +267,14 @@ ERROR: Could not detect valid sync branches for current <test> (<git_user2>) to 
  |             log with svn revisions
  | Executing:  git lgasb
  |============================================================================
-* [33m     54022cdb9[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (HEAD -> test, test2)[m
-* [33m     eb1c741d7[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_2023_11_11-21_24_59_test_eb1c741d7625317591c055db52bcb9a09d4a9d39_to_test2_54022cdb902f7105d63cca9e965d9a2b642de9d1)[m
-[31m|[m * [33m   3b5c53895[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_2023_11_11-21_24_58_test2_3b5c53895fc12adef06e8797e52fe27604fb215a_to_test_eb1c741d7625317591c055db52bcb9a09d4a9d39)[m
+* [33m     71e210b5b[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (HEAD -> test, test2)[m
+* [33m     4f45940f9[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_2023_11_12-20_36_54_test_4f45940f9a216e424d1084a5e5ce23d913c574a6_to_test2_71e210b5bef5ccb08a01904ec6278579cacf2654)[m
+[31m|[m * [33m   2b7ea8b6a[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_2023_11_12-20_36_52_test2_2b7ea8b6ae6022fe9f1f58f615cea2882fbd7ebf_to_test_4f45940f9a216e424d1084a5e5ce23d913c574a6)[m
 [31m|[m[31m/[m  
 
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mCreated branch test[m [1;35m (origin/test)[m
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (origin/trunk, trunk, test1)[m
-[32m|[m * [33m   ae7263f58[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_11_11-21_24_49_git_ae7263f589cd0d58b70a42c858a7a532f6d8b0b0_to_svn_a5b03d85c83fe6b3f956c323565b3674739d4aa9)[m
+[32m|[m * [33m   41eeee558[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_2023_11_12-20_36_39_git_41eeee558bece94de41ea4af53dcfe7a7f2343dc_to_svn_f5f89c27f0c3afb98b59d860b7819fdcfcd7c9b4)[m
 [32m|[m[32m/[m  
 
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
