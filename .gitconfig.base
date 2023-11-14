@@ -23,6 +23,15 @@
 	pager = true
 	decorate = always
 	showbranch = always
+[color "diff"]
+	meta = "blue"
+	old = "blue brightred"
+	new = "blue brightgreen"
+#	old = "red"
+#	new = "green"
+#	old = "black red strike"
+#	new = "black green italic"
+#	context = "yellow bold"
 [merge]
 	tool = meld
 	conflictstyle = diff3

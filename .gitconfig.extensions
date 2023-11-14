@@ -128,11 +128,15 @@
         # --------------------------
         # diff
         d = "diff"
-	dc = "diff --cached"
+        diffc = "diff --cached"
+        dc = "diffc"
 
-        diffw = "diff -w -U0 --word-diff-regex=[^[:space:]]"
-        dw = "diffw"
-        dwnc = "diffw --no-color"
+        diff-wordwise = "diff -w -U0 --word-diff-regex=[^[:space:]] --word-diff=color"
+        diffw = "diff-wordwise"
+        dw = "diff-wordwise"
+        dwc = "diffw-wordwise --cached"
+        dwnc = "diffw-wordwise --no-color"
+        dwcnc = "diffw-wordwise --no-color --cached"
         diffw2 = "diff --ignore-all-space --ignore-blank-lines --ignore-space-change"
         dw2 = "diffw2"
 
@@ -224,9 +228,13 @@
 	cpc = "cherry-pick"
 	cp = "cherry-pick -n"
 	dt = "difftool"
+
 	status-uno = "status -uno"
 	stat = "status-uno"
-	st = "stat"
+	st = "status-uno"
+        sta = "status"
+        stai = "status --ignored"
+
 	co = "commit"
 
         add-updated = "add -u"
@@ -241,16 +249,31 @@
         rbc = "rebase -continue"
 
         # --------------------------
-	# adding/restoring
+	# adding
         add-interactive = "add -i"
         ai = "add-interactive"
         #
         add-updated = "add -u"
         au = "add-updated"
-        #
-        rs = "restore --staged"
+
+        # --------------------------
+	# restoring
+        restore-staged = "restore --staged"
+        rs = "restore-staged"
         restore-staged-all = "restore --staged :/"
         rsa = "restore-staged-all"
+
+        # --------------------------
+        # remove r
+        rm-cached-recursive = "rm --cached -r"
+        rmcr = "rm-cached-recursive"
+        # rm-cached = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git rm --cached \"$@\";' --"
+        rm-cached = "rm --cached"
+        rmr = "rm-cached"
+
+        # --------------------------
+        # restore
+        restore = "checkout --"
 
         # --------------------------
         # file sizes

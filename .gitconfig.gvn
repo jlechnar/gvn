@@ -314,7 +314,7 @@
           set -e; \
           worktree_name=$1; \
           branch_current=`git branch --show-current`; \
-          dot_git_path=`git rev-parse --git-dir | sed \"s,\\.git,\\.git ,g\" | git awk1`; \
+          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
           if [ ! -f $dot_git_path/gvn/$worktree_name ]; then \
             echo \"ERROR: worktree/branch with name $worktree_name does not exist. Aborting delete operation.\"; \
             exit -1; \
@@ -341,7 +341,7 @@
 	  gvn check-branch-to-be-svn-branch; \
 	  gvn check-for-branch-name-match; \
           branch_current=`git branch --show-current`; \
-          dot_git_path=`git rev-parse --git-dir | sed \"s,\\.git,\\.git ,g\" | git awk1`; \
+          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
           mkdir -p $dot_git_path/gvn/; \
           if [ -f $dot_git_path/gvn/$worktree_name ]; then \
             echo \"ERROR: worktree/branch with name $worktree_name already exists. Aborting creation of new worktree/branch.\"; \
@@ -412,7 +412,7 @@
 	  gvn check-branch-to-be-svn-branch; \
           branch_current=`git branch --show-current`; \
           branch_current_svn=`gvn currentbranch`; \
-          dot_git_path=`git rev-parse --git-dir | sed \"s,\\.git,\\.git ,g\" | git awk1`; \
+          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
           \
           if [ -z $branch_to_sync ]; then \
             if [ -f $dot_git_path/gvn/$branch_current ]; then \
