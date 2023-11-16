@@ -12,7 +12,7 @@ source ./scripts/setup.sh
 source ./scripts/helper_functions.sh
 source ./gvn_cmd.sh
 
-setup_path "${PREFIX_EXAMPLE_PATH}_blame" "Setup blame"
+setup_path "${PREFIX_EXAMPLE_PATH}_update_map_db" "Setup update_map_db"
 
 ln -s ../gvn_cmd.sh .
 
@@ -37,12 +37,9 @@ execute "git commit -m 'files'" "commit new files"
 
 execute "$GVN uc" "update commit to svn"
 
+execute "$GVN umdb"
+
+execute "$GVN lgsb" "log with svn revisions"
+
 execute "$GVN blame file.html" "Blame html no syntax highlight"
-
-execute "$GVN bs file.html" "Blame html"
-
-execute "$GVN bs file.py" "Blame python"
-
-execute "$GVN bs file.pl" "Blame perl"
-
 

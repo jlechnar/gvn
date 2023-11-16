@@ -109,7 +109,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  |             commit new files
  | Executing:  git commit -m 'files'
  |============================================================================
-[trunk d8bb83c] files
+[trunk  <HASH>] files
  3 files changed, 15 insertions(+)
  create mode 100644 file.html
  create mode 100644 file.pl
@@ -128,8 +128,8 @@ r1 = <HASH> (refs/remotes/git-svn)
  |             backup with change
  | Executing:  git bb with_changes
  |============================================================================
-Saved working directory and index state WIP on trunk: d8bb83c files
-On branch trunk.with_changes.2023_11_12-20_35_53
+Saved working directory and index state WIP on trunk: <HASH> files
+On branch trunk.with_changes.<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	[32mnew file:   file2.pl[m
@@ -139,7 +139,7 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
 	[31mmodified:   file.py[m
 
-[trunk.with_changes.2023_11_12-20_35_53 b1dde8f] Local changes for backup branch
+[trunk.with_changes.<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
 On branch trunk
@@ -152,7 +152,7 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
 	[31mmodified:   file.py[m
 
-Dropped refs/stash@{0} (c36c0b75413727f8f4fafbf79252028f8d1dd6cb)
+Dropped refs/stash@{0} (<HASH>)
  '============================================================================
 
 
@@ -160,8 +160,8 @@ Dropped refs/stash@{0} (c36c0b75413727f8f4fafbf79252028f8d1dd6cb)
  |             backup with change and no title
  | Executing:  git bb
  |============================================================================
-Saved working directory and index state WIP on trunk: d8bb83c files
-On branch trunk.untitled.2023_11_12-20_35_54
+Saved working directory and index state WIP on trunk: <HASH> files
+On branch trunk.untitled.<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	[32mnew file:   file2.pl[m
@@ -171,7 +171,7 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
 	[31mmodified:   file.py[m
 
-[trunk.untitled.2023_11_12-20_35_54 0467e14] Local changes for backup branch
+[trunk.untitled.<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
 On branch trunk
@@ -184,7 +184,7 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
 	[31mmodified:   file.py[m
 
-Dropped refs/stash@{0} (df4183bbca1c32e0bc913d3c7fced7ce46026b84)
+Dropped refs/stash@{0} (<HASH>)
  '============================================================================
 
 
@@ -192,12 +192,12 @@ Dropped refs/stash@{0} (df4183bbca1c32e0bc913d3c7fced7ce46026b84)
  |             show all branches
  | Executing:  git lgasb
  |============================================================================
-* [33m     0467e1429[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.2023_11_12-20_35_54)[m
-[31m|[m * [33m   b1dde8f43[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.2023_11_12-20_35_53)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.<DATE>_<TIME>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.<DATE>_<TIME>)[m
 [31m|[m[31m/[m  
 
-* [33m     d8bb83c0d[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk)[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk, trunk.without_changes.2023_11_12-20_35_53, trunk.untitled.2023_11_12-20_35_53)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk, trunk.without_changes.<DATE>_<TIME>, trunk.untitled.<DATE>_<TIME>)[m
  '============================================================================
 
 
@@ -205,7 +205,7 @@ Dropped refs/stash@{0} (df4183bbca1c32e0bc913d3c7fced7ce46026b84)
  |             check for wrong branch name
  | Executing:  git bb \.
  |============================================================================
-ERROR: unexpected <..> in branch name <trunk...2023_11_12-20_35_55>
+ERROR: unexpected <..> in branch name <trunk...<DATE>_<TIME>>
  '============================================================================
 
 
@@ -213,11 +213,11 @@ ERROR: unexpected <..> in branch name <trunk...2023_11_12-20_35_55>
  |             show all branches
  | Executing:  git lgasb
  |============================================================================
-* [33m     0467e1429[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.2023_11_12-20_35_54)[m
-[31m|[m * [33m   b1dde8f43[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.2023_11_12-20_35_53)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.<DATE>_<TIME>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.<DATE>_<TIME>)[m
 [31m|[m[31m/[m  
 
-* [33m     d8bb83c0d[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk)[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk, trunk.without_changes.2023_11_12-20_35_53, trunk.untitled.2023_11_12-20_35_53)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk, trunk.without_changes.<DATE>_<TIME>, trunk.untitled.<DATE>_<TIME>)[m
  '============================================================================
 

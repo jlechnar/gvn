@@ -34,37 +34,20 @@ if __name__ == '__main__':
         
         # -------------------------------------
         parser = argparse.ArgumentParser()
-        parser.add_argument("--nocolors", "-n", help="disable color", action="store_true")
         parser.add_argument("--debug", "-d", help="enable debug", action="store_true")
-        parser.add_argument("--read_from_map_db", "-m", help="read svn revision mapping to git hash from mapping db file", action="store_true")
         args = parser.parse_args()
 
         # ---------------------
-        bc = gvn_colors(args.nocolors)
         base = gvn_base(tools, args.debug, verbose)
 
-        if args.read_from_map_db:
-          command="git get-dot-git-path"
-          result = subprocess.run(command.split(), stdout=subprocess.PIPE)
-          db_filename = result.stdout.decode().rstrip()
-          base.read_from_json_file(db_filename)
-        else:
-          base.init_hash_to_svn_rev()
+        base.init_hash_to_svn_rev()
+
+        command="git get-dot-git-path"
+        result = subprocess.run(command.split(), stdout=subprocess.PIPE)
+        db_filename = result.stdout.decode().rstrip()
+        base.write_to_json_file(db_filename)
         
         # ---------------------
-        re_hash = re.compile(r'^(.+?)(\<hash\>([^\<]+)\<\/hash\>)(.+?)$')
-
-        for line in sys.stdin:
-            m = re_hash.match(line)
-            if m:
-                print( m.group(1) + \
-                       bc.get_color('SVN_REV') + \
-                       base.map_git_hash_to_svn_rev_print(m.group(3)) + \
-                       bc.get_color('NO_COLOR') + \
-                       m.group(4) )
-            else:
-                print(line)
-
     except KeyboardInterrupt:
         print("\n")
         tools.error("User Abort detected.")

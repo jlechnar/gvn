@@ -58,6 +58,7 @@ if __name__ == '__main__':
         parser.add_argument("--pygmentize", "-p", help="enable pygmentize code syntax highlighting", action="store_true")
         parser.add_argument("--pygmentize_extern", "-e", help="use external call for pygmentize", action="store_true")
         parser.add_argument("--pygmentize_extern_options", "-o", help="additional options for external pygmentized runs", nargs="+")
+        parser.add_argument("--read_from_map_db", "-m", help="read svn revision mapping to git hash from mapping db file", action="store_true")
         args = parser.parse_args()
 
         # --------------
@@ -76,6 +77,12 @@ if __name__ == '__main__':
         
         # --------------
         if args.gitsvn:
+          if args.read_from_map_db:
+            command="git get-dot-git-path"
+            result = subprocess.run(command.split(), stdout=subprocess.PIPE)
+            db_filename = result.stdout.decode().rstrip()
+            base.read_from_json_file(db_filename)
+          else:
             base.init_hash_to_svn_rev()
             
         # --------------

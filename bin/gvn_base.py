@@ -3,6 +3,8 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+import json
+import os.path
 import subprocess
 from tools_c import *
 # from gvn_exceptions import *
@@ -54,3 +56,19 @@ class gvn_base:
 
     def map_git_hash_to_svn_rev_print(self, git_hash):
         return '{:>{srw}}'.format(self.map_git_hash_to_svn_rev(git_hash), srw = self.svn_rev_width + 1)
+
+    def write_to_json_file(self, filepathname):
+      filename = filepathname + '.json'
+      with open(filename, 'w') as f:
+        json.dump([self.svn_rev_width, self.git_to_svn_map], f)
+
+    def read_from_json_file(self, filepathname):
+      filename = filepathname + '.json'
+      if os.path.isfile(filename) : 
+        with open(filename, 'r') as f:
+          data =  json.load(f)
+        self.svn_rev_width = data[0]
+        self.git_to_svn_map = data[1]
+      else:
+        raise GVNException("ERROR: Could not read json data from none existing file: <" + filename + ">.")
+

@@ -6,8 +6,13 @@
 [alias]
 
 	# NOTE: adapt below as required
-	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py"
-	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
+	#gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py"
+        # in case of always mapping, to speedup remove update-mapping-database from gvn-commit below
+	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py -m"
+	#gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
+        # in case of always mapping, to speedup remove update-mapping-database from gvn-commit below
+	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py -m"
+	gvn-cmd-update-mapping-db = "!python3 ~/bin/bin_gvn/gvn_update_mapping_db.py"
 	
 	
         gvn-lgsb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | gvn cmd-annotate' --"
@@ -109,7 +114,10 @@
 	gvn-lf = "gvn-logf"
 	gvn-l = "gvn-log --oneline"
 
-	gvn-commit = "svn dcommit"
+	gvn-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		git svn dcommit; \
+                gvn update-mapping-database; \
+		' --"
 	gvn-co = "gvn-commit"
 
 
@@ -170,7 +178,7 @@
 	gvn-branch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
 		set -e; \
 		gvn check-for-branch-name-match; \
-		git check-for-local-changes; \
+		git check-for-unexpected-local-changes; \
                 git svn branch \"$1\" -m \"Created branch \"$1\"\" ; \
                 remote=`git branch -ra --no-color | egrep \"\\/$1\"`; \
                 git checkout -b \"$1\" $remote' --"
@@ -191,7 +199,7 @@
 	gvn-update = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
 		set -e; \
 		gvn check-for-branch-name-match; \
-		git check-for-local-changes; \
+		git check-for-unexpected-local-changes; \
 		git svn fetch; \
 		gvn rebase' --"
         gvn-up = "gvn-update"
@@ -213,10 +221,10 @@
 	gvn-update-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
 		set -e; \
 		gvn check-for-branch-name-match; \
-		git check-for-local-changes; \
+		git check-for-unexpected-local-changes; \
 		git svn fetch; \
 		gvn rebase; \
-		git svn dcommit' --"
+		gvn commit' --"
         gvn-uc = "gvn-update-commit"
 	#
 	gvn-stash-update-commit-unstash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
@@ -225,7 +233,7 @@
                 changes=`git stash-local-changes-if-any`; \
 		git svn fetch; \
 		gvn rebase; \
-		git svn dcommit; \
+		gvn commit; \
 		if [[ \"$changes\" != \"\" ]]; then \
 		  git stash pop; \
 		fi' --"
@@ -237,7 +245,7 @@
 	gvn-cherry-pick = "!bash -c ' \
 		set -x; \
 		set -e; \
-		git check-for-local-changes; \
+		git check-for-unexpected-local-changes; \
 		svn_remote_commit_to_pick=\"$1\"; \
 		svn_url=`git log $svn_remote_commit_to_pick^..$svn_remote_commit_to_pick | grep git-svn-id | git awk2 | sed \"s,@, r,g\" | git awk1`; \
 		svn_rev=`git log $svn_remote_commit_to_pick^..$svn_remote_commit_to_pick | grep git-svn-id | git awk2 | sed \"s,@, r,g\" | git awk2`; \
@@ -265,7 +273,7 @@
         # usage: gvn-clone-add <full_svn_url_without_trunk_in_std_layout> <origin_name> <new_trunk_branch_name>
         gvn-clone-add = "!bash -c ' \
 		set -e; \
-		git check-for-local-changes; \
+		git check-for-unexpected-local-changes; \
 		branch_current=`git branch --show-current`; \
 		git svn init \"$1\" -s -R\"$2\" --prefix \"$2\"/ .; \
 		git svn fetch \"$2\"; \
@@ -309,18 +317,27 @@
 	bs = "bse"
 
         # --------------------------
+        gvn-update-mapping-database = "!bash -c ' \
+          set -e; \
+          dot_git_path=`git get-dot-git-path`; \
+          mkdir -p $dot_git_path/gvn/rev/; \
+          gvn cmd-update-mapping-db; \
+          ' --"
+        gvn-umdb = "gvn-update-mapping-database"
+
+        # --------------------------
         # worktree
         gvn-worktree-delete = "!bash -c ' \
           set -e; \
           worktree_name=$1; \
           branch_current=`git branch --show-current`; \
-          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
-          if [ ! -f $dot_git_path/gvn/$worktree_name ]; then \
+          dot_git_path=`git get-dot-git-path`; \
+          if [ ! -f $dot_git_path/gvn/branch/$worktree_name ]; then \
             echo \"ERROR: worktree/branch with name $worktree_name does not exist. Aborting delete operation.\"; \
             exit -1; \
-          fi \
-          git worktree delete $worktree_name; \
-          rm -rf $dot_git_path/gvn/$worktree_name; \
+          fi; \
+          git worktree remove $worktree_name; \
+          rm -rf $dot_git_path/gvn/branch/$worktree_name; \
           ' --"
         gvn-wd = "gvn-worktree-delete"
 
@@ -333,7 +350,7 @@
         # The name of the folder is "<worktree_branch_name>",
         # Worktrees are special in case of git svn => for synching (automatic merging/rebasing) we need to know the base of the worktree, this is the name of the svn branch base!
         # We only allow one parameter no <commit-ish> parameter selection, hence it is always forked of the current branch which must be a real svn branch !
-        # Note that base information is required and stored in .git/gvn/<worktree/branch> files as "<worktree> <base svn branch of worktree>".
+        # Note that base information is required and stored in .git/gvn/branch/<worktree/branch> files as "<worktree> <base svn branch of worktree>".
         # Worktrees can only be created on branch that is related to real svn branch (name match of branch and svn repo branch) !
         gvn-worktree-add = "!bash -c ' \
           set -e; \
@@ -341,9 +358,9 @@
 	  gvn check-branch-to-be-svn-branch; \
 	  gvn check-for-branch-name-match; \
           branch_current=`git branch --show-current`; \
-          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
-          mkdir -p $dot_git_path/gvn/; \
-          if [ -f $dot_git_path/gvn/$worktree_name ]; then \
+          dot_git_path=`git get-dot-git-path`; \
+          mkdir -p $dot_git_path/gvn/branch/; \
+          if [ -f $dot_git_path/gvn/branch/$worktree_name ]; then \
             echo \"ERROR: worktree/branch with name $worktree_name already exists. Aborting creation of new worktree/branch.\"; \
             exit -1; \
           fi; \
@@ -351,7 +368,7 @@
           cd $main_path; cd ..; cwd=`pwd`; cd $main_path; \
           path=\"$cwd/$worktree_name\"; \
           git worktree add $path -b $worktree_name; \
-          echo \"$worktree_name $branch_current\" > $dot_git_path/gvn/$worktree_name; \
+          echo \"$worktree_name $branch_current\" > $dot_git_path/gvn/branch/$worktree_name; \
           ' --"
         gvn-wa = "gvn-worktree-add"
 
@@ -412,14 +429,14 @@
 	  gvn check-branch-to-be-svn-branch; \
           branch_current=`git branch --show-current`; \
           branch_current_svn=`gvn currentbranch`; \
-          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
+          dot_git_path=`git get-dot-git-path`; \
           \
           if [ -z $branch_to_sync ]; then \
-            if [ -f $dot_git_path/gvn/$branch_current ]; then \
-              branch_to_sync=`cat $dot_git_path/gvn/$branch_current | git awk2`; \
+            if [ -f $dot_git_path/gvn/branch/$branch_current ]; then \
+              branch_to_sync=`cat $dot_git_path/gvn/branch/$branch_current | git awk2`; \
               echo \"INFO: Auto-detected branch to sync to be <$branch_to_sync>.\"; \
             else \
-              possible_branches=`cat $dot_git_path/gvn/* | grep \"$branch_current\\$\" | git awk1 | sed \"s,^, ,g\"`; \
+              possible_branches=`cat $dot_git_path/gvn/branch/* | grep \"$branch_current\\$\" | git awk1 | sed \"s,^, ,g\"`; \
               if [[ \"$possible_branches\" == \"\" ]]; then \
                 echo \"ERROR: Could not detect any branch to sync. No worktree/branch available related to $branch_current.\"; \
                 exit -1; \
@@ -438,41 +455,49 @@
           \
           if [[ \"$branch_current\" == \"$branch_current_svn\" ]]; then \
             echo \"INFO: try to sync via merge <$branch_to_sync> into <$branch_current> for svn base <$branch_current_svn>.\"; \
-            if [ -f $dot_git_path/gvn/$branch_current ]; then \
-              echo \"ERROR: Found unexpected branch information file <$dot_git_path/gvn/$branch_current>. Must not exist for none worktree / main branches that are bound to real svn repos. Aborting sync (merge) operation.\"; \
+            if [ -f $dot_git_path/gvn/branch/$branch_current ]; then \
+              echo \"ERROR: Found unexpected branch information file <$dot_git_path/gvn/branch/$branch_current>. Must not exist for none worktree / main branches that are bound to real svn repos. Aborting sync (merge) operation.\"; \
               exit -1; \
             fi; \
-            if [ -f $dot_git_path/gvn/$branch_to_sync ]; then \
-              branch_to_sync_svn_from_file=`cat $dot_git_path/gvn/$branch_to_sync | git awk2`; \
+            if [ -f $dot_git_path/gvn/branch/$branch_to_sync ]; then \
+              branch_to_sync_svn_from_file=`cat $dot_git_path/gvn/branch/$branch_to_sync | git awk2`; \
               if [[ \"$branch_to_sync_svn_from_file\" != \"$branch_current_svn\" ]]; then \
                 echo \"ERROR: Detected missmatch in svn base branch <$branch_to_sync_svn_from_file> (<$branch_to_sync>) != <$branch_current_svn> ($branch_current). Aborted sync (merge) of <$branch_to_sync> into <$branch_current>.\"; \
                 exit -1; \
               fi; \
               echo \"INFO: detected current branch <$branch_current> to be base for branch to sync <$branch_to_sync>.\"; \
               echo \"INFO: merging branch to sync <$branch_to_sync> into current branch <$branch_current>.\"; \
+              changes=`git stash-local-changes-if-any`; \
               gvn wmerge $branch_to_sync; \
+              if [[ \"$changes\" != \"\" ]]; then \
+	        git stash pop; \
+	      fi; \
             else \
-              echo \"ERROR: Could not find branch information file <$dot_git_path/gvn/$branch_to_sync>. Aborting sync (merge) operation.\"; \
+              echo \"ERROR: Could not find branch information file <$dot_git_path/gvn/branch/$branch_to_sync>. Aborting sync (merge) operation.\"; \
               exit -1; \
             fi; \
           \
           elif [[ \"$branch_to_sync\" == \"$branch_current_svn\" ]]; then \
             echo \"INFO: try to sync via rebase <$branch_current> onto <$branch_to_sync> for svn base <$branch_current_svn>.\"; \
-            if [[ -f $dot_git_path/gvn/$branch_to_sync ]]; then \
-              echo \"ERROR: Found unexpected branch information file <$dot_git_path/gvn/$branch_to_sync>. Must not exist for none worktree / main branches that are bound to real svn repos. Aborting sync (rebase) operation.\"; \
+            if [[ -f $dot_git_path/gvn/branch/$branch_to_sync ]]; then \
+              echo \"ERROR: Found unexpected branch information file <$dot_git_path/gvn/branch/$branch_to_sync>. Must not exist for none worktree / main branches that are bound to real svn repos. Aborting sync (rebase) operation.\"; \
               exit -1; \
             fi; \
-            if [[ -f $dot_git_path/gvn/$branch_current ]]; then \
-              branch_current_svn_from_file=`cat $dot_git_path/gvn/$branch_current | git awk2`; \
+            if [[ -f $dot_git_path/gvn/branch/$branch_current ]]; then \
+              branch_current_svn_from_file=`cat $dot_git_path/gvn/branch/$branch_current | git awk2`; \
               if [[ \"$branch_current_svn_from_file\" != \"$branch_current_svn\" ]]; then \
                 echo \"ERROR: Detected missmatch in svn base branch <$branch_current_svn_from_file> (<$branch_to_sync>) != <$branch_current_svn> ($branch_current). Aborted sync (rebase) of <$branch_current> onto <$branch_to_sync>.\"; \
                 exit -1; \
               fi; \
               echo \"INFO: detected current branch <$branch_current> to base upon branch to sync <$branch_to_sync>.\"; \
               echo \"INFO: rebasing current branch <$branch_current> onto branch to sync <$branch_to_sync>.\"; \
+              changes=`git stash-local-changes-if-any`; \
               gvn wrebase $branch_to_sync; \
+              if [[ \"$changes\" != \"\" ]]; then \
+	        git stash pop; \
+	      fi; \
             else \
-              echo \"ERROR: Could not find branch information file <$dot_git_path/gvn/$branch_current>. Aborting sync (rebase) operation.\"; \
+              echo \"ERROR: Could not find branch information file <$dot_git_path/gvn/branch/$branch_current>. Aborting sync (rebase) operation.\"; \
               exit -1; \
             fi; \
           \

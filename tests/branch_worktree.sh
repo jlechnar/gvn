@@ -37,6 +37,8 @@ execute "git commit -m 'files'" "commit new files"
 
 execute "$GVN uc" "push to svn"
 
+execute "wt_trunk=\`$GVN wg trunk\`" "get worktree path for trunk worktree"
+
 
 # trunk (svn base)
 #   -> test1 (worktree)
@@ -87,3 +89,23 @@ execute "$GVN ws test1" "sync worktree from test1 to test (abort due to wrong ba
 set -e
 
 execute "git lgasb" "log with svn revisions"
+
+execute "cd $wt_test" "change to test"
+
+execute "$GVN wa test4" "create worktree from branch trunk to test4"
+
+execute "git lgasb" "log with svn revisions"
+
+execute "$GVN wl" "list worktrees"
+
+execute "$GVN wd test4" "delete worktree test4"
+
+execute "git lgasb" "log with svn revisions"
+
+execute "$GVN wl" "list worktrees"
+
+execute "$GVN wd test2" "delete worktree test2"
+
+execute "git lgasb" "log with svn revisions"
+
+execute "$GVN wl" "list worktrees"

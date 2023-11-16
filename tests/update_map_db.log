@@ -1,18 +1,18 @@
 
 ################################################
-# setup: Setup branch
-.../test_branch
+# setup: Setup update_map_db
+.../test_update_map_db
 
 ################################################
 # setup: create local repository (file system repository) server1
-.../test_branch/server1
+.../test_update_map_db/server1
 
 ################################################
 # setup: create local / sandbox repository
-.../test_branch/server1_create
+.../test_update_map_db/server1_create
 
  .============================================================================
- | Executing:  svn checkout file://.../test_branch/server1/repo .
+ | Executing:  svn checkout file://.../test_update_map_db/server1/repo .
  |============================================================================
 Checked out revision 0.
  '============================================================================
@@ -34,10 +34,10 @@ Committed revision 1.
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_branch/svn_user2
+.../test_update_map_db/svn_user2
 
  .============================================================================
- | Executing:  svn checkout file://.../test_branch/server1/repo/trunk .
+ | Executing:  svn checkout file://.../test_update_map_db/server1/repo/trunk .
  |============================================================================
 A    .svnignore
 Checked out revision 1.
@@ -46,12 +46,12 @@ Checked out revision 1.
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_branch/git_user2
+.../test_update_map_db/git_user2
 
  .============================================================================
- | Executing:  .../../bin/gvn.sh clone file://.../test_branch/server1/repo/trunk .
+ | Executing:  .../../bin/gvn.sh clone file://.../test_update_map_db/server1/repo/trunk .
  |============================================================================
-Initialized empty Git repository in .../test_branch/git_user2/.git/
+Initialized empty Git repository in .../test_update_map_db/git_user2/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/origin/trunk)
  '============================================================================
@@ -66,12 +66,12 @@ r1 = <HASH> (refs/remotes/origin/trunk)
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_branch/git_user3
+.../test_update_map_db/git_user3
 
  .============================================================================
- | Executing:  .../../bin/gvn.sh clone-ns file://.../test_branch/server1/repo/trunk .
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_update_map_db/server1/repo/trunk .
  |============================================================================
-Initialized empty Git repository in .../test_branch/git_user3/.git/
+Initialized empty Git repository in .../test_update_map_db/git_user3/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/git-svn)
  '============================================================================
@@ -104,12 +104,12 @@ r1 = <HASH> (refs/remotes/git-svn)
 
 
  .============================================================================
- |             push to svn
+ |             update commit to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
 Current branch trunk is up to date.
-Committing to file://.../test_branch/server1/repo/trunk ...
+Committing to file://.../test_update_map_db/server1/repo/trunk ...
 	A	file.html
 	A	file.pl
 	A	file.py
@@ -117,17 +117,36 @@ Committed r2
 	A	file.html
 	A	file.pl
 	A	file.py
-r2 = <HASH> (refs/remotes/origin/trunk)
-No changes between <HASH> and refs/remotes/origin/trunk
-Resetting to the latest refs/remotes/origin/trunk
+r2 = <HASH> (refs/remotes/git-svn)
+No changes between <HASH> and refs/remotes/git-svn
+Resetting to the latest refs/remotes/git-svn
  '============================================================================
 
 
  .============================================================================
- |             create gvn branch test
- | Executing:  .../../bin/gvn.sh branch test
+ | Executing:  .../../bin/gvn.sh umdb
  |============================================================================
-Copying file://.../test_branch/server1/repo/trunk at r2 to file://.../test_branch/server1/repo/branches/test...
-r3 = <HASH> (refs/remotes/origin/test)
+ '============================================================================
+
+
+ .============================================================================
+ |             log with svn revisions
+ | Executing:  .../../bin/gvn.sh lgsb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (HEAD -> trunk, git-svn)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
+ '============================================================================
+
+
+ .============================================================================
+ |             Blame html no syntax highlight
+ | Executing:  .../../bin/gvn.sh blame file.html
+ |============================================================================
+[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    1[m |  <html>
+[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    2[m |    <title>foo</title>
+[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    3[m |    <body>
+[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    4[m |      bar
+[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    5[m |    </body>
+[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    6[m |  </html>
  '============================================================================
 

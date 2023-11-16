@@ -11,6 +11,8 @@ TARGETS_LOGS+=overlay
 TARGETS_LOGS+=backup
 TARGETS_LOGS+=branch
 TARGETS_LOGS+=branch_worktree
+TARGETS_LOGS+=update_map_db
+TARGETS_LOGS+=diff
 
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))
@@ -30,7 +32,7 @@ always:
 	echo "GVN_BLAME=\"$(CWD)/../bin/gvn_blame.py\"" >> gvn_cmd.sh
 	echo "GVN_ANNOTATE=\"$(CWD)/../bin/gvn_annotate.py\"" >> gvn_cmd.sh
 	./$< | tee $@.tmp
-	cat $@.tmp | sed "s,$(CWD),\.\.\.,g" | sed "s,$(CWD_REAL),\.\.\.,g" | sed "s,$(USER),<user>,g" | sed 's,[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}_[0-9]\{2\}_[0-9]\{2\},<DATE_TIME>,g' | sed 's,[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\},<TIME>,g' | sed 's,[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\},<DATE>,g' | sed 's,[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\},<DATE>,g' | perl -pe 's/^(r\d+\s+=\s+)[a-zA-Z0-9]+(\s+)/$$1<HASH>$$2/g' | perl -pe 's/(\e\[[0-9;]*m\s+)[0-9a-fA-F]+(\e\[[0-9;]*m\s+\e\[[0-9;]*m\s*r\d+\s*\e\[[0-9;]*m\s+)/$$1<HASH>$$2/g' | perl -pe 's/(\e\[[0-9;]*m\s*)[0-9a-fA-F]+(\e\[[0-9;]*m\s+\e\[[0-9;]*m\s*r\d+\s*\e\[[0-9;]*m\s+)/$$1<HASH>$$2/g' > $@
+	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $@.tmp > $@
 
 test:
 	echo $(CWD)
@@ -41,4 +43,4 @@ view:
 	less -R basic.log
 
 clean:
-	rm -rf $(TARGETS)
+	rm -rf $(TARGETS) *.log.tmp

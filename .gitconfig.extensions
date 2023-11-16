@@ -102,7 +102,7 @@
 	awk-1 = "!rev | awk '{print $1}' | rev"
 
         # -------
-	check-for-local-changes = "!bash -c '\
+	check-for-unexpected-local-changes = "!bash -c '\
 		changes=`git status --short | grep -v \"??\"`; \
 		if [[ \"$changes\" != \"\" ]]; then \
 		  git status -uno; \
@@ -113,6 +113,7 @@
 	stash-local-changes-if-any = "!bash -c '\
 		changes=`git status --short | grep -v \"??\"`; \
 		if [[ \"$changes\" != \"\" ]]; then \
+                  echo "INFO: Detected local changes. Automatic stashing them for later restore."; \
   		  git stash; \
                   echo "1"; \
 		fi' --"
@@ -125,6 +126,11 @@
 		  echo 0; \
 		fi' --"
 
+       get-dot-git-path = "!bash -c '\
+          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
+          echo \"$dot_git_path\" \
+          ' --"
+
         # --------------------------
         # diff
         d = "diff"
@@ -134,20 +140,60 @@
         diff-wordwise = "diff -w -U0 --word-diff-regex=[^[:space:]] --word-diff=color"
         diffw = "diff-wordwise"
         dw = "diff-wordwise"
-        dwc = "diffw-wordwise --cached"
-        dwnc = "diffw-wordwise --no-color"
-        dwcnc = "diffw-wordwise --no-color --cached"
+        dwc = "diff-wordwise --cached"
+        dwnc = "diff-wordwise --no-color"
+        dwcnc = "diff-wordwise --no-color --cached"
+
         diffw2 = "diff --ignore-all-space --ignore-blank-lines --ignore-space-change"
         dw2 = "diffw2"
+
+        # ----------------------------
+        # diff/difftool files
+        # NOTE: diff-files already used in base function
+        diff-two-files = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                set -x; \
+                if [[ \"$#\" == \"4\" ]]; then \
+                  git diff $1:$2 $3:$4; \
+                elif [[ \"$#\" == \"2\" ]]; then \
+                  git diff $1 $2; \
+                else \
+                  echo \"ERROR: options missing - check parameters git diff-two-files {<rev1>} <file1> {<rev2>} <file2> or git diff-two-files <file1> <file2>\"; \
+                  exit -1; \
+                fi' --"
+        df = "diff-two-files"
+
+        diff-two-files-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                if [[ \"$#\" == \"4\" ]]; then \
+                  git diff-wordwise $1:$2 $3:$4; \
+                elif [[ \"$#\" == \"2\" ]]; then \
+                  git diff-wordwise $1 $2; \
+                else \
+                  echo \"ERROR: options missing - check parameters git diff-two-files-wordwise {<rev1>} <file1> {<rev2>} <file2> or git diff-two-files-wordwise <file1> <file2>\"; \
+                  exit -1; \
+                fi' --"
+        dfw = "diff-two-files-wordwise"
+
+        difftool-two-files = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                if [[ \"$#\" == \"4\" ]]; then \
+                  git difftool $1:$2 $3:$4; \
+                elif [[ \"$#\" == \"2\" ]]; then \
+                  git difftool $1 $2; \
+                else \
+                  echo \"ERROR: options missing - check parameters git difftool-files {<rev1>} <file1> {<rev2>} <file2> or git difftool-files <file1> <file2>\"; \
+                  exit -1; \
+                fi' --"
+        dtf = "difftool-two-files"
 
         # --------------------------
         # diff not indexed files
         # usage: git nidw <file1> <file2>
         nidiff = "diff --no-index"
         nid = "nidiff"
+        nidnc = "nidiff --no-color"
         nidiffw = "diff -w -U0 --word-diff-regex=[^[:space:]] --no-index"
         nidw = "nidiffw"
         nidwnc = "nidiffw --no-color"
+
         nidiffw2 = "diff --ignore-all-space --ignore-blank-lines --ignore-space-change --no-index"
         nidw2 = "nidiffw2"
 
@@ -171,13 +217,23 @@
 
         dt = "difftool"
         dtc = "difftool --cached"
-	diff-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git diff $prev_hash^ \"$@\"' --"
+
+        # --------------------------
+	# diff prev
+
+	diff-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --no-color --format=format:%h \"$@\" | head -n 1`; git diff $prev_hash^ \"$@\"' --"
         diffp = "diff-prev"
         dp = "diff-prev"
-	difftool-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool $prev_hash^ \"$@\"' --"
+
+	diff-prev-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --no-color --format=format:%h \"$@\" | head -n 1`; git diff-wordwise $prev_hash^ \"$@\"' --"
+        dpw = "diff-prev-wordwise"
+
+	difftool-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --no-color --format=format:%h \"$@\" | head -n 1`; git difftool $prev_hash^ \"$@\"' --"
         dtp = "difftool-prev"
-        difftool-dir-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --format=format:%h \"$@\" | head -n 1`; git difftool -d $prev_hash^ \"$@\"' --"
+
+        difftool-dir-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --no-color --format=format:%h \"$@\" | head -n 1`; git difftool -d $prev_hash^ \"$@\"' --"
         dtdp = "difftool-dir-prev"
+
 
         # --------------------------
         # cat files of revision
@@ -216,9 +272,25 @@
 
 
         # --------------------------
+        # list files
+        ls = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+                if [[ \"$#\" == \"1\" ]]; then \
+                  git ls-files $1; \
+                elif [[ \"$#\" == \"2\" ]]; then \
+                  git ls-files $1:$2; \
+                elif [[ \"$#\" == \"0\" ]]; then \
+                  git ls-files; \
+                else \
+                  echo \"ERROR: options missing - check parameters: git ls OR git ls <rev>/<folder> OR git ls <rev> <folder>\"; \
+                  exit -1; \
+                fi' --"
+
+        # list files sorted by sizes
+        ll = "!f(){ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4; };f"
+
+        # --------------------------
 	# misc
 
-	ls = "ls-files"
 	stat = "status -s"
 
 	logv = "log --name-status"
@@ -276,10 +348,6 @@
         restore = "checkout --"
 
         # --------------------------
-        # file sizes
-        ll = "!f(){ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4; };f"
-
-        # --------------------------
 	# stash
 
 	s = "stash"
@@ -305,12 +373,27 @@
 
 	grep-log = "!f(){ git log --all -i --grep=\"$1\"; };f"
 	find-all = "!f(){ git log --all -i --grep=\"$1\"; git grep \"$1\"; };f"
-	find2 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git ls . | grep \"$1\";' --"
-	find = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git ls \"$1\" | grep \"$2\";' --"
+
+        find = "!bash -c ' \
+                set -x; \
+                BWD=`pwd`; \
+                cd -- \"${GIT_PREFIX:-.}\"; \
+                CWD=`pwd`; \
+                if [[ \"$#\" == \"1\" ]]; then \
+                  rp=`realpath --relative-to=${CWD} ${BWD}`; \
+                  git ls $rp | egrep \"$1\"; \
+                elif [[ \"$#\" == \"2\" ]]; then \
+                  git ls \"$2\" | egrep \"$1\"; \
+                else \
+                  echo \"ERROR: options missing - check parameters git find <file_name> <folder> OR git find <file_name> to search in current folder recursively\"; \
+                  exit -1; \
+                fi' --"
+        f = "find"
+
         grepnc = "grep --no-color"
         gnc = "grepnc"
         g = "grep"
-        f = "find"
+
         egrep = "grep -E"
         egrepnc = "grep -E --no-color"
 
@@ -344,7 +427,7 @@
           nr=0; \
           has_upstream=`git has-upstream`; \
           if [[ \"$has_upstream\" == \"1\" ]]; then \
-            nr=`git log @{push}.. --oneline | wc -l`; \
+            nr=`git log --no-color @{push}.. --oneline | wc -l`; \
           fi; \
           echo $nr; \
           ' --"
@@ -352,7 +435,7 @@
           nr=0; \
           has_upstream=`git has-upstream`; \
           if [[ \"$has_upstream\" == \"1\" ]]; then \
-            nr=`git diff --stat @{u}..@ | grep \"|\" | wc -l`; \
+            nr=`git diff --no-color --stat @{u}..@ | grep \"|\" | wc -l`; \
           fi; \
           echo $nr; \
           ' --"
