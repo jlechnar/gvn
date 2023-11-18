@@ -6,13 +6,18 @@
 [alias]
 
 	# NOTE: adapt below as required
-	#gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py"
+#	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py"
+#	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
+#	gvn-cmd-update-mapping-db = "!true"
+
         # in case of always mapping, to speedup remove update-mapping-database from gvn-commit below
 	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py -m"
-	#gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
-        # in case of always mapping, to speedup remove update-mapping-database from gvn-commit below
 	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py -m"
 	gvn-cmd-update-mapping-db = "!python3 ~/bin/bin_gvn/gvn_update_mapping_db.py"
+
+#	gvn-cmd-annotate = "!perl ~/bin/bin_gvn/gvn_annotate.pl -m"
+#	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
+#       gvn-cmd-update-mapping-db = "!perl ~/bin/bin_gvn/gvn_update_mapping_db.pl"
 	
 	
         gvn-lgsb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | gvn cmd-annotate' --"
@@ -121,7 +126,10 @@
 	gvn-co = "gvn-commit"
 
 
-	gvn-fetch = "svn fetch"
+	gvn-fetch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+		git svn fetch; \
+                gvn update-mapping-database; \
+		' --"
 	gvn-fe = "gvn-fetch"
 	gvn-get = "gvn-fetch"
 
@@ -180,6 +188,7 @@
 		gvn check-for-branch-name-match; \
 		git check-for-unexpected-local-changes; \
                 git svn branch \"$1\" -m \"Created branch \"$1\"\" ; \
+                gvn update-mapping-database; \
                 remote=`git branch -ra --no-color | egrep \"\\/$1\"`; \
                 git checkout -b \"$1\" $remote' --"
 

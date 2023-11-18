@@ -27,17 +27,21 @@ cd git_user2/
 #execute "git --no-pager lgs" "log with svn revisions"
 # execute "git lgsb" "log with svn revisions"
 
-execute "git bb without_changes" "backup with no change"
-
-execute "git bb" "backup with no change and no title"
-
 echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file.pl
 echo -e '<html>\n  <title>foo</title>\n  <body>\n    bar\n  </body>\n</html>' > file.html
 
 execute "git add file*" "add some files"
 
-execute "git commit -m 'files'" "commit new files"
+execute "git commit -a -m 'files'" "commit new files"
+
+execute "git bb without_changes" "backup with no change"
+
+echo -e 'class bar2:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
+
+execute "git commit -a -m 'files'" "commit new files"
+
+execute "git bb" "backup with no change and no title"
 
 echo -e 'class bar:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 3;\n$test++;\nprint(\"%d\",$test);\n' > file2.pl
@@ -45,6 +49,8 @@ echo -e 'my $test = 3;\n$test++;\nprint(\"%d\",$test);\n' > file2.pl
 execute "git add file2.pl" "add new file2.pl"
 
 execute "git bb with_changes" "backup with change"
+
+echo -e 'class bar44:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 
 execute "git bb" "backup with change and no title"
 

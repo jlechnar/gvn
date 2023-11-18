@@ -17,6 +17,9 @@ TARGETS_LOGS+=diff
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))
 
+TARGETS_FOLDERS=
+TARGETS_FOLDERS+=$(addprefix test_, $(TARGETS_LOGS))
+
 default: $(TARGETS)
 
 CWD:=$(shell pwd)
@@ -29,10 +32,9 @@ always:
 	echo "GITO=\"$(CWD)/../bin/gito\"" > gvn_cmd.sh
 	echo "GVN=\"$(CWD)/../bin/gvn.sh\"" >> gvn_cmd.sh
 	echo "GVN_BASE=\"$(CWD)/../\"" >> gvn_cmd.sh
-	echo "GVN_BLAME=\"$(CWD)/../bin/gvn_blame.py\"" >> gvn_cmd.sh
-	echo "GVN_ANNOTATE=\"$(CWD)/../bin/gvn_annotate.py\"" >> gvn_cmd.sh
 	./$< | tee $@.tmp
-	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $@.tmp > $@
+	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $@.tmp > $@.tmp2
+	./scripts/cleanup.sh $@.tmp2 > $@
 
 test:
 	echo $(CWD)
@@ -43,4 +45,4 @@ view:
 	less -R basic.log
 
 clean:
-	rm -rf $(TARGETS) *.log.tmp
+	rm -rf $(TARGETS) *.log.tmp* $(TARGETS_FOLDERS)

@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
         command="git get-dot-git-path"
         result = subprocess.run(command.split(), stdout=subprocess.PIPE)
-        db_filename = result.stdout.decode().rstrip()
+        db_filename = result.stdout.decode().rstrip() + '/gvn/rev/db'
         base.write_to_json_file(db_filename)
         
         # ---------------------

@@ -64,6 +64,13 @@ r1 = <HASH> (refs/remotes/origin/trunk)
  '============================================================================
 
 
+ .============================================================================
+ |             update map database
+ | Executing:  .../../bin/gvn.sh umdb
+ |============================================================================
+ '============================================================================
+
+
 ################################################
 # setup: create local / sandbox repository for user1
 .../test_branch_worktree/git_user3
@@ -80,6 +87,13 @@ r1 = <HASH> (refs/remotes/git-svn)
  .============================================================================
  |             Rename master to trunk to match name for gvn
  | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             update map database
+ | Executing:  .../../bin/gvn.sh umdb
  |============================================================================
  '============================================================================
 
@@ -278,12 +292,10 @@ ERROR: Detected missmatch in svn base branch <trunk> (<test1>) != <test> (test).
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
-
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mCreated branch test[m [1;35m (origin/test)[m
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (origin/trunk, trunk, test1)[m
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
-
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
  '============================================================================
 
@@ -312,12 +324,10 @@ HEAD is now at <HASH> wt_test2_change
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
-
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mCreated branch test[m [1;35m (origin/test)[m
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (origin/trunk, trunk, test1)[m
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
-
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
  '============================================================================
 
@@ -348,12 +358,10 @@ HEAD is now at <HASH> wt_test2_change
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
-
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mCreated branch test[m [1;35m (origin/test)[m
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (origin/trunk, trunk, test1)[m
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
-
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
  '============================================================================
 
@@ -383,12 +391,10 @@ HEAD is now at <HASH> wt_test2_change
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
-
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mCreated branch test[m [1;35m (origin/test)[m
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (origin/trunk, trunk, test1)[m
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
-
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
  '============================================================================
 

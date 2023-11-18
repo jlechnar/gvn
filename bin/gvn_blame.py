@@ -80,7 +80,7 @@ if __name__ == '__main__':
           if args.read_from_map_db:
             command="git get-dot-git-path"
             result = subprocess.run(command.split(), stdout=subprocess.PIPE)
-            db_filename = result.stdout.decode().rstrip()
+            db_filename = result.stdout.decode().rstrip() + '/gvn/rev/db'
             base.read_from_json_file(db_filename)
           else:
             base.init_hash_to_svn_rev()

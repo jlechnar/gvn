@@ -273,15 +273,25 @@
 
         # --------------------------
         # list files
+        lsf = "ls-tree -r --name-only"
+
         ls = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
                 if [[ \"$#\" == \"1\" ]]; then \
-                  git ls-files $1; \
+                  p1=$1; \
+                  is_branch=`git branch -a --no-color -l --format \"%(refname:short)\"| grep \"^$p1$\"`; \
+                  if [[ \"$is_branch\" == \"\" ]]; then \
+                    echo \"INFO: $p1 is not a branch.\"; \
+                    git lsf HEAD $1; \
+                  else \
+                    echo \"INFO: $p1 is a branch.\"; \
+                    git lsf $1; \
+                  fi; \
                 elif [[ \"$#\" == \"2\" ]]; then \
-                  git ls-files $1:$2; \
+                  git lsf $1 $2; \
                 elif [[ \"$#\" == \"0\" ]]; then \
-                  git ls-files; \
+                  git lsf HEAD; \
                 else \
-                  echo \"ERROR: options missing - check parameters: git ls OR git ls <rev>/<folder> OR git ls <rev> <folder>\"; \
+                  echo \"ERROR: options missing - check parameters: git ls OR git ls <rev>/<folder> OR git ls <rev/branch> <folder>\"; \
                   exit -1; \
                 fi' --"
 
@@ -375,7 +385,6 @@
 	find-all = "!f(){ git log --all -i --grep=\"$1\"; git grep \"$1\"; };f"
 
         find = "!bash -c ' \
-                set -x; \
                 BWD=`pwd`; \
                 cd -- \"${GIT_PREFIX:-.}\"; \
                 CWD=`pwd`; \
