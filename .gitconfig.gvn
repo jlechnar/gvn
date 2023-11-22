@@ -5,19 +5,24 @@
 
 [alias]
 
-	# NOTE: adapt below as required
+	# NOTE: adapt below as required - speedwise is the following is ordered slowest to fastest at the moment:
+
 #	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py"
 #	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
 #	gvn-cmd-update-mapping-db = "!true"
 
-        # in case of always mapping, to speedup remove update-mapping-database from gvn-commit below
-	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py -m"
-	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py -m"
-	gvn-cmd-update-mapping-db = "!python3 ~/bin/bin_gvn/gvn_update_mapping_db.py"
+#        # in case of always mapping, to speedup remove update-mapping-database from gvn-commit below
+#	gvn-cmd-annotate = "!python3 ~/bin/bin_gvn/gvn_annotate.py -m"
+#	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py -m"
+#	gvn-cmd-update-mapping-db = "!python3 ~/bin/bin_gvn/gvn_update_mapping_db.py"
 
-#	gvn-cmd-annotate = "!perl ~/bin/bin_gvn/gvn_annotate.pl -m"
+#	gvn-cmd-annotate = "!perl ~/bin/bin_gvn/gvn_annotate.pl"
 #	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
-#       gvn-cmd-update-mapping-db = "!perl ~/bin/bin_gvn/gvn_update_mapping_db.pl"
+#        gvn-cmd-update-mapping-db = "!true"
+
+	gvn-cmd-annotate = "!perl ~/bin/bin_gvn/gvn_annotate.pl -m"
+	gvn-cmd-blame = "!python3 ~/bin/bin_gvn/gvn_blame.py"
+        gvn-cmd-update-mapping-db = "!perl ~/bin/bin_gvn/gvn_update_mapping_db.pl"
 	
 	
         gvn-lgsb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git logls \"$@\" | gvn cmd-annotate' --"
@@ -209,7 +214,7 @@
 		set -e; \
 		gvn check-for-branch-name-match; \
 		git check-for-unexpected-local-changes; \
-		git svn fetch; \
+		gvn fetch; \
 		gvn rebase' --"
         gvn-up = "gvn-update"
         gvn-u = "gvn-update"
@@ -219,7 +224,7 @@
 		set -e; \
 		gvn check-for-branch-name-match; \
                 changes=`git stash-local-changes-if-any`; \
-		git svn fetch; \
+		gvn fetch; \
 		gvn rebase; \
 		if [[ \"$changes\" != \"\" ]]; then \
 		  git stash pop; \
@@ -231,7 +236,7 @@
 		set -e; \
 		gvn check-for-branch-name-match; \
 		git check-for-unexpected-local-changes; \
-		git svn fetch; \
+		gvn fetch; \
 		gvn rebase; \
 		gvn commit' --"
         gvn-uc = "gvn-update-commit"
@@ -240,7 +245,7 @@
 		set -e; \
 		gvn check-for-branch-name-match; \
                 changes=`git stash-local-changes-if-any`; \
-		git svn fetch; \
+		gvn fetch; \
 		gvn rebase; \
 		gvn commit; \
 		if [[ \"$changes\" != \"\" ]]; then \
@@ -285,7 +290,7 @@
 		git check-for-unexpected-local-changes; \
 		branch_current=`git branch --show-current`; \
 		git svn init \"$1\" -s -R\"$2\" --prefix \"$2\"/ .; \
-		git svn fetch \"$2\"; \
+		gvn fetch \"$2\"; \
 		git checkout -b \"$3\" \"$2\"/trunk; \
 		git checkout $branch_current' --"
 	gvn-ca = "gvn-clone-add"

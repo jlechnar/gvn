@@ -273,17 +273,17 @@
 
         # --------------------------
         # list files
-        lsf = "ls-tree -r --name-only"
+        lsf-direct = "ls-tree -r --name-only"
+        cmd-lsf-alt = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_ls.sh \"$@\" #' --"
+        lsf = "cmd-lsf-alt"
 
         ls = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
                 if [[ \"$#\" == \"1\" ]]; then \
                   p1=$1; \
                   is_branch=`git branch -a --no-color -l --format \"%(refname:short)\"| grep \"^$p1$\"`; \
                   if [[ \"$is_branch\" == \"\" ]]; then \
-                    echo \"INFO: $p1 is not a branch.\"; \
                     git lsf HEAD $1; \
                   else \
-                    echo \"INFO: $p1 is a branch.\"; \
                     git lsf $1; \
                   fi; \
                 elif [[ \"$#\" == \"2\" ]]; then \
@@ -384,7 +384,9 @@
 	grep-log = "!f(){ git log --all -i --grep=\"$1\"; };f"
 	find-all = "!f(){ git log --all -i --grep=\"$1\"; git grep \"$1\"; };f"
 
-        find = "!bash -c ' \
+        find = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_find.sh \"$@\" #' --"
+
+        find-old = "!bash -c ' \
                 BWD=`pwd`; \
                 cd -- \"${GIT_PREFIX:-.}\"; \
                 CWD=`pwd`; \
