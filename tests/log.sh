@@ -55,7 +55,7 @@ echo "3" > test9/c.file
 echo "4" > test9/d.file
 echo "5" > test9/foo
 
-for file in `find test1/ test5/ test9/ -type f`; do
+for file in `find test1/ test5/ test9/ -type f | sort`; do
   execute "git add $file" "add $file"
   execute "git commit $file -m \"add_$file\"" "commit $file"
 done
