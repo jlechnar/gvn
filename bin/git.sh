@@ -5,6 +5,11 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+# Setup: add alias to this file as follows so that wrapper's can work
+# e.g. for bash:
+# alias git='~/bin/git.sh'
+# Note that in sub shells the alias is not active, hence we can directly call git rebase/merge/grep/... .
+
 set -e
 
 cmd=$1

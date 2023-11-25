@@ -3,20 +3,27 @@
 #set -x
 set -e
 
-tree="HEAD"
+p1=$1;
+p2=$2;
 
-if [[ "$#" == "0" ]]; then
-  search="*"
-  path=`git rev-parse --show-toplevel`
-elif [[ "$#" == "1" ]]; then
-  search="$1"
-  path=`git rev-parse --show-toplevel`
+if [[ "$#" == "1" ]]; then
+  is_branch=`git branch -a --no-color -l --format "%(refname:short)"| grep "^$p1$"` || true;
+  if [[ "$is_branch" == "" ]]; then
+    tree="HEAD";
+    path=$p1;
+  else
+    tree=$p1;
+    path="";
+  fi;
 elif [[ "$#" == "2" ]]; then
-  search="$1"
-  path="$2"
+  tree=$p1;
+  path=$p2;
+elif [[ "$#" == "0" ]]; then
+  tree="HEAD";
+  path="";
 else
-  echo "ERROR: options missing - check parameters git find <file_name> <folder> OR git find <file_name> to search in current folder recursively"; \
-  exit -1; \
+  echo "ERROR: options missing - check parameters: git lsa OR git lsa <rev>/<folder> OR git lsa <rev/branch> <folder>";
+  exit -1;
 fi
 
 current_dir=`pwd`
@@ -41,8 +48,7 @@ fi
 
 cd $root_dir
 
-files=`git ls-tree --name-only -r $tree | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,$relative_to_reduced,g" | grep -v "^$target_dir$" | egrep "$search"`
-
+files=`git ls-tree --name-only -r $tree | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,$relative_to_reduced,g" | grep -v "^$target_dir$"`
 for file in $files;
 do
   echo $file
