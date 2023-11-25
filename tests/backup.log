@@ -221,6 +221,7 @@ Dropped refs/stash@{0} (<HASH>)
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, trunk.untitled.<DATE>_<TIME>)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (trunk.without_changes.<DATE>_<TIME>)[m
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk)[m
+
  '============================================================================
 
 
@@ -242,5 +243,6 @@ ERROR: unexpected <..> in branch name <trunk...<DATE>_<TIME>>
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, trunk.untitled.<DATE>_<TIME>)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (trunk.without_changes.<DATE>_<TIME>)[m
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk)[m
+
  '============================================================================
 

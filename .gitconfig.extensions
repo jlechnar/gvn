@@ -9,60 +9,60 @@
 
         logl = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
 	# below is with \n at end !
-        logl2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
+        logl-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
 
         logll = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
 	# below is with \n at end !
-        logll2 = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
+        logll-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
 
 
 	# -----------
         # base
-	lb = "!git --no-pager log && echo \"\""
-	l = "!git lb | less -R"
+        lb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager log \"$@\"; echo \"\"' --"
+        l  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager log \"$@\" | less -R' --"
 
-	lbf = "!git --no-pager log --name-status && echo \"\""
-	lf = "!git lbf | less -R"
+        lbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager log --name-status \"$@\"; echo \"\"' --"
+        lf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager log --name-status \"$@\" | less -R' --"
 
-	labf = "!git --no-pager log --name-status --all && echo \"\""
-	laf = "!git lbf | less -R"
-	
+        labf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager log --all --name-status \"$@\"; echo \"\"' --"
+        laf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager log --all --name-status \"$@\" | less -R' --"
+
         # -----------
         # actual
-        lgb = "!git --no-pager logl && echo \"\""
-        lg = "!git lgb | less -R"
+        lgb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl \"$@\"; echo \"\"' --"
+        lg  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl \"$@\" | less -R' --"
 
-        lgbf = "!git --no-pager logl2 --name-status && echo \"\""
-        lgf = "!git lgbf | less -R"
+        lgbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --name-status \"$@\"; echo \"\"' --"
+        lgf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --name-status \"$@\" | less -R' --"
 
-        lgbl = "!git --no-pager logll2 && echo \"\""
-        lgl = "!git lgbl | less -R"
+        lgbl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message \"$@\"; echo \"\"' --"
+        lgl  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message \"$@\" | less -R' --"
 
-        lgblf = "!git --no-pager logll2 --name-status && echo \"\""
-        lglf = "!git lgblf | less -R"
+        lgblf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --name-status \"$@\"; echo \"\"' --"
+        lglf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --name-status \"$@\" | less -R' --"
         lgfl = "lglf"
 
         # -----------
         # all
-        lgab = "!git --no-pager logl --all && echo \"\""
-        lga = "!git lgab | less -R"
+        lgab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl --all \"$@\"; echo \"\"' --"
+        lga  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl --all \"$@\" | less -R' --"
 
-        lgabf = "!git --no-pager logl2 --name-status --all && echo \"\""
-        lgaf = "!git lgabf | less -R"
+        lgabf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --all --name-status \"$@\"; echo \"\"' --"
+        lgaf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --all --name-status \"$@\"; less -R' --"
 
-        lgabl = "!git --no-pager logll2 --all && echo \"\""
-        lgal = "!git lgabl | less -R"
+        lgabl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all \"$@\"; echo \"\"' --"
+        lgal  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all \"$@\" | less -R' --"
 
-        lgablf = "!git --no-pager logll2 --name-status --all && echo \"\""
-        lgalf = "!git lgablf | less -R"
+        lgablf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all --name-status \"$@\"; echo \"\"' --"
+        lgalf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all --name-status \"$@\"; less -R' --"
         lgafl = "lgalf"
 
         # -----------
         logls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
-        logl2s = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
+        logls-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
 
         loglls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
-        logll2s = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
+        loglls-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
 
         # log with diff of file
         logd = "log --all --follow -p --"

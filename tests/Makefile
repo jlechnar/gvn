@@ -18,6 +18,7 @@ TARGETS_LOGS+=ls
 TARGETS_LOGS+=lsa
 TARGETS_LOGS+=find
 TARGETS_LOGS+=grep
+TARGETS_LOGS+=log
 
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))
@@ -41,6 +42,10 @@ always:
 	./$< | tee $@.tmp
 	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $@.tmp > $@.tmp2
 	./scripts/cleanup.sh $@.tmp2 > $@
+
+%.log.repatch:
+	mv -f $*.log $*.log.tmp_repatch
+	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp_repatch > $*.log
 
 test:
 	echo $(CWD)
