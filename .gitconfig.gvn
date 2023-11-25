@@ -25,26 +25,26 @@
         gvn-cmd-update-mapping-db = "!perl ~/bin/bin_gvn/gvn_update_mapping_db.pl"
 	
 	
-        gvn-lgsb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logls \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgsb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logls \"$@\" | gvn cmd-annotate' --"
         lgsb = "gvn-lgsb"
         gvn-lgs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logls \"$@\" | gvn cmd-annotate | less -R' --"
         lgs = "gvn-lgs"
 
-        gvn-lgsfb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logls-with-lf-after-commit-message --name-status \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgsfb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logls-with-lf-after-commit-message --name-status \"$@\" | gvn cmd-annotate' --"
         lgsfb = "gvn-lgsfb"
         lgfsb = "gvn-lgsfb"
         gvn-lgsf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logls-with-lf-after-commit-message --name-status \"$@\" | gvn cmd-annotate | less -R' --"
         lgsf = "gvn-lgsf"
         lgfs = "gvn-lgsf"
 
-        gvn-lgslb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager loglls \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgslb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager loglls \"$@\" | gvn cmd-annotate' --"
         lgslb = "gvn-lgslb"
         lglsb = "gvn-lgslb"
         gvn-lgsl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager loglls \"$@\" | gvn cmd-annotate | less -R' --"
         lgsl = "gvn-lgsl"
         lgls = "gvn-lgsl"
 
-        gvn-lgslfb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager loglls-with-lf-after-commit-message --name-status \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgslfb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager loglls-with-lf-after-commit-message --name-status \"$@\" | gvn cmd-annotate' --"
         gvn-lglsfb = "gvn-lgslfb"
         gvn-lglfsb = "gvn-lgslfb"
         gvn-lgflsb = "gvn-lgslfb"
@@ -70,12 +70,12 @@
 	lgsfl = "gvn-lgslf"
 	
 
-        gvn-lgasb = "!bash -c 'git --no-pager logls --all \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgasb = "!bash -c 'git --no-pager logls --all \"$@\" | gvn cmd-annotate' --"
         lgasb = "gvn-lgasb"
         gvn-lgas = "!bash -c 'git --no-pager logls --all \"$@\" | gvn cmd-annotate | less -R' --"
         lgas = "gvn-lgas"
 
-        gvn-lgasfb = "!bash -c 'git --no-pager logls-with-lf-after-commit-message --name-status --all \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgasfb = "!bash -c 'git --no-pager logls-with-lf-after-commit-message --name-status --all \"$@\" | gvn cmd-annotate' --"
         gvn-lgafsb = "gvn-lgasfb"
         lgasfb = "gvn-lgasfb"
         lgafsb = "gvn-lgasfb"
@@ -84,7 +84,7 @@
         lgasf = "gvn-lgasf"
         lgafs = "gvn-lgasf"
 
-        gvn-lgaslb = "!bash -c 'git --no-pager loglls-with-lf-after-commit-message --all \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgaslb = "!bash -c 'git --no-pager loglls-with-lf-after-commit-message --all \"$@\" | gvn cmd-annotate' --"
         gvn-lgalsb = "gvn-lgaslb"
         lgaslb = "gvn-lgaslb"
         lgalsb = "gvn-lgaslb"
@@ -93,7 +93,7 @@
         lgasl = "gvn-lgasl"
         lgals = "gvn-lgasl"
 
-        gvn-lgaslfb = "!bash -c 'git --no-pager loglls-with-lf-after-commit-message --name-status --all \"$@\" | gvn cmd-annotate; echo \"\"' --"
+        gvn-lgaslfb = "!bash -c 'git --no-pager loglls-with-lf-after-commit-message --name-status --all \"$@\" | gvn cmd-annotate' --"
         gvn-lgalsfb = "gvn-lgaslfb"
         gvn-lgalfsb = "gvn-lgaslfb"
         gvn-lgaflsb = "gvn-lgaslfb"

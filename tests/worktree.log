@@ -329,7 +329,6 @@ CONFLICT (content): Merge conflict in file.py
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -366,7 +365,6 @@ Fast-forward
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -412,7 +410,6 @@ Resetting to the latest refs/remotes/git-svn
 [33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [33m|[m[33m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -479,7 +476,6 @@ Current branch trunk is up to date.
 [33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [33m|[m[33m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -546,7 +542,6 @@ Resetting to the latest refs/remotes/origin/trunk
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -590,7 +585,6 @@ Resetting to the latest refs/remotes/origin/trunk
 [33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [33m|[m[33m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -663,7 +657,6 @@ Resetting to the latest refs/remotes/git-svn
 [34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [34m|[m[34m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -693,7 +686,6 @@ Resetting to the latest refs/remotes/git-svn
 [34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [34m|[m[34m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -745,7 +737,6 @@ CONFLICT (content): Merge conflict in file.py
 [34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [34m|[m[34m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 
 
@@ -811,6 +802,5 @@ Resetting to the latest refs/remotes/git-svn
 [35m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [35m|[m[35m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-
  '============================================================================
 

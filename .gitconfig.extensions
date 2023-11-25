@@ -529,8 +529,11 @@
           if [ -z $branch_title ]; then \
             branch_title=\"untitled\"; \
           fi; \
+          datetime=$2; \
+          if [ -z $datetime ]; then \
+            datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
+          fi; \
           branch_current=`git branch --show-current`; \
-          datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
           branch_backup=\"$branch_current.$branch_title.$datetime\"; \
           if [[ $branch_backup =~ \\.\\. ]]; then \
             echo \"ERROR: unexpected <..> in branch name <$branch_backup>\"; \

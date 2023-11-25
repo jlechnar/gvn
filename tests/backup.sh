@@ -62,3 +62,11 @@ set -e
 
 execute "git lgasb" "show all branches"
 
+echo -e 'class bar123:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
+
+dt=`date +'%Y_%m_%d-%H_%M_%S'`; \
+
+execute "git bb test test_$dt" "backup with own datetime"
+
+execute "git lgasb" "show all branches"
+

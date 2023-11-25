@@ -297,7 +297,6 @@ ERROR: Detected missmatch in svn base branch <trunk> (<test1>) != <test> (test).
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
-
  '============================================================================
 
 
@@ -330,7 +329,6 @@ HEAD is now at <HASH> wt_test2_change
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
-
  '============================================================================
 
 
@@ -365,7 +363,6 @@ HEAD is now at <HASH> wt_test2_change
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
-
  '============================================================================
 
 
@@ -399,7 +396,6 @@ HEAD is now at <HASH> wt_test2_change
 [32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
-
  '============================================================================
 
 
