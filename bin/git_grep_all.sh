@@ -6,7 +6,7 @@ set -e
 args=$@
 
 current_dir=`pwd`
-root_dir=`git rev-parse --show-toplevel`
+root_dir=`git root`
 
 path=$root_dir
 tree="HEAD"

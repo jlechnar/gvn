@@ -130,3 +130,38 @@ execute "git grep-nc 1 ." "grep 1 in current"
 execute "git grep 1" "grep 1 in current"
 
 execute "git grep-nc 1" "grep 1 in current"
+
+# --------------
+execute "$GVN wa test" "add worktree test"
+
+execute "$GVN wl" "list worktrees"
+
+execute "$CDW test" "change to worktree test"
+
+# -----------------------------
+execute "cd ../test5/test6/" "cd test6"
+
+execute "pwd" "current directory"
+
+execute "git grep 1" "grep 1 no args"
+
+execute "git grep 1 ." "grep 1 current"
+
+execute "git grep 1 ../" "grep 1 one up"
+
+execute "git grep 1 ../.." "grep 1 two up"
+
+execute "git grep 1 ../../test1/test2/test3" "grep 1 test1 subfolder"
+
+# -----------------------------
+execute "cd ../../test9/" "go to test9"
+
+execute "git grep 1 ." "grep 1 in current"
+
+execute "git grep-nc 1 ." "grep 1 in current"
+
+execute "git grep 1" "grep 1 in current"
+
+execute "git grep-nc 1" "grep 1 in current"
+
+

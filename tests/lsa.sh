@@ -118,3 +118,33 @@ execute "cd ../../test9/" "go to test9"
 execute "git lsa" "lsa current"
 
 execute "git lsa ." "lsa current"
+
+# --------------
+execute "$GVN wa test" "add worktree test"
+
+execute "$GVN wl" "list worktrees"
+
+execute "$CDW test" "change to worktree test"
+
+# -----------------------------
+execute "cd ../test5/test6/" "cd test6"
+
+execute "pwd" "current directory"
+
+execute "git lsa" "lsa no args"
+
+execute "git lsa ." "lsa current"
+
+execute "git lsa ../" "lsa one up"
+
+execute "git lsa ../.." "lsa two up"
+
+execute "git lsa ../../test1/test2/test3" "lsa test1 subfolder"
+
+# -----------------------------
+execute "cd ../../test9/" "go to test9"
+
+execute "git lsa" "lsa current"
+
+execute "git lsa ." "lsa current"
+

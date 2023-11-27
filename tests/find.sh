@@ -128,3 +128,36 @@ execute "git find file" "find file in current"
 execute "git find . ." "find all in current"
 
 execute "git find ." "find all in current"
+
+# --------------
+execute "$GVN wa test" "add worktree test"
+
+execute "$GVN wl" "list worktrees"
+
+execute "$CDW test" "change to worktree test"
+
+# -----------------------------
+execute "cd ../test5/test6/" "cd test6"
+
+execute "pwd" "current directory"
+
+execute "git find ." "find all no args"
+
+execute "git find . ." "find all current"
+
+execute "git find . ../" "find all one up"
+
+execute "git find . ../.." "find all two up"
+
+execute "git find . ../../test1/test2/test3" "find all test1 subfolder"
+
+# -----------------------------
+execute "cd ../../test9/" "go to test9"
+
+execute "git find file ." "find file current"
+
+execute "git find file" "find file in current"
+
+execute "git find . ." "find all in current"
+
+execute "git find ." "find all in current"

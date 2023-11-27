@@ -1,16 +1,21 @@
 #!/bin/bash
 
-#set -x
+set -x
 set -e
+
+rt=`git root`
 
 tree="HEAD"
 
+current_dir=`pwd`
+root_dir=`git root`
+
 if [[ "$#" == "0" ]]; then
   search="*"
-  path=`git rev-parse --show-toplevel`
+  path=$root_dir
 elif [[ "$#" == "1" ]]; then
   search="$1"
-  path=`git rev-parse --show-toplevel`
+  path=$root_dir
 elif [[ "$#" == "2" ]]; then
   search="$1"
   path="$2"
@@ -18,9 +23,6 @@ else
   echo "ERROR: options missing - check parameters git find <file_name> <folder> OR git find <file_name> to search in current folder recursively"; \
   exit -1; \
 fi
-
-current_dir=`pwd`
-root_dir=`git rev-parse --show-toplevel`
 
 if [[ $path =~ ^/ ]]; then
   target_dir=`realpath $path`

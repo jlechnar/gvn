@@ -35,5 +35,6 @@ cat $file | \
   perl -pe 's/^(\.\.\.\/\S+\/\S+\s+)([0-9a-fA-F]+)(\s+\[\S+\])$/$1<HASH>$3/g' | \
   perl -pe 's/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/<GIT_SVN_HASH>/g' | \
   perl -pe 's/((\e\[33m\s*)commit\s+)[0-9a-fA-F]{40}(\e\[m)/$1<HASH>$2/g' | \
+  perl -pe 's/^(Date:\s+).+$/$1<DATE_TIME>/g' | \
   perl -pe 's/(Executing:  git (df|dfw) )([0-9a-fA-F]+)( \S+ )([0-9a-fA-F]+)(\s+\S+)/$1<HASH>$4<HASH>$6/g'
 

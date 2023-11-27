@@ -27,7 +27,7 @@ else
 fi
 
 current_dir=`pwd`
-root_dir=`git rev-parse --show-toplevel`
+root_dir=`git root`
 
 if [[ $path =~ ^/ ]]; then
   target_dir=`realpath $path`

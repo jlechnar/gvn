@@ -1,3 +1,5 @@
+#set -x
+#set -e
 
 # Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
 # Author:      jlechnar
@@ -22,7 +24,10 @@ act_sub_path=`echo $act_cwd | sed "s,$act_base_path,,g"`
 
 new_cwd="$new_base_path/$act_sub_path"
 
-if [ -d $new_cwd ]; then
+if [[ "$new_base_path" == "" ]]; then
+  echo "ERROR: Could not find worktree branch named <$new_branch>. Aborting."
+  exit -1
+elif [ -d $new_cwd ]; then
   echo "Found git worktree with existing subfolder"
   echo "branch:     $act_branch => $new_branch"
   echo "base_paths: $act_base_path => $new_base_path"
