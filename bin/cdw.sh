@@ -20,7 +20,7 @@ new_base_path=`git worktree-get-path $new_branch`
 act_cwd=`pwd`
 act_branch=`git rev-parse --abbrev-ref HEAD`
 act_base_path=`git worktree-get-path $act_branch`
-act_sub_path=`echo $act_cwd | sed "s,$act_base_path,,g"`
+act_sub_path=`echo $act_cwd | sed "s,$act_base_path,,g" | sed 's,^/,,g'`
 
 new_cwd="$new_base_path/$act_sub_path"
 
@@ -34,16 +34,14 @@ elif [ -d $new_cwd ]; then
   echo "paths:      $act_cwd => $new_cwd"
   cd $new_cwd
   pwd
+elif [ -d $new_base_path ]; then
+  echo "Found git worktree with not existing subfolder"
+  echo "branch:     $act_branch => $new_branch"
+  echo "base_paths: $act_base_path => $new_base_path"
+  echo "paths:      $act_cwd => $new_base_path"
+  cd $new_base_path
+  pwd
 else
-  if [ -d $new_base_path ]; then
-    echo "Found git worktree with not existing subfolder"
-    echo "branch:     $act_branch => $new_branch"
-    echo "base_paths: $act_base_path => $new_base_path"
-    echo "paths:      $act_cwd => $new_base_path"
-    cd $new_base_path
-    pwd
-  else
-    echo "Could not find matching git worktree. Aborting."
-  fi
+  echo "Could not find matching git worktree. Aborting."
 fi
 

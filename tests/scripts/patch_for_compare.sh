@@ -29,9 +29,15 @@ cat $file | \
   perl -pe 's/(Saved working directory and index state WIP on \S+: )([0-9a-fA-F]+)( files)/$1<HASH>$3/g' | \
   perl -pe 's/(\d{4}_\d{2}_\d{2}-\d{2}_\d{2}_\d{2})/<DATE>_<TIME>/g' | \
   perl -pe 's/(\e\[33m\s*)([0-9a-fA-F]+)(\e\[m)/$1<HASH>$3/g' | \
-  perl -pe 's/(Dropped refs\/stash\@\{\d+\} )\(([0-9a-fA-F]+)\)/$1\(<HASH>\)/g' | \
+  perl -pe 's/(Dropped refs\/stash\@\{\d+\} )\(([0-9a-fA-F]{40})\)/$1\(<HASH>\)/g' | \
+  perl -pe 's/(Found branch parent:\s+\([^\)]+\)\s+)([0-9a-fA-F]+)/$1<HASH>/g' | \
   perl -pe 's/^(\S+ is now at )([0-9a-fA-F]+)(\s|$)/$1<HASH>$3/g' | \
+  perl -pe 's/(git\s+diff\s+)([0-9a-fA-F]{40})(\:\S+\s+)([0-9a-fA-F]{40})(\:\S+)/$1<HASH>$3<HASH>$5/g' | \
+  perl -pe 's/(index\s+)([0-9a-fA-F]+)(\.\.)([0-9a-fA-F]+)/$1<HASH>$3<HASH>/g' | \
+  perl -pe 's/(warning: skipped previously applied commit )([0-9a-fA-F]+)/$1<HASH>/g' | \
   perl -pe 's/^(Updating )([0-9a-fA-F]+)(\.\.)([0-9a-fA-F]+)/$1<HASH>$3<HASH>/g' | \
+  perl -pe 's/^(error: could not apply )([0-9a-fA-F]+)(\.\.\.)/$1<HASH>$3/g' | \
+  perl -pe 's/^(Could not apply )([0-9a-fA-F]+)(\.\.\.)/$1<HASH>$3/g' | \
   perl -pe 's/^(\.\.\.\/\S+\/\S+\s+)([0-9a-fA-F]+)(\s+\[\S+\])$/$1<HASH>$3/g' | \
   perl -pe 's/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/<GIT_SVN_HASH>/g' | \
   perl -pe 's/((\e\[33m\s*)commit\s+)[0-9a-fA-F]{40}(\e\[m)/$1<HASH>$2/g' | \

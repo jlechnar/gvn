@@ -51,9 +51,21 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_worktree/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_worktree/git_user2/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  file://.../test_worktree/server1/repo/trunk r1
  '============================================================================
 
 
@@ -78,9 +90,21 @@ r1 = <HASH> (refs/remotes/origin/trunk)
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_worktree/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_worktree/git_user3/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/git-svn)
+Checked out HEAD:
+  file://.../test_worktree/server1/repo/trunk r1
  '============================================================================
 
 
@@ -295,9 +319,15 @@ subtest
  | Executing:  .../../bin/gvn.sh wrebase trunk
  |============================================================================
 Created Tag for git rebase: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>
-Auto-merging file.html
+Rebasing (1/1)Auto-merging file.html
 Auto-merging file.py
 CONFLICT (content): Merge conflict in file.py
+error: could not apply <HASH>... changes_test_worktree_rebase
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply <HASH>... changes_test_worktree_rebase
  '============================================================================
 
 
@@ -315,6 +345,7 @@ CONFLICT (content): Merge conflict in file.py
 [detached HEAD  <HASH>] changes_test_worktree_rebase
  3 files changed, 7 insertions(+), 3 deletions(-)
  create mode 100644 file4.pl
+[KSuccessfully rebased and updated refs/heads/test.
  '============================================================================
 
 
@@ -496,6 +527,7 @@ r3 = <HASH> (refs/remotes/origin/trunk)
 	A	file4.pl
 r4 = <HASH> (refs/remotes/origin/trunk)
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+[KSuccessfully rebased and updated refs/heads/trunk.
  '============================================================================
 
 
@@ -597,9 +629,17 @@ Resetting to the latest refs/remotes/origin/trunk
 	A	file8.pl
 r5 = <HASH> (refs/remotes/git-svn)
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
-Auto-merging file.html
+Rebasing (1/1)Auto-merging file.html
 Auto-merging file.py
 CONFLICT (content): Merge conflict in file.py
+error: could not apply <HASH>... changes_trunk_worktree_merge_svn_change
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply <HASH>... changes_trunk_worktree_merge_svn_change
+rebase refs/remotes/git-svn: command returned error: 1
+
  '============================================================================
 
 
@@ -617,6 +657,7 @@ CONFLICT (content): Merge conflict in file.py
 [detached HEAD  <HASH>] changes_trunk_worktree_merge_svn_change
  3 files changed, 7 insertions(+), 3 deletions(-)
  create mode 100644 file7.pl
+[KSuccessfully rebased and updated refs/heads/trunk.
  '============================================================================
 
 
@@ -694,9 +735,19 @@ Resetting to the latest refs/remotes/git-svn
  | Executing:  .../../bin/gvn.sh wrebase trunk
  |============================================================================
 Created Tag for git rebase: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>
-Auto-merging file.html
+warning: skipped previously applied commit <HASH>
+warning: skipped previously applied commit <HASH>
+hint: use --reapply-cherry-picks to include skipped commits
+hint: Disable this message with "git config advice.skippedCherryPicks false"
+Rebasing (1/1)Auto-merging file.html
 Auto-merging file.py
 CONFLICT (content): Merge conflict in file.py
+error: could not apply <HASH>... changes_test_worktree_merge_svn_up
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply <HASH>... changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -714,6 +765,7 @@ CONFLICT (content): Merge conflict in file.py
 [detached HEAD  <HASH>] changes_test_worktree_merge_svn_up
  3 files changed, 7 insertions(+), 3 deletions(-)
  create mode 100644 file6.pl
+[KSuccessfully rebased and updated refs/heads/test.
  '============================================================================
 
 

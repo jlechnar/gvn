@@ -51,9 +51,21 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_grep/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_grep/git_user2/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  file://.../test_grep/server1/repo/trunk r1
  '============================================================================
 
 
@@ -78,9 +90,21 @@ r1 = <HASH> (refs/remotes/origin/trunk)
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_grep/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_grep/git_user3/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/git-svn)
+Checked out HEAD:
+  file://.../test_grep/server1/repo/trunk r1
  '============================================================================
 
 
@@ -344,6 +368,9 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 outside dir none existing
  | Executing:  git grep 1 ../../../outside/dir
  |============================================================================
+fatal: ambiguous argument '../../../outside/dir': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
  '============================================================================
 
 
@@ -351,6 +378,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 outside dir existing
  | Executing:  git grep 1 ../../../git_user2
  |============================================================================
+fatal: ../../../git_user2: '../../../git_user2' is outside repository at '.../test_grep/git_user3'
  '============================================================================
 
 
@@ -358,6 +386,9 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 none existing dir
  | Executing:  git grep 1 inside/none_existing/dir
  |============================================================================
+fatal: ambiguous argument 'inside/none_existing/dir': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
  '============================================================================
 
 
@@ -365,6 +396,9 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 none existing dir
  | Executing:  git grep 1 inside_none_existing_dir
  |============================================================================
+fatal: ambiguous argument 'inside_none_existing_dir': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
  '============================================================================
 
 
@@ -432,7 +466,7 @@ HEAD is now at <HASH> test_folders_with_files
 Found git worktree with existing subfolder
 branch:     trunk => test
 base_paths: .../test_grep/git_user3 => .../test_grep/test
-paths:      .../test_grep/git_user3/test9 => .../test_grep/test//test9
+paths:      .../test_grep/git_user3/test9 => .../test_grep/test/test9
 .../test_grep/test/test9
  '============================================================================
 

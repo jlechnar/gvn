@@ -51,9 +51,21 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_backup/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_backup/git_user2/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  file://.../test_backup/server1/repo/trunk r1
  '============================================================================
 
 
@@ -78,9 +90,21 @@ r1 = <HASH> (refs/remotes/origin/trunk)
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_backup/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_backup/git_user3/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/git-svn)
+Checked out HEAD:
+  file://.../test_backup/server1/repo/trunk r1
  '============================================================================
 
 
@@ -152,6 +176,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  | Executing:  git bb with_changes
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
+Switched to a new branch 'trunk.with_changes.<DATE>_<TIME>'
 On branch trunk.with_changes.<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -165,6 +190,7 @@ Changes not staged for commit:
 [trunk.with_changes.<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
+Switched to branch 'trunk'
 On branch trunk
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -184,6 +210,7 @@ Dropped refs/stash@{0} (<HASH>)
  | Executing:  git bb
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
+Switched to a new branch 'trunk.untitled.<DATE>_<TIME>'
 On branch trunk.untitled.<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -197,6 +224,7 @@ Changes not staged for commit:
 [trunk.untitled.<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
+Switched to branch 'trunk'
 On branch trunk
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -250,6 +278,7 @@ ERROR: unexpected <..> in branch name <trunk...<DATE>_<TIME>>
  | Executing:  git bb test test_<DATE>_<TIME>
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
+Switched to a new branch 'trunk.test.test_<DATE>_<TIME>'
 On branch trunk.test.test_<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -263,6 +292,7 @@ Changes not staged for commit:
 [trunk.test.test_<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
+Switched to branch 'trunk'
 On branch trunk
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)

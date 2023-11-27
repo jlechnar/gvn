@@ -51,9 +51,21 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_diff/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_diff/git_user2/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  file://.../test_diff/server1/repo/trunk r1
  '============================================================================
 
 
@@ -78,9 +90,21 @@ r1 = <HASH> (refs/remotes/origin/trunk)
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_diff/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_diff/git_user3/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/git-svn)
+Checked out HEAD:
+  file://.../test_diff/server1/repo/trunk r1
  '============================================================================
 
 
@@ -156,7 +180,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  | Executing:  git d file.html
  |============================================================================
 [34mdiff --git a/file.html b/file.html[m
-[34mindex 2360995..667787a 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1,7 +1,7 @@[m
@@ -178,7 +202,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  | Executing:  git dw file.html
  |============================================================================
 [34mdiff --git a/file.html b/file.html[m
-[34mindex 2360995..667787a 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1 +1 @@[m
@@ -195,7 +219,7 @@ r1 = <HASH> (refs/remotes/git-svn)
  | Executing:  git dwnc file.html
  |============================================================================
 diff --git a/file.html b/file.html
-index 2360995..667787a 100644
+index <HASH>..<HASH> 100644
 --- a/file.html
 +++ b/file.html
 @@ -1 +1 @@
@@ -212,7 +236,7 @@ index 2360995..667787a 100644
  | Executing:  git dp file.html
  |============================================================================
 [34mdiff --git a/file.html b/file.html[m
-[34mindex 5737d85..667787a 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1,7 +1,7 @@[m
@@ -234,7 +258,7 @@ index 2360995..667787a 100644
  | Executing:  git dpw file.html
  |============================================================================
 [34mdiff --git a/file.html b/file.html[m
-[34mindex 5737d85..667787a 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1 +1 @@[m
@@ -251,7 +275,7 @@ index 2360995..667787a 100644
  | Executing:  git dc file.html
  |============================================================================
 [34mdiff --git a/file.html b/file.html[m
-[34mindex d01aaf0..2360995 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1,7 +1,7 @@[m
@@ -273,7 +297,7 @@ index 2360995..667787a 100644
  | Executing:  git dwc file.html
  |============================================================================
 [34mdiff --git a/file.html b/file.html[m
-[34mindex d01aaf0..2360995 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1 +1 @@[m
@@ -290,7 +314,7 @@ index 2360995..667787a 100644
  | Executing:  git dwcnc file.html
  |============================================================================
 diff --git a/file.html b/file.html
-index d01aaf0..2360995 100644
+index <HASH>..<HASH> 100644
 --- a/file.html
 +++ b/file.html
 @@ -1 +1 @@
@@ -306,8 +330,10 @@ index d01aaf0..2360995 100644
  |             diff versions
  | Executing:  git df <HASH> file.pl <HASH> file.pl
  |============================================================================
++ [[ 4 == \4 ]]
++ git diff <HASH>:file.pl <HASH>:file.pl
 [34mdiff --git a/file.pl b/file.pl[m
-[34mindex c6fb38e..bb97826 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.pl[m
 [34m+++ b/file.pl[m
 [36m@@ -1,5 +1,5 @@[m
@@ -327,7 +353,7 @@ index d01aaf0..2360995 100644
  | Executing:  git dfw <HASH> file.pl <HASH> file.pl
  |============================================================================
 [34mdiff --git a/file.pl b/file.pl[m
-[34mindex c6fb38e..bb97826 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.pl[m
 [34m+++ b/file.pl[m
 [36m@@ -1,2 +1,2 @@[m
@@ -342,8 +368,10 @@ print(\"%d\",$test[34;101m4[m[34;102m5[m);
  |             diff different files of different version
  | Executing:  git df <HASH> file.html <HASH> file.pl
  |============================================================================
++ [[ 4 == \4 ]]
++ git diff <HASH>:file.html <HASH>:file.pl
 [34mdiff --git a/file.html b/file.pl[m
-[34mindex d01aaf0..9f30d91 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.pl[m
 [36m@@ -1,7 +1,5 @@[m
@@ -367,7 +395,7 @@ print(\"%d\",$test[34;101m4[m[34;102m5[m);
  | Executing:  git dfw <HASH> file.html <HASH> file.pl
  |============================================================================
 [34mdiff --git a/file.html b/file.pl[m
-[34mindex d01aaf0..9f30d91 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.pl[m
 [36m@@ -1,7 +1,5 @@[m
@@ -388,8 +416,11 @@ m[34;101ml>[m
  |             diff different files
  | Executing:  git df file.html file.pl
  |============================================================================
++ [[ 2 == \4 ]]
++ [[ 2 == \2 ]]
++ git diff file.html file.pl
 [34mdiff --git a/file.html b/file.html[m
-[34mindex 2360995..667787a 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1,7 +1,7 @@[m
@@ -404,7 +435,7 @@ m[34;101ml>[m
    </body>[m
  </html>[m
 [34mdiff --git a/file.pl b/file.pl[m
-[34mindex b489935..c86ad17 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.pl[m
 [34m+++ b/file.pl[m
 [36m@@ -1,5 +1,5 @@[m
@@ -423,7 +454,7 @@ m[34;101ml>[m
  | Executing:  git dfw file.html file.pl
  |============================================================================
 [34mdiff --git a/file.html b/file.html[m
-[34mindex 2360995..667787a 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file.html[m
 [36m@@ -1 +1 @@[m
@@ -433,7 +464,7 @@ m[34;101ml>[m
 [36m@@ -5 +5 @@[m
     [34;101mne[m[34;102mt[mar
 [34mdiff --git a/file.pl b/file.pl[m
-[34mindex b489935..c86ad17 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.pl[m
 [34m+++ b/file.pl[m
 [36m@@ -1,2 +1,2 @@[m
@@ -447,7 +478,7 @@ my $test = [34;101m9[m[34;102m10[m;
  | Executing:  git nid file_local.html file_local.pl
  |============================================================================
 [34mdiff --git a/file_local.html b/file_local.pl[m
-[34mindex 63ef6e6..69695f5 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file_local.html[m
 [34m+++ b/file_local.pl[m
 [36m@@ -1,7 +1,5 @@[m
@@ -470,7 +501,7 @@ my $test = [34;101m9[m[34;102m10[m;
  | Executing:  git nidnc file_local.html file_local.pl
  |============================================================================
 diff --git a/file_local.html b/file_local.pl
-index 63ef6e6..69695f5 100644
+index <HASH>..<HASH> 100644
 --- a/file_local.html
 +++ b/file_local.pl
 @@ -1,7 +1,5 @@
@@ -493,7 +524,7 @@ index 63ef6e6..69695f5 100644
  | Executing:  git nidw file_local.html file_local.pl
  |============================================================================
 [34mdiff --git a/file_local.html b/file_local.pl[m
-[34mindex 63ef6e6..69695f5 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file_local.html[m
 [34m+++ b/file_local.pl[m
 [36m@@ -2,6 +2,4 @@[m
@@ -514,7 +545,7 @@ index 63ef6e6..69695f5 100644
  | Executing:  git nidwnc file_local.html file_local.pl
  |============================================================================
 diff --git a/file_local.html b/file_local.pl
-index 63ef6e6..69695f5 100644
+index <HASH>..<HASH> 100644
 --- a/file_local.html
 +++ b/file_local.pl
 @@ -2,6 +2,4 @@
@@ -535,7 +566,7 @@ index 63ef6e6..69695f5 100644
  | Executing:  git nid file.html file_local.html
  |============================================================================
 [34mdiff --git a/file.html b/file_local.html[m
-[34mindex 667787a..63ef6e6 100644[m
+[34mindex <HASH>..<HASH> 100644[m
 [34m--- a/file.html[m
 [34m+++ b/file_local.html[m
 [36m@@ -1,7 +1,7 @@[m

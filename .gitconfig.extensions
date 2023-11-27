@@ -74,7 +74,7 @@
         root = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
                  current_dir=`pwd | sed 's,/$,,g'`; \
                  prefix=`echo $GIT_PREFIX | sed 's,/$,,g'`; \
-                 root_dir=`echo $current_dir | sed \"s,/$prefix$,,\"`; \
+                 root_dir=`echo $current_dir | sed \"s,/$prefix$,,\" | xargs realpath`; \
                  echo $root_dir' --"
  
         # --------------------------

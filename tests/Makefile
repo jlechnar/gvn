@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 # Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
 # Author:      jlechnar
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
@@ -28,18 +30,18 @@ TARGETS_FOLDERS+=$(addprefix test_, $(TARGETS_LOGS))
 
 default: $(TARGETS)
 
-CWD:=$(shell pwd)
-#CWD:=$(shell pwd | xargs realpath)
+CWD:=$(shell pwd | xargs realpath)
 CWD_REAL = ${PWD}
 
 always:
 
 %.log: %.sh always
+	rm -rf $@* test_$*/
 	echo "GITO=\"$(CWD)/../bin/gito\"" > gvn_cmd.sh
 	echo "GVN=\"$(CWD)/../bin/gvn.sh\"" >> gvn_cmd.sh
 	echo "GVN_BASE=\"$(CWD)/../\"" >> gvn_cmd.sh
 	echo "CDW=\"$(CWD)/../bin/cdw.sh\"" >> gvn_cmd.sh
-	./$< | tee $@.tmp
+	./$< |& tee $@.tmp
 	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $@.tmp > $@.tmp2
 	./scripts/cleanup.sh $@.tmp2 > $@
 

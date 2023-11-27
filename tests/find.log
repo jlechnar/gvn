@@ -51,9 +51,21 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_find/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_find/git_user2/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  file://.../test_find/server1/repo/trunk r1
  '============================================================================
 
 
@@ -78,9 +90,21 @@ r1 = <HASH> (refs/remotes/origin/trunk)
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_find/server1/repo/trunk .
  |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
 Initialized empty Git repository in .../test_find/git_user3/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/git-svn)
+Checked out HEAD:
+  file://.../test_find/server1/repo/trunk r1
  '============================================================================
 
 
@@ -439,6 +463,7 @@ test7/test8/file.f
  |             find outside dir none existing
  | Executing:  git find . ../../../outside/dir
  |============================================================================
+realpath: .../test_find/git_user3/test5/test6/../../../outside/dir: No such file or directory
  '============================================================================
 
 
@@ -454,6 +479,7 @@ ERROR: Target directory <.../test_find/git_user2> is outside of git repository <
  |             find none existing dir
  | Executing:  git find . inside/none_existing/dir
  |============================================================================
+realpath: .../test_find/git_user3/test5/test6/inside/none_existing/dir: No such file or directory
  '============================================================================
 
 
@@ -564,7 +590,7 @@ HEAD is now at <HASH> test_folders_with_files
 Found git worktree with existing subfolder
 branch:     trunk => test
 base_paths: .../test_find/git_user3 => .../test_find/test
-paths:      .../test_find/git_user3/test9 => .../test_find/test//test9
+paths:      .../test_find/git_user3/test9 => .../test_find/test/test9
 .../test_find/test/test9
  '============================================================================
 
