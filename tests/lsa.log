@@ -482,7 +482,7 @@ HEAD is now at <HASH> test_folders_with_files
 
  .============================================================================
  |             change to worktree test
- | Executing:  .../../bin/cdw.sh test
+ | Executing:  source .../../bin/cdw.sh test
  |============================================================================
 Found git worktree with existing subfolder
 branch:     trunk => test
@@ -503,7 +503,7 @@ paths:      .../test_lsa/git_user3/test9 => .../test_lsa/test/test9
  |             current directory
  | Executing:  pwd
  |============================================================================
-.../test_lsa/git_user3/test5/test6
+.../test_lsa/test/test5/test6
  '============================================================================
 
 

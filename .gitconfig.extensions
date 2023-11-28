@@ -71,12 +71,16 @@
 	# root
         # below does not always work properly in subfolders in worktrees hence replaced with below implementation
         #root = "rev-parse --show-toplevel"
+        #root = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+        #         current_dir=`pwd | sed 's,/$,,g'`; \
+        #         prefix=`echo $GIT_PREFIX | sed 's,/$,,g'`; \
+        #         root_dir=`echo $current_dir | sed \"s,/$prefix$,,\" | xargs realpath`; \
+        #         echo $root_dir' --"
         root = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                 current_dir=`pwd | sed 's,/$,,g'`; \
-                 prefix=`echo $GIT_PREFIX | sed 's,/$,,g'`; \
-                 root_dir=`echo $current_dir | sed \"s,/$prefix$,,\" | xargs realpath`; \
+                 current_branch=`git currentbranch`; \
+                 root_dir=`git worktree-get-path $current_branch`; \
                  echo $root_dir' --"
- 
+
         # --------------------------
 	# merge
 
@@ -247,18 +251,7 @@
 
         # --------------------------
         # cat files of revision
-        cat = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                if [[ \"$1\" == \"\" ]]; then \
-                  echo \"ERROR: options missing - check parameters git cat {<rev>} <file>\"; \
-                  exit -1; \
-                elif [[ \"$2\" == \"\" ]]; then \
-                  git show HEAD:$1; \
-                elif [[ \"$3\" != \"\" ]]; then \
-                  echo \"ERROR: too many options - check parameters git cat {<rev>} <file>\"; \
-                  exit -1; \
-                else \
-                  git show $1:$2; \
-                fi' --"
+        cat = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_cat.sh \"$@\" #' --"
 
 
         # link gvn/bin/git.sh to e.g. ~/bin/git.sh and add following alias to your shell (e.g. bash), this will wrap git rebase to add a tag when starting a rebase to a branch

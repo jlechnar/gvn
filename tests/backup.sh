@@ -41,6 +41,7 @@ echo -e 'class bar2:\n  def bar(self, test):\n    self.test = test\n\n' > file.p
 
 execute "git commit -a -m 'files'" "commit new files"
 
+sleep 2
 execute "git bb" "backup with no change and no title"
 
 echo -e 'class bar:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
@@ -52,6 +53,7 @@ execute "git bb with_changes" "backup with change"
 
 echo -e 'class bar44:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 
+sleep 2
 execute "git bb" "backup with change and no title"
 
 execute "git lgasb" "show all branches"

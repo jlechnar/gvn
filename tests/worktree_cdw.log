@@ -247,7 +247,7 @@ HEAD is now at <HASH> test_folders_with_files
 
  .============================================================================
  |             change to worktree test1
- | Executing:  .../../bin/cdw.sh worktree1
+ | Executing:  source .../../bin/cdw.sh worktree1
  |============================================================================
 Found git worktree with existing subfolder
 branch:     trunk => worktree1
@@ -261,18 +261,18 @@ paths:      .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree1/
  |             current directory
  | Executing:  pwd
  |============================================================================
-.../test_worktree_cdw/git_user3
+.../test_worktree_cdw/worktree1
  '============================================================================
 
 
  .============================================================================
  |             change to worktree test2
- | Executing:  .../../bin/cdw.sh worktree2
+ | Executing:  source .../../bin/cdw.sh worktree2
  |============================================================================
 Found git worktree with existing subfolder
-branch:     trunk => worktree2
-base_paths: .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree2
-paths:      .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree2/
+branch:     worktree1 => worktree2
+base_paths: .../test_worktree_cdw/worktree1 => .../test_worktree_cdw/worktree2
+paths:      .../test_worktree_cdw/worktree1 => .../test_worktree_cdw/worktree2/
 .../test_worktree_cdw/worktree2
  '============================================================================
 
@@ -281,18 +281,18 @@ paths:      .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree2/
  |             current directory
  | Executing:  pwd
  |============================================================================
-.../test_worktree_cdw/git_user3
+.../test_worktree_cdw/worktree2
  '============================================================================
 
 
  .============================================================================
  |             change to worktree trunk
- | Executing:  .../../bin/cdw.sh trunk
+ | Executing:  source .../../bin/cdw.sh trunk
  |============================================================================
 Found git worktree with existing subfolder
-branch:     trunk => trunk
-base_paths: .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/git_user3
-paths:      .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/git_user3/
+branch:     worktree2 => trunk
+base_paths: .../test_worktree_cdw/worktree2 => .../test_worktree_cdw/git_user3
+paths:      .../test_worktree_cdw/worktree2 => .../test_worktree_cdw/git_user3/
 .../test_worktree_cdw/git_user3
  '============================================================================
 
@@ -322,7 +322,7 @@ paths:      .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/git_user3/
 
  .============================================================================
  |             change to worktree test2
- | Executing:  .../../bin/cdw.sh worktree2
+ | Executing:  source .../../bin/cdw.sh worktree2
  |============================================================================
 Found git worktree with existing subfolder
 branch:     trunk => worktree2
@@ -336,7 +336,7 @@ paths:      .../test_worktree_cdw/git_user3/test1 => .../test_worktree_cdw/workt
  |             current directory
  | Executing:  pwd
  |============================================================================
-.../test_worktree_cdw/git_user3/test1
+.../test_worktree_cdw/worktree2/test1
  '============================================================================
 
 
@@ -351,18 +351,18 @@ paths:      .../test_worktree_cdw/git_user3/test1 => .../test_worktree_cdw/workt
  |             current directory
  | Executing:  pwd
  |============================================================================
-.../test_worktree_cdw/git_user3/test1/test2
+.../test_worktree_cdw/worktree2/test1/test2
  '============================================================================
 
 
  .============================================================================
  |             change to worktree test1
- | Executing:  .../../bin/cdw.sh worktree1
+ | Executing:  source .../../bin/cdw.sh worktree1
  |============================================================================
 Found git worktree with existing subfolder
-branch:     trunk => worktree1
-base_paths: .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree1
-paths:      .../test_worktree_cdw/git_user3/test1/test2 => .../test_worktree_cdw/worktree1/test1/test2
+branch:     worktree2 => worktree1
+base_paths: .../test_worktree_cdw/worktree2 => .../test_worktree_cdw/worktree1
+paths:      .../test_worktree_cdw/worktree2/test1/test2 => .../test_worktree_cdw/worktree1/test1/test2
 .../test_worktree_cdw/worktree1/test1/test2
  '============================================================================
 
@@ -371,7 +371,7 @@ paths:      .../test_worktree_cdw/git_user3/test1/test2 => .../test_worktree_cdw
  |             current directory
  | Executing:  pwd
  |============================================================================
-.../test_worktree_cdw/git_user3/test1/test2
+.../test_worktree_cdw/worktree1/test1/test2
  '============================================================================
 
 
@@ -386,18 +386,18 @@ paths:      .../test_worktree_cdw/git_user3/test1/test2 => .../test_worktree_cdw
  |             current directory
  | Executing:  pwd
  |============================================================================
-.../test_worktree_cdw/git_user3/test5/test6/test7
+.../test_worktree_cdw/worktree1/test5/test6/test7
  '============================================================================
 
 
  .============================================================================
  |             change to worktree trunk
- | Executing:  .../../bin/cdw.sh trunk
+ | Executing:  source .../../bin/cdw.sh trunk
  |============================================================================
 Found git worktree with existing subfolder
-branch:     trunk => trunk
-base_paths: .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/git_user3
-paths:      .../test_worktree_cdw/git_user3/test5/test6/test7 => .../test_worktree_cdw/git_user3/test5/test6/test7
+branch:     worktree1 => trunk
+base_paths: .../test_worktree_cdw/worktree1 => .../test_worktree_cdw/git_user3
+paths:      .../test_worktree_cdw/worktree1/test5/test6/test7 => .../test_worktree_cdw/git_user3/test5/test6/test7
 .../test_worktree_cdw/git_user3/test5/test6/test7
  '============================================================================
 
