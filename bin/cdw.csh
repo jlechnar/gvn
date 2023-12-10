@@ -13,11 +13,11 @@
 # <base_path>/<act_branch>/<sub_dir>  =>  <base_path>/new_branch/<sub_dir>
 
 set new_branch="$1"
-set new_base_path=`git worktree-get-path $new_branch`
+set new_base_path=`git worktree-get-path $new_branch | xargs realpath`
 
-set act_cwd=`pwd`
+set act_cwd=`pwd | xargs realpath`
 set act_branch=`git rev-parse --abbrev-ref HEAD`
-set act_base_path=`git worktree-get-path $act_branch`
+set act_base_path=`git worktree-get-path $act_branch | xargs realpath`
 set act_sub_path=`echo $act_cwd | sed "s,$act_base_path,,g" | sed 's,^/,,g'`
 
 set new_cwd="$new_base_path/$act_sub_path"

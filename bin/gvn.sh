@@ -7,6 +7,9 @@
 
 set -e
 
+# activate below to debug commands that are executed
+DEBUG=0
+
 # ---------------------------
 do_clone() {
   from=$1
@@ -52,6 +55,20 @@ elif [[ "$cmd" == "clone-none-standard" || "$cmd" == "clone-ns" || "$cmd" == "cl
   do_clone $from $to ""
 else
   opt=$@
+
+  if [[ "$DEBUG" == "1" ]]; then
+    echo "$cmd $opt" >> /dev/stderr
+  fi
+
+  if [[ "$cmd" == "hash" || "$cmd" == "convert-hashes" || "$cmd" == "cmd-convert-hashes" ]]; then
+    # do not map done by gvn_hash.sh
+    true
+  elif [[ "$opt" =~ ^.*r[0-9]+.*$ ]]; then
+    #echo "revision detected"
+    opt2=$opt
+    opt=`gvn convert-hashes -c "$cmd" "$opt2"`
+  fi
+
   git gvn-$cmd $opt
 fi
 

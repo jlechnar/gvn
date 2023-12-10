@@ -1,18 +1,18 @@
 
 ################################################
-# setup: Setup worktree_cdw
-.../test_worktree_cdw
+# setup: Setup hash
+.../test_hash
 
 ################################################
 # setup: create local repository (file system repository) server1
-.../test_worktree_cdw/server1
+.../test_hash/server1
 
 ################################################
 # setup: create local / sandbox repository
-.../test_worktree_cdw/server1_create
+.../test_hash/server1_create
 
  .============================================================================
- | Executing:  svn checkout file://.../test_worktree_cdw/server1/repo .
+ | Executing:  svn checkout file://.../test_hash/server1/repo .
  |============================================================================
 Checked out revision 0.
  '============================================================================
@@ -34,10 +34,10 @@ Committed revision 1.
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_worktree_cdw/svn_user2
+.../test_hash/svn_user2
 
  .============================================================================
- | Executing:  svn checkout file://.../test_worktree_cdw/server1/repo/trunk .
+ | Executing:  svn checkout file://.../test_hash/server1/repo/trunk .
  |============================================================================
 A    .svnignore
 Checked out revision 1.
@@ -46,10 +46,10 @@ Checked out revision 1.
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_worktree_cdw/git_user2
+.../test_hash/git_user2
 
  .============================================================================
- | Executing:  .../../bin/gvn.sh clone file://.../test_worktree_cdw/server1/repo/trunk .
+ | Executing:  .../../bin/gvn.sh clone file://.../test_hash/server1/repo/trunk .
  |============================================================================
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
@@ -61,11 +61,11 @@ hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
 hint: 'development'. The just-created branch can be renamed via this command:
 hint: 
 hint: 	git branch -m <name>
-Initialized empty Git repository in .../test_worktree_cdw/git_user2/.git/
+Initialized empty Git repository in .../test_hash/git_user2/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/origin/trunk)
 Checked out HEAD:
-  file://.../test_worktree_cdw/server1/repo/trunk r1
+  file://.../test_hash/server1/repo/trunk r1
  '============================================================================
 
 
@@ -85,10 +85,10 @@ Checked out HEAD:
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_worktree_cdw/git_user3
+.../test_hash/git_user3
 
  .============================================================================
- | Executing:  .../../bin/gvn.sh clone-ns file://.../test_worktree_cdw/server1/repo/trunk .
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_hash/server1/repo/trunk .
  |============================================================================
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
@@ -100,11 +100,11 @@ hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
 hint: 'development'. The just-created branch can be renamed via this command:
 hint: 
 hint: 	git branch -m <name>
-Initialized empty Git repository in .../test_worktree_cdw/git_user3/.git/
+Initialized empty Git repository in .../test_hash/git_user3/.git/
 	A	.svnignore
 r1 = <HASH> (refs/remotes/git-svn)
 Checked out HEAD:
-  file://.../test_worktree_cdw/server1/repo/trunk r1
+  file://.../test_hash/server1/repo/trunk r1
  '============================================================================
 
 
@@ -123,328 +123,324 @@ Checked out HEAD:
 
 
  .============================================================================
- |             update commit to svn
- | Executing:  .../../bin/gvn.sh uc
+ |             add some files
+ | Executing:  git add file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files
+ | Executing:  git commit -a -m 'files'
+ |============================================================================
+[trunk  <HASH>] files
+ 3 files changed, 18 insertions(+)
+ create mode 100644 file.html
+ create mode 100644 file.pl
+ create mode 100644 file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             change1
+ | Executing:  git commit -a -m 'files'
+ |============================================================================
+[trunk  <HASH>] files
+ 3 files changed, 8 insertions(+), 8 deletions(-)
+ '============================================================================
+
+
+ .============================================================================
+ |             change2
+ | Executing:  git commit -a -m 'files'
+ |============================================================================
+[trunk  <HASH>] files
+ 3 files changed, 8 insertions(+), 8 deletions(-)
+ '============================================================================
+
+
+ .============================================================================
+ |             change3
+ | Executing:  git commit -a -m 'files'
+ |============================================================================
+[trunk  <HASH>] files
+ 3 files changed, 9 insertions(+), 9 deletions(-)
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit to svn
+ | Executing:  .../../bin/gvn.sh ucs
  |============================================================================
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
 Current branch trunk is up to date.
-Committing to file://.../test_worktree_cdw/server1/repo/trunk ...
+Committing to file://.../test_hash/server1/repo/trunk ...
+	A	file.html
+	A	file.pl
+	A	file.py
+Committed r2
+	A	file.html
+	A	file.pl
+	A	file.py
+r2 = <HASH> (refs/remotes/git-svn)
+	M	file.html
+	M	file.pl
+	M	file.py
+Committed r3
+	M	file.html
+	M	file.pl
+	M	file.py
+r3 = <HASH> (refs/remotes/git-svn)
+	M	file.html
+	M	file.pl
+	M	file.py
+Committed r4
+	M	file.html
+	M	file.pl
+	M	file.py
+r4 = <HASH> (refs/remotes/git-svn)
+	M	file.html
+	M	file.pl
+	M	file.py
+Committed r5
+	M	file.html
+	M	file.pl
+	M	file.py
+r5 = <HASH> (refs/remotes/git-svn)
+No changes between <HASH> and refs/remotes/git-svn
+Resetting to the latest refs/remotes/git-svn
+On branch trunk
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   file.html[m
+	[31mmodified:   file.pl[m
+	[31mmodified:   file.py[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mfile_local.html[m
+	[31mfile_local.pl[m
+	[31mfile_local.py[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (<HASH>)
  '============================================================================
 
 
  .============================================================================
- |             update commit to svn
- | Executing:  .../../bin/gvn.sh uc
+ |             get hash for r2
+ | Executing:  .../../bin/gvn.sh hash r2
  |============================================================================
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
-Current branch trunk is up to date.
-Committing to file://.../test_worktree_cdw/server1/repo/trunk ...
+3445ce08aceb10098e1a501ab10b75b47e67638d '============================================================================
+
+
+ .============================================================================
+ |             get hash for r3
+ | Executing:  .../../bin/gvn.sh hash 3
+ |============================================================================
+4b750b8e49776c6c6fb3235bd4c3a330cdf20e16 '============================================================================
+
+
+ .============================================================================
+ |             get hash for r1
+ | Executing:  .../../bin/gvn.sh hash r1
+ |============================================================================
+88445c0fecfe6d256ec7922a57f293115cddc882 '============================================================================
+
+
+ .============================================================================
+ |             log for r2 revision
+ | Executing:  .../../bin/gvn.sh lgsb r2
+ |============================================================================
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
  '============================================================================
 
 
  .============================================================================
- |             add some files in folders
- | Executing:  git add test1
+ |             log for r2 revision only
+ | Executing:  .../../bin/gvn.sh lgsb r2:r2
  |============================================================================
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
  .============================================================================
- |             add some files in folders
- | Executing:  git add test5
+ |             log for r2 revision only
+ | Executing:  .../../bin/gvn.sh lgsb r2:2
  |============================================================================
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
  .============================================================================
- |             more files
- | Executing:  git commit -a -m 'test_folders_with_files'
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb r2:r4
  |============================================================================
-[trunk  <HASH>] test_folders_with_files
- 9 files changed, 9 insertions(+)
- create mode 100644 test1/file.e
- create mode 100644 test1/test2/file.d
- create mode 100644 test1/test2/test3/file.c
- create mode 100644 test1/test2/test3/test4/file.a
- create mode 100644 test1/test2/test3/test4/file.b
- create mode 100644 test5/file.i
- create mode 100644 test5/test6/file.h
- create mode 100644 test5/test6/test7/file.g
- create mode 100644 test5/test6/test7/test8/file.f
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
  .============================================================================
- |             list worktrees
- | Executing:  .../../bin/gvn.sh wl
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb r2:4
  |============================================================================
-.../test_worktree_cdw/git_user3  <HASH> [trunk]
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
  .============================================================================
- |             add worktree worktree1
- | Executing:  .../../bin/gvn.sh wa worktree1
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb r4:r2
  |============================================================================
-Preparing worktree (new branch 'worktree1')
-HEAD is now at <HASH> test_folders_with_files
+ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
  '============================================================================
 
 
  .============================================================================
- |             add worktree worktree2
- | Executing:  .../../bin/gvn.sh wa worktree2
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb r4:2
  |============================================================================
-Preparing worktree (new branch 'worktree2')
-HEAD is now at <HASH> test_folders_with_files
+ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
  '============================================================================
 
 
  .============================================================================
- |             list worktrees
- | Executing:  .../../bin/gvn.sh wl
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb -r2:4
  |============================================================================
-.../test_worktree_cdw/git_user3  <HASH> [trunk]
-.../test_worktree_cdw/worktree1  <HASH> [worktree1]
-.../test_worktree_cdw/worktree2  <HASH> [worktree2]
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
  .============================================================================
- |             current directory
- | Executing:  pwd
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb -r2:r4
  |============================================================================
-.../test_worktree_cdw/git_user3
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
  .============================================================================
- |             tree of current directory
- | Executing:  tree
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb -r4:2
  |============================================================================
-.
-├── test1
-│   ├── file.e
-│   └── test2
-│       ├── file.d
-│       └── test3
-│           ├── file.c
-│           └── test4
-│               ├── file.a
-│               └── file.b
-└── test5
-    ├── file.i
-    └── test6
-        ├── file.h
-        └── test7
-            ├── file.g
-            └── test8
-                └── file.f
-
-8 directories, 9 files
+ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
  '============================================================================
 
 
  .============================================================================
- |             change to worktree test1
- | Executing:  source .../../bin/cdw.sh worktree1
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh lgsb -r4:r2
  |============================================================================
-Found git worktree with existing subfolder
-branch:     trunk => worktree1
-base_paths: .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree1
-paths:      .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree1/
-.../test_worktree_cdw/worktree1
+ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
  '============================================================================
 
 
  .============================================================================
- |             current directory
- | Executing:  pwd
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh log r4:r2
  |============================================================================
-.../test_worktree_cdw/worktree1
+------------------------------------------------------------------------
+r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
+r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
+r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
  '============================================================================
 
 
  .============================================================================
- |             change to worktree test2
- | Executing:  source .../../bin/cdw.sh worktree2
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh log r4:2
  |============================================================================
-Found git worktree with existing subfolder
-branch:     worktree1 => worktree2
-base_paths: .../test_worktree_cdw/worktree1 => .../test_worktree_cdw/worktree2
-paths:      .../test_worktree_cdw/worktree1 => .../test_worktree_cdw/worktree2/
-.../test_worktree_cdw/worktree2
+------------------------------------------------------------------------
+r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
+r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
+r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
  '============================================================================
 
 
  .============================================================================
- |             current directory
- | Executing:  pwd
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh log -r4:2
  |============================================================================
-.../test_worktree_cdw/worktree2
+------------------------------------------------------------------------
+r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
+r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
+r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+
+files
+
+------------------------------------------------------------------------
  '============================================================================
 
 
  .============================================================================
- |             change to worktree trunk
- | Executing:  source .../../bin/cdw.sh trunk
+ |             log for r2 to r4 revision
+ | Executing:  .../../bin/gvn.sh log -r4:r2
  |============================================================================
-Found git worktree with existing subfolder
-branch:     worktree2 => trunk
-base_paths: .../test_worktree_cdw/worktree2 => .../test_worktree_cdw/git_user3
-paths:      .../test_worktree_cdw/worktree2 => .../test_worktree_cdw/git_user3/
-.../test_worktree_cdw/git_user3
- '============================================================================
+------------------------------------------------------------------------
+r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
 
+files
 
- .============================================================================
- |             current directory
- | Executing:  pwd
- |============================================================================
-.../test_worktree_cdw/git_user3
- '============================================================================
+------------------------------------------------------------------------
+r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
 
+files
 
- .============================================================================
- |             change into sub directory
- | Executing:  cd test1
- |============================================================================
- '============================================================================
+------------------------------------------------------------------------
+r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
 
+files
 
- .============================================================================
- |             current directory
- | Executing:  pwd
- |============================================================================
-.../test_worktree_cdw/git_user3/test1
- '============================================================================
-
-
- .============================================================================
- |             change to worktree test2
- | Executing:  source .../../bin/cdw.sh worktree2
- |============================================================================
-Found git worktree with existing subfolder
-branch:     trunk => worktree2
-base_paths: .../test_worktree_cdw/git_user3 => .../test_worktree_cdw/worktree2
-paths:      .../test_worktree_cdw/git_user3/test1 => .../test_worktree_cdw/worktree2/test1
-.../test_worktree_cdw/worktree2/test1
- '============================================================================
-
-
- .============================================================================
- |             current directory
- | Executing:  pwd
- |============================================================================
-.../test_worktree_cdw/worktree2/test1
- '============================================================================
-
-
- .============================================================================
- |             change into sub directory
- | Executing:  cd test2
- |============================================================================
- '============================================================================
-
-
- .============================================================================
- |             current directory
- | Executing:  pwd
- |============================================================================
-.../test_worktree_cdw/worktree2/test1/test2
- '============================================================================
-
-
- .============================================================================
- |             change to worktree test1
- | Executing:  source .../../bin/cdw.sh worktree1
- |============================================================================
-Found git worktree with existing subfolder
-branch:     worktree2 => worktree1
-base_paths: .../test_worktree_cdw/worktree2 => .../test_worktree_cdw/worktree1
-paths:      .../test_worktree_cdw/worktree2/test1/test2 => .../test_worktree_cdw/worktree1/test1/test2
-.../test_worktree_cdw/worktree1/test1/test2
- '============================================================================
-
-
- .============================================================================
- |             current directory
- | Executing:  pwd
- |============================================================================
-.../test_worktree_cdw/worktree1/test1/test2
- '============================================================================
-
-
- .============================================================================
- |             change into sub directory
- | Executing:  cd ../../test5/test6/test7
- |============================================================================
- '============================================================================
-
-
- .============================================================================
- |             show log of file with relative path
- | Executing:  git lgb ../../file.i
- |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mtest_folders_with_files[m [1;35m (HEAD -> worktree1, worktree2, trunk)[m
- '============================================================================
-
-
- .============================================================================
- |             current directory
- | Executing:  pwd
- |============================================================================
-.../test_worktree_cdw/worktree1/test5/test6/test7
- '============================================================================
-
-
- .============================================================================
- |             change to worktree trunk
- | Executing:  source .../../bin/cdw.sh trunk
- |============================================================================
-Found git worktree with existing subfolder
-branch:     worktree1 => trunk
-base_paths: .../test_worktree_cdw/worktree1 => .../test_worktree_cdw/git_user3
-paths:      .../test_worktree_cdw/worktree1/test5/test6/test7 => .../test_worktree_cdw/git_user3/test5/test6/test7
-.../test_worktree_cdw/git_user3/test5/test6/test7
- '============================================================================
-
-
- .============================================================================
- |             current directory
- | Executing:  pwd
- |============================================================================
-.../test_worktree_cdw/git_user3/test5/test6/test7
- '============================================================================
-
-
- .============================================================================
- |             show log of file with relative path
- | Executing:  git lgb ../../file.i
- |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mtest_folders_with_files[m [1;35m (HEAD -> trunk, worktree2, worktree1)[m
- '============================================================================
-
-
- .============================================================================
- |             change into base directory test5
- | Executing:  cd ../../
- |============================================================================
- '============================================================================
-
-
- .============================================================================
- |             show log of file
- | Executing:  git lgb file.i
- |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mtest_folders_with_files[m [1;35m (HEAD -> trunk, worktree2, worktree1)[m
- '============================================================================
-
-
- .============================================================================
- |             show log of file with svn revisions
- | Executing:  .../../bin/gvn.sh lgsb file.i
- |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mtest_folders_with_files[m [1;35m (HEAD -> trunk, worktree2, worktree1)[m
+------------------------------------------------------------------------
  '============================================================================
 

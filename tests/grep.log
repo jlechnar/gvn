@@ -168,7 +168,7 @@ Committing to file://.../test_grep/server1/repo/trunk ...
  | Executing:  git commit -a -m 'test_folders_with_files'
  |============================================================================
 [trunk  <HASH>] test_folders_with_files
- 16 files changed, 16 insertions(+)
+ 16 files changed, 48 insertions(+)
  create mode 100644 test1/file.e
  create mode 100644 test1/foo.bar
  create mode 100644 test1/test2/file.d
@@ -200,7 +200,7 @@ Committing to file://.../test_grep/server1/repo/trunk ...
  |             grep for 1 in subdir test5
  | Executing:  git grep 1 test5/
  |============================================================================
-test5/test6/test7/test8/file.f[36m:[m[1;31m1[m
+test5/test6/test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -208,9 +208,9 @@ test5/test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             grep for 1 in local dir
  | Executing:  git grep 1
  |============================================================================
-test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
-test5/test6/test7/test8/file.f[36m:[m[1;31m1[m
-test9/afile[36m:[m[1;31m1[m
+test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
+test5/test6/test7/test8/file.f[36m:[m[1;31m1[m bla bla
+test9/afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -233,7 +233,7 @@ test9/afile[36m:[m[1;31m1[m
  |             grep for 1 within local subdir
  | Executing:  git grep 1
  |============================================================================
-test6/test7/test8/file.f[36m:[m[1;31m1[m
+test6/test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -241,7 +241,7 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             grep for 1 within local subdir
  | Executing:  git grep-nc 1
  |============================================================================
-test6/test7/test8/file.f:1
+test6/test7/test8/file.f:1 bla bla
  '============================================================================
 
 
@@ -249,7 +249,7 @@ test6/test7/test8/file.f:1
  |             find all test6
  | Executing:  git grep 1 test6/
  |============================================================================
-test6/test7/test8/file.f[36m:[m[1;31m1[m
+test6/test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -257,9 +257,9 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             find all 1 in all folders
  | Executing:  git grep-all 1
  |============================================================================
-../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
-../test5/test6/test7/test8/file.f[36m:[m[1;31m1[m
-../test9/afile[36m:[m[1;31m1[m
+../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
+../test5/test6/test7/test8/file.f[36m:[m[1;31m1[m bla bla
+../test9/afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -267,9 +267,9 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             find all 1 in all folders no color
  | Executing:  git grep-all-nc 1
  |============================================================================
-../test1/test2/test3/test4/file.a:1
-../test5/test6/test7/test8/file.f:1
-../test9/afile:1
+../test1/test2/test3/test4/file.a:1 bla bla
+../test5/test6/test7/test8/file.f:1 bla bla
+../test9/afile:1 bla bla
  '============================================================================
 
 
@@ -277,7 +277,7 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             find all 1 in current subfolder
  | Executing:  git grep 1 .
  |============================================================================
-test6/test7/test8/file.f[36m:[m[1;31m1[m
+test6/test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -285,9 +285,9 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             grep for 1 one up
  | Executing:  git grep 1 ../
  |============================================================================
-../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
-test6/test7/test8/file.f[36m:[m[1;31m1[m
-../test9/afile[36m:[m[1;31m1[m
+../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
+test6/test7/test8/file.f[36m:[m[1;31m1[m bla bla
+../test9/afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -295,7 +295,7 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             find all 1 in test1/test2 subfolder
  | Executing:  git grep 1 ../test1/test2
  |============================================================================
-../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
+../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -303,7 +303,7 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             find all 1 in test1/test2 subfolder
  | Executing:  git grep-nc 1 ../test1/test2
  |============================================================================
-../test1/test2/test3/test4/file.a:1
+../test1/test2/test3/test4/file.a:1 bla bla
  '============================================================================
 
 
@@ -326,7 +326,7 @@ test6/test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 no args
  | Executing:  git grep 1
  |============================================================================
-test7/test8/file.f[36m:[m[1;31m1[m
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -334,7 +334,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 current
  | Executing:  git grep 1 .
  |============================================================================
-test7/test8/file.f[36m:[m[1;31m1[m
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -342,7 +342,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 one up
  | Executing:  git grep 1 ../
  |============================================================================
-test7/test8/file.f[36m:[m[1;31m1[m
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -350,9 +350,9 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 two up
  | Executing:  git grep 1 ../..
  |============================================================================
-../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
-test7/test8/file.f[36m:[m[1;31m1[m
-../../test9/afile[36m:[m[1;31m1[m
+../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
+../../test9/afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -360,7 +360,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 test1 subfolder
  | Executing:  git grep 1 ../../test1/test2/test3
  |============================================================================
-../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
+../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -413,7 +413,7 @@ Use '--' to separate paths from revisions, like this:
  |             grep 1 in current
  | Executing:  git grep 1 .
  |============================================================================
-afile[36m:[m[1;31m1[m
+afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -421,7 +421,7 @@ afile[36m:[m[1;31m1[m
  |             grep 1 in current
  | Executing:  git grep-nc 1 .
  |============================================================================
-afile:1
+afile:1 bla bla
  '============================================================================
 
 
@@ -429,7 +429,7 @@ afile:1
  |             grep 1 in current
  | Executing:  git grep 1
  |============================================================================
-afile[36m:[m[1;31m1[m
+afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -437,7 +437,7 @@ afile[36m:[m[1;31m1[m
  |             grep 1 in current
  | Executing:  git grep-nc 1
  |============================================================================
-afile:1
+afile:1 bla bla
  '============================================================================
 
 
@@ -490,7 +490,7 @@ paths:      .../test_grep/git_user3/test9 => .../test_grep/test/test9
  |             grep 1 no args
  | Executing:  git grep 1
  |============================================================================
-test7/test8/file.f[36m:[m[1;31m1[m
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -498,7 +498,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 current
  | Executing:  git grep 1 .
  |============================================================================
-test7/test8/file.f[36m:[m[1;31m1[m
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -506,7 +506,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 one up
  | Executing:  git grep 1 ../
  |============================================================================
-test7/test8/file.f[36m:[m[1;31m1[m
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -514,9 +514,9 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 two up
  | Executing:  git grep 1 ../..
  |============================================================================
-../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
-test7/test8/file.f[36m:[m[1;31m1[m
-../../test9/afile[36m:[m[1;31m1[m
+../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
+test7/test8/file.f[36m:[m[1;31m1[m bla bla
+../../test9/afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -524,7 +524,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 test1 subfolder
  | Executing:  git grep 1 ../../test1/test2/test3
  |============================================================================
-../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m
+../../test1/test2/test3/test4/file.a[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -539,7 +539,7 @@ test7/test8/file.f[36m:[m[1;31m1[m
  |             grep 1 in current
  | Executing:  git grep 1 .
  |============================================================================
-afile[36m:[m[1;31m1[m
+afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -547,7 +547,7 @@ afile[36m:[m[1;31m1[m
  |             grep 1 in current
  | Executing:  git grep-nc 1 .
  |============================================================================
-afile:1
+afile:1 bla bla
  '============================================================================
 
 
@@ -555,7 +555,7 @@ afile:1
  |             grep 1 in current
  | Executing:  git grep 1
  |============================================================================
-afile[36m:[m[1;31m1[m
+afile[36m:[m[1;31m1[m bla bla
  '============================================================================
 
 
@@ -563,6 +563,6 @@ afile[36m:[m[1;31m1[m
  |             grep 1 in current
  | Executing:  git grep-nc 1
  |============================================================================
-afile:1
+afile:1 bla bla
  '============================================================================
 

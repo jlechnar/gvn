@@ -176,8 +176,8 @@ Checked out HEAD:
  | Executing:  git bb with_changes
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
-Switched to a new branch 'trunk.with_changes.<DATE>_<TIME>'
-On branch trunk.with_changes.<DATE>_<TIME>
+Switched to a new branch 'bb.trunk.with_changes.<DATE>_<TIME>'
+On branch bb.trunk.with_changes.<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	[32mnew file:   file2.pl[m
@@ -187,7 +187,7 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
 	[31mmodified:   file.py[m
 
-[trunk.with_changes.<DATE>_<TIME>  <HASH>] Local changes for backup branch
+[bb.trunk.with_changes.<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
 Switched to branch 'trunk'
@@ -210,8 +210,8 @@ Dropped refs/stash@{0} (<HASH>)
  | Executing:  git bb
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
-Switched to a new branch 'trunk.untitled.<DATE>_<TIME>'
-On branch trunk.untitled.<DATE>_<TIME>
+Switched to a new branch 'bb.trunk.untitled.<DATE>_<TIME>'
+On branch bb.trunk.untitled.<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	[32mnew file:   file2.pl[m
@@ -221,7 +221,7 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
 	[31mmodified:   file.py[m
 
-[trunk.untitled.<DATE>_<TIME>  <HASH>] Local changes for backup branch
+[bb.trunk.untitled.<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
 Switched to branch 'trunk'
@@ -243,11 +243,11 @@ Dropped refs/stash@{0} (<HASH>)
  |             show all branches
  | Executing:  git lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.<DATE>_<TIME>)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.untitled.<DATE>_<TIME>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.with_changes.<DATE>_<TIME>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, trunk.untitled.<DATE>_<TIME>)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (trunk.without_changes.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, bb.trunk.untitled.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (bb.trunk.without_changes.<DATE>_<TIME>)[m
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk)[m
  '============================================================================
 
@@ -256,7 +256,7 @@ Dropped refs/stash@{0} (<HASH>)
  |             check for wrong branch name
  | Executing:  git bb \.
  |============================================================================
-ERROR: unexpected <..> in branch name <trunk...<DATE>_<TIME>>
+ERROR: unexpected <..> in branch name <bb.trunk...<DATE>_<TIME>>
  '============================================================================
 
 
@@ -264,11 +264,11 @@ ERROR: unexpected <..> in branch name <trunk...<DATE>_<TIME>>
  |             show all branches
  | Executing:  git lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.<DATE>_<TIME>)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.untitled.<DATE>_<TIME>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.with_changes.<DATE>_<TIME>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, trunk.untitled.<DATE>_<TIME>)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (trunk.without_changes.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, bb.trunk.untitled.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (bb.trunk.without_changes.<DATE>_<TIME>)[m
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk)[m
  '============================================================================
 
@@ -278,8 +278,8 @@ ERROR: unexpected <..> in branch name <trunk...<DATE>_<TIME>>
  | Executing:  git bb test test_<DATE>_<TIME>
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
-Switched to a new branch 'trunk.test.test_<DATE>_<TIME>'
-On branch trunk.test.test_<DATE>_<TIME>
+Switched to a new branch 'bb.trunk.test.test_<DATE>_<TIME>'
+On branch bb.trunk.test.test_<DATE>_<TIME>
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	[32mnew file:   file2.pl[m
@@ -289,7 +289,7 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
 	[31mmodified:   file.py[m
 
-[trunk.test.test_<DATE>_<TIME>  <HASH>] Local changes for backup branch
+[bb.trunk.test.test_<DATE>_<TIME>  <HASH>] Local changes for backup branch
  2 files changed, 5 insertions(+), 1 deletion(-)
  create mode 100644 file2.pl
 Switched to branch 'trunk'
@@ -311,13 +311,13 @@ Dropped refs/stash@{0} (<HASH>)
  |             show all branches
  | Executing:  git lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.test.test_<DATE>_<TIME>)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.untitled.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.test.test_<DATE>_<TIME>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.untitled.<DATE>_<TIME>)[m
 [31m|[m[31m/[m  
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (trunk.with_changes.<DATE>_<TIME>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.with_changes.<DATE>_<TIME>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, trunk.untitled.<DATE>_<TIME>)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (trunk.without_changes.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (HEAD -> trunk, bb.trunk.untitled.<DATE>_<TIME>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mfiles[m [1;35m (bb.trunk.without_changes.<DATE>_<TIME>)[m
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (origin/trunk)[m
  '============================================================================
 

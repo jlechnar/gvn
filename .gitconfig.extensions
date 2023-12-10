@@ -7,15 +7,6 @@
         # --------------------------
 	# log 
 
-        logl = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
-	# below is with \n at end !
-        logl-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
-
-        logll = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
-	# below is with \n at end !
-        logll-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
-
-
 	# -----------
         # base
         lb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager log \"$@\"; echo \"\"' --"
@@ -29,41 +20,35 @@
 
         # -----------
         # actual
-        lgb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl \"$@\"; echo \"\"' --"
-        lg  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl \"$@\" | less -R' --"
+        lgb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh \"$@\"' --"
+        lg = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -p \"$@\"' --"
 
-        lgbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --name-status \"$@\"; echo \"\"' --"
-        lgf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --name-status \"$@\" | less -R' --"
+        lgbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -n -f \"$@\"' --"
+        lgf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -n -f -p \"$@\"' --"
 
-        lgbl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message \"$@\"; echo \"\"' --"
-        lgl  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message \"$@\" | less -R' --"
+        lgbl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -n -c \"$@\"' --"
+        lgl  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -n -c -p \"$@\"' --"
 
-        lgblf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --name-status \"$@\"; echo \"\"' --"
-        lglf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --name-status \"$@\" | less -R' --"
+        lgblf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -n -c -f \"$@\"' --"
+        lglf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -n -c -f -p \"$@\"' --"
         lgfl = "lglf"
 
         # -----------
         # all
-        lgab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl --all \"$@\"; echo \"\"' --"
-        lga  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl --all \"$@\" | less -R' --"
+        lgab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a \"$@\"' --"
+        lga  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -p \"$@\"' --"
 
-        lgabf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --all --name-status \"$@\"; echo \"\"' --"
-        lgaf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logl-with-lf-after-commit-message --all --name-status \"$@\"; less -R' --"
+        lgabf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -n -f \"$@\"' --"
+        lgaf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -n -f -p \"$@\"' --"
 
-        lgabl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all \"$@\"; echo \"\"' --"
-        lgal  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all \"$@\" | less -R' --"
+        lgabl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -n -c \"$@\"' --"
+        lgal  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -n -c -p \"$@\"' --"
 
-        lgablf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all --name-status \"$@\"; echo \"\"' --"
-        lgalf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git --no-pager logll-with-lf-after-commit-message --all --name-status \"$@\"; less -R' --"
+        lgablf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -n -c -f \"$@\"' --"
+        lgalf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -n -c -f -p \"$@\"' --"
         lgafl = "lgalf"
 
         # -----------
-        logls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)'"
-        logls-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n'"
-
-        loglls = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)'"
-        loglls-with-lf-after-commit-message = "log --graph --abbrev=9 --abbrev-commit --decorate --date=format-local:'%Y-%m-%d %H:%M:%S' --format=format:'%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)\n\n%C(white)%b%C(reset)\n'"
-
         # log with diff of file
         logd = "log --all --follow -p --"
 
@@ -428,8 +413,8 @@
 		fi' --"
 
         nr-stashes = "!bash -c 'nr=`git stash list | wc -l`; echo $nr;' --"
-        nr-branches = "!bash -c 'nr=`git branch --no-color | wc -l`; echo $nr;' --"
-        nr-branches-not-merged = "!bash -c 'nr=`git branch --no-color --no-merged | wc -l`; echo $nr;' --"
+        nr-branches = "!bash -c 'nr=`git branch --no-color | egrep -v \"^bb.\" | wc -l`; echo $nr;' --"
+        nr-branches-not-merged = "!bash -c 'nr=`git branch --no-color --no-merged | egrep -v \"^bb.\" | wc -l`; echo $nr;' --"
         nr-changed-files = "!bash -c 'nr=`git diff --name-only | wc -l`; echo $nr;' --"
         nr-changed-files-cached = "!bash -c 'nr=`git diff --name-only --cached | wc -l`; echo $nr;' --"
         nr-worktrees = "!bash -c 'nr=`git worktree list | wc -l`; echo $nr;' --"
@@ -536,8 +521,12 @@
           if [ -z $datetime ]; then \
             datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
           fi; \
+          message=$3; \
+          if [ -z $message ]; then \
+            message=\"Local changes for backup branch\"; \
+          fi; \
           branch_current=`git branch --show-current`; \
-          branch_backup=\"$branch_current.$branch_title.$datetime\"; \
+          branch_backup=\"bb.$branch_current.$branch_title.$datetime\"; \
           if [[ $branch_backup =~ \\.\\. ]]; then \
             echo \"ERROR: unexpected <..> in branch name <$branch_backup>\"; \
             exit -1; \
@@ -546,7 +535,7 @@
                git stash; \
                git checkout -b $branch_backup; \
                git stash apply; \
-               git commit -a -m \"Local changes for backup branch\"; \
+               git commit -a -m \"$message\"; \
                git checkout $branch_current; \
                git stash pop; \
             else \

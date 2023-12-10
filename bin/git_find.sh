@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/gvn
+
 #set -x
 set -e
 
@@ -43,10 +48,15 @@ fi
 
 cd $root_dir
 
-files=`git ls-tree --name-only -r $tree | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,$relative_to_reduced,g" | grep -v "^$target_dir$" | egrep "$search"`
+IFS=$'\n'
 
-for file in $files;
+cmd="git ls-tree --name-only -r $tree"
+for result in `eval $cmd`;
 do
-  echo $file
+  result2=`echo $result | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,$relative_to_reduced,g" | grep -v "^$target_dir$" | egrep "$search"` || true
+  if [[ "$result2" != "" ]]; then
+    echo $result2
+    #realpath --relative-to=$path $result2 | echo
+  fi
 done
 

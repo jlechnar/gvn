@@ -93,9 +93,20 @@ execute "pwd" "current directory"
 
 execute "cd ../../test5/test6/test7" "change into sub directory"
 
+execute "git lgb ../../file.i" "show log of file with relative path"
+
 execute "pwd" "current directory"
 
 execute "$CDW trunk" "change to worktree trunk"
 
 execute "pwd" "current directory"
+
+execute "git lgb ../../file.i" "show log of file with relative path"
+
+execute "cd ../../" "change into base directory test5"
+
+execute "git lgb file.i" "show log of file"
+
+execute "$GVN lgsb file.i" "show log of file with svn revisions"
+
 

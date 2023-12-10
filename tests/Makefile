@@ -22,6 +22,7 @@ TARGETS_LOGS+=find
 TARGETS_LOGS+=grep
 TARGETS_LOGS+=log
 TARGETS_LOGS+=cat
+TARGETS_LOGS+=hash
 
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))

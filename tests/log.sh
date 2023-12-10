@@ -140,6 +140,6 @@ done
 
 for cmd2 in $cmd_gvn; do
   execute "$GVN $cmd2" "$cmd2"
-  execute "$GVN $cmd2 test9" "$cmd2"
+  execute "$GVN $cmd2 ../test9" "$cmd2"
 done
 
