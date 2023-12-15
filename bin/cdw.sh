@@ -1,4 +1,7 @@
-#set -x
+
+if [[ "$GVN_DEBUG_CDW" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
+  set -x
+fi
 #set -e
 
 # Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite

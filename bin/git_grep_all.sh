@@ -5,7 +5,9 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
-#set -x
+if [[ "$GVN_DEBUG" == "1" ]]; then
+  set -x
+fi
 set -e
 
 args=$@

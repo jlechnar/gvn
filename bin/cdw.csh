@@ -4,6 +4,11 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+if ( "$GVN_DEBUG_CDW" == "1" || "$GVN_DEBUG_ALL" == "1" ) then
+  set verbose
+  set echo
+endif
+
 #
 # add alias to ~/.cshrc pointing to this file:
 #

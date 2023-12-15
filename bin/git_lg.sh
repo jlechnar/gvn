@@ -5,7 +5,9 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
-#set -x
+if [[ "$GVN_DEBUG" == "1" ]]; then
+  set -x
+fi
 set -e
 
 usage() { echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <-n: additional newline> ..." 1>&2; exit 1; }
@@ -18,7 +20,7 @@ pager=0
 comments=0
 all=0
 
-while getopts "pcafn" o; do
+while getopts "pcafN" o; do
     case "${o}" in
         p)
             pager=1
@@ -33,10 +35,9 @@ while getopts "pcafn" o; do
         f) # with file names
             opts="--name-status $opts"
             ;;
-        n) # with new line after comments
+        N) # with new line after comments
             newline="%n"
             ;;
-
         *)
             usage
             ;;

@@ -5,6 +5,21 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+
+if [[ "$GVN_DEBUG_GVN" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
+  set -x
+  export GIT_TRACE=2
+  export GIT_CURL_VERBOSE=2
+  export GIT_TRACE_PERFORMANCE=2
+  export GIT_TRACE_PACK_ACCESS=2
+  export GIT_TRACE_PACKET=2
+  export GIT_TRACE_PACKFILE=2
+  export GIT_TRACE_SETUP=2
+  export GIT_TRACE_SHALLOW=2
+fi
+if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
+  export GVN_DEBUG=1
+fi
 set -e
 
 # activate below to debug commands that are executed

@@ -72,10 +72,12 @@ lgbf
 lgbl
 lgblf"
 
-cmd_gvn="lgsb
-lgsfb
-lgslb
-lgslfb"
+cmd_gvn="lb
+lbf
+lgb
+lgfb
+lglb
+lglfb"
 
 for cmd2 in $cmd_git; do
   execute "git $cmd2" "$cmd2"
@@ -108,16 +110,19 @@ done
 # ----------------------------------
 cd ..
 
-cmd_git="labf
+cmd_git="lab
+labf
 lgab
 lgabf
 lgabl
 lgablf"
 
-cmd_gvn="lgasb
-lgasfb
-lgaslb
-lgaslfb"
+cmd_gvn="lab
+laf
+lgab
+lgafb
+lgalb
+lgalfb"
 
 for cmd2 in $cmd_git; do
   execute "git $cmd2" "$cmd2"
