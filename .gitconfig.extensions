@@ -9,46 +9,46 @@
 
 	# -----------
         # base
-        lb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh \"$@\"' --"
-        l  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p \"$@\"' --"
+        lb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -- \"$@\"' --"
+        l  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -- \"$@\"' --"
 
-        lbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -f \"$@\"' --"
-        lf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -f \"$@\"' --"
+        lbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -f -- \"$@\"' --"
+        lf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -f -- \"$@\"' --"
 
-        lab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -a \"$@\"' --"
-        la  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -a \"$@\"' --"
+        lab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -a -- \"$@\"' --"
+        la  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -a -- \"$@\"' --"
 
-        labf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -a -f \"$@\"' --"
-        laf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -a -f \"$@\"' --"
+        labf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -a -f -- \"$@\"' --"
+        laf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -a -f -- \"$@\"' --"
 
         # -----------
         # actual
-        lgb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh \"$@\"' --"
-        lg = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -p \"$@\"' --"
+        lgb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -- \"$@\"' --"
+        lg = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -p -- \"$@\"' --"
 
-        lgbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -f \"$@\"' --"
-        lgf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -f -p \"$@\"' --"
+        lgbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -f -- \"$@\"' --"
+        lgf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -f -p -- \"$@\"' --"
 
-        lgbl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c \"$@\"' --"
-        lgl  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -p \"$@\"' --"
+        lgbl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -- \"$@\"' --"
+        lgl  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -p -- \"$@\"' --"
 
-        lgblf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -f \"$@\"' --"
-        lglf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -f -p \"$@\"' --"
+        lgblf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -f -- \"$@\"' --"
+        lglf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -f -p -- \"$@\"' --"
         lgfl = "lglf"
 
         # -----------
         # all
-        lgab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a \"$@\"' --"
-        lga  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -p \"$@\"' --"
+        lgab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -- \"$@\"' --"
+        lga  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -p -- \"$@\"' --"
 
-        lgabf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -f \"$@\"' --"
-        lgaf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -f -p \"$@\"' --"
+        lgabf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -f -- \"$@\"' --"
+        lgaf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -f -p -- \"$@\"' --"
 
-        lgabl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c \"$@\"' --"
-        lgal  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -p \"$@\"' --"
+        lgabl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -- \"$@\"' --"
+        lgal  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -p -- \"$@\"' --"
 
-        lgablf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -f \"$@\"' --"
-        lgalf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -f -p \"$@\"' --"
+        lgablf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -f -- \"$@\"' --"
+        lgalf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -f -p -- \"$@\"' --"
         lgafl = "lgalf"
 
         # -----------
