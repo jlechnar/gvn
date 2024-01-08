@@ -77,30 +77,30 @@ execute "$GVN hash 3" "get hash for r3"
 execute "$GVN hash r1" "get hash for r1"
 
 # ----------------------------------------
-execute "$GVN lgsb r2" "log for r2 revision"
+execute "$GVN lgb r2" "log for r2 revision"
 
-execute "$GVN lgsb r2:r2" "log for r2 revision only"
+execute "$GVN lgb r2:r2" "log for r2 revision only"
 
-execute "$GVN lgsb r2:2" "log for r2 revision only"
+execute "$GVN lgb r2:2" "log for r2 revision only"
 
-execute "$GVN lgsb r2:r4" "log for r2 to r4 revision"
+execute "$GVN lgb r2:r4" "log for r2 to r4 revision"
 
-execute "$GVN lgsb r2:4" "log for r2 to r4 revision"
+execute "$GVN lgb r2:4" "log for r2 to r4 revision"
 
 set +e
-execute "$GVN lgsb r4:r2" "log for r2 to r4 revision"
+execute "$GVN lgb r4:r2" "log for r2 to r4 revision"
 
-execute "$GVN lgsb r4:2" "log for r2 to r4 revision"
+execute "$GVN lgb r4:2" "log for r2 to r4 revision"
 set -e
 
-execute "$GVN lgsb -r2:4" "log for r2 to r4 revision"
+execute "$GVN lgb -r2:4" "log for r2 to r4 revision"
 
-execute "$GVN lgsb -r2:r4" "log for r2 to r4 revision"
+execute "$GVN lgb -r2:r4" "log for r2 to r4 revision"
 
 set +e
-execute "$GVN lgsb -r4:2" "log for r2 to r4 revision"
+execute "$GVN lgb -r4:2" "log for r2 to r4 revision"
 
-execute "$GVN lgsb -r4:r2" "log for r2 to r4 revision"
+execute "$GVN lgb -r4:r2" "log for r2 to r4 revision"
 set -e
 
 # ---------------------------------------------

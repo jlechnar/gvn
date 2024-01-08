@@ -239,26 +239,26 @@ Dropped refs/stash@{0} (<HASH>)
  |             get hash for r2
  | Executing:  .../../bin/gvn.sh hash r2
  |============================================================================
-3445ce08aceb10098e1a501ab10b75b47e67638d '============================================================================
+8ddf1444254839180013789a1b6eec7b790d6126 '============================================================================
 
 
  .============================================================================
  |             get hash for r3
  | Executing:  .../../bin/gvn.sh hash 3
  |============================================================================
-4b750b8e49776c6c6fb3235bd4c3a330cdf20e16 '============================================================================
+36538cfab021f9066b8b94f694359c47c6d9256b '============================================================================
 
 
  .============================================================================
  |             get hash for r1
  | Executing:  .../../bin/gvn.sh hash r1
  |============================================================================
-88445c0fecfe6d256ec7922a57f293115cddc882 '============================================================================
+3a6c1dbf7e5e3773383faea5d94d600075763286 '============================================================================
 
 
  .============================================================================
  |             log for r2 revision
- | Executing:  .../../bin/gvn.sh lgsb r2
+ | Executing:  .../../bin/gvn.sh lgb r2
  |============================================================================
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
@@ -267,7 +267,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             log for r2 revision only
- | Executing:  .../../bin/gvn.sh lgsb r2:r2
+ | Executing:  .../../bin/gvn.sh lgb r2:r2
  |============================================================================
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
@@ -275,7 +275,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             log for r2 revision only
- | Executing:  .../../bin/gvn.sh lgsb r2:2
+ | Executing:  .../../bin/gvn.sh lgb r2:2
  |============================================================================
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
  '============================================================================
@@ -283,7 +283,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb r2:r4
+ | Executing:  .../../bin/gvn.sh lgb r2:r4
  |============================================================================
 * [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
@@ -293,7 +293,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb r2:4
+ | Executing:  .../../bin/gvn.sh lgb r2:4
  |============================================================================
 * [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
@@ -303,23 +303,23 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb r4:r2
+ | Executing:  .../../bin/gvn.sh lgb r4:r2
  |============================================================================
-ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
+ERROR: Reverse mapping of versions not supported for command lgb. Aborting.
  '============================================================================
 
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb r4:2
+ | Executing:  .../../bin/gvn.sh lgb r4:2
  |============================================================================
-ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
+ERROR: Reverse mapping of versions not supported for command lgb. Aborting.
  '============================================================================
 
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb -r2:4
+ | Executing:  .../../bin/gvn.sh lgb -r2:4
  |============================================================================
 * [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
@@ -329,7 +329,7 @@ ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb -r2:r4
+ | Executing:  .../../bin/gvn.sh lgb -r2:r4
  |============================================================================
 * [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
@@ -339,17 +339,17 @@ ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb -r4:2
+ | Executing:  .../../bin/gvn.sh lgb -r4:2
  |============================================================================
-ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
+ERROR: Reverse mapping of versions not supported for command lgb. Aborting.
  '============================================================================
 
 
  .============================================================================
  |             log for r2 to r4 revision
- | Executing:  .../../bin/gvn.sh lgsb -r4:r2
+ | Executing:  .../../bin/gvn.sh lgb -r4:r2
  |============================================================================
-ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
+ERROR: Reverse mapping of versions not supported for command lgb. Aborting.
  '============================================================================
 
 
@@ -358,17 +358,17 @@ ERROR: Reverse mapping of versions not supported for command lgsb. Aborting.
  | Executing:  .../../bin/gvn.sh log r4:r2
  |============================================================================
 ------------------------------------------------------------------------
-r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r2 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r3 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r4 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
@@ -381,17 +381,17 @@ files
  | Executing:  .../../bin/gvn.sh log r4:2
  |============================================================================
 ------------------------------------------------------------------------
-r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r2 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r3 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r4 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
@@ -404,17 +404,17 @@ files
  | Executing:  .../../bin/gvn.sh log -r4:2
  |============================================================================
 ------------------------------------------------------------------------
-r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r2 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r3 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r4 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
@@ -427,17 +427,17 @@ files
  | Executing:  .../../bin/gvn.sh log -r4:r2
  |============================================================================
 ------------------------------------------------------------------------
-r2 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r2 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r3 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r3 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 
 ------------------------------------------------------------------------
-r4 | <user> | <DATE> <TIME> +0100 (Sun, 10 Dec 2023) | 2 lines
+r4 | <user> | <DATE> <TIME> +0100 (Mon, 08 Jan 2024) | 2 lines
 
 files
 

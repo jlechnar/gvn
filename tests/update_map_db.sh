@@ -39,7 +39,7 @@ execute "$GVN uc" "update commit to svn"
 
 execute "$GVN umdb"
 
-execute "$GVN lgsb" "log with svn revisions"
+execute "$GVN lgb" "log with svn revisions"
 
 execute "$GVN blame file.html" "Blame html no syntax highlight"
 

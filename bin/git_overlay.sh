@@ -54,7 +54,7 @@ if [[ "$cmd" == "init" ]]; then
     exit -1
   fi
 
-  git_root_path=`git rev-parse --show-toplevel`
+  git_root_path=`git root`
 
   cd $git_root_path
 
@@ -76,15 +76,17 @@ if [[ "$cmd" == "init" ]]; then
   mkdir $tmp_init_overlay_folder
   cd $tmp_init_overlay_folder
   git init .
-  echo "      excludesFile=$gitignore_overlay" >> .git/config
+  # define .gitignore file for overlay to be $gitignore_overlay - remap so that we can use .gitignore for git repo where overlay is done
+  echo "        excludesFile=$gitignore_overlay" >> .git/config
   cd ..
   mv $tmp_init_overlay_folder/.git $overlay_folder
   rmdir $tmp_init_overlay_folder
 
   # ----------
-  echo ".gitignore"                        > $gitignore_overlay
-  echo "$gitignore_base"                  >> $gitignore_overlay
+  echo ""                                  > $gitignore_overlay
+  echo ".gitignore"                       >> $gitignore_overlay
   echo ".git"                             >> $gitignore_overlay
+  echo "$gitignore_base"                  >> $gitignore_overlay
   echo ""                                 >> $gitignore_overlay
   echo "# add user defined ignores below" >> $gitignore_overlay
   echo ""                                 >> $gitignore_overlay
@@ -119,8 +121,43 @@ if [[ "$cmd" == "init" ]]; then
   $GITO add -f $gitignore_overlay
   $GITO commit -m \"init_ignores\"
   cd $cwd
+elif [[ "$cmd" == "remove-all" ]]; then
+  is_in_gito_repo=`$GITO rev-parse --is-inside-work-tree 2> /dev/null` || true
+
+  if [ "$is_in_gito_repo" != "true" ]; then
+    echo "ERROR: Init aborting due to not in any git overlay repository."
+    exit -1
+  fi
+
+  nr_stashes=`$GITO nr-stashes`
+  nr_changed_files=`$GITO nr-changed-files`
+  nr_changed_files_cached=`$GITO nr-changed-files-cached`
+  nr_unpushed_commits=`$GITO nr-unpushed-commits`
+  nr_unpushed_files=`$GITO nr-unpushed-files`
+
+
+  if [[ $nr_changed_files != "0" ]]; then
+    echo "ERROR: There are local files with changes. Aborting."
+    exit -1
+  elif [[ $nr_changed_files_cached != "0" ]]; then
+    echo "ERROR: There are cached files with changes. Aborting."
+    exit -1
+  elif [[ $nr_unpushed_commits != "0" ]]; then
+    echo "ERROR: There are unpushed commits. Aborting."
+    exit -1
+  elif [[ $nr_unpushed_files != "0" ]]; then
+    echo "ERROR: There are unpushed files. Aborting."
+    exit -1
+  elif [[ $nr_stashes != "0" ]]; then
+    echo "ERROR: There are stashes. Aborting."
+    exit -1
+  else
+    `$GITO find | xargs rm -rf`
+    dot_git_path=`$GITO get-dot-git-path`
+    rm -rf $dot_git_path
+  fi
 else
-  git_root_path=`git rev-parse --show-toplevel`
+  git_root_path=`git root`
   export GIT_DIR=$git_root_path/$overlay_folder
   export GIT_WORK_TREE=$git_root_path
   git $cmd $opts

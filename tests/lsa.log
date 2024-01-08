@@ -467,6 +467,7 @@ foo
  | Executing:  .../../bin/gvn.sh wa test
  |============================================================================
 Preparing worktree (new branch 'test')
+Updating files: 100% (17/17)Updating files: 100% (17/17), done.
 HEAD is now at <HASH> test_folders_with_files
  '============================================================================
 

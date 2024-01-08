@@ -13,6 +13,7 @@
         l  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -- \"$@\"' --"
 
         lbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -f -- \"$@\"' --"
+        lfb = "lbf"
         lf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -p -f -- \"$@\"' --"
 
         lab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_log.sh -a -- \"$@\"' --"
@@ -27,12 +28,19 @@
         lg = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -p -- \"$@\"' --"
 
         lgbf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -f -- \"$@\"' --"
+        lgfb = "lgbf"
         lgf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -f -p -- \"$@\"' --"
 
         lgbl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -- \"$@\"' --"
+        lglb = "lgbl"
         lgl  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -p -- \"$@\"' --"
 
         lgblf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -f -- \"$@\"' --"
+        lgbfl = "lgbfl"
+        lglbf = "lgbfl"
+        lglfb = "lgbfl"
+        lgflb = "lgbfl"
+        lgfbl = "lgbfl"
         lglf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -N -c -f -p -- \"$@\"' --"
         lgfl = "lglf"
 
@@ -42,12 +50,19 @@
         lga  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -p -- \"$@\"' --"
 
         lgabf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -f -- \"$@\"' --"
+        lgafb = "lgabf"
         lgaf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -f -p -- \"$@\"' --"
 
         lgabl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -- \"$@\"' --"
+        lgalb = "lgabl"
         lgal  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -p -- \"$@\"' --"
 
-        lgablf = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -f -- \"$@\"' --"
+        lgalfb = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -f -- \"$@\"' --"
+        lgalbf = "lgalfb"
+        lgaflb = "lgalfb"
+        lgafbl = "lgalfb"
+        lgablf = "lgalfb"
+        lgabfl = "lgalfb"
         lgalf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_lg.sh -a -N -c -f -p -- \"$@\"' --"
         lgafl = "lgalf"
 
@@ -501,6 +516,20 @@
         wg = "worktree-get-path"
         worktree-delete = "worktree delete"
         wd = "worktree-delete"
+        worktree-get-path-git-dir = "!bash -c ' \
+           worktree_name=$1; \
+           worktree_path=`git wg $worktree_name`; \
+           if [ -f $worktree_path/.git ]; then \
+             worktree_git_dir=`cat $worktree_path/.git | grep \"^gitdir: \" | git awk2`; \
+             echo \"$worktree_git_dir\"; \
+           else \
+             echo \"$worktree_path/.git\"; \
+           fi; \
+           ' --"
+        wggd = "worktree-get-path-git-dir"
+
+	stw = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_stw.sh -- \"$@\"' --"
+	wst = "stw"
 
 
         # --------------------------

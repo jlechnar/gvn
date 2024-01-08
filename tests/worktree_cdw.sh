@@ -107,6 +107,6 @@ execute "cd ../../" "change into base directory test5"
 
 execute "git lgb file.i" "show log of file"
 
-execute "$GVN lgsb file.i" "show log of file with svn revisions"
+execute "$GVN lgb file.i" "show log of file with svn revisions"
 
 

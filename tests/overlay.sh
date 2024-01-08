@@ -20,6 +20,7 @@ ln -s ../gvn_cmd.sh .
 ./scripts/setup_svn_user1.sh
 ./scripts/setup_git_user2.sh
 ./scripts/setup_git_user3.sh
+./scripts/setup_git_overlay.sh
 
 cd git_user3/
 
@@ -58,4 +59,28 @@ execute "git status" "show status"
 
 execute "git lgasb" "show history"
 
+overlay_repo=`realpath ../git_overlay/`
+execute "$GITO remote add origin $overlay_repo" "add bare overlay repo"
+
+execute "$GITO push --set-upstream origin master" "setup master push to overaly repo"
+
+set +e
+execute "$GITO remove-all" "try to remove with uncommited change"
+set -e
+
+execute "$GITO add -u" "add all changes to cache"
+
+set +e
+execute "$GITO remove-all" "try to remove with cached changes"
+set -e
+
+execute "$GITO commit -m 'changes'" "commit all changes"
+
+set +e
+execute "$GITO remove-all" "try to remove with unpushed change"
+set -e
+
+execute "$GITO push" "push changes"
+
+execute "$GITO remove-all" "remove gito from local folder"
 
