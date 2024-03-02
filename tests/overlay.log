@@ -34,7 +34,7 @@ Committed revision 1.
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_overlay/svn_user2
+.../test_overlay/svn_user1
 
  .============================================================================
  | Executing:  svn checkout file://.../test_overlay/server1/repo/trunk .
@@ -376,7 +376,7 @@ ERROR: There are unpushed commits. Aborting.
  | Executing:  .../../bin/gito push
  |============================================================================
 To .../test_overlay/git_overlay
-   499f3e3..a984de4  master -> master
+   562ee3e..ec07a68  master -> master
  '============================================================================
 
 

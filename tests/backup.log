@@ -34,7 +34,7 @@ Committed revision 1.
 
 ################################################
 # setup: create local / sandbox repository for user1
-.../test_backup/svn_user2
+.../test_backup/svn_user1
 
  .============================================================================
  | Executing:  svn checkout file://.../test_backup/server1/repo/trunk .

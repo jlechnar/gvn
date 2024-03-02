@@ -1,0 +1,1131 @@
+
+################################################
+# setup: Setup merge
+.../test_merge
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_merge/server1
+
+################################################
+# setup: create local / sandbox repository
+.../test_merge/server1_create
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_merge/server1/repo .
+ |============================================================================
+Checked out revision 0.
+ '============================================================================
+
+A         trunk
+A         branches
+A         tags
+A         .svnignore
+Adding         branches
+Adding         tags
+Adding         trunk
+Adding         trunk/.svnignore
+Transmitting file data .done
+Committing transaction...
+Committed revision 1.
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_merge/svn_user1
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_merge/server1/repo/trunk .
+ |============================================================================
+A    .svnignore
+Checked out revision 1.
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_merge/git_user2
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone file://.../test_merge/server1/repo/trunk .
+ |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in .../test_merge/git_user2/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  file://.../test_merge/server1/repo/trunk r1
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             update map database
+ | Executing:  .../../bin/gvn.sh umdb
+ |============================================================================
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_merge/git_user3
+
+ .============================================================================
+ | Executing:  .../../bin/gvn.sh clone-ns file://.../test_merge/server1/repo/trunk .
+ |============================================================================
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in .../test_merge/git_user3/.git/
+	A	.svnignore
+r1 = <HASH> (refs/remotes/git-svn)
+Checked out HEAD:
+  file://.../test_merge/server1/repo/trunk r1
+ '============================================================================
+
+
+ .============================================================================
+ |             Rename master to trunk to match name for gvn
+ | Executing:  git branch -m trunk
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             update map database
+ | Executing:  .../../bin/gvn.sh umdb
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             log with svn revisions
+ | Executing:  git lgsb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (HEAD -> trunk, origin/trunk)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files
+ | Executing:  git commit -m 'files'
+ |============================================================================
+[trunk  <HASH>] files
+ 3 files changed, 15 insertions(+)
+ create mode 100644 file.html
+ create mode 100644 file.pl
+ create mode 100644 file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             update commit to svn
+ | Executing:  .../../bin/gvn.sh uc
+ |============================================================================
+Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Current branch trunk is up to date.
+Committing to file://.../test_merge/server1/repo/trunk ...
+	A	file.html
+	A	file.pl
+	A	file.py
+Committed r2
+	A	file.html
+	A	file.pl
+	A	file.py
+r2 = <HASH> (refs/remotes/origin/trunk)
+No changes between <HASH> and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+ '============================================================================
+
+
+ .============================================================================
+ |             update from svn
+ | Executing:  .../../bin/gvn.sh up
+ |============================================================================
+	A	file.html
+	A	file.pl
+	A	file.py
+r2 = <HASH> (refs/remotes/git-svn)
+Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+[KSuccessfully rebased and updated refs/heads/trunk.
+ '============================================================================
+
+
+ .============================================================================
+ |             update
+ | Executing:  svn update 
+ |============================================================================
+Updating '.':
+A    file.html
+A    file.pl
+A    file.py
+Updated to revision 2.
+ '============================================================================
+
+
+ .============================================================================
+ |             changes
+ | Executing:  svn commit -m 'changes' 
+ |============================================================================
+Sending        file.py
+Transmitting file data .done
+Committing transaction...
+Committed revision 3.
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  git st
+ |============================================================================
+On branch trunk
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   file.py[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ '============================================================================
+
+
+ .============================================================================
+ |             conflicting changes
+ | Executing:  git commit -a -m 'conflicting_changes'
+ |============================================================================
+[trunk  <HASH>] conflicting_changes
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ '============================================================================
+
+
+ .============================================================================
+ |             generate local conflict
+ | Executing:  .../../bin/gvn.sh update
+ |============================================================================
+	M	file.py
+r3 = <HASH> (refs/remotes/origin/trunk)
+Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Rebasing (1/1)Auto-merging file.py
+CONFLICT (content): Merge conflict in file.py
+error: could not apply <HASH>... conflicting_changes
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply <HASH>... conflicting_changes
+rebase refs/remotes/origin/trunk: command returned error: 1
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  git st
+ |============================================================================
+[31minteractive rebase in progress; onto [mdec2a93
+Last command done (1 command done):
+   pick e94d920 conflicting_changes
+No commands remaining.
+You are currently rebasing branch 'trunk' on 'dec2a93'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+	[31mboth modified:   file.py[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ '============================================================================
+
+
+ .============================================================================
+ |             generate diff files
+ | Executing:  git merge-file-diff file.py
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.py.MR_BASE
+ |============================================================================
+class foo23:
+  def bar23(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.py.MR_THEIRS
+ |============================================================================
+class foo234:
+  def bar234(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.py.MR_OURS
+ |============================================================================
+class foo123:
+  def bar123(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             generate diff files
+ | Executing:  git mfd file.py
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.py.MR_BASE
+ |============================================================================
+class foo23:
+  def bar23(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.py.MR_THEIRS
+ |============================================================================
+class foo234:
+  def bar234(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.py.MR_OURS
+ |============================================================================
+class foo123:
+  def bar123(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff file.py
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+ class foo23:[m
+   def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+ class foo123:[m
+   def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ class foo234:[m
+   def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git md file.py
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+ class foo23:[m
+   def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+ class foo123:[m
+   def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ class foo234:[m
+   def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-ours file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+ class foo123:[m
+   def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdo file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+ class foo123:[m
+   def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-theirs file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ class foo234:[m
+   def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdt file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ class foo234:[m
+   def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102mclass foo23:[m
+[34;102m+[m[34;102m  def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-base file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+ class foo23:[m
+   def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdb file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -1,5 +1,13 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mclass foo234:[m
+[34;102m+[m[34;102m  def bar234(self, test):[m
+[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+ class foo23:[m
+   def bar23(self, test):[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mclass foo123:[m
+[34;102m+[m[34;102m  def bar123(self, test):[m
+[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+     self.test = test[m
+ [m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise file.py
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,4 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,7 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[36m@@ -2,0 +10 @@[m [mclass foo123:[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdw file.py
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,4 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,7 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[36m@@ -2,0 +10 @@[m [mclass foo123:[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise-ours file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,7 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[36m@@ -2,0 +10 @@[m [mclass foo123:[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdwo file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,7 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[36m@@ -2,0 +10 @@[m [mclass foo123:[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise-theirs file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdwt file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102mclass foo23:[m
+[34;102m  def bar23(self, test):[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise-base file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,4 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdwb file.py
+ |============================================================================
+* Unmerged path file.py
+[34mdiff --git a/file.py b/file.py[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/file.py[m
+[34m+++ b/file.py[m
+[36m@@ -0,0 +1,4 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mclass foo234:[m
+[34;102m  def bar234(self, test):[m
+[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
+[34;102m=======[m
+[34;102mclass foo123:[m
+[34;102m  def bar123(self, test):[m
+[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-ours file.py
+ |============================================================================
+test
+Updated 1 path from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+class foo123:
+  def bar123(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mfo file.py
+ |============================================================================
+test
+Updated 0 paths from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+class foo123:
+  def bar123(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-theirs file.py
+ |============================================================================
+Updated 1 path from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+class foo234:
+  def bar234(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mft file.py
+ |============================================================================
+Updated 0 paths from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+class foo234:
+  def bar234(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-base file.py
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+class foo23:
+  def bar23(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mfb file.py
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+class foo23:
+  def bar23(self, test):
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-merge file.py
+ |============================================================================
+Recreated 1 merge conflict
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+<<<<<<< ours
+class foo234:
+  def bar234(self, test):
+||||||| base
+class foo23:
+  def bar23(self, test):
+=======
+class foo123:
+  def bar123(self, test):
+>>>>>>> theirs
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mfm file.py
+ |============================================================================
+Recreated 1 merge conflict
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.py
+ |============================================================================
+<<<<<<< ours
+class foo234:
+  def bar234(self, test):
+||||||| base
+class foo23:
+  def bar23(self, test):
+=======
+class foo123:
+  def bar123(self, test):
+>>>>>>> theirs
+    self.test = test
+
+
+ '============================================================================
+
+
+ .============================================================================
+ |             abort merge
+ | Executing:  git rebase --abort
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  git st
+ |============================================================================
+On branch trunk
+nothing to commit (use -u to show untracked files)
+ '============================================================================
+
+
+ .============================================================================
+ |             log with svn revisions
+ | Executing:  git lgsb
+ |============================================================================
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mconflicting_changes[m [1;35m (HEAD -> trunk, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
+ '============================================================================
+

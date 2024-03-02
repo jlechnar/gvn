@@ -4,61 +4,61 @@
 # Source:      https://github.com/jlechnar/gvn
 
 [core]
-	editor = vim
-	autocrlf = input
+        editor = vim
+        autocrlf = input
 [push]
-	default = simple
+        default = simple
 [pull]
-	rebase = false
+        rebase = false
 [diff]
-	tool = meld
-	guitool = meld
+        tool = meld
+        guitool = meld
 [color]
-	ui = always
-	branch = always
-	status = always
-	diff = always
-	interactive = always
-	grep = always
-	pager = true
-	decorate = always
-	showbranch = always
+        ui = always
+        branch = always
+        status = always
+        diff = always
+        interactive = always
+        grep = always
+        pager = true
+        decorate = always
+        showbranch = always
 [color "diff"]
-	meta = "blue"
-	old = "blue brightred"
-	new = "blue brightgreen"
-#	old = "red"
-#	new = "green"
-#	old = "black red strike"
-#	new = "black green italic"
-#	context = "yellow bold"
+        meta = "blue"
+        old = "blue brightred"
+        new = "blue brightgreen"
+#       old = "red"
+#       new = "green"
+#       old = "black red strike"
+#       new = "black green italic"
+#       context = "yellow bold"
 [merge]
-	tool = meld
-	conflictstyle = diff3
+        tool = meld
+        conflictstyle = diff3
 [mergetool "kdiff3"]
-	path = /usr/bin/kdiff3
-	trustExitCode = false
+        path = /usr/bin/kdiff3
+        trustExitCode = false
 [difftool "kdiff3"]
-	path = /usr/bin/kdiff3
-	trustExitCode = false
+        path = /usr/bin/kdiff3
+        trustExitCode = false
 [difftool "meld"]
-	path = /usr/bin/meld
-	trustExitCode = false
+        path = /usr/bin/meld
+        trustExitCode = false
 [difftool]
-	prompt = false
+        prompt = false
 [mergetool "meld"]
-	path = /usr/bin/meld
-	trustExitCode = false
+        path = /usr/bin/meld
+        trustExitCode = false
 [mergetool "vimdiff"]
-	trustExitCode = false
+        trustExitCode = false
 [mergetool "gvimdiff"]
-	trustExitCode = false
+        trustExitCode = false
 [mergetool]
-	prompt = false
+        prompt = false
 [diff "odf"]
-	binary = true
-	textconv = odt2txt
+        binary = true
+        textconv = odt2txt
 [difftool "odf"]
-	binary = true
-	textconv = odt2txt
+        binary = true
+        textconv = odt2txt
 
