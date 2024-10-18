@@ -23,15 +23,23 @@
         pager = true
         decorate = always
         showbranch = always
+[color "branch"]
+#       current = yellow reverse
+#       local = yellow
+#       remote = green
+[color "status"]
+        added = green
+        changed = red
+#       untracked = cyan
 [color "diff"]
-        meta = "blue"
+        context = "black"
+        frag = "blue brightmagenta"
+#        meta = "blue"
+        meta = "cyan"
         old = "blue brightred"
         new = "blue brightgreen"
-#       old = "red"
-#       new = "green"
 #       old = "black red strike"
 #       new = "black green italic"
-#       context = "yellow bold"
 [merge]
         tool = meld
         conflictstyle = diff3
