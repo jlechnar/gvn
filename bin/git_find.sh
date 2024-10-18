@@ -18,7 +18,7 @@ current_dir=`pwd`
 root_dir=`git root`
 
 if [[ "$#" == "0" ]]; then
-  search="*"
+  search="."
   path=$root_dir
 elif [[ "$#" == "1" ]]; then
   search="$1"

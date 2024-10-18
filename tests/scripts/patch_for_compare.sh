@@ -8,14 +8,20 @@ CWD_REAL=$2
 USER=$3
 file=$4
 
+# perl -pe 's/^(Executing.+gvn.sh hash.+\n.+\n)[a-zA-Z0-9]+(\s+)/$1<HASH>$2/g' | \
+
 cat $file | \
   sed "s,$CWD,\.\.\.,g" | \
   sed "s,$CWD_REAL,\.\.\.,g" | \
   sed "s,$USER,<user>,g" | \
+  perl -pe 's/(\d{4}-\d{2}-\d{2} \d{2}\:\d{2}\:\d{2} (\+|\-|)\d+ \(\S+ \d+ \S+ \d{4}\))/<DATE>_<TIME>_<EXT>/g' | \
   sed 's,[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}_[0-9]\{2\}_[0-9]\{2\},<DATE_TIME>,g' | \
   sed 's,[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\},<TIME>,g' | \
   sed 's,[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\},<DATE>,g' | \
   sed 's,[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\},<DATE>,g' | \
+  perl -pe 's/^([0-9a-fA-F]{40})(\s+.+)/<HASH>$2/g' | \
+  perl -pe 's/^(   )[0-9a-fA-F]{7}(\.\.)[0-9a-fA-F]{7}(\s+.+)/$1<HASH>$2<HASH>$3/g' | \
+  perl -pe 's/(\s+)[0-9a-fA-F]{7}( \(conflicting_changes\))/$1<HASH>$2/g' | \
   perl -pe 's/^(r\d+\s+=\s+)[a-zA-Z0-9]+(\s+)/$1<HASH>$2/g' | \
   perl -pe 's/(\e\[[0-9;]*m\s+)[0-9a-fA-F]+(\e\[[0-9;]*m\s+\e\[[0-9;]*m\s*r\d+\s*\e\[[0-9;]*m\s+)/$1<HASH>$2/g' | \
   perl -pe 's/(\e\[[0-9;]*m\s*)[0-9a-fA-F]+(\e\[[0-9;]*m\s+\e\[[0-9;]*m\s*r\d+\s*\e\[[0-9;]*m\s+)/$1<HASH>$2/g' | \

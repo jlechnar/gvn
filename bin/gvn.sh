@@ -17,13 +17,19 @@ if [[ "$GVN_DEBUG_GVN" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   export GIT_TRACE_SETUP=2
   export GIT_TRACE_SHALLOW=2
 fi
+
 if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
   export GVN_DEBUG=1
 fi
-set -e
 
 # activate below to debug commands that are executed
-DEBUG=0
+if [[ "$GVN_CMD_DEBUG" == "1" ]]; then
+  CMD_DEBUG=1
+else
+  CMD_DEBUG=0
+fi
+
+set -e
 
 # ---------------------------
 do_clone() {
@@ -71,8 +77,8 @@ elif [[ "$cmd" == "clone-none-standard" || "$cmd" == "clone-ns" || "$cmd" == "cl
 else
   opt=$@
 
-  if [[ "$DEBUG" == "1" ]]; then
-    echo "$cmd $opt" >> /dev/stderr
+  if [[ "$CMD_DEBUG" == "1" ]]; then
+    echo "GVN_CMD: gvn $cmd $opt" >> /dev/stderr
   fi
 
   if [[ "$cmd" == "hash" || "$cmd" == "convert-hashes" || "$cmd" == "cmd-convert-hashes" ]]; then

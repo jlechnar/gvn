@@ -238,7 +238,7 @@ class tools_c:
                 if m1:
                     line_strip = m1.group(1)
                 
-            p2 = re.compile('^\s*$')
+            p2 = re.compile(r'^\s*$')
             m2 = p2.match(line_strip)
             if not m2:
                 data.append(line_strip);

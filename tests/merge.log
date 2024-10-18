@@ -138,14 +138,23 @@ Checked out HEAD:
 
 
  .============================================================================
+ |             add some more files
+ | Executing:  git add foo/file* bar/file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
  |             commit new files
  | Executing:  git commit -m 'files'
  |============================================================================
 [trunk  <HASH>] files
- 3 files changed, 15 insertions(+)
+ 5 files changed, 25 insertions(+)
+ create mode 100644 bar/file.pl
  create mode 100644 file.html
  create mode 100644 file.pl
  create mode 100644 file.py
+ create mode 100644 foo/file.html
  '============================================================================
 
 
@@ -156,13 +165,17 @@ Checked out HEAD:
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
 Current branch trunk is up to date.
 Committing to file://.../test_merge/server1/repo/trunk ...
+	A	bar/file.pl
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	foo/file.html
 Committed r2
+	A	bar/file.pl
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	foo/file.html
 r2 = <HASH> (refs/remotes/origin/trunk)
 No changes between <HASH> and refs/remotes/origin/trunk
 Resetting to the latest refs/remotes/origin/trunk
@@ -173,9 +186,11 @@ Resetting to the latest refs/remotes/origin/trunk
  |             update from svn
  | Executing:  .../../bin/gvn.sh up
  |============================================================================
+	A	bar/file.pl
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	foo/file.html
 r2 = <HASH> (refs/remotes/git-svn)
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
 [KSuccessfully rebased and updated refs/heads/trunk.
@@ -187,9 +202,13 @@ Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
  | Executing:  svn update 
  |============================================================================
 Updating '.':
+A    bar
+A    bar/file.pl
 A    file.html
 A    file.pl
 A    file.py
+A    foo
+A    foo/file.html
 Updated to revision 2.
  '============================================================================
 
@@ -198,8 +217,9 @@ Updated to revision 2.
  |             changes
  | Executing:  svn commit -m 'changes' 
  |============================================================================
+Sending        bar/file.pl
 Sending        file.py
-Transmitting file data .done
+Transmitting file data ..done
 Committing transaction...
 Committed revision 3.
  '============================================================================
@@ -213,6 +233,7 @@ On branch trunk
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   bar/file.pl[m
 	[31mmodified:   file.py[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
@@ -224,7 +245,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
  | Executing:  git commit -a -m 'conflicting_changes'
  |============================================================================
 [trunk  <HASH>] conflicting_changes
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ 2 files changed, 3 insertions(+), 3 deletions(-)
  '============================================================================
 
 
@@ -232,10 +253,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
  |             generate local conflict
  | Executing:  .../../bin/gvn.sh update
  |============================================================================
+	M	bar/file.pl
 	M	file.py
 r3 = <HASH> (refs/remotes/origin/trunk)
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
-Rebasing (1/1)Auto-merging file.py
+Rebasing (1/1)Auto-merging bar/file.pl
+CONFLICT (content): Merge conflict in bar/file.pl
+Auto-merging file.py
 CONFLICT (content): Merge conflict in file.py
 error: could not apply <HASH>... conflicting_changes
 hint: Resolve all conflicts manually, mark them as resolved with
@@ -252,11 +276,11 @@ rebase refs/remotes/origin/trunk: command returned error: 1
  |             show status
  | Executing:  git st
  |============================================================================
-[31minteractive rebase in progress; onto [mdec2a93
+[31minteractive rebase in progress; onto [m4e7e91b
 Last command done (1 command done):
-   pick e94d920 conflicting_changes
+   pick 0a236c3 conflicting_changes
 No commands remaining.
-You are currently rebasing branch 'trunk' on 'dec2a93'.
+You are currently rebasing branch 'trunk' on '4e7e91b'.
   (fix conflicts and then run "git rebase --continue")
   (use "git rebase --skip" to skip this patch)
   (use "git rebase --abort" to check out the original branch)
@@ -264,6 +288,7 @@ You are currently rebasing branch 'trunk' on 'dec2a93'.
 Unmerged paths:
   (use "git restore --staged <file>..." to unstage)
   (use "git add <file>..." to mark resolution)
+	[31mboth modified:   bar/file.pl[m
 	[31mboth modified:   file.py[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
@@ -357,6 +382,86 @@ class foo123:
 
 
  .============================================================================
+ |             generate diff files
+ | Executing:  git merge-file-diff file.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.pl.MR_BASE
+ |============================================================================
+my $test = 2;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.pl.MR_THEIRS
+ |============================================================================
+my $test2 = 3;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.pl.MR_OURS
+ |============================================================================
+my $test = 4;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             generate diff files
+ | Executing:  git mfd file.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.pl.MR_BASE
+ |============================================================================
+my $test = 2;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.pl.MR_THEIRS
+ |============================================================================
+my $test2 = 3;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             show generated files
+ | Executing:  cat file.pl.MR_OURS
+ |============================================================================
+my $test = 4;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
  |             show merge diff
  | Executing:  git merge-diff file.py
  |============================================================================
@@ -373,13 +478,13 @@ MERGE REBASE - BASE
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
  class foo23:[m
    def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -396,13 +501,13 @@ MERGE REBASE - OURS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
  class foo123:[m
    def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -419,13 +524,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
  class foo234:[m
    def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -450,13 +555,13 @@ MERGE REBASE - BASE
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
  class foo23:[m
    def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -473,13 +578,13 @@ MERGE REBASE - OURS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
  class foo123:[m
    def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -496,13 +601,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
  class foo234:[m
    def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -523,13 +628,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
  class foo123:[m
    def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -549,13 +654,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
  class foo123:[m
    def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -575,13 +680,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
  class foo234:[m
    def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -601,13 +706,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
  class foo234:[m
    def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102m+[m[34;102mclass foo23:[m
 [34;102m+[m[34;102m  def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -627,13 +732,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
  class foo23:[m
    def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -653,13 +758,13 @@ MERGE REBASE - THEIRS
 [34;102m+[m[34;102m<<<<<<< HEAD[m
 [34;102m+[m[34;102mclass foo234:[m
 [34;102m+[m[34;102m  def bar234(self, test):[m
-[34;102m+[m[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
  class foo23:[m
    def bar23(self, test):[m
 [34;102m+[m[34;102m=======[m
 [34;102m+[m[34;102mclass foo123:[m
 [34;102m+[m[34;102m  def bar123(self, test):[m
-[34;102m+[m[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
      self.test = test[m
  [m
  [m
@@ -683,12 +788,12 @@ MERGE REBASE - BASE
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
 ================================================================================
 ================================================================================
 MERGE REBASE - OURS
@@ -702,12 +807,12 @@ MERGE REBASE - OURS
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [36m@@ -2,0 +10 @@[m [mclass foo123:[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
 ================================================================================
 ================================================================================
 MERGE REBASE - THEIRS
@@ -720,13 +825,13 @@ MERGE REBASE - THEIRS
 [36m@@ -0,0 +1 @@[m
 [34;102m<<<<<<< HEAD[m
 [36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
 ================================================================================
  '============================================================================
 
@@ -748,12 +853,12 @@ MERGE REBASE - BASE
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
 ================================================================================
 ================================================================================
 MERGE REBASE - OURS
@@ -767,12 +872,12 @@ MERGE REBASE - OURS
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [36m@@ -2,0 +10 @@[m [mclass foo123:[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
 ================================================================================
 ================================================================================
 MERGE REBASE - THEIRS
@@ -785,13 +890,13 @@ MERGE REBASE - THEIRS
 [36m@@ -0,0 +1 @@[m
 [34;102m<<<<<<< HEAD[m
 [36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
 ================================================================================
  '============================================================================
 
@@ -809,12 +914,12 @@ MERGE REBASE - THEIRS
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [36m@@ -2,0 +10 @@[m [mclass foo123:[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
  '============================================================================
 
 
@@ -831,12 +936,12 @@ MERGE REBASE - THEIRS
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [36m@@ -2,0 +10 @@[m [mclass foo123:[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
  '============================================================================
 
 
@@ -852,13 +957,13 @@ MERGE REBASE - THEIRS
 [36m@@ -0,0 +1 @@[m
 [34;102m<<<<<<< HEAD[m
 [36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
  '============================================================================
 
 
@@ -874,13 +979,13 @@ MERGE REBASE - THEIRS
 [36m@@ -0,0 +1 @@[m
 [34;102m<<<<<<< HEAD[m
 [36m@@ -2,0 +4,7 @@[m [mclass foo234:[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [34;102mclass foo23:[m
 [34;102m  def bar23(self, test):[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
  '============================================================================
 
 
@@ -897,12 +1002,12 @@ MERGE REBASE - THEIRS
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
  '============================================================================
 
 
@@ -919,12 +1024,524 @@ MERGE REBASE - THEIRS
 [34;102m<<<<<<< HEAD[m
 [34;102mclass foo234:[m
 [34;102m  def bar234(self, test):[m
-[34;102m||||||| parent of e94d920 (conflicting_changes)[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
 [36m@@ -2,0 +7,4 @@[m [mclass foo23:[m
 [34;102m=======[m
 [34;102mclass foo123:[m
 [34;102m  def bar123(self, test):[m
-[34;102m>>>>>>> e94d920 (conflicting_changes)[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff file.pl
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+ my $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+ my $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ my $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git md file.pl
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+ my $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+ my $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ my $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-ours file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+ my $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdo file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+ my $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-theirs file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ my $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdt file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+ my $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-base file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+ my $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdb file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+ my $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ $test++;[m
+ print(\"%d\",$test);[m
+ [m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise file.pl
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,3 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[36m@@ -1,0 +5,3 @@[m [mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,5 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[36m@@ -1,0 +7 @@[m [mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -1,0 +3,5 @@[m [mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdw file.pl
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,3 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[36m@@ -1,0 +5,3 @@[m [mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,5 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[36m@@ -1,0 +7 @@[m [mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -1,0 +3,5 @@[m [mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise-ours file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,5 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[36m@@ -1,0 +7 @@[m [mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdwo file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,5 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[36m@@ -1,0 +7 @@[m [mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise-theirs file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -1,0 +3,5 @@[m [mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdwt file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1 @@[m
+[34;102m<<<<<<< HEAD[m
+[36m@@ -1,0 +3,5 @@[m [mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git merge-diff-wordwise-base file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,3 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[36m@@ -1,0 +5,3 @@[m [mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  git mdwb file.pl
+ |============================================================================
+* Unmerged path bar/file.pl
+[34mdiff --git a/bar/file.pl b/bar/file.pl[m
+[34mindex <HASH>..<HASH> 100644[m
+[34m--- a/bar/file.pl[m
+[34m+++ b/bar/file.pl[m
+[36m@@ -0,0 +1,3 @@[m
+[34;102m<<<<<<< HEAD[m
+[34;102mmy $test2 = 3;[m
+[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[36m@@ -1,0 +5,3 @@[m [mmy $test = 2;[m
+[34;102m=======[m
+[34;102mmy $test = 4;[m
+[34;102m>>>>>>> <HASH> (conflicting_changes)[m
  '============================================================================
 
 
@@ -1100,6 +1717,170 @@ class foo123:
 >>>>>>> theirs
     self.test = test
 
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-ours file.pl
+ |============================================================================
+test
+Updated 1 path from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+my $test = 4;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mfo file.pl
+ |============================================================================
+test
+Updated 0 paths from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+my $test = 4;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-theirs file.pl
+ |============================================================================
+Updated 1 path from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+my $test2 = 3;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mft file.pl
+ |============================================================================
+Updated 0 paths from the index
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+my $test2 = 3;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-base file.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+my $test = 2;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mfb file.pl
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+my $test = 2;
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git merge-file-merge file.pl
+ |============================================================================
+Recreated 1 merge conflict
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+<<<<<<< ours
+my $test2 = 3;
+||||||| base
+my $test = 2;
+=======
+my $test = 4;
+>>>>>>> theirs
+$test++;
+print(\"%d\",$test);
+
+ '============================================================================
+
+
+ .============================================================================
+ |             checkout fixed solution
+ | Executing:  git mfm file.pl
+ |============================================================================
+Recreated 1 merge conflict
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of file
+ | Executing:  cat file.pl
+ |============================================================================
+<<<<<<< ours
+my $test2 = 3;
+||||||| base
+my $test = 2;
+=======
+my $test = 4;
+>>>>>>> theirs
+$test++;
+print(\"%d\",$test);
 
  '============================================================================
 

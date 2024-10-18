@@ -5,7 +5,7 @@
 
 [alias]
         # --------------------------
-        # log 
+        # log
 
         # -----------
         # base
@@ -77,7 +77,7 @@
 
         # --------------------------
         rebase-in-progress = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                dot_git_path=`git get-dot-git-path`; \
+                dot_git_path=`git get-dot-git-path-abs`; \
                 rebase_folder_name=`ls $dot_git_path | grep rebase`; \
                 if [[ \"$rebase_folder_name\" == \"\" ]]; then \
                   echo 0; \
@@ -86,7 +86,7 @@
                 fi' --"
 
         merge-in-progress = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                dot_git_path=`git get-dot-git-path`; \
+                dot_git_path=`git get-dot-git-path-abs`; \
                 merge_folder_name=`ls $dot_git_path | grep merge`; \
                 if [[ \"$merge_folder_name\" == \"\" ]]; then \
                   echo 0; \
@@ -103,23 +103,9 @@
         # merge
         # note that depending on merge OR rebase-merge ours/theis exchange in show/diff commands automatically
         # automatic detecting rebase-merges helps to avoid confusion
-	# with ours in below commands always our/mine changes are meant independent on merge operation type
+  # with ours in below commands always our/mine changes are meant independent on merge operation type
 
-        merge-file-diff = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git show :1:$1 > $1.MR_BASE; \
-                  git show :2:$1 > $1.MR_THEIRS; \
-                  git show :3:$1 > $1.MR_OURS; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git show :1:$1 > $1.M_BASE; \
-                  git show :2:$1 > $1.M_OURS; \
-                  git show :3:$1 > $1.M_THEIRS; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-file-diff = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_merge_file_diff.sh \"$@\"' --"
         mfd = "merge-file-diff"
 
         merge-diff = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
@@ -281,18 +267,7 @@
                 fi' --"
         mft = "merge-file-theirs"
 
-        merge-file-base = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                a=\"================================================================================\"; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git show :1:$1 > $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git show :1:$1 > $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-file-base = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_merge_file_base.sh \"$@\"' --"
         mfb = "merge-file-base"
 
         merge-file-merge = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
@@ -370,6 +345,13 @@
           dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
           echo \"$dot_git_path\" \
           ' --"
+
+       get-dot-git-path-abs = "!bash -c '\
+          dot_git_path=`git rev-parse --git-dir | sed \"s,/\\.git/,/\\.git /,g\" | git awk1`; \
+          dot_git_path_abs=`realpath $dot_git_path`; \
+          echo \"$dot_git_path_abs\" \
+          ' --"
+
 
         # --------------------------
         # diff
@@ -513,6 +495,7 @@
 
         # --------------------------
         # misc
+
 
         stat = "status -s"
 
@@ -678,6 +661,8 @@
           ' --"
 
         # ---------------------------
+
+        # ---------------------------
         # e.g. for bash integration add the following at the end of your ~/.bashrc
         # txtblu='\[\e[0;34m\]' # Blue
         # txtgrn='\[\e[0;32m\]' # Green
@@ -688,7 +673,7 @@
         # }
         # PS1="$txtblu \u@\h: $txtgrn\w$txtpur\$(git_prompt)$txtblk $ $txtblk"
         # unset color_prompt force_color_prompt
-        # 
+        #
         prompt = "!bash -c ' \
            is_in_git_repo=`git rev-parse --is-inside-work-tree 2> /dev/null`; \
            if [ \"$is_in_git_repo\" == \"true\" ]; then \
@@ -710,7 +695,7 @@
            else \
              echo \"\"; \
            fi;' --"
-        
+
         # ---------------------------
         # config
         config-list = "config --list"
@@ -730,14 +715,8 @@
         # ---------------------------
         worktree-list = "worktree list"
         wl = "worktree-list"
-        worktree-add = "!bash -c ' \
-           worktree_name=$1; \
-           shift; \
-           main_path=`git rev-parse --path-format=absolute --show-toplevel`; \
-           cd $main_path; cd ..; cwd=`pwd`; cd $main_path; \
-           path=\"$cwd/$worktree_name\"; \
-           git worktree add $path $@; \
-           ' --"
+
+        worktree-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_wa.sh \"$@\"' --"
         wa = "worktree-add"
 
         # echo -n could be used below for direct "git wg <worktreename> | cd"  => still does not work in shell ???! => gave up
@@ -747,8 +726,10 @@
            echo \"$worktree_path\"; \
            ' --"
         wg = "worktree-get-path"
-        worktree-delete = "worktree delete"
+
+        worktree-delete = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_worktree_delete.sh \"$@\"' --"
         wd = "worktree-delete"
+
         worktree-get-path-git-dir = "!bash -c ' \
            worktree_name=$1; \
            worktree_path=`git wg $worktree_name`; \

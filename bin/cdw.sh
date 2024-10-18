@@ -29,7 +29,6 @@ new_cwd="$new_base_path/$act_sub_path"
 
 if [[ "$new_base_path" == "" ]]; then
   echo "ERROR: Could not find worktree branch named <$new_branch>. Aborting."
-  exit -1
 elif [ -d $new_cwd ]; then
   echo "Found git worktree with existing subfolder"
   echo "branch:     $act_branch => $new_branch"

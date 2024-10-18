@@ -33,8 +33,14 @@ execute "git lgsb" "log with svn revisions"
 echo -e 'class foo23:\n  def bar23(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file.pl
 echo -e '<html>\n  <title>foo3</title>\n  <body>\n    bar2\n  </body>\n</html>' > file.html
+mkdir -p foo/
+mkdir -p bar/
+echo -e '<html>\n  <title>foo3</title>\n  <body>\n    bar2\n  </body>\n</html>' > foo/file.html
+echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > bar/file.pl
 
 execute "git add file*" "add some files"
+
+execute "git add foo/file* bar/file*" "add some more files"
 
 execute "git commit -m 'files'" "commit new files"
 
@@ -52,12 +58,17 @@ execute "svn update " "update"
 
 echo -e 'class foo234:\n  def bar234(self, test):\n    self.test = test\n\n' > file.py
 
+mkdir -p bar/
+echo -e 'my $test2 = 3;\n$test++;\nprint(\"%d\",$test);\n' > bar/file.pl
+
 execute "svn commit -m 'changes' " "changes"
 
 ######################
 cd ../git_user2
 
 echo -e 'class foo123:\n  def bar123(self, test):\n    self.test = test\n\n' > file.py
+
+echo -e 'my $test = 4;\n$test++;\nprint(\"%d\",$test);\n' > bar/file.pl
 
 execute "git st" "show status"
 
@@ -80,6 +91,15 @@ for cmd2 in $cmd_git; do
   execute "cat file.py.MR_OURS" "show generated files"
 done
 
+cd bar
+for cmd2 in $cmd_git; do
+  execute "git $cmd2 file.pl" "generate diff files"
+  execute "cat file.pl.MR_BASE" "show generated files"
+  execute "cat file.pl.MR_THEIRS" "show generated files"
+  execute "cat file.pl.MR_OURS" "show generated files"
+done
+cd ..
+
 cmd_git="merge-diff
 md
 merge-diff-ours
@@ -101,6 +121,12 @@ for cmd2 in $cmd_git; do
   execute "git $cmd2 file.py" "show merge diff"
 done
 
+cd bar
+for cmd2 in $cmd_git; do
+  execute "git $cmd2 file.pl" "show merge diff"
+done
+cd ..
+
 cmd_git="merge-file-ours
 mfo
 merge-file-theirs
@@ -114,6 +140,13 @@ for cmd2 in $cmd_git; do
   execute "git $cmd2 file.py" "checkout fixed solution"
   execute "cat file.py" "show contents of file"
 done
+
+cd bar
+for cmd2 in $cmd_git; do
+  execute "git $cmd2 file.pl" "checkout fixed solution"
+  execute "cat file.pl" "show contents of file"
+done
+cd ..
 
 ###################
 execute "git rebase --abort" "abort merge"

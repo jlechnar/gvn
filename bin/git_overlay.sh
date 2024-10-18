@@ -22,9 +22,18 @@ if [[ "$GVN_DEBUG_GITO" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   export GIT_TRACE_SETUP=2
   export GIT_TRACE_SHALLOW=2
 fi
+
 if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
   export GVN_DEBUG=1
 fi
+
+# activate below to debug commands that are executed
+if [[ "$GVN_CMD_DEBUG" == "1" ]]; then
+  CMD_DEBUG=1
+else
+  CMD_DEBUG=0
+fi
+
 set -e
 
 GITO=$0

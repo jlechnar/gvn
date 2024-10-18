@@ -327,7 +327,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
  |============================================================================
 To .../test_overlay/git_overlay
  * [new branch]      master -> master
-Branch 'master' set up to track remote branch 'master' from 'origin'.
+branch 'master' set up to track 'origin/master'.
  '============================================================================
 
 
@@ -376,7 +376,7 @@ ERROR: There are unpushed commits. Aborting.
  | Executing:  .../../bin/gito push
  |============================================================================
 To .../test_overlay/git_overlay
-   562ee3e..ec07a68  master -> master
+   <HASH>..<HASH>  master -> master
  '============================================================================
 
 

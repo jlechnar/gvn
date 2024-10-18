@@ -21,9 +21,18 @@ if [[ "$GVN_DEBUG_GIT" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   export GIT_TRACE_SETUP=2
   export GIT_TRACE_SHALLOW=2
 fi
+
 if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
   export GVN_DEBUG=1
 fi
+
+# activate below to debug commands that are executed
+if [[ "$GVN_CMD_DEBUG" == "1" ]]; then
+  CMD_DEBUG=1
+else
+  CMD_DEBUG=0
+fi
+
 set -e
 
 cmd=$1
@@ -35,6 +44,11 @@ if [[ "$cmd" == "rebase" ]]; then
 elif [[ "$cmd" == "merge" ]]; then
   git merge-wrapper $opt
 else
+
+  if [[ "$CMD_DEBUG" == "1" ]]; then
+    echo "GVN_CMD: git $cmd $opt" >> /dev/stderr
+  fi
+
   git $cmd $opt
 fi
 
