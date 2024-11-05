@@ -124,7 +124,7 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  git add file* test1/*
  |============================================================================
  '============================================================================
 
@@ -134,10 +134,13 @@ Checked out HEAD:
  | Executing:  git commit -m 'files'
  |============================================================================
 [trunk  <HASH>] files
- 3 files changed, 15 insertions(+)
+ 6 files changed, 30 insertions(+)
  create mode 100644 file.html
  create mode 100644 file.pl
  create mode 100644 file.py
+ create mode 100644 test1/file1.html
+ create mode 100644 test1/file1.pl
+ create mode 100644 test1/file1.py
  '============================================================================
 
 
@@ -151,10 +154,16 @@ Committing to file://.../test_branch_worktree/server1/repo/trunk ...
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	test1/file1.html
+	A	test1/file1.pl
+	A	test1/file1.py
 Committed r2
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	test1/file1.html
+	A	test1/file1.pl
+	A	test1/file1.py
 r2 = <HASH> (refs/remotes/origin/trunk)
 No changes between <HASH> and refs/remotes/origin/trunk
 Resetting to the latest refs/remotes/origin/trunk
@@ -315,10 +324,101 @@ ERROR: Detected missmatch in svn base branch <trunk> (<test1>) != <test> (test).
 
 
  .============================================================================
+ |             change to test test1 subfolder
+ | Executing:  cd .../test_branch_worktree/git_user2/test1
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             create worktree from branch test to test5
+ | Executing:  .../../bin/gvn.sh wa test5
+ |============================================================================
+Preparing worktree (new branch 'test5')
+HEAD is now at <HASH> wt_test2_change
+ '============================================================================
+
+
+ .============================================================================
+ |             get worktree path for test5 worktree
+ | Executing:  wt_test5=`.../../bin/gvn.sh wg test5`
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             change on test worktree
+ | Executing:  git commit -a -m 'wt_test_change'
+ |============================================================================
+[test  <HASH>] wt_test_change
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test5 test1 subfolder
+ | Executing:  cd .../test_branch_worktree/test5/test1
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             sync worktree from test to test5 (rebase)
+ | Executing:  .../../bin/gvn.sh ws test
+ |============================================================================
+INFO: try to sync via rebase <test5> onto <test> for svn base <test>.
+INFO: detected current branch <test5> to base upon branch to sync <test>.
+INFO: rebasing current branch <test5> onto branch to sync <test>.
+Created Tag for git rebase: gvn_worktree_rebase_<DATE>_<TIME>_5_<HASH>_to_t_<HASH>
+[KSuccessfully rebased and updated refs/heads/test5.
+ '============================================================================
+
+
+ .============================================================================
+ |             change on test5 worktree
+ | Executing:  git commit -a -m 'wt_test5_change'
+ |============================================================================
+[test5  <HASH>] wt_test5_change
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test test1 subfolder
+ | Executing:  cd .../test_branch_worktree/git_user2/test1
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             sync worktree from test5 to test (merge)
+ | Executing:  .../../bin/gvn.sh ws test5
+ |============================================================================
+INFO: try to sync via merge <test5> into <test> for svn base <test>.
+INFO: detected current branch <test> to be base for branch to sync <test5>.
+INFO: merging branch to sync <test5> into current branch <test>.
+Created Tag for git merge: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>
+Updating <HASH>..<HASH>
+Fast-forward
+ test1/file1.html | 4 [34;102m++[m[34;101m--[m
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ '============================================================================
+
+
+ .============================================================================
+ |             change to test
+ | Executing:  cd .../test_branch_worktree/git_user2
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
  |             log with svn revisions
  | Executing:  git lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (HEAD -> test, test2)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_5_<HASH>_to_t_<HASH>, test2)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
@@ -342,7 +442,7 @@ ERROR: Detected missmatch in svn base branch <trunk> (<test1>) != <test> (test).
  | Executing:  .../../bin/gvn.sh wa test4
  |============================================================================
 Preparing worktree (new branch 'test4')
-HEAD is now at <HASH> wt_test2_change
+HEAD is now at <HASH> wt_test5_change
  '============================================================================
 
 
@@ -350,7 +450,9 @@ HEAD is now at <HASH> wt_test2_change
  |             log with svn revisions
  | Executing:  git lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (HEAD -> test, test4, test2)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5, test4)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_5_<HASH>_to_t_<HASH>, test2)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
@@ -370,6 +472,7 @@ HEAD is now at <HASH> wt_test2_change
 .../test_branch_worktree/test1      <HASH> [test1]
 .../test_branch_worktree/test2      <HASH> [test2]
 .../test_branch_worktree/test4      <HASH> [test4]
+.../test_branch_worktree/test5      <HASH> [test5]
  '============================================================================
 
 
@@ -384,7 +487,9 @@ HEAD is now at <HASH> wt_test2_change
  |             log with svn revisions
  | Executing:  git lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (HEAD -> test, test4, test2)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5, test4)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_5_<HASH>_to_t_<HASH>, test2)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
@@ -403,6 +508,7 @@ HEAD is now at <HASH> wt_test2_change
 .../test_branch_worktree/git_user2  <HASH> [test]
 .../test_branch_worktree/test1      <HASH> [test1]
 .../test_branch_worktree/test2      <HASH> [test2]
+.../test_branch_worktree/test5      <HASH> [test5]
  '============================================================================
 
 
@@ -417,7 +523,9 @@ HEAD is now at <HASH> wt_test2_change
  |             log with svn revisions
  | Executing:  git lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (HEAD -> test, test4, test2)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5, test4)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_5_<HASH>_to_t_<HASH>, test2)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_2_<HASH>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test2_change[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_2_<HASH>_to_t_<HASH>)[m
 [31m|[m[31m/[m  
@@ -435,5 +543,6 @@ HEAD is now at <HASH> wt_test2_change
  |============================================================================
 .../test_branch_worktree/git_user2  <HASH> [test]
 .../test_branch_worktree/test1      <HASH> [test1]
+.../test_branch_worktree/test5      <HASH> [test5]
  '============================================================================
 

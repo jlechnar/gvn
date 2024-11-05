@@ -242,9 +242,7 @@
 
         # ------
         # returns current git-svn branch name
-        gvn-currentbranch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                branch=`git svn info | grep URL | rev | sed \"s,\\/, ,g\" | git awk1 | rev;`; \
-                echo $branch' --"
+        gvn-currentbranch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_currentbranch.sh' --"
 
         # returns 1 if current git-svn branch name matches current git branch name
         gvn-branchmatch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \

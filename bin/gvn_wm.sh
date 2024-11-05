@@ -12,6 +12,9 @@ set -e
 
 branch_to_merge_to=$1
 
+root=`git root`
+export GIT_WORK_TREE=$root
+
 gvn check-branch-to-be-svn-branch
 gvn check-for-branch-name-match
 

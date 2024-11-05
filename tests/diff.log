@@ -179,21 +179,21 @@ Checked out HEAD:
  |             diff
  | Executing:  git d file.html
  |============================================================================
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1,7 +1,7 @@[m
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1,7 +1,7 @@[m
 [34;101m-4:[m
 [34;102m+[m[34;102m5:[m
- <html>[m
+[30m <html>[m
 [34;101m-  <title>ba</title>[m
 [34;102m+[m[34;102m  <title>barr</title>[m
-   <body>[m
+[30m   <body>[m
 [34;101m-    near[m
 [34;102m+[m[34;102m    tar[m
-   </body>[m
- </html>[m
+[30m   </body>[m
+[30m </html>[m
  '============================================================================
 
 
@@ -201,16 +201,16 @@ Checked out HEAD:
  |             diff wordwise
  | Executing:  git dw file.html
  |============================================================================
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1 +1 @@[m
-[34;101m4[m[34;102m5[m:
-[36m@@ -3 +3 @@[m
-  <title>ba[34;102mrr[m</title>
-[36m@@ -5 +5 @@[m
-    [34;101mne[m[34;102mt[mar
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1 +1 @@[m
+[34;101m4[m[34;102m5[m[30m:[m
+[34;105m@@ -3 +3 @@[m
+[30m  <title>ba[m[34;102mrr[m[30m</title>[m
+[34;105m@@ -5 +5 @@[m
+[30m    [m[34;101mne[m[34;102mt[m[30mar[m
  '============================================================================
 
 
@@ -235,21 +235,21 @@ index <HASH>..<HASH> 100644
  |             diff previous
  | Executing:  git dp file.html
  |============================================================================
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1,7 +1,7 @@[m
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1,7 +1,7 @@[m
 [34;101m-2:[m
 [34;102m+[m[34;102m5:[m
- <html>[m
+[30m <html>[m
 [34;101m-  <title>bar</title>[m
 [34;102m+[m[34;102m  <title>barr</title>[m
-   <body>[m
+[30m   <body>[m
 [34;101m-    food[m
 [34;102m+[m[34;102m    tar[m
-   </body>[m
- </html>[m
+[30m   </body>[m
+[30m </html>[m
  '============================================================================
 
 
@@ -257,16 +257,16 @@ index <HASH>..<HASH> 100644
  |             diff previous wordwise
  | Executing:  git dpw file.html
  |============================================================================
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1 +1 @@[m
-[34;101m2[m[34;102m5[m:
-[36m@@ -3 +3 @@[m
-  <title>bar[34;102mr[m</title>
-[36m@@ -5 +5 @@[m
-    [34;101mfood[m[34;102mtar[m
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1 +1 @@[m
+[34;101m2[m[34;102m5[m[30m:[m
+[34;105m@@ -3 +3 @@[m
+[30m  <title>bar[m[34;102mr[m[30m</title>[m
+[34;105m@@ -5 +5 @@[m
+[30m    [m[34;101mfood[m[34;102mtar[m
  '============================================================================
 
 
@@ -274,21 +274,21 @@ index <HASH>..<HASH> 100644
  |             diff cached
  | Executing:  git dc file.html
  |============================================================================
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1,7 +1,7 @@[m
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1,7 +1,7 @@[m
 [34;101m-3:[m
 [34;102m+[m[34;102m4:[m
- <html>[m
+[30m <html>[m
 [34;101m-  <title>baa</title>[m
 [34;102m+[m[34;102m  <title>ba</title>[m
-   <body>[m
+[30m   <body>[m
 [34;101m-    baer[m
 [34;102m+[m[34;102m    near[m
-   </body>[m
- </html>[m
+[30m   </body>[m
+[30m </html>[m
  '============================================================================
 
 
@@ -296,16 +296,16 @@ index <HASH>..<HASH> 100644
  |             diff cached wordwise
  | Executing:  git dwc file.html
  |============================================================================
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1 +1 @@[m
-[34;101m3[m[34;102m4[m:
-[36m@@ -3 +3 @@[m
-  <title>ba[34;101ma[m</title>
-[36m@@ -5 +5 @@[m
-    [34;101mba[m[34;102mn[me[34;102ma[mr
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1 +1 @@[m
+[34;101m3[m[34;102m4[m[30m:[m
+[34;105m@@ -3 +3 @@[m
+[30m  <title>ba[m[34;101ma[m[30m</title>[m
+[34;105m@@ -5 +5 @@[m
+[30m    [m[34;101mba[m[34;102mn[m[30me[m[34;102ma[m[30mr[m
  '============================================================================
 
 
@@ -332,19 +332,19 @@ index <HASH>..<HASH> 100644
  |============================================================================
 + [[ 4 == \4 ]]
 + git diff <HASH>:file.pl <HASH>:file.pl
-[34mdiff --git a/file.pl b/file.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.pl[m
-[34m+++ b/file.pl[m
-[36m@@ -1,5 +1,5 @@[m
+[36mdiff --git a/file.pl b/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.pl[m
+[36m+++ b/file.pl[m
+[34;105m@@ -1,5 +1,5 @@[m
 [34;101m-2:[m
 [34;101m-my $test = 4;[m
 [34;102m+[m[34;102m1:[m
 [34;102m+[m[34;102mmy $test = 3;[m
- $test++;[m
+[30m $test++;[m
 [34;101m-print(\"%d\",$test4);[m
 [34;102m+[m[34;102mprint(\"%d\",$test5);[m
- [m
+[30m [m
  '============================================================================
 
 
@@ -352,15 +352,15 @@ index <HASH>..<HASH> 100644
  |             diff wordwise versions
  | Executing:  git dfw <HASH> file.pl <HASH> file.pl
  |============================================================================
-[34mdiff --git a/file.pl b/file.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.pl[m
-[34m+++ b/file.pl[m
-[36m@@ -1,2 +1,2 @@[m
-[34;101m2[m[34;102m1[m:
-my $test = [34;101m4[m[34;102m3[m;
-[36m@@ -4 +4 @@[m [m$test++;[m
-print(\"%d\",$test[34;101m4[m[34;102m5[m);
+[36mdiff --git a/file.pl b/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.pl[m
+[36m+++ b/file.pl[m
+[34;105m@@ -1,2 +1,2 @@[m
+[34;101m2[m[34;102m1[m[30m:[m
+[30mmy $test = [m[34;101m4[m[34;102m3[m[30m;[m
+[34;105m@@ -4 +4 @@[m[30m [m$test++;[m
+[30mprint(\"%d\",$test[m[34;101m4[m[34;102m5[m[30m);[m
  '============================================================================
 
 
@@ -370,11 +370,11 @@ print(\"%d\",$test[34;101m4[m[34;102m5[m);
  |============================================================================
 + [[ 4 == \4 ]]
 + git diff <HASH>:file.html <HASH>:file.pl
-[34mdiff --git a/file.html b/file.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.pl[m
-[36m@@ -1,7 +1,5 @@[m
+[36mdiff --git a/file.html b/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.pl[m
+[34;105m@@ -1,7 +1,5 @@[m
 [34;101m-3:[m
 [34;101m-<html>[m
 [34;101m-  <title>baa</title>[m
@@ -394,20 +394,20 @@ print(\"%d\",$test[34;101m4[m[34;102m5[m);
  |             diff wordwise different files of different version
  | Executing:  git dfw <HASH> file.html <HASH> file.pl
  |============================================================================
-[34mdiff --git a/file.html b/file.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.pl[m
-[36m@@ -1,7 +1,5 @@[m
-[34;101m3[m[34;102m0[m:[34;101m<ht[m
-m[34;101ml>[m
-[34;101m  <[m[34;102my $[mt[34;101mi[m[34;102mest = 2;[m
-[34;102m$[mt[34;101ml[me[34;101m>baa</[m[34;102ms[mt[34;102m++;[m
-[34;102mpr[mi[34;102mn[mt[34;101mle>[m
-[34;101m  <bo[m[34;102m(\"%[md[34;101my>[m
-[34;101m    ba[m[34;102m\",$t[me[34;101mr[m
+[36mdiff --git a/file.html b/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.pl[m
+[34;105m@@ -1,7 +1,5 @@[m
+[34;101m3[m[34;102m0[m[30m:[m[34;101m<ht[m
+[30mm[m[34;101ml>[m
+[34;101m  <[m[34;102my $[m[30mt[m[34;101mi[m[34;102mest = 2;[m
+[34;102m$[m[30mt[m[34;101ml[m[30me[m[34;101m>baa</[m[34;102ms[m[30mt[m[34;102m++;[m
+[34;102mpr[m[30mi[m[34;102mn[m[30mt[m[34;101mle>[m
+[34;101m  <bo[m[34;102m(\"%[m[30md[m[34;101my>[m
+[34;101m    ba[m[34;102m\",$t[m[30me[m[34;101mr[m
 [34;101m  </body>[m
-[34;101m</h[m[34;102ms[mt[34;101mml>[m[34;102m);[m
+[34;101m</h[m[34;102ms[m[30mt[m[34;101mml>[m[34;102m);[m
 
  '============================================================================
 
@@ -419,33 +419,33 @@ m[34;101ml>[m
 + [[ 2 == \4 ]]
 + [[ 2 == \2 ]]
 + git diff file.html file.pl
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1,7 +1,7 @@[m
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1,7 +1,7 @@[m
 [34;101m-4:[m
 [34;102m+[m[34;102m5:[m
- <html>[m
+[30m <html>[m
 [34;101m-  <title>ba</title>[m
 [34;102m+[m[34;102m  <title>barr</title>[m
-   <body>[m
+[30m   <body>[m
 [34;101m-    near[m
 [34;102m+[m[34;102m    tar[m
-   </body>[m
- </html>[m
-[34mdiff --git a/file.pl b/file.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.pl[m
-[34m+++ b/file.pl[m
-[36m@@ -1,5 +1,5 @@[m
+[30m   </body>[m
+[30m </html>[m
+[36mdiff --git a/file.pl b/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.pl[m
+[36m+++ b/file.pl[m
+[34;105m@@ -1,5 +1,5 @@[m
 [34;101m-4:[m
 [34;101m-my $test = 9;[m
 [34;102m+[m[34;102m5:[m
 [34;102m+[m[34;102mmy $test = 10;[m
- $test++;[m
- print(\"%d\",$test12);[m
- [m
+[30m $test++;[m
+[30m print(\"%d\",$test12);[m
+[30m [m
  '============================================================================
 
 
@@ -453,23 +453,23 @@ m[34;101ml>[m
  |             diff wordwise different files
  | Executing:  git dfw file.html file.pl
  |============================================================================
-[34mdiff --git a/file.html b/file.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file.html[m
-[36m@@ -1 +1 @@[m
-[34;101m4[m[34;102m5[m:
-[36m@@ -3 +3 @@[m
-  <title>ba[34;102mrr[m</title>
-[36m@@ -5 +5 @@[m
-    [34;101mne[m[34;102mt[mar
-[34mdiff --git a/file.pl b/file.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.pl[m
-[34m+++ b/file.pl[m
-[36m@@ -1,2 +1,2 @@[m
-[34;101m4[m[34;102m5[m:
-my $test = [34;101m9[m[34;102m10[m;
+[36mdiff --git a/file.html b/file.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file.html[m
+[34;105m@@ -1 +1 @@[m
+[34;101m4[m[34;102m5[m[30m:[m
+[34;105m@@ -3 +3 @@[m
+[30m  <title>ba[m[34;102mrr[m[30m</title>[m
+[34;105m@@ -5 +5 @@[m
+[30m    [m[34;101mne[m[34;102mt[m[30mar[m
+[36mdiff --git a/file.pl b/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.pl[m
+[36m+++ b/file.pl[m
+[34;105m@@ -1,2 +1,2 @@[m
+[34;101m4[m[34;102m5[m[30m:[m
+[30mmy $test = [m[34;101m9[m[34;102m10[m[30m;[m
  '============================================================================
 
 
@@ -477,12 +477,12 @@ my $test = [34;101m9[m[34;102m10[m;
  |             diff different local files
  | Executing:  git nid file_local.html file_local.pl
  |============================================================================
-[34mdiff --git a/file_local.html b/file_local.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file_local.html[m
-[34m+++ b/file_local.pl[m
-[36m@@ -1,7 +1,5 @@[m
- 6:[m
+[36mdiff --git a/file_local.html b/file_local.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_local.html[m
+[36m+++ b/file_local.pl[m
+[34;105m@@ -1,7 +1,5 @@[m
+[30m 6:[m
 [34;101m-<html>[m
 [34;101m-  <title>arr</title>[m
 [34;101m-  <body>[m
@@ -523,19 +523,19 @@ index <HASH>..<HASH> 100644
  |             diff wordwise different local files
  | Executing:  git nidw file_local.html file_local.pl
  |============================================================================
-[34mdiff --git a/file_local.html b/file_local.pl[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file_local.html[m
-[34m+++ b/file_local.pl[m
-[36m@@ -2,6 +2,4 @@[m
-[34;101m[-<ht-][mm[34;101m[-l>-][m
-[34;101m[-  <-][m[34;102m{+y $+}[mt[34;101m[-i-][m[34;102m{+est = 13;+}[m
-[34;102m{+$+}[mt[34;101m[-l-][me[34;101m[->arr</-][m[34;102m{+s+}[mt[34;102m{+++;+}[m
-[34;102m{+pr+}[mi[34;102m{+n+}[mt[34;101m[-le>-][m
+[36mdiff --git a/file_local.html b/file_local.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_local.html[m
+[36m+++ b/file_local.pl[m
+[34;105m@@ -2,6 +2,4 @@[m
+[34;101m[-<ht-][m[30mm[m[34;101m[-l>-][m
+[34;101m[-  <-][m[34;102m{+y $+}[m[30mt[m[34;101m[-i-][m[34;102m{+est = 13;+}[m
+[34;102m{+$+}[m[30mt[m[34;101m[-l-][m[30me[m[34;101m[->arr</-][m[34;102m{+s+}[m[30mt[m[34;102m{+++;+}[m
+[34;102m{+pr+}[m[30mi[m[34;102m{+n+}[m[30mt[m[34;101m[-le>-][m
 [34;101m[-  <body>-][m
 [34;101m[-    gz-][m
-[34;101m[-  </bo-][m[34;102m{+(\"%+}[md[34;101m[-y>-][m
-[34;101m[-</h-][m[34;102m{+\",$+}[mt[34;101m[-ml>-][m[34;102m{+est222);+}[m
+[34;101m[-  </bo-][m[34;102m{+(\"%+}[m[30md[m[34;101m[-y>-][m
+[34;101m[-</h-][m[34;102m{+\",$+}[m[30mt[m[34;101m[-ml>-][m[34;102m{+est222);+}[m
 
  '============================================================================
 
@@ -565,20 +565,20 @@ index <HASH>..<HASH> 100644
  |             diff different repo to local file
  | Executing:  git nid file.html file_local.html
  |============================================================================
-[34mdiff --git a/file.html b/file_local.html[m
-[34mindex <HASH>..<HASH> 100644[m
-[34m--- a/file.html[m
-[34m+++ b/file_local.html[m
-[36m@@ -1,7 +1,7 @@[m
+[36mdiff --git a/file.html b/file_local.html[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file.html[m
+[36m+++ b/file_local.html[m
+[34;105m@@ -1,7 +1,7 @@[m
 [34;101m-5:[m
 [34;102m+[m[34;102m6:[m
- <html>[m
+[30m <html>[m
 [34;101m-  <title>barr</title>[m
 [34;102m+[m[34;102m  <title>arr</title>[m
-   <body>[m
+[30m   <body>[m
 [34;101m-    tar[m
 [34;102m+[m[34;102m    gz[m
-   </body>[m
- </html>[m
+[30m   </body>[m
+[30m </html>[m
  '============================================================================
 

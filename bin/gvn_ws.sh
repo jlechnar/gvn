@@ -11,14 +11,17 @@
 # if branches are related each other it automatically selects and runs gvn worktree-rebase or worktree-merge.
 
 set -e
+# set -x
 
 branch_to_sync=$1
 
 gvn check-branch-to-be-svn-branch
 
+root=`git root`
+
 branch_current=`git branch --show-current`
 branch_current_svn=`gvn currentbranch`
-dot_git_path=`git get-dot-git-path`
+dot_git_path=`git get-dot-git-path-abs`
 
 if [ -z $branch_to_sync ]; then
   if [ -f $dot_git_path/gvn/branch/$branch_current ]; then
@@ -57,6 +60,7 @@ if [[ "$branch_current" == "$branch_current_svn" ]]; then
     fi
     echo "INFO: detected current branch <$branch_current> to be base for branch to sync <$branch_to_sync>."
     echo "INFO: merging branch to sync <$branch_to_sync> into current branch <$branch_current>."
+    export GIT_WORK_TREE=$root
     changes=`git stash-local-changes-if-any`
     gvn worktree-merge $branch_to_sync
     if [[ "$changes" != "" ]]; then
@@ -82,6 +86,7 @@ elif [[ "$branch_to_sync" == "$branch_current_svn" ]]; then
     fi
     echo "INFO: detected current branch <$branch_current> to base upon branch to sync <$branch_to_sync>."
     echo "INFO: rebasing current branch <$branch_current> onto branch to sync <$branch_to_sync>."
+    export GIT_WORK_TREE=$root
     changes=`git stash-local-changes-if-any`
     gvn worktree-rebase $branch_to_sync
     if [[ "$changes" != "" ]]; then

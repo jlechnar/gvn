@@ -31,7 +31,12 @@ echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file.pl
 echo -e '<html>\n  <title>foo</title>\n  <body>\n    bar\n  </body>\n</html>' > file.html
 
-execute "git add file*" "add some files"
+mkdir test1
+echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > test1/file1.py
+echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > test1/file1.pl
+echo -e '<html>\n  <title>foo</title>\n  <body>\n    bar\n  </body>\n</html>' > test1/file1.html
+
+execute "git add file* test1/*" "add some files"
 
 execute "git commit -m 'files'" "commit new files"
 
@@ -87,6 +92,32 @@ execute "$GVN ws test2" "sync worktree from test2 to test (merge)"
 set +e
 execute "$GVN ws test1" "sync worktree from test1 to test (abort due to wrong base tree)"
 set -e
+
+# subfolder test
+execute "cd $wt_test/test1" "change to test test1 subfolder"
+
+execute "$GVN wa test5" "create worktree from branch test to test5"
+
+execute "wt_test5=\`$GVN wg test5\`" "get worktree path for test5 worktree"
+
+echo -e '<html>\n  <title>loo</title>\n  <body>\n    far\n  </body>\n</html>' > file1.html
+
+execute "git commit -a -m 'wt_test_change'" "change on test worktree"
+
+execute "cd $wt_test5/test1" "change to test5 test1 subfolder"
+
+execute "$GVN ws test" "sync worktree from test to test5 (rebase)"
+
+echo -e '<html>\n  <title>bar</title>\n  <body>\n    gar\n  </body>\n</html>' > file1.html
+
+execute "git commit -a -m 'wt_test5_change'" "change on test5 worktree"
+
+execute "cd $wt_test/test1" "change to test test1 subfolder"
+
+execute "$GVN ws test5" "sync worktree from test5 to test (merge)"
+
+# global logs
+execute "cd $wt_test" "change to test"
 
 execute "git lgasb" "log with svn revisions"
 

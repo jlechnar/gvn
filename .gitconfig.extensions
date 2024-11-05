@@ -625,6 +625,11 @@
 
         # ---------------------------
         # branch
+
+        branch-remote-to-local = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_checkout.sh \"$@\"' --"
+        brtl = "branch-remote-to-local"
+        bc = "branch-remote-to-local"
+
         branch-merged-to-current = "git branch --merged"
         branch-not-merged-to-current = "git branch --no-merged"
 
