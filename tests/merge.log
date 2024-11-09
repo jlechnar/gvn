@@ -276,11 +276,11 @@ rebase refs/remotes/origin/trunk: command returned error: 1
  |             show status
  | Executing:  git st
  |============================================================================
-[31minteractive rebase in progress; onto [m7f5619b
+[31minteractive rebase in progress; onto [m19fff73
 Last command done (1 command done):
-   pick 52bf75f conflicting_changes
+   pick fb58a7f conflicting_changes
 No commands remaining.
-You are currently rebasing branch 'trunk' on '7f5619b'.
+You are currently rebasing branch 'trunk' on '19fff73'.
   (fix conflicts and then run "git rebase --continue")
   (use "git rebase --skip" to skip this patch)
   (use "git rebase --abort" to check out the original branch)

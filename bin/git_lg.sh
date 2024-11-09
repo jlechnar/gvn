@@ -59,15 +59,20 @@ if [[ "$args" == "" ]]; then
   fi
 fi
 
+wt="--work-tree=$root"
+if [[ "$root" == "" ]]; then
+  wt=""
+fi
+
 if [[ "$comments" == "1" ]]; then
   if [[ "$pager" == "1" ]]; then
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
       --format=format:"%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
       $args \
       | less $opts_less
   else
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
       --format=format:"%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
       $args \
@@ -75,13 +80,13 @@ if [[ "$comments" == "1" ]]; then
   fi
 else
   if [[ "$pager" == "1" ]]; then
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
       --format=format:"%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
       $args \
       | less $opts_less
   else
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
       --format=format:"%C(03)%>|(16)%h%C(reset) %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
       $args \
