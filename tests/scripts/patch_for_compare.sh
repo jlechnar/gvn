@@ -20,6 +20,9 @@ cat $file | \
   sed 's,[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\},<DATE>,g' | \
   sed 's,[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\},<DATE>,g' | \
   perl -pe 's/^([0-9a-fA-F]{40})(\s+.+)/<HASH>$2/g' | \
+  perl -pe 's/^(.+interactive rebase in progress; onto .+)[0-9a-fA-F]{7}(\s*)$/$1<HASH>$2/g' | \
+  perl -pe "s/^(\s*You are currently rebasing branch '.+' on ')[0-9a-fA-F]{7}('.\s*)$/\$1<HASH>\$2/g" | \
+  perl -pe 's/^(\s*pick )[0-9a-fA-F]{7}( conflicting_changes\s*)$/$1<HASH>$2/g' | \
   perl -pe 's/^(   )[0-9a-fA-F]{7}(\.\.)[0-9a-fA-F]{7}(\s+.+)/$1<HASH>$2<HASH>$3/g' | \
   perl -pe 's/(\s+)[0-9a-fA-F]{7}( \(conflicting_changes\))/$1<HASH>$2/g' | \
   perl -pe 's/^(r\d+\s+=\s+)[a-zA-Z0-9]+(\s+)/$1<HASH>$2/g' | \

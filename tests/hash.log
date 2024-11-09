@@ -226,9 +226,9 @@ Changes not staged for commit:
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	[31mfile_local.html[m
-	[31mfile_local.pl[m
-	[31mfile_local.py[m
+	[36mfile_local.html[m
+	[36mfile_local.pl[m
+	[36mfile_local.py[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
 Dropped refs/stash@{0} (<HASH>)

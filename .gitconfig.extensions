@@ -644,8 +644,8 @@
                 fi' --"
 
         nr-stashes = "!bash -c 'nr=`git stash list | wc -l`; echo $nr;' --"
-        nr-branches = "!bash -c 'nr=`git branch --no-color | egrep -v \"^[ ]*bb.\" | wc -l`; echo $nr;' --"
-        nr-branches-not-merged = "!bash -c 'nr=`git branch --no-color --no-merged | egrep -v \"^[ ]*bb.\" | wc -l`; echo $nr;' --"
+        nr-branches = "!bash -c 'nr=`git branch --no-color | egrep -v \"[ ]*bb.\" | wc -l`; echo $nr;' --"
+        nr-branches-not-merged = "!bash -c 'nr=`git branch --no-color --no-merged | egrep -v \"[ ]*bb.\" | wc -l`; echo $nr;' --"
         nr-changed-files = "!bash -c 'nr=`git diff --name-only | wc -l`; echo $nr;' --"
         nr-changed-files-cached = "!bash -c 'nr=`git diff --name-only --cached | wc -l`; echo $nr;' --"
         nr-worktrees = "!bash -c 'nr=`git worktree list | wc -l`; echo $nr;' --"

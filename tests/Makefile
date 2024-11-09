@@ -52,6 +52,10 @@ always:
 	mv -f $*.log $*.log.tmp_repatch
 	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp_repatch > $*.log
 
+%.log.repatch_tmp:
+	mv -f $*.log $*.log.tmp_repatch_tmp
+	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp > $*.log
+
 test:
 	echo $(CWD)
 	echo $(CWD_REAL)

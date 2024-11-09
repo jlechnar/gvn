@@ -57,7 +57,7 @@
 ##	nobranch = red
         added = green
         changed = red
-#       untracked = cyan
+        untracked = cyan
 [color "grep"]
 ##	match = normal
 [color "interactive"]
