@@ -46,6 +46,7 @@ do_clone() {
   for ((n=0;n<10;n++)); do
     git svn fetch
   done
+  gvn umdb
   cd $cwd
 }
 

@@ -24,6 +24,8 @@ TARGETS_LOGS+=log
 TARGETS_LOGS+=cat
 TARGETS_LOGS+=hash
 TARGETS_LOGS+=merge
+TARGETS_LOGS+=tag
+TARGETS_LOGS+=worktree_git
 
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))
@@ -55,6 +57,9 @@ always:
 %.log.repatch_tmp:
 	mv -f $*.log $*.log.tmp_repatch_tmp
 	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp > $*.log
+
+%.log.repatch_tmp_debug:
+	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp
 
 test:
 	echo $(CWD)

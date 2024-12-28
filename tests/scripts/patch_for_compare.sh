@@ -8,8 +8,6 @@ CWD_REAL=$2
 USER=$3
 file=$4
 
-# perl -pe 's/^(Executing.+gvn.sh hash.+\n.+\n)[a-zA-Z0-9]+(\s+)/$1<HASH>$2/g' | \
-
 cat $file | \
   sed "s,$CWD,\.\.\.,g" | \
   sed "s,$CWD_REAL,\.\.\.,g" | \
@@ -19,6 +17,8 @@ cat $file | \
   sed 's,[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\},<TIME>,g' | \
   sed 's,[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\},<DATE>,g' | \
   sed 's,[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\},<DATE>,g' | \
+  perl -pe "s/^(Deleted tag \'[^\']+\' \(was )([0-9a-fA-F]+)(\)\s*)$/\$1<HASH>\$3/g" | 
+  perl -pe "s/^(Deleted branch .+ \(was )([0-9a-fA-F]+)(\)\.\s*)$/\$1<HASH>\$3/g" | 
   perl -pe 's/^([0-9a-fA-F]{40})(\s+.+)/<HASH>$2/g' | \
   perl -pe 's/^(.+interactive rebase in progress; onto .+)[0-9a-fA-F]{7}(\s*)$/$1<HASH>$2/g' | \
   perl -pe "s/^(\s*You are currently rebasing branch '.+' on ')[0-9a-fA-F]{7}('.\s*)$/\$1<HASH>\$2/g" | \

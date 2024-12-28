@@ -17,7 +17,7 @@ if [ -f $dot_git_path_abs/gvn/branch/$branch_name ]; then
   exit -1
 fi
 
-worktree_name2=`git worktree-get-path $branch_name | sed 's,/, ,g' | git awk-1`
+worktree_name2=`git worktree-branch-get-path $branch_name | sed 's,/, ,g' | git awk-1`
 
 if [[ "$worktree_name2" == "" ]]; then
   echo "ERROR: worktree not found. Aborting delete operation."

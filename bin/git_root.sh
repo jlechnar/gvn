@@ -20,11 +20,11 @@ set -e
 #         echo $root_dir' --"
 #root = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
 #         current_branch=`git currentbranch`; \
-#         root_dir=`git worktree-get-path $current_branch`; \
+#         root_dir=`git worktree-branch-get-path $current_branch`; \
 #         echo $root_dir' --"
 
 current_branch=`git currentbranch`
-root_dir=`git worktree-get-path $current_branch`
+root_dir=`git worktree-branch-get-path $current_branch`
 
 # in case of git_overlay overlays we always get .git_overlay as extension to the root path and so path compares fail
 # remove them to solve the issue

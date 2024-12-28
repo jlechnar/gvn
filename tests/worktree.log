@@ -144,7 +144,7 @@ Committing to file://.../test_worktree/server1/repo/trunk ...
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  git add file* test_folder/
  |============================================================================
  '============================================================================
 
@@ -154,10 +154,12 @@ Committing to file://.../test_worktree/server1/repo/trunk ...
  | Executing:  git commit -m 'files'
  |============================================================================
 [trunk  <HASH>] files
- 3 files changed, 15 insertions(+)
+ 5 files changed, 26 insertions(+)
  create mode 100644 file.html
  create mode 100644 file.pl
  create mode 100644 file.py
+ create mode 100644 test_folder/file.html
+ create mode 100644 test_folder/file.py
  '============================================================================
 
 
@@ -171,10 +173,14 @@ Committing to file://.../test_worktree/server1/repo/trunk ...
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	test_folder/file.html
+	A	test_folder/file.py
 Committed r2
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	test_folder/file.html
+	A	test_folder/file.py
 r2 = <HASH> (refs/remotes/git-svn)
 No changes between <HASH> and refs/remotes/git-svn
 Resetting to the latest refs/remotes/git-svn
@@ -517,6 +523,8 @@ Current branch trunk is up to date.
 	A	file.html
 	A	file.pl
 	A	file.py
+	A	test_folder/file.html
+	A	test_folder/file.py
 r2 = <HASH> (refs/remotes/origin/trunk)
 	M	file.html
 	M	file.py
@@ -854,5 +862,646 @@ Resetting to the latest refs/remotes/git-svn
 [35m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [35m|[m[35m/[m  
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             add test0 branch to svn
+ | Executing:  svn cp ^/trunk ^/branches/test0 -m 'created test0 branch from trunk'
+ |============================================================================
+Committing transaction...
+Committed revision 8.
+ '============================================================================
+
+
+ .============================================================================
+ |             updated to see and get test0 branch
+ | Executing:  .../../bin/gvn.sh up
+ |============================================================================
+	M	file.html
+	M	file.py
+	A	file7.pl
+r6 = <HASH> (refs/remotes/origin/trunk)
+	M	file.html
+	M	file.py
+	A	file6.pl
+r7 = <HASH> (refs/remotes/origin/trunk)
+Found possible branch point: file://.../test_worktree/server1/repo/trunk => file://.../test_worktree/server1/repo/branches/test0, 7
+Found branch parent: (refs/remotes/origin/test0) <HASH>
+Following parent with do_switch
+Successfully followed parent
+r8 = <HASH> (refs/remotes/origin/test0)
+Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+[KSuccessfully rebased and updated refs/heads/trunk.
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches
+ | Executing:  git bl
+ |============================================================================
+* [32mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree from existing test0 branch
+ | Executing:  .../../bin/gvn.sh wa test0 origin/test0
+ |============================================================================
+Preparing worktree (new branch 'test0')
+HEAD is now at <HASH> created test0 branch from trunk
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test1 of head
+ | Executing:  .../../bin/gvn.sh wa test1
+ |============================================================================
+Preparing worktree (new branch 'test1')
+HEAD is now at <HASH> changes_test_worktree_merge_svn_up
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test2
+ | Executing:  .../../bin/gvn.sh wa test2 HEAD^
+ |============================================================================
+Preparing worktree (new branch 'test2')
+HEAD is now at <HASH> changes_trunk_worktree_merge_svn_change
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test3 in test4 folder
+ | Executing:  .../../bin/gvn.sh wa test3 test4 HEAD^
+ |============================================================================
+Preparing worktree (new branch 'test3')
+HEAD is now at <HASH> changes_trunk_worktree_merge_svn_change
+ '============================================================================
+
+
+ .============================================================================
+ |             change to worktree test0
+ | Executing:  source .../../bin/cdw.sh test0
+ |============================================================================
+Found git worktree with existing subfolder
+branch:     trunk => test0
+base_paths: .../test_worktree/git_user2 => .../test_worktree/test0
+paths:      .../test_worktree/git_user2 => .../test_worktree/test0/
+.../test_worktree/test0
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test0a of head
+ | Executing:  .../../bin/gvn.sh wa test0a
+ |============================================================================
+Preparing worktree (new branch 'test0a')
+HEAD is now at <HASH> created test0 branch from trunk
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
++ [36mtest0a[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test0a     <HASH> [test0a]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test0a
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             delete worktree test0a
+ | Executing:  .../../bin/gvn.sh wd test0a
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
+  test0a[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test0a
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             delete worktree test0a2 from branch test0a
+ | Executing:  .../../bin/gvn.sh wa test0a2 test0a
+ |============================================================================
+Preparing worktree (checking out 'test0a')
+HEAD is now at <HASH> created test0 branch from trunk
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
++ [36mtest0a[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test0a2    <HASH> [test0a]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test0a
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             delete worktree test0a2
+ | Executing:  .../../bin/gvn.sh wd test0a2
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
+  test0a[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test0a
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             remove branch test0a
+ | Executing:  .../../bin/gvn.sh bd test0a
+ |============================================================================
+Deleted branch test0a (was <HASH>).
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             add branch test0a
+ | Executing:  .../../bin/gvn.sh ba test0a
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
+  test0a[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test0a
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test0a from existing branch
+ | Executing:  .../../bin/gvn.sh wa test0a
+ |============================================================================
+Preparing worktree (checking out 'test0a')
+HEAD is now at <HASH> created test0 branch from trunk
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
++ [36mtest0a[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test0a     <HASH> [test0a]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test0a
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             delete worktree test0a
+ | Executing:  .../../bin/gvn.sh wd test0a
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
+  test0a[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test0a
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             remove branch test0a
+ | Executing:  .../../bin/gvn.sh bd test0a
+ |============================================================================
+Deleted branch test0a (was <HASH>).
+ '============================================================================
+
+
+ .============================================================================
+ |             list branches
+ | Executing:  .../../bin/gvn.sh bl
+ |============================================================================
+* [32mtest0[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  .../../bin/gvn.sh wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show contents of gvn status folder
+ | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
+ |============================================================================
+test1
+test2
+test3
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  git wl
+ |============================================================================
+.../test_worktree/git_user2  <HASH> [trunk]
+.../test_worktree/test0      <HASH> [test0]
+.../test_worktree/test1      <HASH> [test1]
+.../test_worktree/test2      <HASH> [test2]
+.../test_worktree/test4      <HASH> [test3]
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches in log
+ | Executing:  git lgab
+ |============================================================================
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mcreated test0 branch from trunk[m [1;35m (HEAD -> test0, origin/test0)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (origin/trunk, trunk, test1)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (test3, test2)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches
+ | Executing:  git bl
+ |============================================================================
+* [32mtest0[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtrunk[m
+  [31mremotes/origin/test0[m
+  [31mremotes/origin/trunk[m
+ '============================================================================
+
+
+ .============================================================================
+ |             update to latest data in test0 subfolder
+ | Executing:  svn up
+ |============================================================================
+Updating '.':
+A    file.html
+A    file.pl
+A    file.py
+A    file4.pl
+A    file5.pl
+A    file6.pl
+A    file7.pl
+A    file8.pl
+A    test_folder
+A    test_folder/file.html
+A    test_folder/file.py
+Updated to revision 8.
+ '============================================================================
+
+
+ .============================================================================
+ |             commit some changes
+ | Executing:  svn commit -m 'remote changes'
+ |============================================================================
+Sending        test_folder/file.html
+Sending        test_folder/file.py
+Transmitting file data ..done
+Committing transaction...
+Committed revision 9.
+ '============================================================================
+
+
+ .============================================================================
+ |             change to worktree test0
+ | Executing:  source .../../bin/cdw.sh test0
+ |============================================================================
+Found git worktree with existing subfolder
+branch:     trunk => test0
+base_paths: .../test_worktree/git_user2 => .../test_worktree/test0
+paths:      .../test_worktree/git_user2 => .../test_worktree/test0/
+.../test_worktree/test0
+ '============================================================================
+
+
+ .============================================================================
+ |             go into subfolder
+ | Executing:  cd test_folder
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             updated to see changes comming in from remote in worktree subfolder
+ | Executing:  .../../bin/gvn.sh up
+ |============================================================================
+	M	test_folder/file.html
+	M	test_folder/file.py
+r9 = <HASH> (refs/remotes/origin/trunk)
+Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Current branch test0 is up to date.
  '============================================================================
 

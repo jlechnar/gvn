@@ -355,20 +355,22 @@
 
         # --------------------------
         # diff
-        d = "diff"
-        dnc = "diff --no-color"
-        diffc = "diff --cached"
+        d = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -- \"$@\"' --"
+        dnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -N -- \"$@\"' --"
+        diffc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -c -- \"$@\"' --"
         dc = "diffc"
-        dcnc = "diff --cached --no-color"
+        dcnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -N -c -- \"$@\"' --"
 
-        diff-wordwise = "diff -w -U0 --word-diff-regex=[^[:space:]] --word-diff=color"
+        diff-wordwise-no-follow = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -- \"$@\"' --"
+
+        diff-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -- \"$@\"' --"
         diffw = "diff-wordwise"
         dw = "diff-wordwise"
-        dwc = "diff-wordwise --cached"
-        dwnc = "diff-wordwise --no-color"
-        dwcnc = "diff-wordwise --no-color --cached"
+        dwc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -- \"$@\"' --"
+        dwnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -N -- \"$@\"' --"
+        dwcnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -N -- \"$@\"' --"
 
-        diffw2 = "diff --ignore-all-space --ignore-blank-lines --ignore-space-change"
+        diffw2 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -i -- \"$@\"' --"
         dw2 = "diffw2"
 
         # ----------------------------
@@ -388,9 +390,9 @@
 
         diff-two-files-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
                 if [[ \"$#\" == \"4\" ]]; then \
-                  git diff-wordwise $1:$2 $3:$4; \
+                  git diff-wordwise-no-follow $1:$2 $3:$4; \
                 elif [[ \"$#\" == \"2\" ]]; then \
-                  git diff-wordwise $1 $2; \
+                  git diff-wordwise-no-follow $1 $2; \
                 else \
                   echo \"ERROR: options missing - check parameters git diff-two-files-wordwise {<rev1>} <file1> {<rev2>} <file2> or git diff-two-files-wordwise <file1> <file2>\"; \
                   exit -1; \
@@ -421,6 +423,22 @@
         nidiffw2 = "diff --ignore-all-space --ignore-blank-lines --ignore-space-change --no-index"
         nidw2 = "nidiffw2"
 
+        # not git diff indirection
+        ngdiff = "nidiff"
+        ngd = "nid"
+        ngdnc = "nidnc"
+        ngdiffw = "nidiffw"
+        ngdw = "nidw"
+        ngdwnc = "nidwnc"
+
+        ngdiffw2 = "nidiffw2"
+        ngdw2 = "nidiffw2"
+
+        # --------------------------
+        # add "* diff=nocomments" to .gitattributes for this to work !
+        diff-ignore-comments = "-c diff.nocomments.textconv=~/bin/bin_gvn/git_diff_filter_comments.sh diff"
+        dic = "diff-ignore-comments"
+
         # --------------------------
         diffall = "log --follow -p --"
         da = "diffall"
@@ -431,16 +449,16 @@
         # --------------------------
         # difftool -d = dtd - directory difftool
 
-        dtd  = "difftool -d"
-        dtdc = "difftool -d --cached"
+        dtd = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_difftool.sh -d -f -- \"$@\"' --"
+        dtdc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_difftool.sh -d -f -c -- \"$@\"' --"
         # version change
         dtdv = "!f(){ git difftool -d \"$1\"^..\"$1\"; };f"
 
         # --------------------------
         # difftool
 
-        dt = "difftool"
-        dtc = "difftool --cached"
+        dt = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_difftool.sh -f -- \"$@\"' --"
+        dtc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_difftool.sh -f -c -- \"$@\"' --"
 
         # --------------------------
         # diff prev
@@ -449,8 +467,9 @@
         diffp = "diff-prev"
         dp = "diff-prev"
 
-        diff-prev-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --no-color --format=format:%h \"$@\" | head -n 1`; git diff-wordwise $prev_hash^ \"$@\"' --"
-        dpw = "diff-prev-wordwise"
+        diff-wordwise-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --no-color --format=format:%h \"$@\" | head -n 1`; git diff-wordwise-no-follow $prev_hash^ \"$@\"' --"
+        dpw = "diff-wordwise-prev"
+        dwp = "diff-wordwise-prev"
 
         difftool-prev = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; prev_hash=`git log --no-color --format=format:%h \"$@\" | head -n 1`; git difftool $prev_hash^ \"$@\"' --"
         dtp = "difftool-prev"
@@ -628,6 +647,57 @@
         # ---------------------------
         # branch
 
+        get-current-branch = "rev-parse --abbrev-ref HEAD"
+
+        # branch_exists=`git for-each-ref --format=\"%(refname:short)\" | grep \"^$branch_name$\"`; 
+
+        check-branch-exists = "!bash -c '\
+                branch_name=$1; \
+                branch_exists=`git branch --no-color -a | sed -r \"s,^(\\s+|\\*|\\+)\\s+,,g\" | sed -r \"s,^remotes/,,g\" | grep \"^$branch_name$\"`; \
+                if [[ \"$branch_exists\" == \"\" ]]; then \
+                  echo 0; \
+                else \
+                  echo 1; \
+                fi' --"
+
+        check-branch-exists-remote = "!bash -c '\
+                branch_name=$1; \
+                branch_exists=`git branch --no-color -a | sed -r \"s,^(\\s+|\\*|\\+)\\s+,,g\" | grep \"^remotes/\" | sed -r \"s,^remotes/,,g\" | grep \"^$branch_name$\"`; \
+                if [[ \"$branch_exists\" == \"\" ]]; then \
+                  echo 0; \
+                else \
+                  echo 1; \
+                fi' --"
+
+        check-branch-exists-local = "!bash -c '\
+                branch_name=$1; \
+                branch_exists=`git branch --no-color -a | sed -r \"s,^(\\s+|\\*|\\+)\\s+,,g\" | grep -v \"^remotes/\" | sed -r \"s,^remotes/,,g\" | grep \"^$branch_name$\"`; \
+                if [[ \"$branch_exists\" == \"\" ]]; then \
+                  echo 0; \
+                else \
+                  echo 1; \
+                fi' --"
+
+
+        branch-list = "branch -a"
+        bl = "branch-list"
+        branch-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_add.sh \"$@\"' --"
+        ba = "branch-add"
+
+        branch-push-remote = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_push_remote.sh \"$@\"' --"
+        bpr = "branch-push-remote"
+        bp = "branch-push-remote"
+
+        branch-delete-local = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_delete.sh -l \"$@\"' --"
+        bdl = "branch-delete-local"
+
+        branch-delete-remote = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_delete.sh -r \"$@\"' --"
+        bdr = "branch-delete-remote"
+
+        branch-delete-all = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_delete.sh -r -l \"$@\"' --"
+        bda = "branch-delete-all"
+        bd = "branch-delete-all"
+
         branch-remote-to-local = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_checkout.sh \"$@\"' --"
         brtl = "branch-remote-to-local"
         bc = "branch-remote-to-local"
@@ -723,23 +793,30 @@
         worktree-list = "worktree list"
         wl = "worktree-list"
 
-        worktree-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_wa.sh \"$@\"' --"
+        worktree-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_worktree_add.sh \"$@\"' --"
         wa = "worktree-add"
 
         # echo -n could be used below for direct "git wg <worktreename> | cd"  => still does not work in shell ???! => gave up
-        worktree-get-path = "!bash -c ' \
-           worktree_name=$1; \
-           worktree_path=`git worktree list | grep \"\\[$worktree_name\\]\" | git awk1`; \
+        worktree-branch-get-path = "!bash -c ' \
+           branch_name=$1; \
+           worktree_path=`git worktree list | grep \"\\[$branch_name\\]\" | git awk1`; \
            echo \"$worktree_path\"; \
            ' --"
-        wg = "worktree-get-path"
+        wg = "worktree-branch-get-path"
+
+        worktree-get-branch = "!bash -c ' \
+           worktree_name=$1; \
+           worktree_path=`git worktree list | grep \"$worktree_name \" | git awk-1 | sed \"s,\\[,,g\" | sed \"s,\\],,g\"`; \
+           echo \"$worktree_path\"; \
+           ' --"
+        wgb = "worktree-get-branch"
 
         worktree-delete = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_worktree_delete.sh \"$@\"' --"
         wd = "worktree-delete"
 
-        worktree-get-path-git-dir = "!bash -c ' \
-           worktree_name=$1; \
-           worktree_path=`git wg $worktree_name`; \
+        worktree-branch-get-path-git-dir = "!bash -c ' \
+           branch_name=$1; \
+           worktree_path=`git wg $branch_name`; \
            if [ -f $worktree_path/.git ]; then \
              worktree_git_dir=`cat $worktree_path/.git | grep \"^gitdir: \" | git awk2`; \
              echo \"$worktree_git_dir\"; \
@@ -747,7 +824,7 @@
              echo \"$worktree_path/.git\"; \
            fi; \
            ' --"
-        wggd = "worktree-get-path-git-dir"
+        wggd = "worktree-branch_get-path-git-dir"
 
         stw = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_stw.sh -- \"$@\"' --"
         wst = "stw"
@@ -786,4 +863,112 @@
             fi; \
           fi' --"
         bb = "branch-backup"
+
+        # --------------------------
+        # tags
+        tag-add = "!bash -c ' \
+           tag=$1; \
+           commit_or_message_option=$2; \
+           message_or_message_option=$3; \
+           message=$4; \
+           if [[ \"$#\" == \"1\" ]]; then \
+             git tag -a $tag; \
+           elif [[ \"$#\" == \"2\" ]]; then \
+             git tag -a $tag $commit; \
+           elif [[ \"$#\" == \"3\" && "$commit_or_message_option" == "-m" ]]; then \
+             git tag -a $tag -m \"$message_or_message_option\"; \
+           elif [[ \"$#\" == \"4\" && "$message_or_message_option" == "-m" ]]; then \
+             git tag -a $tag $commit_or_message_option -m \"$message\"; \
+           else \
+             echo \"ERROR: Unexpected number of parameters, expected is {<tag_to_add>} or {<tag_to_add> <commit-ish>} or {<tag_to_add> -m <message>} or {<tag_to_add> <commit-ish> -m <message>}\"; \
+             exit -1; \
+           fi; \
+           ' --"
+        ta = "tag-add"
+
+        tag-delete-local = "!bash -c ' \
+           tag=$1; \
+           if [[ \"$#\" == \"1\" ]]; then \
+             git tag -d $tag; \
+           else \
+             echo \"ERROR: Unexpected number of parameters, expected is {<tag_to_delete>}\"; \
+             exit -1; \
+           fi; \
+           ' --"
+        tdl = "tag-delete-local"
+
+        tag-delete-remote = "!bash -c ' \
+           tag=$1; \
+           remote=$2; \
+           if [[ \"$#\" == \"2\" ]]; then \
+             git push --delete $remote $tag; \
+           else \
+             echo \"ERROR: Unexpected number of parameters, expected is {<tag> <remote>}\"; \
+             exit -1; \
+           fi; \
+           ' --"
+        tdr = "tag-delete-remote"
+
+        tag-delete-all = "!bash -c ' \
+           tag=$1; \
+           remote=$2; \
+           if [[ \"$#\" == \"1\" ]]; then \
+             git tag-delete-local $tag; \
+           elif [[ \"$#\" == \"2\" ]]; then \
+             git tag-delete-local $tag; \
+             git tag-delete-remote $tag $remote; \
+           else \
+             echo \"ERROR: Unexpected number of parameters, expected is {<tag>} or {<tag> <remote>}\"; \
+             exit -1; \
+           fi; \
+           ' --"
+        tda = "tag-delete-all"
+        td = "tag-delete-all"
+
+        tag-move = "!bash -c ' \
+           tag_name_old=$1; \
+           tag_name_new=$2; \
+           if [[ \"$#\" == \"2\" ]]; then \
+             git tag $tag_name_new $tag_name_old; \
+             git tag -d $tag_name_old; \
+           else \
+             echo \"ERROR: Unexpected number of parameters, expected is {<tag_old_name> <tag_new_name>}\"; \
+             exit -1; \
+           fi; \
+           ' --"
+        tm = "tag-move"
+
+        tag-list-local = "tag"
+        tll = "tag-list-local"
+
+        tag-list-remote = "!bash -c ' \
+           remote=$1; \
+           if [[ \"$#\" == \"1\" ]]; then \
+             git ls-remote --tags $remote; \
+           fi; \
+           ' --"
+        tlr = tag-list-remote
+
+        tag-list-all = "!bash -c ' \
+           remote=$1; \
+           git tag; \
+           if [[ \"$#\" == \"1\" ]]; then \
+             git tlr $remote; \
+           fi; \
+           ' --"
+        tla = "tag-list-all"
+        tl = "tag-list-all"
+
+        tag-push-remote = "!bash -c ' \
+           tag=$1; \
+           remote=$2; \
+           if [[ \"$#\" == \"2\" ]]; then \
+             git push $remote tag $tag; \
+           else \
+             echo \"ERROR: Unexpected number of parameters, expected is {<tag> <remote>}\"; \
+             exit -1; \
+           fi; \
+           ' --"
+        tpr = "tag-push-remote"
+        tp = "tag-push-remote"
 

@@ -10,6 +10,9 @@ if [[ "$GVN_DEBUG" == "1" ]]; then
 fi
 set -e
 
+cmd=$0
+is_gvn=`basename $cmd | grep ^gvn_ || true`
+
 usage() { echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <-n: additional newline> ..." 1>&2; exit 1; }
 
 opts="--graph --abbrev=9 --abbrev-commit --decorate"
@@ -45,50 +48,81 @@ while getopts "pcafN" o; do
 done
 shift $((OPTIND-1))
 
+
 opts_less=-FSRX
 #opts_less=-SRX
 
-args=$@
+args="$@"
 root=`git root`
 
-if [[ "$args" == "" ]]; then
-  if [[ "$all" == "1" ]]; then
-    args=""
-  else
-    args=$root
+
+if [[ "$all" == "0" ]]; then
+  cmd="git log -n 1 $opts --follow $args"
+  set +e
+  t=`eval $cmd 2>&1`
+  set -e
+  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+    args="$args $root"
   fi
+  opts="$opts --follow"
+fi
+
+
+wt="--work-tree=$root"
+if [[ "$root" == "" ]]; then
+  wt=""
+fi
+
+if [[ $is_gvn ]]; then
+  hashfmt="<hash>%H</hash> "
+  annotate="gvn cmd-annotate"
+  end_cmd=""
+else
+  hashfmt=""
+  annotate="grep ^"
+  end_cmd="echo ''"
 fi
 
 if [[ "$comments" == "1" ]]; then
   if [[ "$pager" == "1" ]]; then
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
-      --format=format:"%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
+      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
       $args | \
-      gvn cmd-annotate \
-      | less $opts_less
+      grep -v '^...$' | \
+      $annotate | \
+      less $opts_less
   else
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
-      --format=format:"%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
+      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
       $args | \
-      gvn cmd-annotate
+      grep -v '^...$' | \
+      $annotate
+    #eval $end_cmd
   fi
 else
   if [[ "$pager" == "1" ]]; then
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
-      --format=format:"%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
+      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
       $args | \
-      gvn cmd-annotate \
-      | less $opts_less
+      grep -v '^...$' | \
+      $annotate | \
+      grep -v '^$' | \
+      less $opts_less
   else
-    git --work-tree=$root --no-pager log $opts \
+    git $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
-      --format=format:"%C(03)%>|(16)%h%C(reset) <hash>%H</hash> %C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
+      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
       $args | \
-      gvn cmd-annotate
+      grep -v '^...$' | \
+      $annotate |
+      grep -v '^$'
+    #eval $end_cmd
   fi
 fi
+
+
 
 

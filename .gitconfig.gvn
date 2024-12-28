@@ -218,17 +218,11 @@
         gvn-logf = "svn log -v"
         gvn-logo = "svn log --oneline"
 
-        gvn-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                git svn dcommit; \
-                gvn update-mapping-database; \
-                ' --"
+        gvn-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_commit.sh \"$@\"' --"
         gvn-co = "gvn-commit"
 
 
-        gvn-fetch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                git svn fetch; \
-                gvn update-mapping-database; \
-                ' --"
+        gvn-fetch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_fetch.sh \"$@\"' --"
         gvn-fe = "gvn-fetch"
         gvn-get = "gvn-fetch"
 
@@ -241,6 +235,9 @@
         gvn-convert-hashes = "gvn-cmd-convert-hashes"
 
         # ------
+        gvn-branch-list = "branch-list"
+        gvn-bl = "gvn-branch-list"
+
         # returns current git-svn branch name
         gvn-currentbranch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_currentbranch.sh' --"
 
@@ -283,7 +280,7 @@
 
         # --------
         # create git-svn branch of current branch that must be a a valid git-svn branch name matching with the git branch name
-        # futhermore no local changes must be there
+        # furthermore no local changes must be there
         gvn-branch = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
                 set -e; \
                 gvn check-for-branch-name-match; \
@@ -294,60 +291,31 @@
                 git checkout -b \"$1\" $remote' --"
 
         # -------
-        gvn-rebase = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                head_svn=`git svn log --oneline --show-commit --no-abbrev --limit 1 | git awk3`; \
-                head_git=`git rev-parse HEAD`; \
-                is_git_on_top_of_svn_head=`git rev-list $head_git | grep $(git rev-parse $head_svn)`; \
-                if [[ \"\" == \"\" ]]; then \
-                  datetime=`date +'%Y_%m_%d-%H_%M_%S'`; \
-                  git tag -a gvn_rebase_${datetime}_git_${head_git}_to_svn_${head_svn} -m \"git svn rebase tag $datetime (git $head_git rebased to svn $head_svn)\"; \
-                  echo \"Created Tag gvn_rebase_$datetime_${datetime}_git_${head_git}_to_svn_${head_svn}\"; \
-                fi; \
-                git svn rebase' --"
+        # local branch operations - none svn related
+        gvn-branch-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_branch_add.sh \"$@\"' --"
+        gvn-ba = "gvn-branch-add"
+
+        # only local supported !
+        gvn-branch-delete = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_branch_delete.sh -l \"$@\"' --"
+        gvn-bd = "gvn-branch-delete"
 
         # -------
-        gvn-update = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                set -e; \
-                gvn check-for-branch-name-match; \
-                git check-for-unexpected-local-changes; \
-                gvn fetch; \
-                gvn rebase' --"
+        gvn-rebase = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_rebase.sh \"$@\"' --"
+
+        # -------
+        gvn-update = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_update_commit.sh \"$@\"' --"
         gvn-up = "gvn-update"
         gvn-u = "gvn-update"
-
-        # -------
-        gvn-update-stash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                set -e; \
-                gvn check-for-branch-name-match; \
-                changes=`git stash-local-changes-if-any`; \
-                gvn fetch; \
-                gvn rebase; \
-                if [[ \"$changes\" != \"\" ]]; then \
-                  git stash pop; \
-                fi' --"
-        gvn-us = "gvn-update-stash"
-        gvn-ups = "gvn-update-stash"
-        gvn-su = "gvn-update-stash"
         #
-        gvn-update-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                set -e; \
-                gvn check-for-branch-name-match; \
-                git check-for-unexpected-local-changes; \
-                gvn fetch; \
-                gvn rebase; \
-                gvn commit' --"
+        gvn-stash-update-unstash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_update_commit.sh -s \"$@\"' --"
+        gvn-us = "gvn-stash-update-unstash"
+        gvn-ups = "gvn-stash-update-unstash"
+        gvn-su = "gvn-stash-update-unstash"
+        #
+        gvn-update-commit = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_update_commit.sh -c \"$@\"' --"
         gvn-uc = "gvn-update-commit"
         #
-        gvn-stash-update-commit-unstash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                set -e; \
-                gvn check-for-branch-name-match; \
-                changes=`git stash-local-changes-if-any`; \
-                gvn fetch; \
-                gvn rebase; \
-                gvn commit; \
-                if [[ \"$changes\" != \"\" ]]; then \
-                  git stash pop; \
-                fi' --"
+        gvn-stash-update-commit-unstash = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_update_commit.sh -c -s \"$@\"' --"
         gvn-ucs = "gvn-stash-update-commit-unstash"
         gvn-suc = "gvn-stash-update-commit-unstash"
 
@@ -415,25 +383,25 @@
         # --------------------------
         # worktree
 
-        gvn-worktree-delete = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_wd.sh \"$@\"' --"
+        gvn-worktree-delete = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_worktree_delete.sh \"$@\"' --"
         gvn-wd = "gvn-worktree-delete"
 
         gvn-wl = "wl"
 
         gvn-wg = "wg"
 
-        gvn-worktree-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_wa.sh \"$@\"' --"
+        gvn-worktree-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_worktree_add.sh \"$@\"' --"
         gvn-wa = "gvn-worktree-add"
 
-        gvn-worktree-rebase="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_wr.sh \"$@\"' --"
+        gvn-worktree-rebase="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_worktree_rebase.sh \"$@\"' --"
         gvn-wrebase = "gvn-worktree-rebase"
         gvn-wr = "gvn-worktree-rebase"
 
-        gvn-worktree-merge="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_wm.sh \"$@\"' --"
+        gvn-worktree-merge="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_worktree_merge.sh \"$@\"' --"
         gvn-wmerge = "gvn-worktree-merge"
         gvn-wm = "gvn-worktree-merge"
 
-        gvn-worktree-sync="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_ws.sh \"$@\"' --"
+        gvn-worktree-sync="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_worktree_sync.sh \"$@\"' --"
         gvn-wsync = "gvn-worktree-sync"
         gvn-ws = "gvn-worktree-sync"
 

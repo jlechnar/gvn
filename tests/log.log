@@ -941,7 +941,6 @@ Title:  [31minitial commit[m
         <GIT_SVN_HASH>
         [m
 A	.svnignore
-
 ------------------------------------------------
  '============================================================================
 
@@ -1009,7 +1008,6 @@ Title:  [31madd_test9/afile[m
         <GIT_SVN_HASH>
         [m
 A	test9/afile
-
 ------------------------------------------------
  '============================================================================
 
@@ -1121,7 +1119,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -1146,9 +1143,8 @@ A	test9/afile
 [31m|[m A	test9/bfile
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
-  
-  A	test9/afile
-
+[31m|[m 
+[31m|[m A	test9/afile
  '============================================================================
 
 
@@ -1240,7 +1236,6 @@ A	test9/afile
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
-
  '============================================================================
 
 
@@ -1269,10 +1264,9 @@ A	test9/afile
 [31m|[m [m
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
-  [m
-
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
+[31m|[m [m
  '============================================================================
 
 
@@ -1398,7 +1392,6 @@ A	test9/afile
   [m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -1435,12 +1428,11 @@ A	test9/afile
 [31m|[m A	test9/bfile
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
-  [m
-  
-  A	test9/afile
-
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test9/afile
  '============================================================================
 
 
@@ -1448,7 +1440,7 @@ A	test9/afile
  |             lb
  | Executing:  .../../bin/gvn.sh lb
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -1459,7 +1451,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -1470,7 +1462,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -1481,7 +1473,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -1492,7 +1484,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -1503,7 +1495,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -1514,7 +1506,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         file://.../test_log/server1/repo/trunk@12
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -1525,7 +1517,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         file://.../test_log/server1/repo/trunk@11
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -1536,7 +1528,7 @@ Title:  [31madd_test5/test6/file.h[m
         file://.../test_log/server1/repo/trunk@10
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -1547,7 +1539,7 @@ Title:  [31madd_test5/test6/file/bar[m
         file://.../test_log/server1/repo/trunk@9
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -1558,7 +1550,7 @@ Title:  [31madd_test5/file.i[m
         file://.../test_log/server1/repo/trunk@8
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -1569,7 +1561,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         file://.../test_log/server1/repo/trunk@7
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -1580,7 +1572,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         file://.../test_log/server1/repo/trunk@6
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -1591,7 +1583,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         file://.../test_log/server1/repo/trunk@5
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -1602,7 +1594,7 @@ Title:  [31madd_test1/test2/file.d[m
         file://.../test_log/server1/repo/trunk@4
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -1613,7 +1605,7 @@ Title:  [31madd_test1/foo.bar[m
         file://.../test_log/server1/repo/trunk@3
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -1624,7 +1616,7 @@ Title:  [31madd_test1/file.e[m
         file://.../test_log/server1/repo/trunk@2
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -1635,6 +1627,7 @@ Title:  [31minitial commit[m
         file://.../test_log/server1/repo/trunk@1
         <GIT_SVN_HASH>
         [m
+------------------------------------------------
  '============================================================================
 
 
@@ -1642,7 +1635,7 @@ Title:  [31minitial commit[m
  |             lb
  | Executing:  .../../bin/gvn.sh lb test9
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -1653,7 +1646,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -1664,7 +1657,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -1675,7 +1668,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -1686,7 +1679,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -1697,6 +1690,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
+------------------------------------------------
  '============================================================================
 
 
@@ -1704,7 +1698,7 @@ Title:  [31madd_test9/afile[m
  |             lbf
  | Executing:  .../../bin/gvn.sh lbf
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -1717,7 +1711,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -1730,7 +1724,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -1743,7 +1737,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -1756,7 +1750,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -1769,7 +1763,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -1782,7 +1776,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -1795,7 +1789,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -1808,7 +1802,7 @@ Title:  [31madd_test5/test6/file.h[m
         [m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -1821,7 +1815,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -1834,7 +1828,7 @@ Title:  [31madd_test5/file.i[m
         [m
 A	test5/file.i
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -1847,7 +1841,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         [m
 A	test1/test2/test3/test4/file.b
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -1860,7 +1854,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         [m
 A	test1/test2/test3/test4/file.a
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -1873,7 +1867,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         [m
 A	test1/test2/test3/file.c
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -1886,7 +1880,7 @@ Title:  [31madd_test1/test2/file.d[m
         [m
 A	test1/test2/file.d
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -1899,7 +1893,7 @@ Title:  [31madd_test1/foo.bar[m
         [m
 A	test1/foo.bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -1912,7 +1906,7 @@ Title:  [31madd_test1/file.e[m
         [m
 A	test1/file.e
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -1925,6 +1919,7 @@ Title:  [31minitial commit[m
         [m
 A	.svnignore
 
+------------------------------------------------
  '============================================================================
 
 
@@ -1932,7 +1927,7 @@ A	.svnignore
  |             lbf
  | Executing:  .../../bin/gvn.sh lbf test9
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -1945,7 +1940,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -1958,7 +1953,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -1971,7 +1966,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -1984,7 +1979,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -1997,6 +1992,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
+------------------------------------------------
  '============================================================================
 
 
@@ -2107,7 +2103,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;34mr1 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -2132,9 +2127,8 @@ A	test9/afile
 [31m|[m A	test9/bfile
 [31m|[m 
 * [33m     <HASH>[m [1;34mr13[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
-  
-  A	test9/afile
-
+[31m|[m 
+[31m|[m A	test9/afile
  '============================================================================
 
 
@@ -2210,6 +2204,7 @@ A	test9/afile
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
+
  '============================================================================
 
 
@@ -2234,9 +2229,10 @@ A	test9/afile
 [31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@14 <GIT_SVN_HASH>
 [31m|[m [m
 * [33m     <HASH>[m [1;34mr13[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
-  [m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
+[31m|[m [m
+
  '============================================================================
 
 
@@ -2399,11 +2395,11 @@ A	test9/afile
 [31m|[m A	test9/bfile
 [31m|[m 
 * [33m     <HASH>[m [1;34mr13[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
-  [m
-  
-  A	test9/afile
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test9/afile
 
  '============================================================================
 
@@ -2588,6 +2584,74 @@ Title:  [31minitial commit[m
 
         [36mgit-svn-id:
         file://.../test_log/server1/repo/trunk@1
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+ '============================================================================
+
+
+ .============================================================================
+ |             lb
+ | Executing:  git lb .
+ |============================================================================
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.b[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@7
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.a[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@6
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/file.c[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@5
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/file.d[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@4
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/foo.bar[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@3
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/file.e[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@2
         <GIT_SVN_HASH>
         [m
 ------------------------------------------------
@@ -3085,7 +3149,85 @@ Title:  [31minitial commit[m
         <GIT_SVN_HASH>
         [m
 A	.svnignore
+------------------------------------------------
+ '============================================================================
 
+
+ .============================================================================
+ |             lbf
+ | Executing:  git lbf .
+ |============================================================================
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.b[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@7
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/test3/test4/file.b
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.a[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@6
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/test3/test4/file.a
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/file.c[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@5
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/test3/file.c
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/file.d[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@4
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/file.d
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/foo.bar[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@3
+        <GIT_SVN_HASH>
+        [m
+A	test1/foo.bar
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/file.e[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@2
+        <GIT_SVN_HASH>
+        [m
+A	test1/file.e
 ------------------------------------------------
  '============================================================================
 
@@ -3141,7 +3283,6 @@ Title:  [31madd_test1/test2/file.d[m
         <GIT_SVN_HASH>
         [m
 A	test1/test2/file.d
-
 ------------------------------------------------
  '============================================================================
 
@@ -3353,7 +3494,6 @@ Title:  [31minitial commit[m
         <GIT_SVN_HASH>
         [m
 A	.svnignore
-
 ------------------------------------------------
  '============================================================================
 
@@ -3421,7 +3561,6 @@ Title:  [31madd_test5/file.i[m
         <GIT_SVN_HASH>
         [m
 A	test5/file.i
-
 ------------------------------------------------
  '============================================================================
 
@@ -3447,6 +3586,19 @@ A	test5/file.i
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             lgb
+ | Executing:  git lgb .
+ |============================================================================
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
  '============================================================================
 
 
@@ -3568,7 +3720,36 @@ A	test5/file.i
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
+ '============================================================================
 
+
+ .============================================================================
+ |             lgbf
+ | Executing:  git lgbf .
+ |============================================================================
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.b
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.a
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/test3/file.c
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/file.d
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/foo.bar
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/file.e
  '============================================================================
 
 
@@ -3589,9 +3770,8 @@ A	test5/file.i
 [31m|[m A	test1/test2/test3/file.c
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
-  
-  A	test1/test2/file.d
-
+[31m|[m 
+[31m|[m A	test1/test2/file.d
  '============================================================================
 
 
@@ -3666,7 +3846,6 @@ A	test5/file.i
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -3691,9 +3870,8 @@ A	test5/file.i
 [31m|[m A	test5/test6/file/bar
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test5/file.i[m [1;35m[m
-  
-  A	test5/file.i
-
+[31m|[m 
+[31m|[m A	test5/file.i
  '============================================================================
 
 
@@ -3785,7 +3963,42 @@ A	test5/file.i
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
+ '============================================================================
 
+
+ .============================================================================
+ |             lgbl
+ | Executing:  git lgbl .
+ |============================================================================
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@7 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@6 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@5 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@3 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@2 <GIT_SVN_HASH>
+[31m|[m [m
  '============================================================================
 
 
@@ -3809,10 +4022,9 @@ A	test5/file.i
 [31m|[m [m
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
-  [m
-
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
+[31m|[m [m
  '============================================================================
 
 
@@ -3904,7 +4116,6 @@ A	test5/file.i
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
-
  '============================================================================
 
 
@@ -3933,10 +4144,9 @@ A	test5/file.i
 [31m|[m [m
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test5/file.i[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
-  [m
-
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
+[31m|[m [m
  '============================================================================
 
 
@@ -4062,7 +4272,54 @@ A	test5/file.i
   [m
   
   A	.svnignore
+ '============================================================================
 
+
+ .============================================================================
+ |             lgblf
+ | Executing:  git lgblf .
+ |============================================================================
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@7 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.b
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@6 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.a
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@5 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/test3/file.c
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/file.d
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@3 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/foo.bar
+[31m|[m 
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@2 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/file.e
  '============================================================================
 
 
@@ -4092,12 +4349,11 @@ A	test5/file.i
 [31m|[m A	test1/test2/test3/file.c
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
-  [m
-  
-  A	test1/test2/file.d
-
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/file.d
  '============================================================================
 
 
@@ -4223,7 +4479,6 @@ A	test5/file.i
   [m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -4260,12 +4515,11 @@ A	test5/file.i
 [31m|[m A	test5/test6/file/bar
 [31m|[m 
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test5/file.i[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
-  [m
-  
-  A	test5/file.i
-
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test5/file.i
  '============================================================================
 
 
@@ -4273,7 +4527,7 @@ A	test5/file.i
  |             lb
  | Executing:  .../../bin/gvn.sh lb
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -4284,7 +4538,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -4295,7 +4549,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -4306,7 +4560,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -4317,7 +4571,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -4328,7 +4582,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -4339,7 +4593,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         file://.../test_log/server1/repo/trunk@12
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -4350,7 +4604,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         file://.../test_log/server1/repo/trunk@11
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -4361,7 +4615,7 @@ Title:  [31madd_test5/test6/file.h[m
         file://.../test_log/server1/repo/trunk@10
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -4372,7 +4626,7 @@ Title:  [31madd_test5/test6/file/bar[m
         file://.../test_log/server1/repo/trunk@9
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -4383,7 +4637,7 @@ Title:  [31madd_test5/file.i[m
         file://.../test_log/server1/repo/trunk@8
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -4394,7 +4648,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         file://.../test_log/server1/repo/trunk@7
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -4405,7 +4659,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         file://.../test_log/server1/repo/trunk@6
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -4416,7 +4670,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         file://.../test_log/server1/repo/trunk@5
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -4427,7 +4681,7 @@ Title:  [31madd_test1/test2/file.d[m
         file://.../test_log/server1/repo/trunk@4
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -4438,7 +4692,7 @@ Title:  [31madd_test1/foo.bar[m
         file://.../test_log/server1/repo/trunk@3
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -4449,7 +4703,7 @@ Title:  [31madd_test1/file.e[m
         file://.../test_log/server1/repo/trunk@2
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -4460,17 +4714,144 @@ Title:  [31minitial commit[m
         file://.../test_log/server1/repo/trunk@1
         <GIT_SVN_HASH>
         [m
+------------------------------------------------
  '============================================================================
 
 
  .============================================================================
  |             lb
- | Executing:  .../../bin/gvn.sh lb test9
+ | Executing:  .../../bin/gvn.sh lb .
  |============================================================================
-fatal: ambiguous argument 'test9': unknown revision or path not in the working tree.
-Use '--' to separate paths from revisions, like this:
-'git <command> [<revision>...] -- [<file>...]'
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr7 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.b[m
 
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@7
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr6 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.a[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@6
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr5 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/file.c[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@5
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr4 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/file.d[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@4
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr3 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/foo.bar[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@3
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr2 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/file.e[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@2
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+ '============================================================================
+
+
+ .============================================================================
+ |             lb
+ | Executing:  .../../bin/gvn.sh lb ../test9
+ |============================================================================
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
+SVN:    [1;34mr17[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/foo[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@17
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr16[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/d.file[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@16
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr15[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/c.file[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@15
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr14[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/bfile[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@14
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr13[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/afile[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@13
+        <GIT_SVN_HASH>
+        [m
+------------------------------------------------
  '============================================================================
 
 
@@ -4478,7 +4859,7 @@ Use '--' to separate paths from revisions, like this:
  |             lb
  | Executing:  .../../bin/gvn.sh lb ../
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -4489,7 +4870,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -4500,7 +4881,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -4511,7 +4892,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -4522,7 +4903,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -4533,7 +4914,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -4544,7 +4925,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         file://.../test_log/server1/repo/trunk@12
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -4555,7 +4936,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         file://.../test_log/server1/repo/trunk@11
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -4566,7 +4947,7 @@ Title:  [31madd_test5/test6/file.h[m
         file://.../test_log/server1/repo/trunk@10
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -4577,7 +4958,7 @@ Title:  [31madd_test5/test6/file/bar[m
         file://.../test_log/server1/repo/trunk@9
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -4588,7 +4969,7 @@ Title:  [31madd_test5/file.i[m
         file://.../test_log/server1/repo/trunk@8
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -4599,7 +4980,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         file://.../test_log/server1/repo/trunk@7
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -4610,7 +4991,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         file://.../test_log/server1/repo/trunk@6
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -4621,7 +5002,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         file://.../test_log/server1/repo/trunk@5
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -4632,7 +5013,7 @@ Title:  [31madd_test1/test2/file.d[m
         file://.../test_log/server1/repo/trunk@4
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -4643,7 +5024,7 @@ Title:  [31madd_test1/foo.bar[m
         file://.../test_log/server1/repo/trunk@3
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -4654,7 +5035,7 @@ Title:  [31madd_test1/file.e[m
         file://.../test_log/server1/repo/trunk@2
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -4665,6 +5046,7 @@ Title:  [31minitial commit[m
         file://.../test_log/server1/repo/trunk@1
         <GIT_SVN_HASH>
         [m
+------------------------------------------------
  '============================================================================
 
 
@@ -4672,7 +5054,7 @@ Title:  [31minitial commit[m
  |             lb
  | Executing:  .../../bin/gvn.sh lb ../test5
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -4683,7 +5065,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         file://.../test_log/server1/repo/trunk@12
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -4694,7 +5076,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         file://.../test_log/server1/repo/trunk@11
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -4705,7 +5087,7 @@ Title:  [31madd_test5/test6/file.h[m
         file://.../test_log/server1/repo/trunk@10
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -4716,7 +5098,7 @@ Title:  [31madd_test5/test6/file/bar[m
         file://.../test_log/server1/repo/trunk@9
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -4727,6 +5109,7 @@ Title:  [31madd_test5/file.i[m
         file://.../test_log/server1/repo/trunk@8
         <GIT_SVN_HASH>
         [m
+------------------------------------------------
  '============================================================================
 
 
@@ -4734,7 +5117,7 @@ Title:  [31madd_test5/file.i[m
  |             lbf
  | Executing:  .../../bin/gvn.sh lbf
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -4747,7 +5130,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -4760,7 +5143,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -4773,7 +5156,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -4786,7 +5169,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -4799,7 +5182,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -4812,7 +5195,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -4825,7 +5208,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -4838,7 +5221,7 @@ Title:  [31madd_test5/test6/file.h[m
         [m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -4851,7 +5234,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -4864,7 +5247,7 @@ Title:  [31madd_test5/file.i[m
         [m
 A	test5/file.i
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -4877,7 +5260,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         [m
 A	test1/test2/test3/test4/file.b
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -4890,7 +5273,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         [m
 A	test1/test2/test3/test4/file.a
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -4903,7 +5286,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         [m
 A	test1/test2/test3/file.c
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -4916,7 +5299,7 @@ Title:  [31madd_test1/test2/file.d[m
         [m
 A	test1/test2/file.d
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -4929,7 +5312,7 @@ Title:  [31madd_test1/foo.bar[m
         [m
 A	test1/foo.bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -4942,7 +5325,7 @@ Title:  [31madd_test1/file.e[m
         [m
 A	test1/file.e
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -4955,17 +5338,166 @@ Title:  [31minitial commit[m
         [m
 A	.svnignore
 
+------------------------------------------------
  '============================================================================
 
 
  .============================================================================
  |             lbf
- | Executing:  .../../bin/gvn.sh lbf test9
+ | Executing:  .../../bin/gvn.sh lbf .
  |============================================================================
-fatal: ambiguous argument 'test9': unknown revision or path not in the working tree.
-Use '--' to separate paths from revisions, like this:
-'git <command> [<revision>...] -- [<file>...]'
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr7 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.b[m
 
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@7
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/test3/test4/file.b
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr6 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/test4/file.a[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@6
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/test3/test4/file.a
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr5 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/test3/file.c[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@5
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/test3/file.c
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr4 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/test2/file.d[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@4
+        <GIT_SVN_HASH>
+        [m
+A	test1/test2/file.d
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr3 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/foo.bar[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@3
+        <GIT_SVN_HASH>
+        [m
+A	test1/foo.bar
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr2 [m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test1/file.e[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@2
+        <GIT_SVN_HASH>
+        [m
+A	test1/file.e
+
+------------------------------------------------
+ '============================================================================
+
+
+ .============================================================================
+ |             lbf
+ | Executing:  .../../bin/gvn.sh lbf ../test9
+ |============================================================================
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
+SVN:    [1;34mr17[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/foo[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@17
+        <GIT_SVN_HASH>
+        [m
+A	test9/foo
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr16[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/d.file[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@16
+        <GIT_SVN_HASH>
+        [m
+A	test9/d.file
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr15[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/c.file[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@15
+        <GIT_SVN_HASH>
+        [m
+A	test9/c.file
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr14[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/bfile[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@14
+        <GIT_SVN_HASH>
+        [m
+A	test9/bfile
+
+------------------------------------------------
+Commit: [33m<HASH>[m [1;35m[m
+SVN:    [1;34mr13[m
+Author: [2;34m<user>         [m
+Date:   <DATE_TIME>
+Title:  [31madd_test9/afile[m
+
+        [36mgit-svn-id:
+        file://.../test_log/server1/repo/trunk@13
+        <GIT_SVN_HASH>
+        [m
+A	test9/afile
+
+------------------------------------------------
  '============================================================================
 
 
@@ -4973,7 +5505,7 @@ Use '--' to separate paths from revisions, like this:
  |             lbf
  | Executing:  .../../bin/gvn.sh lbf ../
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -4986,7 +5518,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -4999,7 +5531,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -5012,7 +5544,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -5025,7 +5557,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -5038,7 +5570,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -5051,7 +5583,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -5064,7 +5596,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -5077,7 +5609,7 @@ Title:  [31madd_test5/test6/file.h[m
         [m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -5090,7 +5622,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -5103,7 +5635,7 @@ Title:  [31madd_test5/file.i[m
         [m
 A	test5/file.i
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -5116,7 +5648,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         [m
 A	test1/test2/test3/test4/file.b
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -5129,7 +5661,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         [m
 A	test1/test2/test3/test4/file.a
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -5142,7 +5674,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         [m
 A	test1/test2/test3/file.c
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -5155,7 +5687,7 @@ Title:  [31madd_test1/test2/file.d[m
         [m
 A	test1/test2/file.d
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -5168,7 +5700,7 @@ Title:  [31madd_test1/foo.bar[m
         [m
 A	test1/foo.bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -5181,7 +5713,7 @@ Title:  [31madd_test1/file.e[m
         [m
 A	test1/file.e
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -5194,6 +5726,7 @@ Title:  [31minitial commit[m
         [m
 A	.svnignore
 
+------------------------------------------------
  '============================================================================
 
 
@@ -5201,7 +5734,7 @@ A	.svnignore
  |             lbf
  | Executing:  .../../bin/gvn.sh lbf ../test5
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -5214,7 +5747,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -5227,7 +5760,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -5240,7 +5773,7 @@ Title:  [31madd_test5/test6/file.h[m
         [m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -5253,7 +5786,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -5266,6 +5799,7 @@ Title:  [31madd_test5/file.i[m
         [m
 A	test5/file.i
 
+------------------------------------------------
  '============================================================================
 
 
@@ -5295,12 +5829,26 @@ A	test5/file.i
 
  .============================================================================
  |             lgb
- | Executing:  .../../bin/gvn.sh lgb test9
+ | Executing:  .../../bin/gvn.sh lgb .
  |============================================================================
-fatal: ambiguous argument 'test9': unknown revision or path not in the working tree.
-Use '--' to separate paths from revisions, like this:
-'git <command> [<revision>...] -- [<file>...]'
+* [33m     <HASH>[m [1;34mr7 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+* [33m     <HASH>[m [1;34mr6 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+* [33m     <HASH>[m [1;34mr5 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+* [33m     <HASH>[m [1;34mr4 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
+ '============================================================================
 
+
+ .============================================================================
+ |             lgb
+ | Executing:  .../../bin/gvn.sh lgb ../test9
+ |============================================================================
+* [33m     <HASH>[m [1;34mr17[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/foo[m [1;35m (HEAD -> trunk, git-svn)[m
+* [33m     <HASH>[m [1;34mr16[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/d.file[m [1;35m[m
+* [33m     <HASH>[m [1;34mr15[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/c.file[m [1;35m[m
+* [33m     <HASH>[m [1;34mr14[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/bfile[m [1;35m[m
+* [33m     <HASH>[m [1;34mr13[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
  '============================================================================
 
 
@@ -5411,18 +5959,62 @@ Use '--' to separate paths from revisions, like this:
 * [33m     <HASH>[m [1;34mr1 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
  .============================================================================
  |             lgfb
- | Executing:  .../../bin/gvn.sh lgfb test9
+ | Executing:  .../../bin/gvn.sh lgfb .
  |============================================================================
-fatal: ambiguous argument 'test9': unknown revision or path not in the working tree.
-Use '--' to separate paths from revisions, like this:
-'git <command> [<revision>...] -- [<file>...]'
+* [33m     <HASH>[m [1;34mr7 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.b
+[31m|[m 
+* [33m     <HASH>[m [1;34mr6 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.a
+[31m|[m 
+* [33m     <HASH>[m [1;34mr5 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/test3/file.c
+[31m|[m 
+* [33m     <HASH>[m [1;34mr4 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/test2/file.d
+[31m|[m 
+* [33m     <HASH>[m [1;34mr3 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/foo.bar
+[31m|[m 
+* [33m     <HASH>[m [1;34mr2 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
+[31m|[m 
+[31m|[m A	test1/file.e
+ '============================================================================
 
+
+ .============================================================================
+ |             lgfb
+ | Executing:  .../../bin/gvn.sh lgfb ../test9
+ |============================================================================
+* [33m     <HASH>[m [1;34mr17[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/foo[m [1;35m (HEAD -> trunk, git-svn)[m
+[31m|[m 
+[31m|[m A	test9/foo
+[31m|[m 
+* [33m     <HASH>[m [1;34mr16[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/d.file[m [1;35m[m
+[31m|[m 
+[31m|[m A	test9/d.file
+[31m|[m 
+* [33m     <HASH>[m [1;34mr15[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/c.file[m [1;35m[m
+[31m|[m 
+[31m|[m A	test9/c.file
+[31m|[m 
+* [33m     <HASH>[m [1;34mr14[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/bfile[m [1;35m[m
+[31m|[m 
+[31m|[m A	test9/bfile
+[31m|[m 
+* [33m     <HASH>[m [1;34mr13[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
+[31m|[m 
+[31m|[m A	test9/afile
  '============================================================================
 
 
@@ -5497,7 +6089,6 @@ Use '--' to separate paths from revisions, like this:
 * [33m     <HASH>[m [1;34mr1 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -5522,9 +6113,8 @@ Use '--' to separate paths from revisions, like this:
 [31m|[m A	test5/test6/file/bar
 [31m|[m 
 * [33m     <HASH>[m [1;34mr8 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test5/file.i[m [1;35m[m
-  
-  A	test5/file.i
-
+[31m|[m 
+[31m|[m A	test5/file.i
  '============================================================================
 
 
@@ -5600,16 +6190,66 @@ Use '--' to separate paths from revisions, like this:
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
+
  '============================================================================
 
 
  .============================================================================
  |             lglb
- | Executing:  .../../bin/gvn.sh lglb test9
+ | Executing:  .../../bin/gvn.sh lglb .
  |============================================================================
-fatal: ambiguous argument 'test9': unknown revision or path not in the working tree.
-Use '--' to separate paths from revisions, like this:
-'git <command> [<revision>...] -- [<file>...]'
+* [33m     <HASH>[m [1;34mr7 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@7 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr6 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@6 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr5 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@5 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr4 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr3 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@3 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr2 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@2 <GIT_SVN_HASH>
+[31m|[m [m
+
+ '============================================================================
+
+
+ .============================================================================
+ |             lglb
+ | Executing:  .../../bin/gvn.sh lglb ../test9
+ |============================================================================
+* [33m     <HASH>[m [1;34mr17[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/foo[m [1;35m (HEAD -> trunk, git-svn)[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@17 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr16[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/d.file[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@16 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr15[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/c.file[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@15 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr14[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/bfile[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@14 <GIT_SVN_HASH>
+[31m|[m [m
+* [33m     <HASH>[m [1;34mr13[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
+[31m|[m [m
 
  '============================================================================
 
@@ -5686,6 +6326,7 @@ Use '--' to separate paths from revisions, like this:
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
+
  '============================================================================
 
 
@@ -5710,9 +6351,10 @@ Use '--' to separate paths from revisions, like this:
 [31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@9 <GIT_SVN_HASH>
 [31m|[m [m
 * [33m     <HASH>[m [1;34mr8 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test5/file.i[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
-  [m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
+[31m|[m [m
+
  '============================================================================
 
 
@@ -5844,11 +6486,91 @@ Use '--' to separate paths from revisions, like this:
 
  .============================================================================
  |             lglfb
- | Executing:  .../../bin/gvn.sh lglfb test9
+ | Executing:  .../../bin/gvn.sh lglfb .
  |============================================================================
-fatal: ambiguous argument 'test9': unknown revision or path not in the working tree.
-Use '--' to separate paths from revisions, like this:
-'git <command> [<revision>...] -- [<file>...]'
+* [33m     <HASH>[m [1;34mr7 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.b[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@7 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.b
+[31m|[m 
+* [33m     <HASH>[m [1;34mr6 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/test4/file.a[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@6 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/test3/test4/file.a
+[31m|[m 
+* [33m     <HASH>[m [1;34mr5 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/test3/file.c[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@5 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/test3/file.c
+[31m|[m 
+* [33m     <HASH>[m [1;34mr4 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/test2/file.d[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@4 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/test2/file.d
+[31m|[m 
+* [33m     <HASH>[m [1;34mr3 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/foo.bar[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@3 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/foo.bar
+[31m|[m 
+* [33m     <HASH>[m [1;34mr2 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test1/file.e[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@2 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test1/file.e
+
+ '============================================================================
+
+
+ .============================================================================
+ |             lglfb
+ | Executing:  .../../bin/gvn.sh lglfb ../test9
+ |============================================================================
+* [33m     <HASH>[m [1;34mr17[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/foo[m [1;35m (HEAD -> trunk, git-svn)[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@17 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test9/foo
+[31m|[m 
+* [33m     <HASH>[m [1;34mr16[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/d.file[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@16 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test9/d.file
+[31m|[m 
+* [33m     <HASH>[m [1;34mr15[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/c.file[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@15 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test9/c.file
+[31m|[m 
+* [33m     <HASH>[m [1;34mr14[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/bfile[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@14 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test9/bfile
+[31m|[m 
+* [33m     <HASH>[m [1;34mr13[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test9/afile[m [1;35m[m
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@13 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test9/afile
 
  '============================================================================
 
@@ -6012,11 +6734,11 @@ Use '--' to separate paths from revisions, like this:
 [31m|[m A	test5/test6/file/bar
 [31m|[m 
 * [33m     <HASH>[m [1;34mr8 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30madd_test5/file.i[m [1;35m[m
-  
-  [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
-  [m
-  
-  A	test5/file.i
+[31m|[m 
+[31m|[m [37mgit-svn-id: file://.../test_log/server1/repo/trunk@8 <GIT_SVN_HASH>
+[31m|[m [m
+[31m|[m 
+[31m|[m A	test5/file.i
 
  '============================================================================
 
@@ -6755,7 +7477,6 @@ Title:  [31minitial commit[m
         <GIT_SVN_HASH>
         [m
 A	.svnignore
-
 ------------------------------------------------
  '============================================================================
 
@@ -6868,7 +7589,6 @@ Title:  [31madd_test9/afile[m
 
         [36m[m
 A	test9/afile
-
 ------------------------------------------------
  '============================================================================
 
@@ -7067,7 +7787,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -7114,7 +7833,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_test9/afile[m [1;35m[m
   
   A	test9/afile
-
  '============================================================================
 
 
@@ -7270,7 +7988,6 @@ A	test9/afile
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
-
  '============================================================================
 
 
@@ -7322,7 +8039,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_test9/afile[m [1;35m[m
   
   [37m[m
-
  '============================================================================
 
 
@@ -7544,7 +8260,6 @@ A	test9/afile
   [m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -7616,7 +8331,6 @@ A	test9/afile
   [37m[m
   
   A	test9/afile
-
  '============================================================================
 
 
@@ -7624,7 +8338,7 @@ A	test9/afile
  |             lab
  | Executing:  .../../bin/gvn.sh lab
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -7635,7 +8349,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -7646,7 +8360,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -7657,7 +8371,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -7668,7 +8382,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -7679,7 +8393,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -7690,7 +8404,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         file://.../test_log/server1/repo/trunk@12
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -7701,7 +8415,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         file://.../test_log/server1/repo/trunk@11
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -7712,7 +8426,7 @@ Title:  [31madd_test5/test6/file.h[m
         file://.../test_log/server1/repo/trunk@10
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -7723,7 +8437,7 @@ Title:  [31madd_test5/test6/file/bar[m
         file://.../test_log/server1/repo/trunk@9
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -7734,7 +8448,7 @@ Title:  [31madd_test5/file.i[m
         file://.../test_log/server1/repo/trunk@8
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -7745,7 +8459,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         file://.../test_log/server1/repo/trunk@7
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -7756,7 +8470,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         file://.../test_log/server1/repo/trunk@6
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -7767,7 +8481,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         file://.../test_log/server1/repo/trunk@5
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -7778,7 +8492,7 @@ Title:  [31madd_test1/test2/file.d[m
         file://.../test_log/server1/repo/trunk@4
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -7789,7 +8503,7 @@ Title:  [31madd_test1/foo.bar[m
         file://.../test_log/server1/repo/trunk@3
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -7800,7 +8514,7 @@ Title:  [31madd_test1/file.e[m
         file://.../test_log/server1/repo/trunk@2
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7808,7 +8522,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/foo[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7816,7 +8530,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/d.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7824,7 +8538,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/c.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7832,7 +8546,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/bfile[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7840,7 +8554,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/afile[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7848,7 +8562,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/test7/test8/file.f[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7856,7 +8570,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/test7/file.g[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7864,7 +8578,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/file.h[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7872,7 +8586,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/file/bar[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7880,7 +8594,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/file.i[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7888,7 +8602,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/test3/test4/file.b[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7896,7 +8610,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/test3/test4/file.a[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7904,7 +8618,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/test3/file.c[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7912,7 +8626,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/file.d[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7920,7 +8634,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/foo.bar[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -7928,7 +8642,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/file.e[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -7939,6 +8653,7 @@ Title:  [31minitial commit[m
         file://.../test_log/server1/repo/trunk@1
         <GIT_SVN_HASH>
         [m
+------------------------------------------------
  '============================================================================
 
 
@@ -7946,7 +8661,7 @@ Title:  [31minitial commit[m
  |             lab
  | Executing:  .../../bin/gvn.sh lab test9
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -7957,7 +8672,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -7968,7 +8683,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -7979,7 +8694,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -7990,7 +8705,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -8001,7 +8716,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8009,7 +8724,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/foo[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8017,7 +8732,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/d.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8025,7 +8740,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/c.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8033,7 +8748,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/bfile[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8041,6 +8756,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/afile[m
 
         [36m[m
+------------------------------------------------
  '============================================================================
 
 
@@ -8048,7 +8764,7 @@ Title:  [31madd_test9/afile[m
  |             laf
  | Executing:  .../../bin/gvn.sh laf
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -8061,7 +8777,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -8074,7 +8790,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -8087,7 +8803,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -8100,7 +8816,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -8113,7 +8829,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -8126,7 +8842,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -8139,7 +8855,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -8152,7 +8868,7 @@ Title:  [31madd_test5/test6/file.h[m
         [m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -8165,7 +8881,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -8178,7 +8894,7 @@ Title:  [31madd_test5/file.i[m
         [m
 A	test5/file.i
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -8191,7 +8907,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         [m
 A	test1/test2/test3/test4/file.b
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -8204,7 +8920,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         [m
 A	test1/test2/test3/test4/file.a
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -8217,7 +8933,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         [m
 A	test1/test2/test3/file.c
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -8230,7 +8946,7 @@ Title:  [31madd_test1/test2/file.d[m
         [m
 A	test1/test2/file.d
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -8243,7 +8959,7 @@ Title:  [31madd_test1/foo.bar[m
         [m
 A	test1/foo.bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -8256,7 +8972,7 @@ Title:  [31madd_test1/file.e[m
         [m
 A	test1/file.e
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8266,7 +8982,7 @@ Title:  [31madd_test9/foo[m
         [36m[m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8276,7 +8992,7 @@ Title:  [31madd_test9/d.file[m
         [36m[m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8286,7 +9002,7 @@ Title:  [31madd_test9/c.file[m
         [36m[m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8296,7 +9012,7 @@ Title:  [31madd_test9/bfile[m
         [36m[m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8306,7 +9022,7 @@ Title:  [31madd_test9/afile[m
         [36m[m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8316,7 +9032,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [36m[m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8326,7 +9042,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [36m[m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8336,7 +9052,7 @@ Title:  [31madd_test5/test6/file.h[m
         [36m[m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8346,7 +9062,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [36m[m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8356,7 +9072,7 @@ Title:  [31madd_test5/file.i[m
         [36m[m
 A	test5/file.i
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8366,7 +9082,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         [36m[m
 A	test1/test2/test3/test4/file.b
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8376,7 +9092,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         [36m[m
 A	test1/test2/test3/test4/file.a
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8386,7 +9102,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         [36m[m
 A	test1/test2/test3/file.c
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8396,7 +9112,7 @@ Title:  [31madd_test1/test2/file.d[m
         [36m[m
 A	test1/test2/file.d
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8406,7 +9122,7 @@ Title:  [31madd_test1/foo.bar[m
         [36m[m
 A	test1/foo.bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8416,7 +9132,7 @@ Title:  [31madd_test1/file.e[m
         [36m[m
 A	test1/file.e
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -8436,7 +9152,7 @@ A	.svnignore
  |             laf
  | Executing:  .../../bin/gvn.sh laf test9
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -8449,7 +9165,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -8462,7 +9178,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -8475,7 +9191,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -8488,7 +9204,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -8501,7 +9217,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8511,7 +9227,7 @@ Title:  [31madd_test9/foo[m
         [36m[m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8521,7 +9237,7 @@ Title:  [31madd_test9/d.file[m
         [36m[m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8531,7 +9247,7 @@ Title:  [31madd_test9/c.file[m
         [36m[m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8541,7 +9257,7 @@ Title:  [31madd_test9/bfile[m
         [36m[m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -8748,7 +9464,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;34mr1 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -8795,7 +9510,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;34mr??[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_test9/afile[m [1;35m[m
   
   A	test9/afile
-
  '============================================================================
 
 
@@ -10026,7 +10740,6 @@ Title:  [31minitial commit[m
         <GIT_SVN_HASH>
         [m
 A	.svnignore
-
 ------------------------------------------------
  '============================================================================
 
@@ -10118,7 +10831,6 @@ Title:  [31madd_test1/test2/file.d[m
 
         [36m[m
 A	test1/test2/file.d
-
 ------------------------------------------------
  '============================================================================
 
@@ -10315,7 +11027,6 @@ A	test1/test2/file.d
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -10354,7 +11065,6 @@ A	test1/test2/file.d
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_test1/test2/file.d[m [1;35m[m
   
   A	test1/test2/file.d
-
  '============================================================================
 
 
@@ -10510,7 +11220,6 @@ A	test1/test2/file.d
   
   [37mgit-svn-id: file://.../test_log/server1/repo/trunk@1 <GIT_SVN_HASH>
   [m
-
  '============================================================================
 
 
@@ -10553,7 +11262,6 @@ A	test1/test2/file.d
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_test1/test2/file.d[m [1;35m[m
   
   [37m[m
-
  '============================================================================
 
 
@@ -10775,7 +11483,6 @@ A	test1/test2/file.d
   [m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -10834,7 +11541,6 @@ A	test1/test2/file.d
   [37m[m
   
   A	test1/test2/file.d
-
  '============================================================================
 
 
@@ -10842,7 +11548,7 @@ A	test1/test2/file.d
  |             lab
  | Executing:  .../../bin/gvn.sh lab
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -10853,7 +11559,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -10864,7 +11570,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -10875,7 +11581,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -10886,7 +11592,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -10897,7 +11603,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -10908,7 +11614,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         file://.../test_log/server1/repo/trunk@12
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -10919,7 +11625,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         file://.../test_log/server1/repo/trunk@11
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -10930,7 +11636,7 @@ Title:  [31madd_test5/test6/file.h[m
         file://.../test_log/server1/repo/trunk@10
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -10941,7 +11647,7 @@ Title:  [31madd_test5/test6/file/bar[m
         file://.../test_log/server1/repo/trunk@9
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -10952,7 +11658,7 @@ Title:  [31madd_test5/file.i[m
         file://.../test_log/server1/repo/trunk@8
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -10963,7 +11669,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         file://.../test_log/server1/repo/trunk@7
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -10974,7 +11680,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         file://.../test_log/server1/repo/trunk@6
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -10985,7 +11691,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         file://.../test_log/server1/repo/trunk@5
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -10996,7 +11702,7 @@ Title:  [31madd_test1/test2/file.d[m
         file://.../test_log/server1/repo/trunk@4
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -11007,7 +11713,7 @@ Title:  [31madd_test1/foo.bar[m
         file://.../test_log/server1/repo/trunk@3
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -11018,7 +11724,7 @@ Title:  [31madd_test1/file.e[m
         file://.../test_log/server1/repo/trunk@2
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11026,7 +11732,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/foo[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11034,7 +11740,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/d.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11042,7 +11748,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/c.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11050,7 +11756,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/bfile[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11058,7 +11764,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/afile[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11066,7 +11772,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/test7/test8/file.f[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11074,7 +11780,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/test7/file.g[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11082,7 +11788,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/file.h[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11090,7 +11796,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/test6/file/bar[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11098,7 +11804,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test5/file.i[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11106,7 +11812,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/test3/test4/file.b[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11114,7 +11820,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/test3/test4/file.a[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11122,7 +11828,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/test3/file.c[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11130,7 +11836,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/test2/file.d[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11138,7 +11844,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/foo.bar[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11146,7 +11852,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test1/file.e[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -11157,6 +11863,7 @@ Title:  [31minitial commit[m
         file://.../test_log/server1/repo/trunk@1
         <GIT_SVN_HASH>
         [m
+------------------------------------------------
  '============================================================================
 
 
@@ -11164,7 +11871,7 @@ Title:  [31minitial commit[m
  |             lab
  | Executing:  .../../bin/gvn.sh lab ../test9
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -11175,7 +11882,7 @@ Title:  [31madd_test9/foo[m
         file://.../test_log/server1/repo/trunk@17
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -11186,7 +11893,7 @@ Title:  [31madd_test9/d.file[m
         file://.../test_log/server1/repo/trunk@16
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -11197,7 +11904,7 @@ Title:  [31madd_test9/c.file[m
         file://.../test_log/server1/repo/trunk@15
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -11208,7 +11915,7 @@ Title:  [31madd_test9/bfile[m
         file://.../test_log/server1/repo/trunk@14
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -11219,7 +11926,7 @@ Title:  [31madd_test9/afile[m
         file://.../test_log/server1/repo/trunk@13
         <GIT_SVN_HASH>
         [m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11227,7 +11934,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/foo[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11235,7 +11942,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/d.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11243,7 +11950,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/c.file[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11251,7 +11958,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/bfile[m
 
         [36m[m
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11259,6 +11966,7 @@ Date:   <DATE_TIME>
 Title:  [31madd_test9/afile[m
 
         [36m[m
+------------------------------------------------
  '============================================================================
 
 
@@ -11266,7 +11974,7 @@ Title:  [31madd_test9/afile[m
  |             laf
  | Executing:  .../../bin/gvn.sh laf
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -11279,7 +11987,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -11292,7 +12000,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -11305,7 +12013,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -11318,7 +12026,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -11331,7 +12039,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr12[m
 Author: [2;34m<user>         [m
@@ -11344,7 +12052,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr11[m
 Author: [2;34m<user>         [m
@@ -11357,7 +12065,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr10[m
 Author: [2;34m<user>         [m
@@ -11370,7 +12078,7 @@ Title:  [31madd_test5/test6/file.h[m
         [m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr9 [m
 Author: [2;34m<user>         [m
@@ -11383,7 +12091,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr8 [m
 Author: [2;34m<user>         [m
@@ -11396,7 +12104,7 @@ Title:  [31madd_test5/file.i[m
         [m
 A	test5/file.i
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr7 [m
 Author: [2;34m<user>         [m
@@ -11409,7 +12117,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         [m
 A	test1/test2/test3/test4/file.b
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr6 [m
 Author: [2;34m<user>         [m
@@ -11422,7 +12130,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         [m
 A	test1/test2/test3/test4/file.a
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr5 [m
 Author: [2;34m<user>         [m
@@ -11435,7 +12143,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         [m
 A	test1/test2/test3/file.c
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr4 [m
 Author: [2;34m<user>         [m
@@ -11448,7 +12156,7 @@ Title:  [31madd_test1/test2/file.d[m
         [m
 A	test1/test2/file.d
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr3 [m
 Author: [2;34m<user>         [m
@@ -11461,7 +12169,7 @@ Title:  [31madd_test1/foo.bar[m
         [m
 A	test1/foo.bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr2 [m
 Author: [2;34m<user>         [m
@@ -11474,7 +12182,7 @@ Title:  [31madd_test1/file.e[m
         [m
 A	test1/file.e
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11484,7 +12192,7 @@ Title:  [31madd_test9/foo[m
         [36m[m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11494,7 +12202,7 @@ Title:  [31madd_test9/d.file[m
         [36m[m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11504,7 +12212,7 @@ Title:  [31madd_test9/c.file[m
         [36m[m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11514,7 +12222,7 @@ Title:  [31madd_test9/bfile[m
         [36m[m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11524,7 +12232,7 @@ Title:  [31madd_test9/afile[m
         [36m[m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11534,7 +12242,7 @@ Title:  [31madd_test5/test6/test7/test8/file.f[m
         [36m[m
 A	test5/test6/test7/test8/file.f
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11544,7 +12252,7 @@ Title:  [31madd_test5/test6/test7/file.g[m
         [36m[m
 A	test5/test6/test7/file.g
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11554,7 +12262,7 @@ Title:  [31madd_test5/test6/file.h[m
         [36m[m
 A	test5/test6/file.h
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11564,7 +12272,7 @@ Title:  [31madd_test5/test6/file/bar[m
         [36m[m
 A	test5/test6/file/bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11574,7 +12282,7 @@ Title:  [31madd_test5/file.i[m
         [36m[m
 A	test5/file.i
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11584,7 +12292,7 @@ Title:  [31madd_test1/test2/test3/test4/file.b[m
         [36m[m
 A	test1/test2/test3/test4/file.b
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11594,7 +12302,7 @@ Title:  [31madd_test1/test2/test3/test4/file.a[m
         [36m[m
 A	test1/test2/test3/test4/file.a
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11604,7 +12312,7 @@ Title:  [31madd_test1/test2/test3/file.c[m
         [36m[m
 A	test1/test2/test3/file.c
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11614,7 +12322,7 @@ Title:  [31madd_test1/test2/file.d[m
         [36m[m
 A	test1/test2/file.d
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11624,7 +12332,7 @@ Title:  [31madd_test1/foo.bar[m
         [36m[m
 A	test1/foo.bar
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11634,7 +12342,7 @@ Title:  [31madd_test1/file.e[m
         [36m[m
 A	test1/file.e
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr1 [m
 Author: [2;34m<user>         [m
@@ -11654,7 +12362,7 @@ A	.svnignore
  |             laf
  | Executing:  .../../bin/gvn.sh laf ../test9
  |============================================================================
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (HEAD -> trunk, git-svn)[m
 SVN:    [1;34mr17[m
 Author: [2;34m<user>         [m
@@ -11667,7 +12375,7 @@ Title:  [31madd_test9/foo[m
         [m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr16[m
 Author: [2;34m<user>         [m
@@ -11680,7 +12388,7 @@ Title:  [31madd_test9/d.file[m
         [m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr15[m
 Author: [2;34m<user>         [m
@@ -11693,7 +12401,7 @@ Title:  [31madd_test9/c.file[m
         [m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr14[m
 Author: [2;34m<user>         [m
@@ -11706,7 +12414,7 @@ Title:  [31madd_test9/bfile[m
         [m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr13[m
 Author: [2;34m<user>         [m
@@ -11719,7 +12427,7 @@ Title:  [31madd_test9/afile[m
         [m
 A	test9/afile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11729,7 +12437,7 @@ Title:  [31madd_test9/foo[m
         [36m[m
 A	test9/foo
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11739,7 +12447,7 @@ Title:  [31madd_test9/d.file[m
         [36m[m
 A	test9/d.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11749,7 +12457,7 @@ Title:  [31madd_test9/c.file[m
         [36m[m
 A	test9/c.file
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11759,7 +12467,7 @@ Title:  [31madd_test9/bfile[m
         [36m[m
 A	test9/bfile
 
-
+------------------------------------------------
 Commit: [33m<HASH>[m [1;35m[m
 SVN:    [1;34mr??[m
 Author: [2;34muser3           [m
@@ -11966,7 +12674,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;34mr1 [m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
   
   A	.svnignore
-
  '============================================================================
 
 
@@ -12013,7 +12720,6 @@ A	test9/afile
 * [33m     <HASH>[m [1;34mr??[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_test9/afile[m [1;35m[m
   
   A	test9/afile
-
  '============================================================================
 
 
