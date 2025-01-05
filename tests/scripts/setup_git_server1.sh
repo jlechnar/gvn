@@ -29,6 +29,8 @@ execute "git clone file://$REPO_PATH ." ""
 echo scripts > .gitignore
 git add .gitignore
 
+git config user.name "User Setup"
+git config user.email "user@setup"
 git commit . -m "initial commit"
 git push
 

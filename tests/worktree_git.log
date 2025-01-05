@@ -1,0 +1,258 @@
+
+################################################
+# setup: Setup worktree (git)
+.../test_worktree_git
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_worktree_git/server1
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in .../test_worktree_git/server1/repo/
+
+################################################
+# setup: create local / sandbox repository
+.../test_worktree_git/server1_create
+
+ .============================================================================
+ | Executing:  git clone file://.../test_worktree_git/server1/repo .
+ |============================================================================
+Cloning into '.'...
+warning: You appear to have cloned an empty repository.
+ '============================================================================
+
+[master (root-commit) <HASH>] initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+To file://.../test_worktree_git/server1/repo
+ * [new branch]      master -> master
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_worktree_git/git_user1
+
+ .============================================================================
+ | Executing:  git clone file://.../test_worktree_git/server1/repo .
+ |============================================================================
+Cloning into '.'...
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files
+ | Executing:  git commit -m 'files'
+ |============================================================================
+[master  <HASH>] files
+ 3 files changed, 15 insertions(+)
+ create mode 100644 file.html
+ create mode 100644 file.pl
+ create mode 100644 file.py
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test1 of head
+ | Executing:  git wa test1
+ |============================================================================
+Preparing worktree (new branch 'test1')
+HEAD is now at <HASH> files
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test2
+ | Executing:  git wa test2 HEAD^
+ |============================================================================
+Preparing worktree (new branch 'test2')
+HEAD is now at <HASH> initial commit
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test3 in test4 folder
+ | Executing:  git wa test3 test4 HEAD^
+ |============================================================================
+Preparing worktree (new branch 'test3')
+HEAD is now at <HASH> initial commit
+ '============================================================================
+
+
+ .============================================================================
+ |             add branch test5
+ | Executing:  git ba test5
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test5 from existing branch
+ | Executing:  git wa test5
+ |============================================================================
+Preparing worktree (checking out 'test5')
+HEAD is now at <HASH> files
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  git wl
+ |============================================================================
+.../test_worktree_git/git_user1  <HASH> [master]
+.../test_worktree_git/test1      <HASH> [test1]
+.../test_worktree_git/test2      <HASH> [test2]
+.../test_worktree_git/test4      <HASH> [test3]
+.../test_worktree_git/test5      <HASH> [test5]
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches in log
+ | Executing:  git lgab
+ |============================================================================
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1           [m [30mfiles[m [1;35m (HEAD -> master, test5, test1)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup      [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches
+ | Executing:  git bl
+ |============================================================================
+* [32mmaster[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtest5[m
+  [31mremotes/origin/HEAD[m -> origin/master
+  [31mremotes/origin/master[m
+ '============================================================================
+
+
+ .============================================================================
+ |             add branch test6
+ | Executing:  git ba test6
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             push branch test6 to origin
+ | Executing:  git bp test6 origin
+ |============================================================================
+To file://.../test_worktree_git/server1/repo
+ * [new branch]      test6 -> test6
+branch 'test6' set up to track 'origin/test6'.
+ '============================================================================
+
+
+ .============================================================================
+ |             remove branch test6 locally
+ | Executing:  git bdl test6
+ |============================================================================
+Deleted branch test6 (was <HASH>).
+ '============================================================================
+
+
+ .============================================================================
+ |             add branch test6 from remote
+ | Executing:  git wa test6 origin/test6
+ |============================================================================
+Preparing worktree (new branch 'test6')
+branch 'test6' set up to track 'origin/test6'.
+HEAD is now at <HASH> files
+ '============================================================================
+
+
+ .============================================================================
+ |             add branch test7
+ | Executing:  git ba test7
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             push branch test7 to origin
+ | Executing:  git bp test7 origin
+ |============================================================================
+To file://.../test_worktree_git/server1/repo
+ * [new branch]      test7 -> test7
+branch 'test7' set up to track 'origin/test7'.
+ '============================================================================
+
+
+ .============================================================================
+ |             remove branch test7 locally
+ | Executing:  git bdl test7
+ |============================================================================
+Deleted branch test7 (was <HASH>).
+ '============================================================================
+
+
+ .============================================================================
+ |             add branch test7 from remote using same name for local branch
+ | Executing:  git wa origin/test7
+ |============================================================================
+Preparing worktree (new branch 'test7')
+branch 'test7' set up to track 'origin/test7'.
+HEAD is now at <HASH> files
+ '============================================================================
+
+
+ .============================================================================
+ |             list worktrees
+ | Executing:  git wl
+ |============================================================================
+.../test_worktree_git/git_user1  <HASH> [master]
+.../test_worktree_git/test1      <HASH> [test1]
+.../test_worktree_git/test2      <HASH> [test2]
+.../test_worktree_git/test4      <HASH> [test3]
+.../test_worktree_git/test5      <HASH> [test5]
+.../test_worktree_git/test6      <HASH> [test6]
+.../test_worktree_git/test7      <HASH> [test7]
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches in log
+ | Executing:  git lgab
+ |============================================================================
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1           [m [30mfiles[m [1;35m (HEAD -> master, origin/test7, origin/test6, test7, test6, test5, test1)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup      [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
+ '============================================================================
+
+
+ .============================================================================
+ |             show all branches
+ | Executing:  git bl
+ |============================================================================
+* [32mmaster[m
++ [36mtest1[m
++ [36mtest2[m
++ [36mtest3[m
++ [36mtest5[m
++ [36mtest6[m
++ [36mtest7[m
+  [31mremotes/origin/HEAD[m -> origin/master
+  [31mremotes/origin/master[m
+  [31mremotes/origin/test6[m
+  [31mremotes/origin/test7[m
+ '============================================================================
+
