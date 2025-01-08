@@ -1,0 +1,897 @@
+
+################################################
+# setup: Setup worktree (git submodule)
+.../test_worktree_git_submodule
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_worktree_git_submodule/server1
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in .../test_worktree_git_submodule/server1/repo/
+
+################################################
+# setup: create local / sandbox repository
+.../test_worktree_git_submodule/server1_create
+
+ .============================================================================
+ | Executing:  git clone file://.../test_worktree_git_submodule/server1/repo .
+ |============================================================================
+Cloning into '.'...
+warning: You appear to have cloned an empty repository.
+ '============================================================================
+
+[master (root-commit) <HASH>] initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+To file://.../test_worktree_git_submodule/server1/repo
+ * [new branch]      master -> master
+
+################################################
+# setup: 
+
+################################################
+# setup: create local repository (file system repository) server2
+.../test_worktree_git_submodule/server2
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in .../test_worktree_git_submodule/server2/repo/
+
+################################################
+# setup: create local / sandbox repository
+.../test_worktree_git_submodule/server2_create
+
+ .============================================================================
+ | Executing:  git clone file://.../test_worktree_git_submodule/server2/repo .
+ |============================================================================
+Cloning into '.'...
+warning: You appear to have cloned an empty repository.
+ '============================================================================
+
+[master (root-commit) <HASH>] initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+To file://.../test_worktree_git_submodule/server2/repo
+ * [new branch]      master -> master
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_worktree_git_submodule/git_user1
+
+ .============================================================================
+ | Executing:  git clone file://.../test_worktree_git_submodule/server1/repo .
+ |============================================================================
+Cloning into '.'...
+ '============================================================================
+
+
+################################################
+# setup: create local / sandbox repository for user4
+.../test_worktree_git_submodule/git_user4
+
+ .============================================================================
+ | Executing:  git clone file://.../test_worktree_git_submodule/server2/repo .
+ |============================================================================
+Cloning into '.'...
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file* test_folder*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files
+ | Executing:  git commit -m 'files'
+ |============================================================================
+[master  <HASH>] files
+ 5 files changed, 25 insertions(+)
+ create mode 100644 file.html
+ create mode 100644 file.pl
+ create mode 100644 file.py
+ create mode 100644 test_folder1/file2.html
+ create mode 100644 test_folder1/file2.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             push added files
+ | Executing:  git push
+ |============================================================================
+To file://.../test_worktree_git_submodule/server1/repo
+   <HASH>..<HASH>  master -> master
+ '============================================================================
+
+
+ .============================================================================
+ |             add some files
+ | Executing:  git add file* test_folder*
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit new files in submodule
+ | Executing:  git commit -m 'files'
+ |============================================================================
+[master  <HASH>] files
+ 5 files changed, 25 insertions(+)
+ create mode 100644 file_sm.html
+ create mode 100644 file_sm.pl
+ create mode 100644 file_sm.py
+ create mode 100644 test_folder2/file2_sm.html
+ create mode 100644 test_folder2/file2_sm.pl
+ '============================================================================
+
+
+ .============================================================================
+ |             push added files
+ | Executing:  git push
+ |============================================================================
+To file://.../test_worktree_git_submodule/server2/repo
+   <HASH>..<HASH>  master -> master
+ '============================================================================
+
+
+ .============================================================================
+ |             add submodule in subfolder sm
+ | Executing:  git -c protocol.file.allow=always submodule add file://.../test_worktree_git_submodule/server2/repo sm
+ |============================================================================
+Cloning into '.../test_worktree_git_submodule/git_user1/sm'...
+ '============================================================================
+
+
+ .============================================================================
+ |             add submodule
+ | Executing:  git add .gitmodules sm
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             commit submodule connection
+ | Executing:  git commit -m 'submodule'
+ |============================================================================
+[master  <HASH>] submodule
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 sm
+ '============================================================================
+
+
+ .============================================================================
+ |             push added submodule
+ | Executing:  git push
+ |============================================================================
+To file://.../test_worktree_git_submodule/server1/repo
+   <HASH>..<HASH>  master -> master
+ '============================================================================
+
+
+ .============================================================================
+ |             add worktree test1
+ | Executing:  git wa test1
+ |============================================================================
+Preparing worktree (new branch 'test1')
+HEAD is now at <HASH> submodule
+ '============================================================================
+
+
+ .============================================================================
+ |             change to worktree test1
+ | Executing:  source .../../bin/cdw.sh test1
+ |============================================================================
+Found git worktree with existing subfolder
+branch:     master => test1
+base_paths: .../test_worktree_git_submodule/git_user1 => .../test_worktree_git_submodule/test1
+paths:      .../test_worktree_git_submodule/git_user1 => .../test_worktree_git_submodule/test1/
+.../test_worktree_git_submodule/test1
+ '============================================================================
+
+
+ .============================================================================
+ |             init submodule
+ | Executing:  git -c protocol.file.allow=always submodule-init-recursive
+ |============================================================================
+Cloning into '.../test_worktree_git_submodule/test1/sm'...
+Submodule path 'sm': checked out '<HASH>'
+ '============================================================================
+
+
+ .============================================================================
+ |             current directory
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree_git_submodule/test1/sm
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git d
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 7;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 8;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git d .
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 7;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 8;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git dw
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m7[m[30m;[m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m8[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git dw .
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m7[m[30m;[m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m8[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git d sm/
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[34;101m-Subproject commit <HASH>[m
+[34;102m+[m[34;102mSubproject commit <HASH>-dirty[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git dw sm/
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[30mSubproject commit <HASH>[m[34;102m-dirty[m
+ '============================================================================
+
+
+ .============================================================================
+ |             current directory
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree_git_submodule/test1/sm/test_folder2
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git d
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 7;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 8;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git d .
+ |============================================================================
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 8;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git dw
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m7[m[30m;[m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m8[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git dw .
+ |============================================================================
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m8[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git d sm/test_folder2/
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git dw sm/test_folder2/
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             current directory
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree_git_submodule/test1/test_folder1
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git d
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[34;101m-Subproject commit <HASH>[m
+[34;102m+[m[34;102mSubproject commit <HASH>-dirty[m
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 6;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git d .
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 6;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git dw
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[30mSubproject commit <HASH>[m[34;102m-dirty[m
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m6[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git dw .
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m6[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git d test_folder1/
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 6;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git dw test_folder1/
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m6[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             change to worktree master
+ | Executing:  source .../../bin/cdw.sh master
+ |============================================================================
+Found git worktree with existing subfolder
+branch:     test1 => master
+base_paths: .../test_worktree_git_submodule/test1 => .../test_worktree_git_submodule/git_user1
+paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submodule/git_user1/
+.../test_worktree_git_submodule/git_user1
+ '============================================================================
+
+
+ .============================================================================
+ |             current directory
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree_git_submodule/git_user1/sm
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git d
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 5;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git d .
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 5;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git dw
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m4[m[30m;[m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m5[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git dw .
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m4[m[30m;[m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m5[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git d sm/
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[34;101m-Subproject commit <HASH>[m
+[34;102m+[m[34;102mSubproject commit <HASH>-dirty[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git dw sm/
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[30mSubproject commit <HASH>[m[34;102m-dirty[m
+ '============================================================================
+
+
+ .============================================================================
+ |             current directory
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree_git_submodule/git_user1/sm/test_folder2
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git d
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 5;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git d .
+ |============================================================================
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 5;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git dw
+ |============================================================================
+[36mdiff --git a/file_sm.pl b/file_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/file_sm.pl[m
+[36m+++ b/file_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m4[m[30m;[m
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m5[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git dw .
+ |============================================================================
+[36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder2/file2_sm.pl[m
+[36m+++ b/test_folder2/file2_sm.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m5[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git d sm/test_folder2/
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git dw sm/test_folder2/
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             current directory
+ | Executing:  pwd
+ |============================================================================
+.../test_worktree_git_submodule/git_user1/test_folder1
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git d
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[34;101m-Subproject commit <HASH>[m
+[34;102m+[m[34;102mSubproject commit <HASH>-dirty[m
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 3;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git d .
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 3;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff all
+ | Executing:  git dw
+ |============================================================================
+[36mdiff --git a/sm b/sm[m
+[36m--- a/sm[m
+[36m+++ b/sm[m
+[34;105m@@ -1 +1 @@[m
+[30mSubproject commit <HASH>[m[34;102m-dirty[m
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m3[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff local
+ | Executing:  git dw .
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m3[m[30m;[m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git d test_folder1/
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-my $test = 2;[m
+[34;102m+[m[34;102mmy $test = 3;[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+ '============================================================================
+
+
+ .============================================================================
+ |             diff folder
+ | Executing:  git dw test_folder1/
+ |============================================================================
+[36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/test_folder1/file2.pl[m
+[36m+++ b/test_folder1/file2.pl[m
+[34;105m@@ -1 +1 @@[m
+[30mmy $test = [m[34;101m2[m[34;102m3[m[30m;[m
+ '============================================================================
+

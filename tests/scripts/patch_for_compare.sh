@@ -20,6 +20,8 @@ cat $file | \
   perl -pe "s/^(Deleted tag \'[^\']+\' \(was )([0-9a-fA-F]+)(\)\s*)$/\$1<HASH>\$3/g" | 
   perl -pe "s/^(Deleted branch .+ \(was )([0-9a-fA-F]+)(\)\.\s*)$/\$1<HASH>\$3/g" | 
   perl -pe 's/^([0-9a-fA-F]{40})(\s+.+)/<HASH>$2/g' | \
+  perl -pe 's/(Subproject commit )([0-9a-fA-F]{40})/$1<HASH>/g' | \
+  perl -pe "s/(Submodule path '.+': checked out \')([0-9a-fA-F]{40})(')/\$1<HASH>\$3/g" | \
   perl -pe 's/^(.+interactive rebase in progress; onto .+)[0-9a-fA-F]{7}(\s*)$/$1<HASH>$2/g' | \
   perl -pe "s/^(\s*You are currently rebasing branch '.+' on ')[0-9a-fA-F]{7}('.\s*)$/\$1<HASH>\$2/g" | \
   perl -pe 's/^(\s*pick )[0-9a-fA-F]{7}( conflicting_changes\s*)$/$1<HASH>$2/g' | \

@@ -13,18 +13,50 @@ set -e
 # root
 # below does not always work properly in subfolders in worktrees hence replaced with below implementation
 #root = "rev-parse --show-toplevel"
-#root = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-#         current_dir=`pwd | sed 's,/$,,g'`; \
-#         prefix=`echo $GIT_PREFIX | sed 's,/$,,g'`; \
-#         root_dir=`echo $current_dir | sed \"s,/$prefix$,,\" | xargs realpath`; \
-#         echo $root_dir' --"
-#root = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-#         current_branch=`git currentbranch`; \
-#         root_dir=`git worktree-branch-get-path $current_branch`; \
-#         echo $root_dir' --"
 
-current_branch=`git currentbranch`
-root_dir=`git worktree-branch-get-path $current_branch`
+git_dir=`git rev-parse --git-dir`
+git_dir=`realpath $git_dir`
+
+git_dir2=$git_dir
+if [[ -e $git_dir/gitdir ]]; then
+  git_dir2=`cat $git_dir/gitdir`
+fi
+
+root_dir1=`echo $git_dir2 | sed 's,.git$,,g'`
+
+cdup_dir=`git rev-parse --show-cdup`
+if [[ ! $cdup_dir ]]; then
+  cdup_dir="."
+fi
+root_dir2=`realpath $cdup_dir`
+
+if [[ $git_dir =~ /.git/worktrees/ ]]; then
+  if [[ $git_dir =~ /.git/worktrees/.*/modules/ ]]; then
+    if [[ "$GVN_DEBUG" == "1" ]]; then
+      echo "WORKTREE MODULE" >&2
+    fi
+    root_dir="$root_dir2"
+  else
+    if [[ "$GVN_DEBUG" == "1" ]]; then
+      echo "WORKTREE" >&2
+    fi
+    root_dir="$root_dir1"
+  fi
+else
+  if [[ $git_dir =~ /.git/modules/ ]]; then
+    if [[ "$GVN_DEBUG" == "1" ]]; then
+      echo "BASE MODULE" >&2
+    fi
+    root_dir="$root_dir2"
+  else
+    if [[ "$GVN_DEBUG" == "1" ]]; then
+      echo "BASE" >&2
+    fi
+    root_dir="$root_dir1"
+  fi
+fi
+
+root_dir=`echo $root_dir | sed 's,/$,,g'`
 
 # in case of git_overlay overlays we always get .git_overlay as extension to the root path and so path compares fail
 # remove them to solve the issue

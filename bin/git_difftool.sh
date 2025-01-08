@@ -10,9 +10,15 @@ if [[ "$GVN_DEBUG" == "1" ]]; then
 fi
 set -e
 
-#git diff --follow $@ | xargs -I '{}' realpath --relative-to=. $(git rev-parse --show-toplevel)/'{}'
+
+usage() {
+  echo "FIXME"
+  exit -1
+}
 
 opts=""
+
+do_follow=0
 
 while getopts "dcf" o; do
     case "${o}" in
@@ -23,7 +29,7 @@ while getopts "dcf" o; do
             opts="$opts --cached"
             ;;
         f)
-            opts="$opts --follow"
+            do_follow=1
             ;;
 #        w) # all branches
 #            wordwise=1
@@ -37,13 +43,22 @@ done
 shift $((OPTIND-1))
 
 root=`git root`
+export GIT_WORK_TREE=$root
 
-opts2=""
+opts2="--no-symlinks "
 
-# on empty args use local folder
-if [[ -z $@ ]]; then
-  opts2="$root"
+args=$@
+
+if [[ "$do_follow" == "1" ]]; then
+  cmd="git log -n 1 --follow $args"
+  set +e
+  t=`eval $cmd 2>&1`
+  set -e
+  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+    args="$args $root"
+  fi
+  opts="$opts --follow"
 fi
 
-git difftool $opts $opts2 $@
+git difftool $opts $opts2 $args
 

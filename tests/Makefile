@@ -26,6 +26,7 @@ TARGETS_LOGS+=hash
 TARGETS_LOGS+=merge
 TARGETS_LOGS+=tag
 TARGETS_LOGS+=worktree_git
+TARGETS_LOGS+=worktree_git_submodule
 
 TARGETS=
 TARGETS+=$(addsuffix .log, $(TARGETS_LOGS))
