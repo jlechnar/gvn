@@ -18,6 +18,8 @@ usage() { echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <
 #opts="--graph --abbrev=9 --abbrev-commit --decorate"
 opts=""
 
+do_follow=1
+
 newline=""
 
 pager=0
@@ -34,6 +36,7 @@ while getopts "pgafNC" o; do
             opts="--graph $opts"
             ;;
         a) # all branches
+            do_follow=0
             opts="--all $opts"
             all=1
             ;;
@@ -56,20 +59,36 @@ shift $((OPTIND-1))
 opts_less=-FSrX
 #opts_less=-SRX
 
-root=`git root`
+root=`$GIT root`
 
 args="$@"
 
 
-if [[ "$all" == "0" ]]; then
-  cmd="git log -n 1 $opts --follow $args"
+
+if [[ "$do_follow" == "1" ]]; then
+  cmd="$GIT log -n 1 --follow $args"
   set +e
   t=`eval $cmd 2>&1`
   set -e
+  args_addon=""
   if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-    args="$args $root"
+    args_addon="$root"
   fi
-  opts="$opts --follow"
+
+  nr_files=`$GIT ls-files | grep -c .`
+  if [[ "$nr_files" == "1" ]]; then
+    args="$args $args_addon"
+    opts="$opts --follow"
+  fi
+
+#  cmd="$GIT log -n 1 $opts --follow $args"
+#  set +e
+#  t=`eval $cmd 2>&1`
+#  set -e
+#  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+#    args="$args $root"
+#  fi
+#  opts="$opts --follow"
 fi
 
 
@@ -93,14 +112,14 @@ fi
 separator="------------------------------------------------"
 
 if [[ "$pager" == "1" ]]; then
-  git --work-tree=$root --no-pager log $opts \
+  $GIT --work-tree=$root --no-pager log $opts \
     --date=format-local:'%Y-%m-%d %H:%M:%S' \
     --format=format:"$separator%nCommit: %C(03)%H%C(reset) %C(bold magenta)%d%C(reset)%n${hashfmt}Author: %C(dim blue)%<(16,trunc)%an%C(reset)%nDate:   %C(bold green)%<(19,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C(red)%s%C(reset)%n%n%C(cyan)%b%C(reset)$newline" \
     $args | \
     $annotate \
     | less $opts_less
 else
-  git --work-tree=$root --no-pager log $opts \
+  $GIT --work-tree=$root --no-pager log $opts \
     --date=format-local:"%Y-%m-%d %H:%M:%S" \
     --format=format:"$separator%nCommit: %C(03)%H%C(reset) %C(bold magenta)%d%C(reset)%n${hashfmt}Author: %C(dim blue)%<(16,trunc)%an%C(reset)%nDate:   %C(bold green)%<(19,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C(red)%s%C(reset)%n%n%C(cyan)%b%C(reset)$newline" \
     $args | \

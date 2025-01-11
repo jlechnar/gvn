@@ -14,7 +14,7 @@ cmd=$0
 is_gvn=`basename $cmd | grep ^gvn_ || true`
 
 worktree_name=$1
-dot_git_path_abs=`git get-dot-git-path-abs`
+dot_git_path_abs=`$GIT get-dot-git-path-abs`
 
 if [[ $is_gvn ]]; then
   if ! [[ -e $dot_git_path_abs/svn/.metadata ]]; then
@@ -22,7 +22,7 @@ if [[ $is_gvn ]]; then
     exit -1
   fi
 
-  branch_name=`git worktree-get-branch $worktree_name || true`
+  branch_name=`$GIT worktree-get-branch $worktree_name || true`
   if ! [[ $branch_name ]]; then
     echo "ERROR: Could not detect branch for worktree $worktree_name. Aborting delete operation."
     exit -1
@@ -39,5 +39,5 @@ else
   fi
 fi
 
-git worktree remove $worktree_name
+$GIT worktree remove $worktree_name
 

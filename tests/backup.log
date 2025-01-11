@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -124,14 +124,14 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  .../../bin/git.sh add file*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 15 insertions(+)
@@ -143,14 +143,14 @@ Checked out HEAD:
 
  .============================================================================
  |             backup with no change
- | Executing:  git bb without_changes
+ | Executing:  .../../bin/git.sh bb without_changes
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -159,21 +159,21 @@ Checked out HEAD:
 
  .============================================================================
  |             backup with no change and no title
- | Executing:  git bb
+ | Executing:  .../../bin/git.sh bb
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add new file2.pl
- | Executing:  git add file2.pl
+ | Executing:  .../../bin/git.sh add file2.pl
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             backup with change
- | Executing:  git bb with_changes
+ | Executing:  .../../bin/git.sh bb with_changes
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
 Switched to a new branch 'bb.trunk.with_changes.<DATE>_<TIME>'
@@ -207,7 +207,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             backup with change and no title
- | Executing:  git bb
+ | Executing:  .../../bin/git.sh bb
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
 Switched to a new branch 'bb.trunk.untitled.<DATE>_<TIME>'
@@ -241,7 +241,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             show all branches
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.untitled.<DATE>_<TIME>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.with_changes.<DATE>_<TIME>)[m
@@ -254,7 +254,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             check for wrong branch name
- | Executing:  git bb \.
+ | Executing:  .../../bin/git.sh bb \.
  |============================================================================
 ERROR: unexpected <..> in branch name <bb.trunk...<DATE>_<TIME>>
  '============================================================================
@@ -262,7 +262,7 @@ ERROR: unexpected <..> in branch name <bb.trunk...<DATE>_<TIME>>
 
  .============================================================================
  |             show all branches
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.untitled.<DATE>_<TIME>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.with_changes.<DATE>_<TIME>)[m
@@ -275,7 +275,7 @@ ERROR: unexpected <..> in branch name <bb.trunk...<DATE>_<TIME>>
 
  .============================================================================
  |             backup with own datetime
- | Executing:  git bb test test_<DATE>_<TIME>
+ | Executing:  .../../bin/git.sh bb test test_<DATE>_<TIME>
  |============================================================================
 Saved working directory and index state WIP on trunk: <HASH> files
 Switched to a new branch 'bb.trunk.test.test_<DATE>_<TIME>'
@@ -309,7 +309,7 @@ Dropped refs/stash@{0} (<HASH>)
 
  .============================================================================
  |             show all branches
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.test.test_<DATE>_<TIME>)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mLocal changes for backup branch[m [1;35m (bb.trunk.untitled.<DATE>_<TIME>)[m

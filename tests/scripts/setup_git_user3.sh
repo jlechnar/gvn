@@ -18,7 +18,7 @@ REPO_PATH=`realpath ../server1/repo`
 # initialize local repository
 execute "$GVN clone-ns file://$REPO_PATH/trunk ." ""
 
-git config user.name "user3"
-git config user.email user3@domain
+$GIT config user.name "user3"
+$GIT config user.email user3@domain
 
 source ../scripts/setup_gvn.sh

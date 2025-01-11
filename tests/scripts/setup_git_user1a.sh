@@ -16,4 +16,4 @@ cd git_user1/
 REPO_PATH=`realpath ../server1a/repo`
 
 # initialize local repository
-execute "git remote add origin1a file://$REPO_PATH" "Add remote origin1a"
+execute "$GIT remote add origin1a file://$REPO_PATH" "Add remote origin1a"

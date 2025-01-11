@@ -28,20 +28,40 @@ if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
 fi
 
 # activate below to debug commands that are executed
-if [[ "$GVN_CMD_DEBUG" == "1" ]]; then
+if [[ "$GVN_DEBUG_CMD" == "1" ]]; then
   CMD_DEBUG=1
+  git_bin=`realpath ~/bin/git.sh`
+  export GIT="$git_bin"
 else
   CMD_DEBUG=0
+  export GIT="git"
 fi
 
 set -e
 
 GITO=$0
 
-cmd=$1
-shift
-opts=$@
+# ---------------------------
+first=1
+opt=""
+cmd=""
+whitespace="[[:space:]]"
+for i in "$@"
+do
+    if [[ $i =~ $whitespace ]]
+    then
+        i=\"$i\"
+    fi
 
+    if [[ "$first" == "1" ]]; then
+      first=0
+      cmd=$i
+    else
+      opt="$opt $i"
+    fi
+done
+
+# ---------------------------
 tmp_init_overlay_folder=".overlay"
 overlay_folder=".git_overlay"
 gitignore_overlay=".gitignore_overlay"
@@ -56,14 +76,14 @@ if [[ "$cmd" == "init" ]]; then
   cd $dst
 
   # -------------
-  is_in_git_repo=`git rev-parse --is-inside-work-tree 2> /dev/null`
+  is_in_git_repo=`$GIT rev-parse --is-inside-work-tree 2> /dev/null`
 
   if [ "$is_in_git_repo" != "true" ]; then
     echo "ERROR: Init aborting due to not in any git repository."
     exit -1
   fi
 
-  git_root_path=`git root`
+  git_root_path=`$GIT root`
 
   cd $git_root_path
 
@@ -84,7 +104,7 @@ if [[ "$cmd" == "init" ]]; then
   # -------------
   mkdir $tmp_init_overlay_folder
   cd $tmp_init_overlay_folder
-  git init .
+  $GIT init .
   # define .gitignore file for overlay to be $gitignore_overlay - remap so that we can use .gitignore for git repo where overlay is done
   echo "        excludesFile=$gitignore_overlay" >> .git/config
   cd ..
@@ -121,8 +141,8 @@ if [[ "$cmd" == "init" ]]; then
 
   make .gitignore
 
-  user_name=`git config --get user.name`
-  user_email=`git config --get user.email`
+  user_name=`$GIT config --get user.name`
+  user_email=`$GIT config --get user.email`
 
   $GITO config user.name $user_name
   $GITO config user.email $user_email
@@ -166,9 +186,16 @@ elif [[ "$cmd" == "remove-all" ]]; then
     rm -rf $dot_git_path
   fi
 else
-  git_root_path=`git root`
+  git_root_path=`$GIT root`
   export GIT_DIR=$git_root_path/$overlay_folder
   export GIT_WORK_TREE=$git_root_path
-  git $cmd $opts
+
+  cmd2="git $cmd $opt"
+
+  if [[ "$CMD_DEBUG" == "1" ]]; then
+    echo "GVN_CMD: $cmd2" >> /dev/stderr
+  fi
+
+  eval $cmd2
 fi
 

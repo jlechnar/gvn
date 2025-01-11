@@ -24,8 +24,8 @@ ln -s ../gvn_cmd.sh .
 cd git_user2/
 
 ######################
-#execute "git --no-pager lgs" "log with svn revisions"
-# execute "git lgsb" "log with svn revisions"
+#execute "$GIT --no-pager lgs" "log with svn revisions"
+# execute "$GIT lgsb" "log with svn revisions"
 
 echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file.pl
@@ -36,9 +36,9 @@ echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > test1/f
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > test1/file1.pl
 echo -e '<html>\n  <title>foo</title>\n  <body>\n    bar\n  </body>\n</html>' > test1/file1.html
 
-execute "git add file* test1/*" "add some files"
+execute "$GIT add file* test1/*" "add some files"
 
-execute "git commit -m 'files'" "commit new files"
+execute "$GIT commit -m 'files'" "commit new files"
 
 execute "$GVN uc" "push to svn"
 
@@ -69,7 +69,7 @@ set -e
 
 echo -e 'class foo2:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 
-execute "git commit -a -m 'wt_test2_change'" "change on test2 worktree"
+execute "$GIT commit -a -m 'wt_test2_change'" "change on test2 worktree"
 
 execute "cd $wt_test" "change to test"
 
@@ -79,7 +79,7 @@ set -e
 
 echo -e 'my $test = 3;\n$test++;\nprint(\"%d\",$test);\n' > file.pl
 
-execute "git commit -a -m 'wt_test_change'" "change on test worktree"
+execute "$GIT commit -a -m 'wt_test_change'" "change on test worktree"
 
 execute "cd $wt_test2" "change to test2"
 
@@ -102,7 +102,7 @@ execute "wt_test5=\`$GVN wg test5\`" "get worktree path for test5 worktree"
 
 echo -e '<html>\n  <title>loo</title>\n  <body>\n    far\n  </body>\n</html>' > file1.html
 
-execute "git commit -a -m 'wt_test_change'" "change on test worktree"
+execute "$GIT commit -a -m 'wt_test_change'" "change on test worktree"
 
 execute "cd $wt_test5/test1" "change to test5 test1 subfolder"
 
@@ -110,7 +110,7 @@ execute "$GVN ws test" "sync worktree from test to test5 (rebase)"
 
 echo -e '<html>\n  <title>bar</title>\n  <body>\n    gar\n  </body>\n</html>' > file1.html
 
-execute "git commit -a -m 'wt_test5_change'" "change on test5 worktree"
+execute "$GIT commit -a -m 'wt_test5_change'" "change on test5 worktree"
 
 execute "cd $wt_test/test1" "change to test test1 subfolder"
 
@@ -119,24 +119,24 @@ execute "$GVN ws test5" "sync worktree from test5 to test (merge)"
 # global logs
 execute "cd $wt_test" "change to test"
 
-execute "git lgasb" "log with svn revisions"
+execute "$GIT lgasb" "log with svn revisions"
 
 execute "cd $wt_test" "change to test"
 
 execute "$GVN wa test4" "create worktree from branch trunk to test4"
 
-execute "git lgasb" "log with svn revisions"
+execute "$GIT lgasb" "log with svn revisions"
 
 execute "$GVN wl" "list worktrees"
 
 execute "$GVN wd test4" "delete worktree test4"
 
-execute "git lgasb" "log with svn revisions"
+execute "$GIT lgasb" "log with svn revisions"
 
 execute "$GVN wl" "list worktrees"
 
 execute "$GVN wd test2" "delete worktree test2"
 
-execute "git lgasb" "log with svn revisions"
+execute "$GIT lgasb" "log with svn revisions"
 
 execute "$GVN wl" "list worktrees"

@@ -55,79 +55,79 @@ echo "3" > test9/c.file
 echo "4" > test9/d.file
 echo "5" > test9/foo
 
-execute "git add test1" "add some files in folders"
+execute "$GIT add test1" "add some files in folders"
 
-execute "git add test5" "add some files in folders"
+execute "$GIT add test5" "add some files in folders"
 
-execute "git add test9" "add some files in folders"
+execute "$GIT add test9" "add some files in folders"
 
-execute "git commit -a -m 'test_folders_with_files'" "more files"
+execute "$GIT commit -a -m 'test_folders_with_files'" "more files"
 
 # -------------------------------------
 execute "pwd" "current directory"
 
-execute "git find . test5/" "find all test5"
+execute "$GIT find . test5/" "find all test5"
 
-execute "git find" "find no args"
+execute "$GIT find" "find no args"
 
 # -------------------------------------
 execute "cd test5/" "cd test5"
 
 execute "pwd" "current directory"
 
-execute "git find" "find all"
+execute "$GIT find" "find all"
 
-execute "git find . test6/" "find all test6"
+execute "$GIT find . test6/" "find all test6"
 
-execute "git find file test6" "find all *file* in test6 subfolder"
+execute "$GIT find file test6" "find all *file* in test6 subfolder"
 
-execute "git find . ." "find all current"
+execute "$GIT find . ." "find all current"
 
-execute "git find file ." "find all *file* in current subfolder"
+execute "$GIT find file ." "find all *file* in current subfolder"
 
-execute "git find . ../" "find all one up"
+execute "$GIT find . ../" "find all one up"
 
-execute "git find . ../test1/test2" "find all test1 subfolder"
+execute "$GIT find . ../test1/test2" "find all test1 subfolder"
 
-execute "git find file ../test1/test2" "find all *file* in test1/test2 subfolder"
+execute "$GIT find file ../test1/test2" "find all *file* in test1/test2 subfolder"
 
 # -----------------------------
 execute "cd test6/" "cd test6"
 
 execute "pwd" "current directory"
 
-execute "git find ." "find all no args"
+execute "$GIT find ." "find all no args"
 
-execute "git find . ." "find all current"
+execute "$GIT find . ." "find all current"
 
-execute "git find . ../" "find all one up"
+execute "$GIT find . ../" "find all one up"
 
-execute "git find . ../.." "find all two up"
+execute "$GIT find . ../.." "find all two up"
 
-execute "git find . ../../test1/test2/test3" "find all test1 subfolder"
+execute "$GIT find . ../../test1/test2/test3" "find all test1 subfolder"
 
 # -----------------------------
 set +e
-execute "git find . ../../../outside/dir" "find outside dir none existing"
+execute "$GIT find . ../../../outside/dir" "find outside dir none existing"
 
-execute "git find . ../../../git_user2" "find outside dir existing"
+execute "$GIT find . ../../../git_user2" "find outside dir existing"
 
-execute "git find . inside/none_existing/dir" "find none existing dir"
+execute "$GIT find . inside/none_existing/dir" "find none existing dir"
 
-execute "git find . inside_none_existing_dir" "find none existing dir"
+execute "$GIT find . inside_none_existing_dir" "find none existing dir"
 
 set -e
 
 # -----------------------------
 execute "cd ../../test9/" "go to test9"
 
-execute "git find file ." "find file current"
+execute "$GIT find file ." "find file current"
 
-execute "git find file" "find file in current"
+execute "$GIT find file" "find file in current"
 
-execute "git find . ." "find all in current"
+execute "$GIT find . ." "find all in current"
 
-execute "git find ." "find all in current"
+execute "$GIT find ." "find all in current"
 
 # --------------
 execute "$GVN wa test" "add worktree test"
@@ -141,23 +141,23 @@ execute "cd ../test5/test6/" "cd test6"
 
 execute "pwd" "current directory"
 
-execute "git find ." "find all no args"
+execute "$GIT find ." "find all no args"
 
-execute "git find . ." "find all current"
+execute "$GIT find . ." "find all current"
 
-execute "git find . ../" "find all one up"
+execute "$GIT find . ../" "find all one up"
 
-execute "git find . ../.." "find all two up"
+execute "$GIT find . ../.." "find all two up"
 
-execute "git find . ../../test1/test2/test3" "find all test1 subfolder"
+execute "$GIT find . ../../test1/test2/test3" "find all test1 subfolder"
 
 # -----------------------------
 execute "cd ../../test9/" "go to test9"
 
-execute "git find file ." "find file current"
+execute "$GIT find file ." "find file current"
 
-execute "git find file" "find file in current"
+execute "$GIT find file" "find file in current"
 
-execute "git find . ." "find all in current"
+execute "$GIT find . ." "find all in current"
 
-execute "git find ." "find all in current"
+execute "$GIT find ." "find all in current"

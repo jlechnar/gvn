@@ -9,19 +9,19 @@ set -e
 
 file=$1
 
-rebase_in_progress=`git rebase-in-progress`
-merge_in_progress=`git merge-in-progress`
+rebase_in_progress=`$GIT rebase-in-progress`
+merge_in_progress=`$GIT merge-in-progress`
 
 file_path=`realpath $file`
-main_path=`git rev-parse --path-format=absolute --show-toplevel`
+main_path=`$GIT rev-parse --path-format=absolute --show-toplevel`
 file_path_relative_to_main_path=`realpath --relative-to=$main_path $file_path`
 
 cd $main_path
 
 if [[ "$rebase_in_progress" == "1" ]]; then
-  git show :1:$file_path_relative_to_main_path > $file_path_relative_to_main_path
+  $GIT show :1:$file_path_relative_to_main_path > $file_path_relative_to_main_path
 elif [[ "$merge_in_progress" == "1" ]]; then
-  git show :1:$file_path_relative_to_main_path > $file_path_relative_to_main_path
+  $GIT show :1:$file_path_relative_to_main_path > $file_path_relative_to_main_path
 else
   echo "ERROR: There is no merge nor rebase in progress. Aborting operation."
   exit -1

@@ -24,8 +24,8 @@ else
   exit -1
 fi
 
-dot_git_path_abs=`git get-dot-git-path-abs`
-branch_current=`git branch --show-current`
+dot_git_path_abs=`$GIT get-dot-git-path-abs`
+branch_current=`$GIT branch --show-current`
 
 if [[ $is_gvn ]]; then
   if ! [[ -e $dot_git_path_abs/svn/.metadata ]]; then
@@ -33,7 +33,7 @@ if [[ $is_gvn ]]; then
     exit -1
   fi
 
-  branch_exists=`git check-branch-exists $branch_name`
+  branch_exists=`$GIT check-branch-exists $branch_name`
   if [[ "$branch_exists" == "1" ]]; then
     echo "ERROR: branch with name $branch_name already exists. Aborting creation of new branch."
     exit -1
@@ -56,7 +56,7 @@ else
   fi
 fi
 
-git branch $branch_name $commit_ish
+$GIT branch $branch_name $commit_ish
 
 if [[ $is_gvn ]]; then
   echo "$branch_name $branch_current" > $dot_git_path_abs/gvn/branch/$branch_name

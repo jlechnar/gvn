@@ -27,28 +27,48 @@ if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
 fi
 
 # activate below to debug commands that are executed
-if [[ "$GVN_CMD_DEBUG" == "1" ]]; then
+if [[ "$GVN_DEBUG_CMD" == "1" ]]; then
   CMD_DEBUG=1
+  git_bin=`realpath ~/bin/git.sh`
+  export GIT="$git_bin"
 else
   CMD_DEBUG=0
+  export GIT="git"
 fi
 
+#set -x
 set -e
 
-cmd=$1
-shift
-opt=$@
+first=1
+opt=""
+cmd=""
+whitespace="[[:space:]]"
+for i in "$@"
+do
+    if [[ $i =~ $whitespace ]]
+    then
+        i=\"$i\"
+    fi
+
+    if [[ "$first" == "1" ]]; then
+      first=0
+      cmd=$i
+    else
+      opt="$opt $i"
+    fi
+done
 
 if [[ "$cmd" == "rebase" ]]; then
-  git rebase-wrapper $opt
+  cmd2="git rebase-wrapper $opt"
 elif [[ "$cmd" == "merge" ]]; then
-  git merge-wrapper $opt
+  cmd2="git merge-wrapper $opt"
 else
-
-  if [[ "$CMD_DEBUG" == "1" ]]; then
-    echo "GVN_CMD: git $cmd $opt" >> /dev/stderr
-  fi
-
-  git $cmd $opt
+  cmd2="git $cmd $opt"
 fi
+
+if [[ "$CMD_DEBUG" == "1" ]]; then
+  echo "GVN_CMD: $cmd2" >> /dev/stderr
+fi
+
+eval $cmd2
 

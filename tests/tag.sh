@@ -48,77 +48,77 @@ echo "4" > test9/d.file
 echo "5" > test9/foo
 
 for file in `find test1/ test5/ test9/ -type f | sort`; do
-  execute "git add $file" "add $file"
-  execute "git commit $file -m \"add_$file\"" "commit $file"
+  execute "$GIT add $file" "add $file"
+  execute "$GIT commit $file -m \"add_$file\"" "commit $file"
 done
 
-execute "git push" "push to git repo"
-execute "git push origin1a" "push to git repo origin1a"
+execute "$GIT push" "push to $GIT repo"
+execute "$GIT push origin1a" "push to $GIT repo origin1a"
 
 # -------------------------------------
 execute "pwd" "current directory"
 
-execute "git tl origin"
+execute "$GIT tl origin"
 
-execute "git ta 1.0 -m \"bla\""
+execute "$GIT ta 1.0 -m \"bla\""
 
-execute "git tl origin"
+execute "$GIT tl origin"
 
-execute "git tp 1.0 origin" ""
-execute "git tp 1.0 origin1a" ""
+execute "$GIT tp 1.0 origin" ""
+execute "$GIT tp 1.0 origin1a" ""
 
-execute "git tl origin"
+execute "$GIT tl origin"
 
-execute "git tm 1.0 1.1"
+execute "$GIT tm 1.0 1.1"
 
-execute "git tl origin"
+execute "$GIT tl origin"
 
-execute "git ta 2.0 HEAD^ -m \"bla 2\""
-execute "git tp 2.0 origin"
+execute "$GIT ta 2.0 HEAD^ -m \"bla 2\""
+execute "$GIT tp 2.0 origin"
 #
-execute "git tp 2.0 origin1a"
+execute "$GIT tp 2.0 origin1a"
 
-execute "git ta 3.0 HEAD^^ -m \"bla 3\""
-execute "git tp 3.0 origin"
+execute "$GIT ta 3.0 HEAD^^ -m \"bla 3\""
+execute "$GIT tp 3.0 origin"
 #
-execute "git tp 3.0 origin1a"
+execute "$GIT tp 3.0 origin1a"
 
-execute "git ta 4.0 HEAD^^ -m \"bla 4\""
-execute "git tp 4.0 origin"
+execute "$GIT ta 4.0 HEAD^^ -m \"bla 4\""
+execute "$GIT tp 4.0 origin"
 #
-execute "git ta 4.0a HEAD^^ -m \"bla 4 1a\""
-execute "git tp 4.0a origin1a"
+execute "$GIT ta 4.0a HEAD^^ -m \"bla 4 1a\""
+execute "$GIT tp 4.0a origin1a"
 
-execute "git ta 5.0 HEAD^ -m \"bla 5\""
-execute "git tp 5.0 origin"
+execute "$GIT ta 5.0 HEAD^ -m \"bla 5\""
+execute "$GIT tp 5.0 origin"
 #
-execute "git ta 5.0a HEAD^ -m \"bla 5 1a\""
-execute "git tp 5.0a origin1a" ""
+execute "$GIT ta 5.0a HEAD^ -m \"bla 5 1a\""
+execute "$GIT tp 5.0a origin1a" ""
 
-execute "git tdl 2.0"
+execute "$GIT tdl 2.0"
 
-execute "git tdr 3.0 origin"
+execute "$GIT tdr 3.0 origin"
 
-execute "git td 4.0"
+execute "$GIT td 4.0"
 
-execute "git td 5.0 origin"
+execute "$GIT td 5.0 origin"
 
-execute "git tl"
+execute "$GIT tl"
 
 # ----------------------------
-execute "git tla origin"
+execute "$GIT tla origin"
 
-execute "git tla"
+execute "$GIT tla"
 
-execute "git tl origin"
+execute "$GIT tl origin"
 
-execute "git tl"
+execute "$GIT tl"
 
-execute "git tll"
+execute "$GIT tll"
 
-execute "git tlr origin"
+execute "$GIT tlr origin"
 
-execute "git tlra"
+execute "$GIT tlra"
 
-execute "git tlra origin"
+execute "$GIT tlra origin"
 

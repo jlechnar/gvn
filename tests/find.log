@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -144,28 +144,28 @@ Committing to file://.../test_find/server1/repo/trunk ...
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test1
+ | Executing:  .../../bin/git.sh add test1
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test5
+ | Executing:  .../../bin/git.sh add test5
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test9
+ | Executing:  .../../bin/git.sh add test9
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             more files
- | Executing:  git commit -a -m 'test_folders_with_files'
+ | Executing:  .../../bin/git.sh commit -a -m 'test_folders_with_files'
  |============================================================================
 [trunk  <HASH>] test_folders_with_files
  16 files changed, 16 insertions(+)
@@ -198,7 +198,7 @@ Committing to file://.../test_find/server1/repo/trunk ...
 
  .============================================================================
  |             find all test5
- | Executing:  git find . test5/
+ | Executing:  .../../bin/git.sh find . test5/
  |============================================================================
 test5/file.i
 test5/test6/file.h
@@ -210,7 +210,7 @@ test5/test6/test7/test8/file.f
 
  .============================================================================
  |             find no args
- | Executing:  git find
+ | Executing:  .../../bin/git.sh find
  |============================================================================
 .svnignore
 test1/file.e
@@ -249,7 +249,7 @@ test9/foo
 
  .============================================================================
  |             find all
- | Executing:  git find
+ | Executing:  .../../bin/git.sh find
  |============================================================================
 ../.svnignore
 ../test1/file.e
@@ -273,7 +273,7 @@ test9/foo
 
  .============================================================================
  |             find all test6
- | Executing:  git find . test6/
+ | Executing:  .../../bin/git.sh find . test6/
  |============================================================================
 test6/file.h
 test6/file/bar
@@ -284,7 +284,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all *file* in test6 subfolder
- | Executing:  git find file test6
+ | Executing:  .../../bin/git.sh find file test6
  |============================================================================
 test6/file.h
 test6/file/bar
@@ -295,7 +295,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all current
- | Executing:  git find . .
+ | Executing:  .../../bin/git.sh find . .
  |============================================================================
 file.i
 test6/file.h
@@ -307,7 +307,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all *file* in current subfolder
- | Executing:  git find file .
+ | Executing:  .../../bin/git.sh find file .
  |============================================================================
 file.i
 test6/file.h
@@ -319,7 +319,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all one up
- | Executing:  git find . ../
+ | Executing:  .../../bin/git.sh find . ../
  |============================================================================
 ../.svnignore
 ../test1/file.e
@@ -343,7 +343,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all test1 subfolder
- | Executing:  git find . ../test1/test2
+ | Executing:  .../../bin/git.sh find . ../test1/test2
  |============================================================================
 ../test1/test2/file.d
 ../test1/test2/test3/file.c
@@ -354,7 +354,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all *file* in test1/test2 subfolder
- | Executing:  git find file ../test1/test2
+ | Executing:  .../../bin/git.sh find file ../test1/test2
  |============================================================================
 ../test1/test2/file.d
 ../test1/test2/test3/file.c
@@ -380,7 +380,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all no args
- | Executing:  git find .
+ | Executing:  .../../bin/git.sh find .
  |============================================================================
 ../../.svnignore
 ../../test1/file.e
@@ -404,7 +404,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             find all current
- | Executing:  git find . .
+ | Executing:  .../../bin/git.sh find . .
  |============================================================================
 file.h
 file/bar
@@ -415,7 +415,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find all one up
- | Executing:  git find . ../
+ | Executing:  .../../bin/git.sh find . ../
  |============================================================================
 ../file.i
 ../test6/file.h
@@ -427,7 +427,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find all two up
- | Executing:  git find . ../..
+ | Executing:  .../../bin/git.sh find . ../..
  |============================================================================
 ../../.svnignore
 ../../test1/file.e
@@ -451,7 +451,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find all test1 subfolder
- | Executing:  git find . ../../test1/test2/test3
+ | Executing:  .../../bin/git.sh find . ../../test1/test2/test3
  |============================================================================
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
@@ -461,7 +461,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find outside dir none existing
- | Executing:  git find . ../../../outside/dir
+ | Executing:  .../../bin/git.sh find . ../../../outside/dir
  |============================================================================
 realpath: .../test_find/git_user3/test5/test6/../../../outside/dir: No such file or directory
  '============================================================================
@@ -469,7 +469,7 @@ realpath: .../test_find/git_user3/test5/test6/../../../outside/dir: No such file
 
  .============================================================================
  |             find outside dir existing
- | Executing:  git find . ../../../git_user2
+ | Executing:  .../../bin/git.sh find . ../../../git_user2
  |============================================================================
 ERROR: Target directory <.../test_find/git_user2> is outside of git repository <.../test_find/git_user3>. Aborting.
  '============================================================================
@@ -477,7 +477,7 @@ ERROR: Target directory <.../test_find/git_user2> is outside of git repository <
 
  .============================================================================
  |             find none existing dir
- | Executing:  git find . inside/none_existing/dir
+ | Executing:  .../../bin/git.sh find . inside/none_existing/dir
  |============================================================================
 realpath: .../test_find/git_user3/test5/test6/inside/none_existing/dir: No such file or directory
  '============================================================================
@@ -485,7 +485,7 @@ realpath: .../test_find/git_user3/test5/test6/inside/none_existing/dir: No such 
 
  .============================================================================
  |             find none existing dir
- | Executing:  git find . inside_none_existing_dir
+ | Executing:  .../../bin/git.sh find . inside_none_existing_dir
  |============================================================================
  '============================================================================
 
@@ -499,7 +499,7 @@ realpath: .../test_find/git_user3/test5/test6/inside/none_existing/dir: No such 
 
  .============================================================================
  |             find file current
- | Executing:  git find file .
+ | Executing:  .../../bin/git.sh find file .
  |============================================================================
 afile
 bfile
@@ -510,7 +510,7 @@ d.file
 
  .============================================================================
  |             find file in current
- | Executing:  git find file
+ | Executing:  .../../bin/git.sh find file
  |============================================================================
 ../test1/file.e
 ../test1/test2/file.d
@@ -531,7 +531,7 @@ d.file
 
  .============================================================================
  |             find all in current
- | Executing:  git find . .
+ | Executing:  .../../bin/git.sh find . .
  |============================================================================
 afile
 bfile
@@ -543,7 +543,7 @@ foo
 
  .============================================================================
  |             find all in current
- | Executing:  git find .
+ | Executing:  .../../bin/git.sh find .
  |============================================================================
 ../.svnignore
 ../test1/file.e
@@ -612,7 +612,7 @@ paths:      .../test_find/git_user3/test9 => .../test_find/test/test9
 
  .============================================================================
  |             find all no args
- | Executing:  git find .
+ | Executing:  .../../bin/git.sh find .
  |============================================================================
 ../../.svnignore
 ../../test1/file.e
@@ -636,7 +636,7 @@ paths:      .../test_find/git_user3/test9 => .../test_find/test/test9
 
  .============================================================================
  |             find all current
- | Executing:  git find . .
+ | Executing:  .../../bin/git.sh find . .
  |============================================================================
 file.h
 file/bar
@@ -647,7 +647,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find all one up
- | Executing:  git find . ../
+ | Executing:  .../../bin/git.sh find . ../
  |============================================================================
 ../file.i
 ../test6/file.h
@@ -659,7 +659,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find all two up
- | Executing:  git find . ../..
+ | Executing:  .../../bin/git.sh find . ../..
  |============================================================================
 ../../.svnignore
 ../../test1/file.e
@@ -683,7 +683,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find all test1 subfolder
- | Executing:  git find . ../../test1/test2/test3
+ | Executing:  .../../bin/git.sh find . ../../test1/test2/test3
  |============================================================================
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
@@ -700,7 +700,7 @@ test7/test8/file.f
 
  .============================================================================
  |             find file current
- | Executing:  git find file .
+ | Executing:  .../../bin/git.sh find file .
  |============================================================================
 afile
 bfile
@@ -711,7 +711,7 @@ d.file
 
  .============================================================================
  |             find file in current
- | Executing:  git find file
+ | Executing:  .../../bin/git.sh find file
  |============================================================================
 ../test1/file.e
 ../test1/test2/file.d
@@ -732,7 +732,7 @@ d.file
 
  .============================================================================
  |             find all in current
- | Executing:  git find . .
+ | Executing:  .../../bin/git.sh find . .
  |============================================================================
 afile
 bfile
@@ -744,7 +744,7 @@ foo
 
  .============================================================================
  |             find all in current
- | Executing:  git find .
+ | Executing:  .../../bin/git.sh find .
  |============================================================================
 ../.svnignore
 ../test1/file.e

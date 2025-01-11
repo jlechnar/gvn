@@ -1,6 +1,6 @@
 
 ################################################
-# setup: Setup worktree (git submodule)
+# setup: Setup worktree (.../../bin/git.sh submodule)
 .../test_worktree_git_submodule
 
 ################################################
@@ -23,7 +23,7 @@ Initialized empty Git repository in .../test_worktree_git_submodule/server1/repo
 .../test_worktree_git_submodule/server1_create
 
  .============================================================================
- | Executing:  git clone file://.../test_worktree_git_submodule/server1/repo .
+ | Executing:  .../../bin/git.sh clone file://.../test_worktree_git_submodule/server1/repo .
  |============================================================================
 Cloning into '.'...
 warning: You appear to have cloned an empty repository.
@@ -58,7 +58,7 @@ Initialized empty Git repository in .../test_worktree_git_submodule/server2/repo
 .../test_worktree_git_submodule/server2_create
 
  .============================================================================
- | Executing:  git clone file://.../test_worktree_git_submodule/server2/repo .
+ | Executing:  .../../bin/git.sh clone file://.../test_worktree_git_submodule/server2/repo .
  |============================================================================
 Cloning into '.'...
 warning: You appear to have cloned an empty repository.
@@ -78,7 +78,7 @@ To file://.../test_worktree_git_submodule/server2/repo
 .../test_worktree_git_submodule/git_user1
 
  .============================================================================
- | Executing:  git clone file://.../test_worktree_git_submodule/server1/repo .
+ | Executing:  .../../bin/git.sh clone file://.../test_worktree_git_submodule/server1/repo .
  |============================================================================
 Cloning into '.'...
  '============================================================================
@@ -89,7 +89,7 @@ Cloning into '.'...
 .../test_worktree_git_submodule/git_user4
 
  .============================================================================
- | Executing:  git clone file://.../test_worktree_git_submodule/server2/repo .
+ | Executing:  .../../bin/git.sh clone file://.../test_worktree_git_submodule/server2/repo .
  |============================================================================
 Cloning into '.'...
  '============================================================================
@@ -97,14 +97,14 @@ Cloning into '.'...
 
  .============================================================================
  |             add some files
- | Executing:  git add file* test_folder*
+ | Executing:  .../../bin/git.sh add file* test_folder*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -m 'files'
+ | Executing:  .../../bin/git.sh commit -m 'files'
  |============================================================================
 [master  <HASH>] files
  5 files changed, 25 insertions(+)
@@ -118,7 +118,7 @@ Cloning into '.'...
 
  .============================================================================
  |             push added files
- | Executing:  git push
+ | Executing:  .../../bin/git.sh push
  |============================================================================
 To file://.../test_worktree_git_submodule/server1/repo
    <HASH>..<HASH>  master -> master
@@ -127,14 +127,14 @@ To file://.../test_worktree_git_submodule/server1/repo
 
  .============================================================================
  |             add some files
- | Executing:  git add file* test_folder*
+ | Executing:  .../../bin/git.sh add file* test_folder*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files in submodule
- | Executing:  git commit -m 'files'
+ | Executing:  .../../bin/git.sh commit -m 'files'
  |============================================================================
 [master  <HASH>] files
  5 files changed, 25 insertions(+)
@@ -148,7 +148,7 @@ To file://.../test_worktree_git_submodule/server1/repo
 
  .============================================================================
  |             push added files
- | Executing:  git push
+ | Executing:  .../../bin/git.sh push
  |============================================================================
 To file://.../test_worktree_git_submodule/server2/repo
    <HASH>..<HASH>  master -> master
@@ -157,7 +157,7 @@ To file://.../test_worktree_git_submodule/server2/repo
 
  .============================================================================
  |             add submodule in subfolder sm
- | Executing:  git -c protocol.file.allow=always submodule add file://.../test_worktree_git_submodule/server2/repo sm
+ | Executing:  .../../bin/git.sh -c protocol.file.allow=always submodule add file://.../test_worktree_git_submodule/server2/repo sm
  |============================================================================
 Cloning into '.../test_worktree_git_submodule/git_user1/sm'...
  '============================================================================
@@ -165,14 +165,14 @@ Cloning into '.../test_worktree_git_submodule/git_user1/sm'...
 
  .============================================================================
  |             add submodule
- | Executing:  git add .gitmodules sm
+ | Executing:  .../../bin/git.sh add .gitmodules sm
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit submodule connection
- | Executing:  git commit -m 'submodule'
+ | Executing:  .../../bin/git.sh commit -m 'submodule'
  |============================================================================
 [master  <HASH>] submodule
  2 files changed, 4 insertions(+)
@@ -183,7 +183,7 @@ Cloning into '.../test_worktree_git_submodule/git_user1/sm'...
 
  .============================================================================
  |             push added submodule
- | Executing:  git push
+ | Executing:  .../../bin/git.sh push
  |============================================================================
 To file://.../test_worktree_git_submodule/server1/repo
    <HASH>..<HASH>  master -> master
@@ -192,7 +192,7 @@ To file://.../test_worktree_git_submodule/server1/repo
 
  .============================================================================
  |             add worktree test1
- | Executing:  git wa test1
+ | Executing:  .../../bin/git.sh wa test1
  |============================================================================
 Preparing worktree (new branch 'test1')
 HEAD is now at <HASH> submodule
@@ -213,7 +213,7 @@ paths:      .../test_worktree_git_submodule/git_user1 => .../test_worktree_git_s
 
  .============================================================================
  |             init submodule
- | Executing:  git -c protocol.file.allow=always submodule-init-recursive
+ | Executing:  .../../bin/git.sh -c protocol.file.allow=always submodule-init-recursive
  |============================================================================
 Cloning into '.../test_worktree_git_submodule/test1/sm'...
 Submodule path 'sm': checked out '<HASH>'
@@ -230,7 +230,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff all
- | Executing:  git d
+ | Executing:  .../../bin/git.sh d
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -257,7 +257,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff local
- | Executing:  git d .
+ | Executing:  .../../bin/git.sh d .
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -284,7 +284,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff all
- | Executing:  git dw
+ | Executing:  .../../bin/git.sh dw
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -303,7 +303,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff local
- | Executing:  git dw .
+ | Executing:  .../../bin/git.sh dw .
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -322,7 +322,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff folder
- | Executing:  git d sm/
+ | Executing:  .../../bin/git.sh d sm/
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -335,7 +335,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff folder
- | Executing:  git dw sm/
+ | Executing:  .../../bin/git.sh dw sm/
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -355,7 +355,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff all
- | Executing:  git d
+ | Executing:  .../../bin/git.sh d
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -382,7 +382,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff local
- | Executing:  git d .
+ | Executing:  .../../bin/git.sh d .
  |============================================================================
 [36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -399,7 +399,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff all
- | Executing:  git dw
+ | Executing:  .../../bin/git.sh dw
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -418,7 +418,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff local
- | Executing:  git dw .
+ | Executing:  .../../bin/git.sh dw .
  |============================================================================
 [36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -431,14 +431,14 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff folder
- | Executing:  git d sm/test_folder2/
+ | Executing:  .../../bin/git.sh d sm/test_folder2/
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             diff folder
- | Executing:  git dw sm/test_folder2/
+ | Executing:  .../../bin/git.sh dw sm/test_folder2/
  |============================================================================
  '============================================================================
 
@@ -453,7 +453,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff all
- | Executing:  git d
+ | Executing:  .../../bin/git.sh d
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -476,7 +476,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff local
- | Executing:  git d .
+ | Executing:  .../../bin/git.sh d .
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -493,7 +493,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff all
- | Executing:  git dw
+ | Executing:  .../../bin/git.sh dw
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -511,7 +511,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff local
- | Executing:  git dw .
+ | Executing:  .../../bin/git.sh dw .
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -524,7 +524,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff folder
- | Executing:  git d test_folder1/
+ | Executing:  .../../bin/git.sh d test_folder1/
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -541,7 +541,7 @@ Submodule path 'sm': checked out '<HASH>'
 
  .============================================================================
  |             diff folder
- | Executing:  git dw test_folder1/
+ | Executing:  .../../bin/git.sh dw test_folder1/
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -574,7 +574,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff all
- | Executing:  git d
+ | Executing:  .../../bin/git.sh d
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -601,7 +601,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff local
- | Executing:  git d .
+ | Executing:  .../../bin/git.sh d .
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -628,7 +628,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff all
- | Executing:  git dw
+ | Executing:  .../../bin/git.sh dw
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -647,7 +647,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff local
- | Executing:  git dw .
+ | Executing:  .../../bin/git.sh dw .
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -666,7 +666,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff folder
- | Executing:  git d sm/
+ | Executing:  .../../bin/git.sh d sm/
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -679,7 +679,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff folder
- | Executing:  git dw sm/
+ | Executing:  .../../bin/git.sh dw sm/
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -699,7 +699,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff all
- | Executing:  git d
+ | Executing:  .../../bin/git.sh d
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -726,7 +726,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff local
- | Executing:  git d .
+ | Executing:  .../../bin/git.sh d .
  |============================================================================
 [36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -743,7 +743,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff all
- | Executing:  git dw
+ | Executing:  .../../bin/git.sh dw
  |============================================================================
 [36mdiff --git a/file_sm.pl b/file_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -762,7 +762,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff local
- | Executing:  git dw .
+ | Executing:  .../../bin/git.sh dw .
  |============================================================================
 [36mdiff --git a/test_folder2/file2_sm.pl b/test_folder2/file2_sm.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -775,14 +775,14 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff folder
- | Executing:  git d sm/test_folder2/
+ | Executing:  .../../bin/git.sh d sm/test_folder2/
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             diff folder
- | Executing:  git dw sm/test_folder2/
+ | Executing:  .../../bin/git.sh dw sm/test_folder2/
  |============================================================================
  '============================================================================
 
@@ -797,7 +797,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff all
- | Executing:  git d
+ | Executing:  .../../bin/git.sh d
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -820,7 +820,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff local
- | Executing:  git d .
+ | Executing:  .../../bin/git.sh d .
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -837,7 +837,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff all
- | Executing:  git dw
+ | Executing:  .../../bin/git.sh dw
  |============================================================================
 [36mdiff --git a/sm b/sm[m
 [36m--- a/sm[m
@@ -855,7 +855,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff local
- | Executing:  git dw .
+ | Executing:  .../../bin/git.sh dw .
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -868,7 +868,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff folder
- | Executing:  git d test_folder1/
+ | Executing:  .../../bin/git.sh d test_folder1/
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -885,7 +885,7 @@ paths:      .../test_worktree_git_submodule/test1 => .../test_worktree_git_submo
 
  .============================================================================
  |             diff folder
- | Executing:  git dw test_folder1/
+ | Executing:  .../../bin/git.sh dw test_folder1/
  |============================================================================
 [36mdiff --git a/test_folder1/file2.pl b/test_folder1/file2.pl[m
 [36mindex <HASH>..<HASH> 100644[m

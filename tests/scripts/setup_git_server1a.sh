@@ -8,12 +8,13 @@
 # set -x
 
 source ./scripts/helper_functions.sh
+source ./gvn_cmd.sh
 
 ############
 setup_path "server1a" "create local repository (file system repository) server1a"
 
 mkdir repo
-git init --bare repo
+$GIT init --bare repo
 cd repo
 REPO_PATH=`pwd`
 REPO2_PATH=`echo $REPO_PATH | sed 's,server1a,server1,g'`
@@ -25,8 +26,8 @@ setup_path "server1_create" "create local / sandbox repository"
 unlink scripts
 
 # initialize local repository
-execute "git clone file://$REPO2_PATH ." ""
-git push
+execute "$GIT clone file://$REPO2_PATH ." ""
+$GIT push
 
 cd ..
 remove_path "server1_create"

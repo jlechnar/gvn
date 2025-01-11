@@ -13,22 +13,22 @@ set -e
 
 branch_to_rebase_to=$1
 
-root=`git root`
+root=`$GIT root`
 export GIT_WORK_TREE=$root
 
 gvn check-branch-to-be-svn-branch
 gvn check-for-branch-name-missmatch
 
-if [ `git rev-parse --verify $branch_to_rebase_to 2>/dev/null` ]; then
-  branch_to_rebase=`git rev-parse --abbrev-ref HEAD`
-  head_branch_to_rebase=`git rev-parse HEAD`
-  head_branch_to_rebase_to=`git rev-parse $branch_to_rebase_to`
+if [ `$GIT rev-parse --verify $branch_to_rebase_to 2>/dev/null` ]; then
+  branch_to_rebase=`$GIT rev-parse --abbrev-ref HEAD`
+  head_branch_to_rebase=`$GIT rev-parse HEAD`
+  head_branch_to_rebase_to=`$GIT rev-parse $branch_to_rebase_to`
   if [[ "$head_branch_to_rebase" != "$head_branch_to_rebase_to" ]]; then
     datetime=`date +'%Y_%m_%d-%H_%M_%S'`
-    git tag -a gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to} -m "git rebase tag $datetime (git ${branch_to_rebase} ${head_branch_to_rebase} to ${branch_to_rebase_to} ${head_branch_to_rebase_to})"
-    echo "Created Tag for git rebase: gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to}"
+    $GIT tag -a gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to} -m "$GIT rebase tag $datetime ($GIT ${branch_to_rebase} ${head_branch_to_rebase} to ${branch_to_rebase_to} ${head_branch_to_rebase_to})"
+    echo "Created Tag for $GIT rebase: gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to}"
   fi
-  git rebase $@
+  $GIT rebase $@
 else
-  git rebase $@
+  $GIT rebase $@
 fi

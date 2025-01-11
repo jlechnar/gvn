@@ -34,11 +34,11 @@ if ! [[ "$root" == "" ]]; then
   run_path="-C $root"
 fi
 
-head_svn=`git svn log --oneline --show-commit --no-abbrev --limit 1 | git awk3`
-head_git=`git rev-parse HEAD`
+head_svn=`$GIT svn log --oneline --show-commit --no-abbrev --limit 1 | $GIT awk3`
+head_git=`$GIT rev-parse HEAD`
 
 datetime=`date +'%Y_%m_%d-%H_%M_%S'`
-git tag -a gvn_rebase_${datetime}_git_${head_git}_to_svn_${head_svn} -m "git svn rebase tag $datetime (git $head_git rebased to svn $head_svn)"
+$GIT tag -a gvn_rebase_${datetime}_git_${head_git}_to_svn_${head_svn} -m "$GIT svn rebase tag $datetime ($GIT $head_$GIT rebased to svn $head_svn)"
 echo "Created Tag gvn_rebase_$datetime_${datetime}_git_${head_git}_to_svn_${head_svn}"
 
-git $run_path svn rebase
+$GIT $run_path svn rebase

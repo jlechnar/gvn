@@ -13,7 +13,7 @@ set -e
 args=$@
 
 current_dir=`pwd`
-root_dir=`git root`
+root_dir=`$GIT root`
 
 path=$root_dir
 tree="HEAD"
@@ -34,7 +34,7 @@ cd $root_dir
 
 IFS=$'\n'
 
-cmd="git egrep $args"
+cmd="$GIT egrep $args"
 for result in `eval $cmd`;
 do
   result2=`echo $result | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,$relative_to_reduced,g"` || true

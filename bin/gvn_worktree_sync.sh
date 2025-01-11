@@ -17,18 +17,18 @@ branch_to_sync=$1
 
 gvn check-branch-to-be-svn-branch
 
-root=`git root`
+root=`$GIT root`
 
-branch_current=`git branch --show-current`
+branch_current=`$GIT branch --show-current`
 branch_current_svn=`gvn currentbranch`
-dot_git_path=`git get-dot-git-path-abs`
+dot_git_path=`$GIT get-dot-git-path-abs`
 
 if [ -z $branch_to_sync ]; then
   if [ -f $dot_git_path/gvn/branch/$branch_current ]; then
-    branch_to_sync=`cat $dot_git_path/gvn/branch/$branch_current | git awk2`
+    branch_to_sync=`cat $dot_git_path/gvn/branch/$branch_current | $GIT awk2`
     echo "INFO: Auto-detected branch to sync to be <$branch_to_sync>."
   else
-    possible_branches=`cat $dot_git_path/gvn/branch/* | grep "$branch_current\$" | git awk1 | sed "s,^, ,g"`
+    possible_branches=`cat $dot_git_path/gvn/branch/* | grep "$branch_current\$" | $GIT awk1 | sed "s,^, ,g"`
     if [[ "$possible_branches" == "" ]]; then
       echo "ERROR: Could not detect any branch to sync. No worktree/branch available related to $branch_current."
       exit -1
@@ -53,7 +53,7 @@ if [[ "$branch_current" == "$branch_current_svn" ]]; then
     exit -1
   fi
   if [ -f $dot_git_path/gvn/branch/$branch_to_sync ]; then
-    branch_to_sync_svn_from_file=`cat $dot_git_path/gvn/branch/$branch_to_sync | git awk2`
+    branch_to_sync_svn_from_file=`cat $dot_git_path/gvn/branch/$branch_to_sync | $GIT awk2`
     if [[ "$branch_to_sync_svn_from_file" != "$branch_current_svn" ]]; then
       echo "ERROR: Detected missmatch in svn base branch <$branch_to_sync_svn_from_file> (<$branch_to_sync>) != <$branch_current_svn> ($branch_current). Aborted sync (merge) of <$branch_to_sync> into <$branch_current>."
       exit -1
@@ -61,10 +61,10 @@ if [[ "$branch_current" == "$branch_current_svn" ]]; then
     echo "INFO: detected current branch <$branch_current> to be base for branch to sync <$branch_to_sync>."
     echo "INFO: merging branch to sync <$branch_to_sync> into current branch <$branch_current>."
     export GIT_WORK_TREE=$root
-    changes=`git stash-local-changes-if-any`
+    changes=`$GIT stash-local-changes-if-any`
     gvn worktree-merge $branch_to_sync
     if [[ "$changes" != "" ]]; then
-      git stash pop
+      $GIT stash pop
     fi
   else
     echo "ERROR: Could not find branch information file <$dot_git_path/gvn/branch/$branch_to_sync>. Aborting sync (merge) operation."
@@ -79,7 +79,7 @@ elif [[ "$branch_to_sync" == "$branch_current_svn" ]]; then
     exit -1
   fi
   if [[ -f $dot_git_path/gvn/branch/$branch_current ]]; then
-    branch_current_svn_from_file=`cat $dot_git_path/gvn/branch/$branch_current | git awk2`
+    branch_current_svn_from_file=`cat $dot_git_path/gvn/branch/$branch_current | $GIT awk2`
     if [[ "$branch_current_svn_from_file" != "$branch_current_svn" ]]; then
       echo "ERROR: Detected missmatch in svn base branch <$branch_current_svn_from_file> (<$branch_to_sync>) != <$branch_current_svn> ($branch_current). Aborted sync (rebase) of <$branch_current> onto <$branch_to_sync>."
       exit -1
@@ -87,10 +87,10 @@ elif [[ "$branch_to_sync" == "$branch_current_svn" ]]; then
     echo "INFO: detected current branch <$branch_current> to base upon branch to sync <$branch_to_sync>."
     echo "INFO: rebasing current branch <$branch_current> onto branch to sync <$branch_to_sync>."
     export GIT_WORK_TREE=$root
-    changes=`git stash-local-changes-if-any`
+    changes=`$GIT stash-local-changes-if-any`
     gvn worktree-rebase $branch_to_sync
     if [[ "$changes" != "" ]]; then
-      git stash pop
+      $GIT stash pop
     fi
   else
     echo "ERROR: Could not find branch information file <$dot_git_path/gvn/branch/$branch_current>. Aborting sync (rebase) operation."

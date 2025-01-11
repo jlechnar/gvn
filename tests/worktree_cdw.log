@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -144,21 +144,21 @@ Committing to file://.../test_worktree_cdw/server1/repo/trunk ...
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test1
+ | Executing:  .../../bin/git.sh add test1
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test5
+ | Executing:  .../../bin/git.sh add test5
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             more files
- | Executing:  git commit -a -m 'test_folders_with_files'
+ | Executing:  .../../bin/git.sh commit -a -m 'test_folders_with_files'
  |============================================================================
 [trunk  <HASH>] test_folders_with_files
  9 files changed, 9 insertions(+)
@@ -384,7 +384,7 @@ paths:      .../test_worktree_cdw/worktree2/test1/test2 => .../test_worktree_cdw
 
  .============================================================================
  |             show log of file with relative path
- | Executing:  git lgb ../../file.i
+ | Executing:  .../../bin/git.sh lgb ../../file.i
  |============================================================================
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mtest_folders_with_files[m [1;35m (HEAD -> worktree1, worktree2, trunk)[m
  '============================================================================
@@ -420,7 +420,7 @@ paths:      .../test_worktree_cdw/worktree1/test5/test6/test7 => .../test_worktr
 
  .============================================================================
  |             show log of file with relative path
- | Executing:  git lgb ../../file.i
+ | Executing:  .../../bin/git.sh lgb ../../file.i
  |============================================================================
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mtest_folders_with_files[m [1;35m (HEAD -> trunk, worktree2, worktree1)[m
  '============================================================================
@@ -435,7 +435,7 @@ paths:      .../test_worktree_cdw/worktree1/test5/test6/test7 => .../test_worktr
 
  .============================================================================
  |             show log of file
- | Executing:  git lgb file.i
+ | Executing:  .../../bin/git.sh lgb file.i
  |============================================================================
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mtest_folders_with_files[m [1;35m (HEAD -> trunk, worktree2, worktree1)[m
  '============================================================================

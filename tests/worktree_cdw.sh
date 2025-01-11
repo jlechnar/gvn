@@ -45,11 +45,11 @@ echo "3" > test5/test6/test7/file.g
 echo "4" > test5/test6/file.h
 echo "5" > test5/file.i
 
-execute "git add test1" "add some files in folders"
+execute "$GIT add test1" "add some files in folders"
 
-execute "git add test5" "add some files in folders"
+execute "$GIT add test5" "add some files in folders"
 
-execute "git commit -a -m 'test_folders_with_files'" "more files"
+execute "$GIT commit -a -m 'test_folders_with_files'" "more files"
 
 execute "$GVN wl" "list worktrees"
 
@@ -93,7 +93,7 @@ execute "pwd" "current directory"
 
 execute "cd ../../test5/test6/test7" "change into sub directory"
 
-execute "git lgb ../../file.i" "show log of file with relative path"
+execute "$GIT lgb ../../file.i" "show log of file with relative path"
 
 execute "pwd" "current directory"
 
@@ -101,11 +101,11 @@ execute "$CDW trunk" "change to worktree trunk"
 
 execute "pwd" "current directory"
 
-execute "git lgb ../../file.i" "show log of file with relative path"
+execute "$GIT lgb ../../file.i" "show log of file with relative path"
 
 execute "cd ../../" "change into base directory test5"
 
-execute "git lgb file.i" "show log of file"
+execute "$GIT lgb file.i" "show log of file"
 
 execute "$GVN lgb file.i" "show log of file with svn revisions"
 

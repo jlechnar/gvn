@@ -20,10 +20,10 @@ fi
 
 if [[ "$#" == "1" ]]; then
   remote=$branch
-  branch=`git get-current-branch`
-  git push -u $remote $branch
+  branch=`$GIT get-current-branch`
+  $GIT push -u $remote $branch
 elif [[ "$#" == "2" ]]; then
-  git push -u $remote $branch
+  $GIT push -u $remote $branch
 else
   echo "ERROR: Unexpected number of parameters, expected is {<branch> <remote>} OR {<remote>}"
   exit -1

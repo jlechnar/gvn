@@ -55,81 +55,81 @@ echo -e "3 bla bla\nfoo bar\nbar foo " > test9/c.file
 echo -e "4 bla bla\nfoo bar\nbar foo " > test9/d.file
 echo -e "5 bla bla\nfoo bar\nbar foo " > test9/foo
 
-execute "git add test1" "add some files in folders"
+execute "$GIT add test1" "add some files in folders"
 
-execute "git add test5" "add some files in folders"
+execute "$GIT add test5" "add some files in folders"
 
-execute "git add test9" "add some files in folders"
+execute "$GIT add test9" "add some files in folders"
 
-execute "git commit -a -m 'test_folders_with_files'" "more files"
+execute "$GIT commit -a -m 'test_folders_with_files'" "more files"
 
 # -------------------------------------
 execute "pwd" "current directory"
 
-execute "git grep 1 test5/" "grep for 1 in subdir test5"
+execute "$GIT grep 1 test5/" "grep for 1 in subdir test5"
 
-execute "git grep 1" "grep for 1 in local dir"
+execute "$GIT grep 1" "grep for 1 in local dir"
 
 # -------------------------------------
 execute "cd test5/" "cd test5"
 
 execute "pwd" "current directory"
 
-execute "git grep 1" "grep for 1 within local subdir"
+execute "$GIT grep 1" "grep for 1 within local subdir"
 
-execute "git grep-nc 1" "grep for 1 within local subdir"
+execute "$GIT grep-nc 1" "grep for 1 within local subdir"
 
-execute "git grep 1 test6/" "find all test6"
+execute "$GIT grep 1 test6/" "find all test6"
 
-execute "git grep-all 1" "find all 1 in all folders"
+execute "$GIT grep-all 1" "find all 1 in all folders"
 
-execute "git grep-all-nc 1" "find all 1 in all folders no color"
+execute "$GIT grep-all-nc 1" "find all 1 in all folders no color"
 
-execute "git grep 1 ." "find all 1 in current subfolder"
+execute "$GIT grep 1 ." "find all 1 in current subfolder"
 
-execute "git grep 1 ../" "grep for 1 one up"
+execute "$GIT grep 1 ../" "grep for 1 one up"
 
-execute "git grep 1 ../test1/test2" "find all 1 in test1/test2 subfolder"
+execute "$GIT grep 1 ../test1/test2" "find all 1 in test1/test2 subfolder"
 
-execute "git grep-nc 1 ../test1/test2" "find all 1 in test1/test2 subfolder"
+execute "$GIT grep-nc 1 ../test1/test2" "find all 1 in test1/test2 subfolder"
 
 # -----------------------------
 execute "cd test6/" "cd test6"
 
 execute "pwd" "current directory"
 
-execute "git grep 1" "grep 1 no args"
+execute "$GIT grep 1" "grep 1 no args"
 
-execute "git grep 1 ." "grep 1 current"
+execute "$GIT grep 1 ." "grep 1 current"
 
-execute "git grep 1 ../" "grep 1 one up"
+execute "$GIT grep 1 ../" "grep 1 one up"
 
-execute "git grep 1 ../.." "grep 1 two up"
+execute "$GIT grep 1 ../.." "grep 1 two up"
 
-execute "git grep 1 ../../test1/test2/test3" "grep 1 test1 subfolder"
+execute "$GIT grep 1 ../../test1/test2/test3" "grep 1 test1 subfolder"
 
 # -----------------------------
 set +e
-execute "git grep 1 ../../../outside/dir" "grep 1 outside dir none existing"
+execute "$GIT grep 1 ../../../outside/dir" "grep 1 outside dir none existing"
 
-execute "git grep 1 ../../../git_user2" "grep 1 outside dir existing"
+execute "$GIT grep 1 ../../../git_user2" "grep 1 outside dir existing"
 
-execute "git grep 1 inside/none_existing/dir" "grep 1 none existing dir"
+execute "$GIT grep 1 inside/none_existing/dir" "grep 1 none existing dir"
 
-execute "git grep 1 inside_none_existing_dir" "grep 1 none existing dir"
+execute "$GIT grep 1 inside_none_existing_dir" "grep 1 none existing dir"
 
 set -e
 
 # -----------------------------
 execute "cd ../../test9/" "go to test9"
 
-execute "git grep 1 ." "grep 1 in current"
+execute "$GIT grep 1 ." "grep 1 in current"
 
-execute "git grep-nc 1 ." "grep 1 in current"
+execute "$GIT grep-nc 1 ." "grep 1 in current"
 
-execute "git grep 1" "grep 1 in current"
+execute "$GIT grep 1" "grep 1 in current"
 
-execute "git grep-nc 1" "grep 1 in current"
+execute "$GIT grep-nc 1" "grep 1 in current"
 
 # --------------
 execute "$GVN wa test" "add worktree test"
@@ -143,25 +143,25 @@ execute "cd ../test5/test6/" "cd test6"
 
 execute "pwd" "current directory"
 
-execute "git grep 1" "grep 1 no args"
+execute "$GIT grep 1" "grep 1 no args"
 
-execute "git grep 1 ." "grep 1 current"
+execute "$GIT grep 1 ." "grep 1 current"
 
-execute "git grep 1 ../" "grep 1 one up"
+execute "$GIT grep 1 ../" "grep 1 one up"
 
-execute "git grep 1 ../.." "grep 1 two up"
+execute "$GIT grep 1 ../.." "grep 1 two up"
 
-execute "git grep 1 ../../test1/test2/test3" "grep 1 test1 subfolder"
+execute "$GIT grep 1 ../../test1/test2/test3" "grep 1 test1 subfolder"
 
 # -----------------------------
 execute "cd ../../test9/" "go to test9"
 
-execute "git grep 1 ." "grep 1 in current"
+execute "$GIT grep 1 ." "grep 1 in current"
 
-execute "git grep-nc 1 ." "grep 1 in current"
+execute "$GIT grep-nc 1 ." "grep 1 in current"
 
-execute "git grep 1" "grep 1 in current"
+execute "$GIT grep 1" "grep 1 in current"
 
-execute "git grep-nc 1" "grep 1 in current"
+execute "$GIT grep-nc 1" "grep 1 in current"
 
 

@@ -12,22 +12,22 @@ set -e
 
 branch_to_merge_to=$1
 
-root=`git root`
+root=`$GIT root`
 export GIT_WORK_TREE=$root
 
 gvn check-branch-to-be-svn-branch
 gvn check-for-branch-name-match
 
-if [ `git rev-parse --verify $branch_to_merge_to 2>/dev/null` ]; then
-  branch_to_merge=`git rev-parse --abbrev-ref HEAD`
-  head_branch_to_merge=`git rev-parse HEAD`
-  head_branch_to_merge_to=`git rev-parse $branch_to_merge_to`
+if [ `$GIT rev-parse --verify $branch_to_merge_to 2>/dev/null` ]; then
+  branch_to_merge=`$GIT rev-parse --abbrev-ref HEAD`
+  head_branch_to_merge=`$GIT rev-parse HEAD`
+  head_branch_to_merge_to=`$GIT rev-parse $branch_to_merge_to`
   if [[ "$head_branch_to_merge" != "$head_branch_to_merge_to" ]]; then
     datetime=`date +'%Y_%m_%d-%H_%M_%S'`
-    git tag -a gvn_worktree_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to} -m "git merge tag $datetime (git ${branch_to_merge} ${head_branch_to_merge} to ${branch_to_merge_to} ${head_branch_to_merge_to})"
-    echo "Created Tag for git merge: gvn_worktree_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to}"
+    $GIT tag -a gvn_worktree_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to} -m "$GIT merge tag $datetime ($GIT ${branch_to_merge} ${head_branch_to_merge} to ${branch_to_merge_to} ${head_branch_to_merge_to})"
+    echo "Created Tag for $GIT merge: gvn_worktree_merge_${datetime}_${branch_to_merge}_${head_branch_to_merge}_to_${branch_to_merge_to}_${head_branch_to_merge_to}"
   fi
-  git merge --ff-only $@
+  $GIT merge --ff-only $@
 else
-  git merge $@
+  $GIT merge $@
 fi

@@ -43,7 +43,8 @@ always:
 
 %.log: %.sh always
 	rm -rf $@* test_$*/
-	echo "GITO=\"$(CWD)/../bin/gito\"" > gvn_cmd.sh
+	echo "GIT=\"$(CWD)/../bin/git.sh\"" > gvn_cmd.sh
+	echo "GITO=\"$(CWD)/../bin/gito\"" >> gvn_cmd.sh
 	echo "GVN=\"$(CWD)/../bin/gvn.sh\"" >> gvn_cmd.sh
 	echo "GVN_BASE=\"$(CWD)/../\"" >> gvn_cmd.sh
 	echo "CDW=\"source $(CWD)/../bin/cdw.sh\"" >> gvn_cmd.sh

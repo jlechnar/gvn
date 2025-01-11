@@ -8,11 +8,11 @@
 set -e
 #set -x
 
-root=`git root`
+root=`$GIT root`
 cwd=`pwd`
 
 subpath=`realpath --relative-to=$root $cwd`
 
-branch=`git svn info | grep URL | sed "s,/${subpath}$,,g" | rev | sed "s,/, ,g" | git awk1 | rev`
+branch=`$GIT svn info | grep URL | sed "s,/${subpath}$,,g" | rev | sed "s,/, ,g" | $GIT awk1 | rev`
 
 echo $branch

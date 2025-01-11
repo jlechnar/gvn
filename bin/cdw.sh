@@ -18,11 +18,11 @@ fi
 # <base_path>/<act_branch>/<sub_dir>  =>  <base_path>/new_branch/<sub_dir>
 
 new_branch="$1"
-new_base_path=`git worktree-branch-get-path $new_branch | xargs realpath`
+new_base_path=`$GIT worktree-branch-get-path $new_branch | xargs realpath`
 
 act_cwd=`pwd | xargs realpath`
-act_branch=`git rev-parse --abbrev-ref HEAD`
-act_base_path=`git worktree-branch-get-path $act_branch | xargs realpath`
+act_branch=`$GIT rev-parse --abbrev-ref HEAD`
+act_base_path=`$GIT worktree-branch-get-path $act_branch | xargs realpath`
 act_sub_path=`echo $act_cwd | sed "s,$act_base_path,,g" | sed 's,^/,,g'`
 
 new_cwd="$new_base_path/$act_sub_path"

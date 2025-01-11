@@ -10,14 +10,14 @@
 set -e
 
 branch_name=$1
-dot_git_path_abs=`git get-dot-git-path-abs`
+dot_git_path_abs=`$GIT get-dot-git-path-abs`
 
 if [ -f $dot_git_path_abs/gvn/branch/$branch_name ]; then
   echo "ERROR: worktree/branch with name $branch_name exist as reference. Aborting delete operation."
   exit -1
 fi
 
-worktree_name2=`git worktree-branch-get-path $branch_name | sed 's,/, ,g' | git awk-1`
+worktree_name2=`$GIT worktree-branch-get-path $branch_name | sed 's,/, ,g' | $GIT awk-1`
 
 if [[ "$worktree_name2" == "" ]]; then
   echo "ERROR: worktree not found. Aborting delete operation."
@@ -26,9 +26,9 @@ fi
 
 # FIXME: implement sanity check before removal of branch / worktree !
 
-# git worktree remove --force $worktree_name2
-# git branch -D $branch_name
+# $GIT worktree remove --force $worktree_name2
+# $GIT branch -D $branch_name
 
-git worktree remove $worktree_name2
+$GIT worktree remove $worktree_name2
 
-git branch -d $branch_name
+$GIT branch -d $branch_name

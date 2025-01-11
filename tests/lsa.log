@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -144,28 +144,28 @@ Committing to file://.../test_lsa/server1/repo/trunk ...
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test1
+ | Executing:  .../../bin/git.sh add test1
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test5
+ | Executing:  .../../bin/git.sh add test5
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add some files in folders
- | Executing:  git add test9
+ | Executing:  .../../bin/git.sh add test9
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             more files
- | Executing:  git commit -a -m 'test_folders_with_files'
+ | Executing:  .../../bin/git.sh commit -a -m 'test_folders_with_files'
  |============================================================================
 [trunk  <HASH>] test_folders_with_files
  16 files changed, 16 insertions(+)
@@ -198,7 +198,7 @@ Committing to file://.../test_lsa/server1/repo/trunk ...
 
  .============================================================================
  |             lsa test5
- | Executing:  git lsa test5/
+ | Executing:  .../../bin/git.sh lsa test5/
  |============================================================================
 test5/file.i
 test5/test6/file.h
@@ -210,7 +210,7 @@ test5/test6/test7/test8/file.f
 
  .============================================================================
  |             lsa no args
- | Executing:  git lsa
+ | Executing:  .../../bin/git.sh lsa
  |============================================================================
 .svnignore
 test1/file.e
@@ -249,7 +249,7 @@ test9/foo
 
  .============================================================================
  |             lsa no args
- | Executing:  git lsa
+ | Executing:  .../../bin/git.sh lsa
  |============================================================================
 file.i
 test6/file.h
@@ -261,7 +261,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             lsa test6
- | Executing:  git lsa test6/
+ | Executing:  .../../bin/git.sh lsa test6/
  |============================================================================
 test6/file.h
 test6/file/bar
@@ -272,7 +272,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             lsa current
- | Executing:  git lsa .
+ | Executing:  .../../bin/git.sh lsa .
  |============================================================================
 file.i
 test6/file.h
@@ -284,7 +284,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             lsa one up
- | Executing:  git lsa ../
+ | Executing:  .../../bin/git.sh lsa ../
  |============================================================================
 ../.svnignore
 ../test1/file.e
@@ -308,7 +308,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             lsa test1 subfolder
- | Executing:  git lsa ../test1/test2
+ | Executing:  .../../bin/git.sh lsa ../test1/test2
  |============================================================================
 ../test1/test2/file.d
 ../test1/test2/test3/file.c
@@ -334,7 +334,7 @@ test6/test7/test8/file.f
 
  .============================================================================
  |             lsa no args
- | Executing:  git lsa
+ | Executing:  .../../bin/git.sh lsa
  |============================================================================
 file.h
 file/bar
@@ -345,7 +345,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa current
- | Executing:  git lsa .
+ | Executing:  .../../bin/git.sh lsa .
  |============================================================================
 file.h
 file/bar
@@ -356,7 +356,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa one up
- | Executing:  git lsa ../
+ | Executing:  .../../bin/git.sh lsa ../
  |============================================================================
 ../file.i
 ../test6/file.h
@@ -368,7 +368,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa two up
- | Executing:  git lsa ../..
+ | Executing:  .../../bin/git.sh lsa ../..
  |============================================================================
 ../../.svnignore
 ../../test1/file.e
@@ -392,7 +392,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa test1 subfolder
- | Executing:  git lsa ../../test1/test2/test3
+ | Executing:  .../../bin/git.sh lsa ../../test1/test2/test3
  |============================================================================
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
@@ -402,7 +402,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa outside dir none existing
- | Executing:  git lsa ../../../outside/dir
+ | Executing:  .../../bin/git.sh lsa ../../../outside/dir
  |============================================================================
 realpath: .../test_lsa/git_user3/test5/test6/../../../outside/dir: No such file or directory
  '============================================================================
@@ -410,7 +410,7 @@ realpath: .../test_lsa/git_user3/test5/test6/../../../outside/dir: No such file 
 
  .============================================================================
  |             lsa outside dir existing
- | Executing:  git lsa ../../../git_user2
+ | Executing:  .../../bin/git.sh lsa ../../../git_user2
  |============================================================================
 ERROR: Target directory <.../test_lsa/git_user2> is outside of git repository <.../test_lsa/git_user3>. Aborting.
  '============================================================================
@@ -418,7 +418,7 @@ ERROR: Target directory <.../test_lsa/git_user2> is outside of git repository <.
 
  .============================================================================
  |             lsa none existing dir
- | Executing:  git lsa inside/none_existing/dir
+ | Executing:  .../../bin/git.sh lsa inside/none_existing/dir
  |============================================================================
 realpath: .../test_lsa/git_user3/test5/test6/inside/none_existing/dir: No such file or directory
  '============================================================================
@@ -426,7 +426,7 @@ realpath: .../test_lsa/git_user3/test5/test6/inside/none_existing/dir: No such f
 
  .============================================================================
  |             lsa none existing dir
- | Executing:  git lsa inside_none_existing_dir
+ | Executing:  .../../bin/git.sh lsa inside_none_existing_dir
  |============================================================================
  '============================================================================
 
@@ -440,7 +440,7 @@ realpath: .../test_lsa/git_user3/test5/test6/inside/none_existing/dir: No such f
 
  .============================================================================
  |             lsa current
- | Executing:  git lsa
+ | Executing:  .../../bin/git.sh lsa
  |============================================================================
 afile
 bfile
@@ -452,7 +452,7 @@ foo
 
  .============================================================================
  |             lsa current
- | Executing:  git lsa .
+ | Executing:  .../../bin/git.sh lsa .
  |============================================================================
 afile
 bfile
@@ -509,7 +509,7 @@ paths:      .../test_lsa/git_user3/test9 => .../test_lsa/test/test9
 
  .============================================================================
  |             lsa no args
- | Executing:  git lsa
+ | Executing:  .../../bin/git.sh lsa
  |============================================================================
 file.h
 file/bar
@@ -520,7 +520,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa current
- | Executing:  git lsa .
+ | Executing:  .../../bin/git.sh lsa .
  |============================================================================
 file.h
 file/bar
@@ -531,7 +531,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa one up
- | Executing:  git lsa ../
+ | Executing:  .../../bin/git.sh lsa ../
  |============================================================================
 ../file.i
 ../test6/file.h
@@ -543,7 +543,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa two up
- | Executing:  git lsa ../..
+ | Executing:  .../../bin/git.sh lsa ../..
  |============================================================================
 ../../.svnignore
 ../../test1/file.e
@@ -567,7 +567,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa test1 subfolder
- | Executing:  git lsa ../../test1/test2/test3
+ | Executing:  .../../bin/git.sh lsa ../../test1/test2/test3
  |============================================================================
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
@@ -584,7 +584,7 @@ test7/test8/file.f
 
  .============================================================================
  |             lsa current
- | Executing:  git lsa
+ | Executing:  .../../bin/git.sh lsa
  |============================================================================
 afile
 bfile
@@ -596,7 +596,7 @@ foo
 
  .============================================================================
  |             lsa current
- | Executing:  git lsa .
+ | Executing:  .../../bin/git.sh lsa .
  |============================================================================
 afile
 bfile

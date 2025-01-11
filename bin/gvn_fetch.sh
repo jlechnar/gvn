@@ -34,5 +34,5 @@ if ! [[ "$root" == "" ]]; then
   run_path="-C $root"
 fi
 
-git $run_path svn fetch
+$GIT $run_path svn fetch
 gvn update-mapping-database

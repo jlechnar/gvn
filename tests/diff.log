@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -124,14 +124,14 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  .../../bin/git.sh add file*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 18 insertions(+)
@@ -143,7 +143,7 @@ Checked out HEAD:
 
  .============================================================================
  |             change1
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 8 insertions(+), 8 deletions(-)
@@ -152,7 +152,7 @@ Checked out HEAD:
 
  .============================================================================
  |             change2
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 8 insertions(+), 8 deletions(-)
@@ -161,7 +161,7 @@ Checked out HEAD:
 
  .============================================================================
  |             change3
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 9 insertions(+), 9 deletions(-)
@@ -170,14 +170,14 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  .../../bin/git.sh add file*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             diff
- | Executing:  git d file.html
+ | Executing:  .../../bin/git.sh d file.html
  |============================================================================
 [36mdiff --git a/file.html b/file.html[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -199,7 +199,7 @@ Checked out HEAD:
 
  .============================================================================
  |             diff wordwise
- | Executing:  git dw file.html
+ | Executing:  .../../bin/git.sh dw file.html
  |============================================================================
 [36mdiff --git a/file.html b/file.html[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -216,7 +216,7 @@ Checked out HEAD:
 
  .============================================================================
  |             diff wordwise nocolor
- | Executing:  git dwnc file.html
+ | Executing:  .../../bin/git.sh dwnc file.html
  |============================================================================
 diff --git a/file.html b/file.html
 index <HASH>..<HASH> 100644
@@ -233,7 +233,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff previous
- | Executing:  git dp file.html
+ | Executing:  .../../bin/git.sh dp file.html
  |============================================================================
 [36mdiff --git a/file.html b/file.html[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -255,7 +255,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff previous wordwise
- | Executing:  git dpw file.html
+ | Executing:  .../../bin/git.sh dpw file.html
  |============================================================================
 [36mdiff --git a/file.html b/file.html[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -272,7 +272,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff cached
- | Executing:  git dc file.html
+ | Executing:  .../../bin/git.sh dc file.html
  |============================================================================
 [36mdiff --git a/file.html b/file.html[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -294,7 +294,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff cached wordwise
- | Executing:  git dwc file.html
+ | Executing:  .../../bin/git.sh dwc file.html
  |============================================================================
 [36mdiff --git a/file.html b/file.html[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -311,7 +311,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff cached wordwise no color
- | Executing:  git dwcnc file.html
+ | Executing:  .../../bin/git.sh dwcnc file.html
  |============================================================================
 diff --git a/file.html b/file.html
 index <HASH>..<HASH> 100644
@@ -328,7 +328,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff versions
- | Executing:  git df <HASH> file.pl <HASH> file.pl
+ | Executing:  .../../bin/git.sh df <HASH> file.pl <HASH> file.pl
  |============================================================================
 + [[ 4 == \4 ]]
 + git diff <HASH>:file.pl <HASH>:file.pl
@@ -350,7 +350,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff wordwise versions
- | Executing:  git dfw <HASH> file.pl <HASH> file.pl
+ | Executing:  .../../bin/git.sh dfw <HASH> file.pl <HASH> file.pl
  |============================================================================
 [36mdiff --git a/file.pl b/file.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -366,7 +366,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff different files of different version
- | Executing:  git df <HASH> file.html <HASH> file.pl
+ | Executing:  .../../bin/git.sh df <HASH> file.html <HASH> file.pl
  |============================================================================
 + [[ 4 == \4 ]]
 + git diff <HASH>:file.html <HASH>:file.pl
@@ -392,7 +392,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff wordwise different files of different version
- | Executing:  git dfw <HASH> file.html <HASH> file.pl
+ | Executing:  .../../bin/git.sh dfw <HASH> file.html <HASH> file.pl
  |============================================================================
 [36mdiff --git a/file.html b/file.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -414,7 +414,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff different files
- | Executing:  git df file.html file.pl
+ | Executing:  .../../bin/git.sh df file.html file.pl
  |============================================================================
 + [[ 2 == \4 ]]
 + [[ 2 == \2 ]]
@@ -451,7 +451,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff wordwise different files
- | Executing:  git dfw file.html file.pl
+ | Executing:  .../../bin/git.sh dfw file.html file.pl
  |============================================================================
 [36mdiff --git a/file.html b/file.html[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -475,7 +475,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff different local files
- | Executing:  git nid file_local.html file_local.pl
+ | Executing:  .../../bin/git.sh nid file_local.html file_local.pl
  |============================================================================
 [36mdiff --git a/file_local.html b/file_local.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -498,7 +498,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff different local files no color
- | Executing:  git nidnc file_local.html file_local.pl
+ | Executing:  .../../bin/git.sh nidnc file_local.html file_local.pl
  |============================================================================
 diff --git a/file_local.html b/file_local.pl
 index <HASH>..<HASH> 100644
@@ -521,7 +521,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff wordwise different local files
- | Executing:  git nidw file_local.html file_local.pl
+ | Executing:  .../../bin/git.sh nidw file_local.html file_local.pl
  |============================================================================
 [36mdiff --git a/file_local.html b/file_local.pl[m
 [36mindex <HASH>..<HASH> 100644[m
@@ -542,7 +542,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff wordwise different local files no color
- | Executing:  git nidwnc file_local.html file_local.pl
+ | Executing:  .../../bin/git.sh nidwnc file_local.html file_local.pl
  |============================================================================
 diff --git a/file_local.html b/file_local.pl
 index <HASH>..<HASH> 100644
@@ -563,7 +563,7 @@ index <HASH>..<HASH> 100644
 
  .============================================================================
  |             diff different repo to local file
- | Executing:  git nid file.html file_local.html
+ | Executing:  .../../bin/git.sh nid file.html file_local.html
  |============================================================================
 [36mdiff --git a/file.html b/file_local.html[m
 [36mindex <HASH>..<HASH> 100644[m

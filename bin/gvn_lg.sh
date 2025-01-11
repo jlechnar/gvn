@@ -17,6 +17,8 @@ usage() { echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <
 
 opts="--graph --abbrev=9 --abbrev-commit --decorate"
 
+do_follow=1
+
 newline=""
 
 pager=0
@@ -32,6 +34,7 @@ while getopts "pcafN" o; do
             comments=1
             ;;
         a) # all branches
+            do_follow=0
             opts="--all $opts"
             all=1
             ;;
@@ -53,18 +56,33 @@ opts_less=-FSRX
 #opts_less=-SRX
 
 args="$@"
-root=`git root`
+root=`$GIT root`
 
 
-if [[ "$all" == "0" ]]; then
-  cmd="git log -n 1 $opts --follow $args"
+if [[ "$do_follow" == "1" ]]; then
+  cmd="$GIT log -n 1 --follow $args"
   set +e
   t=`eval $cmd 2>&1`
   set -e
+  args_addon=""
   if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-    args="$args $root"
+    args_addon="$root"
   fi
-  opts="$opts --follow"
+
+  nr_files=`$GIT ls-files | grep -c .`
+  if [[ "$nr_files" == "1" ]]; then
+    args="$args $args_addon"
+    opts="$opts --follow"
+  fi
+
+#  cmd="$GIT log -n 1 $opts --follow $args"
+#  set +e
+#  t=`eval $cmd 2>&1`
+#  set -e
+#  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+#    args="$args $root"
+#  fi
+#  opts="$opts --follow"
 fi
 
 
@@ -85,7 +103,7 @@ fi
 
 if [[ "$comments" == "1" ]]; then
   if [[ "$pager" == "1" ]]; then
-    git $wt --no-pager log $opts \
+    $GIT $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
       --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
       $args | \
@@ -93,7 +111,7 @@ if [[ "$comments" == "1" ]]; then
       $annotate | \
       less $opts_less
   else
-    git $wt --no-pager log $opts \
+    $GIT $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
       --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
       $args | \
@@ -103,7 +121,7 @@ if [[ "$comments" == "1" ]]; then
   fi
 else
   if [[ "$pager" == "1" ]]; then
-    git $wt --no-pager log $opts \
+    $GIT $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
       --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
       $args | \
@@ -112,7 +130,7 @@ else
       grep -v '^$' | \
       less $opts_less
   else
-    git $wt --no-pager log $opts \
+    $GIT $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
       --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
       $args | \

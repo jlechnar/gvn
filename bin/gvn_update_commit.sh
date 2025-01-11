@@ -33,15 +33,15 @@ done
 shift $((OPTIND-1))
 
 
-root=`git root`
+root=`$GIT root`
 export GIT_WORK_TREE=$root
 
 gvn check-for-branch-name-match
 
 if [[ $do_stash ]]; then
-  changes=`git stash-local-changes-if-any`; \
+  changes=`$GIT stash-local-changes-if-any`; \
 else
-  git check-for-unexpected-local-changes
+  $GIT check-for-unexpected-local-changes
 fi
 
 gvn fetch
@@ -53,7 +53,7 @@ fi
 
 if [[ $do_stash ]]; then
   if [[ "$changes" != "" ]]; then
-    git stash pop
+    $GIT stash pop
   fi
 fi
 

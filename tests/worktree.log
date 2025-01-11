@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -144,14 +144,14 @@ Committing to file://.../test_worktree/server1/repo/trunk ...
 
  .============================================================================
  |             add some files
- | Executing:  git add file* test_folder/
+ | Executing:  .../../bin/git.sh add file* test_folder/
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -m 'files'
+ | Executing:  .../../bin/git.sh commit -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  5 files changed, 26 insertions(+)
@@ -274,14 +274,14 @@ subtest
 
  .============================================================================
  |             added new file
- | Executing:  git add file4.pl
+ | Executing:  .../../bin/git.sh add file4.pl
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             changes in test worktree rebase
- | Executing:  git commit -a -m 'changes_test_worktree_rebase'
+ | Executing:  .../../bin/git.sh commit -a -m 'changes_test_worktree_rebase'
  |============================================================================
 [test  <HASH>] changes_test_worktree_rebase
  3 files changed, 7 insertions(+), 3 deletions(-)
@@ -298,14 +298,14 @@ subtest
 
  .============================================================================
  |             added new file
- | Executing:  git add file5.pl
+ | Executing:  .../../bin/git.sh add file5.pl
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             changes in trunk worktree rebase
- | Executing:  git commit -a -m 'changes_trunk_worktree_rebase'
+ | Executing:  .../../bin/git.sh commit -a -m 'changes_trunk_worktree_rebase'
  |============================================================================
 [trunk  <HASH>] changes_trunk_worktree_rebase
  3 files changed, 7 insertions(+), 3 deletions(-)
@@ -339,14 +339,14 @@ Could not apply <HASH>... changes_test_worktree_rebase
 
  .============================================================================
  |             fixed rebase conflict
- | Executing:  git add file.py
+ | Executing:  .../../bin/git.sh add file.py
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             finish rebase after fixing conflict - using auto message / same message as before
- | Executing:  GIT_EDITOR=true git rebase --continue
+ | Executing:  GIT_EDITOR=true .../../bin/git.sh rebase --continue
  |============================================================================
 [detached HEAD  <HASH>] changes_test_worktree_rebase
  3 files changed, 7 insertions(+), 3 deletions(-)
@@ -356,7 +356,7 @@ Could not apply <HASH>... changes_test_worktree_rebase
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> test)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (trunk)[m
@@ -392,7 +392,7 @@ Fast-forward
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, test)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
@@ -434,7 +434,7 @@ Resetting to the latest refs/remotes/git-svn
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, git-svn)[m
 * [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
@@ -467,14 +467,14 @@ subtest
 
  .============================================================================
  |             added new file
- | Executing:  git add file6.pl
+ | Executing:  .../../bin/git.sh add file6.pl
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             changes in test worktree merge svn up
- | Executing:  git commit -a -m 'changes_test_worktree_merge_svn_up'
+ | Executing:  .../../bin/git.sh commit -a -m 'changes_test_worktree_merge_svn_up'
  |============================================================================
 [test  <HASH>] changes_test_worktree_merge_svn_up
  3 files changed, 7 insertions(+), 3 deletions(-)
@@ -490,7 +490,7 @@ subtest
 
 
  .============================================================================
- |             git svn update
+ |             .../../bin/git.sh svn update
  | Executing:  .../../bin/gvn.sh up
  |============================================================================
 Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
@@ -499,7 +499,7 @@ Current branch trunk is up to date.
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
@@ -517,7 +517,7 @@ Current branch trunk is up to date.
 
 
  .============================================================================
- |             git svn update
+ |             .../../bin/git.sh svn update
  | Executing:  .../../bin/gvn.sh up
  |============================================================================
 	A	file.html
@@ -541,14 +541,14 @@ Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
 
  .============================================================================
  |             added new file
- | Executing:  git add file8.pl
+ | Executing:  .../../bin/git.sh add file8.pl
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             changes in trunk worktree merge svn change
- | Executing:  git commit -a -m 'changes_trunk_worktree_merge_svn_change_from_other_svn_sandbox'
+ | Executing:  .../../bin/git.sh commit -a -m 'changes_trunk_worktree_merge_svn_change_from_other_svn_sandbox'
  |============================================================================
 [trunk  <HASH>] changes_trunk_worktree_merge_svn_change_from_other_svn_sandbox
  3 files changed, 7 insertions(+), 2 deletions(-)
@@ -557,7 +557,7 @@ Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
 
 
  .============================================================================
- |             git svn commit from other svn sandbox
+ |             .../../bin/git.sh svn commit from other svn sandbox
  | Executing:  .../../bin/gvn.sh commit
  |============================================================================
 Committing to file://.../test_worktree/server1/repo/trunk ...
@@ -575,7 +575,7 @@ Resetting to the latest refs/remotes/origin/trunk
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m (HEAD -> trunk, origin/trunk)[m
 * [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m[m
@@ -594,14 +594,14 @@ Resetting to the latest refs/remotes/origin/trunk
 
  .============================================================================
  |             added new file
- | Executing:  git add file7.pl
+ | Executing:  .../../bin/git.sh add file7.pl
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             changes in trunk worktree merge
- | Executing:  git commit -a -m 'changes_trunk_worktree_merge_svn_change'
+ | Executing:  .../../bin/git.sh commit -a -m 'changes_trunk_worktree_merge_svn_change'
  |============================================================================
 [trunk  <HASH>] changes_trunk_worktree_merge_svn_change
  3 files changed, 7 insertions(+), 3 deletions(-)
@@ -610,7 +610,7 @@ Resetting to the latest refs/remotes/origin/trunk
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk)[m
 * [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, git-svn)[m
@@ -629,7 +629,7 @@ Resetting to the latest refs/remotes/origin/trunk
 
 
  .============================================================================
- |             git svn update and so get conflict and new files from other sandbox
+ |             .../../bin/git.sh svn update and so get conflict and new files from other sandbox
  | Executing:  .../../bin/gvn.sh up
  |============================================================================
 	M	file.html
@@ -653,14 +653,14 @@ rebase refs/remotes/git-svn: command returned error: 1
 
  .============================================================================
  |             fixed gvn up conflict - set to common base
- | Executing:  git add file.py
+ | Executing:  .../../bin/git.sh add file.py
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             finish rebase after fixing conflict from other sandbox - using auto message / same message as before
- | Executing:  GIT_EDITOR=true git rebase --continue
+ | Executing:  GIT_EDITOR=true .../../bin/git.sh rebase --continue
  |============================================================================
 [detached HEAD  <HASH>] changes_trunk_worktree_merge_svn_change
  3 files changed, 7 insertions(+), 3 deletions(-)
@@ -670,7 +670,7 @@ rebase refs/remotes/git-svn: command returned error: 1
 
 
  .============================================================================
- |             git svn commit
+ |             .../../bin/git.sh svn commit
  | Executing:  .../../bin/gvn.sh commit
  |============================================================================
 Committing to file://.../test_worktree/server1/repo/trunk ...
@@ -688,7 +688,7 @@ Resetting to the latest refs/remotes/git-svn
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk, git-svn)[m
 * [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
@@ -717,7 +717,7 @@ Resetting to the latest refs/remotes/git-svn
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
 * [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
@@ -761,14 +761,14 @@ Could not apply <HASH>... changes_test_worktree_merge_svn_up
 
  .============================================================================
  |             add changes
- | Executing:  git add file.py
+ | Executing:  .../../bin/git.sh add file.py
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             finish rebase
- | Executing:  GIT_EDITOR=true git rebase --continue
+ | Executing:  GIT_EDITOR=true .../../bin/git.sh rebase --continue
  |============================================================================
 [detached HEAD  <HASH>] changes_test_worktree_merge_svn_up
  3 files changed, 7 insertions(+), 3 deletions(-)
@@ -778,7 +778,7 @@ Could not apply <HASH>... changes_test_worktree_merge_svn_up
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> test)[m
 * [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
@@ -823,7 +823,7 @@ Fast-forward
 
 
  .============================================================================
- |             git svn commit
+ |             .../../bin/git.sh svn commit
  | Executing:  .../../bin/gvn.sh commit
  |============================================================================
 Committing to file://.../test_worktree/server1/repo/trunk ...
@@ -841,7 +841,7 @@ Resetting to the latest refs/remotes/git-svn
 
 
  .============================================================================
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr7[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> trunk, git-svn)[m
 [31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
@@ -898,7 +898,7 @@ Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
 
  .============================================================================
  |             show all branches
- | Executing:  git bl
+ | Executing:  .../../bin/git.sh bl
  |============================================================================
 * [32mtrunk[m
   [31mremotes/origin/test0[m
@@ -1404,7 +1404,7 @@ test3
 
  .============================================================================
  |             list worktrees
- | Executing:  git wl
+ | Executing:  .../../bin/git.sh wl
  |============================================================================
 .../test_worktree/git_user2  <HASH> [trunk]
 .../test_worktree/test0      <HASH> [test0]
@@ -1416,7 +1416,7 @@ test3
 
  .============================================================================
  |             show all branches in log
- | Executing:  git lgab
+ | Executing:  .../../bin/git.sh lgab
  |============================================================================
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mcreated test0 branch from trunk[m [1;35m (HEAD -> test0, origin/test0)[m
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (origin/trunk, trunk, test1)[m
@@ -1431,7 +1431,7 @@ test3
 
  .============================================================================
  |             show all branches
- | Executing:  git bl
+ | Executing:  .../../bin/git.sh bl
  |============================================================================
 * [32mtest0[m
 + [36mtest1[m

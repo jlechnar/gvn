@@ -13,5 +13,5 @@ source ./gvn_cmd.sh
 setup_path "git_overlay" "create overlay database"
 unlink scripts
 
-git init --bare .
+$GIT init --bare .
 

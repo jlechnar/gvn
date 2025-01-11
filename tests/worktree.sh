@@ -39,9 +39,9 @@ mkdir test_folder
 echo -e '<html>\n  <title>bar bar</title>\n  <body>\n    foo foo\n  </body>\n</html>' > test_folder/file.html
 echo -e 'class barbar:\n  def foofoo(self, test):\n    self.test = test\n\n' > test_folder/file.py
 
-execute "git add file* test_folder/" "add some files"
+execute "$GIT add file* test_folder/" "add some files"
 
-execute "git commit -m 'files'" "commit new files"
+execute "$GIT commit -m 'files'" "commit new files"
 
 execute "$GVN uc" "update commit to svn"
 
@@ -77,9 +77,9 @@ echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file4.pl
 # merge fine
 echo -e '<html>\n  <title>foo3</title>\n  <body>\n    bar24\n  </body>\n</html>' > file.html
 
-execute "git add file4.pl" "added new file"
+execute "$GIT add file4.pl" "added new file"
 
-execute "git commit -a -m 'changes_test_worktree_rebase'" "changes in test worktree rebase"
+execute "$GIT commit -a -m 'changes_test_worktree_rebase'" "changes in test worktree rebase"
 
 # --------------
 execute "cd $trunk_worktree" "change to trunk worktree"
@@ -88,9 +88,9 @@ echo -e 'class foo235:\n  def bar235(self, test):\n    self.test = test\n\n' > f
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file5.pl
 echo -e '<html>\n  <title>foo35</title>\n  <body>\n    bar2\n  </body>\n</html>' > file.html
 
-execute "git add file5.pl" "added new file"
+execute "$GIT add file5.pl" "added new file"
 
-execute "git commit -a -m 'changes_trunk_worktree_rebase'" "changes in trunk worktree rebase"
+execute "$GIT commit -a -m 'changes_trunk_worktree_rebase'" "changes in trunk worktree rebase"
 
 # --------------
 execute "cd $test_worktree" "change to test worktree"
@@ -102,11 +102,11 @@ set -e
 
 echo -e 'class foo2345:\n  def bar2345(self, test):\n    self.test = test\n\n' > file.py
 
-execute "git add file.py" "fixed rebase conflict"
+execute "$GIT add file.py" "fixed rebase conflict"
 
-execute "GIT_EDITOR=true git rebase --continue" "finish rebase after fixing conflict - using auto message / same message as before"
+execute "GIT_EDITOR=true $GIT rebase --continue" "finish rebase after fixing conflict - using auto message / same message as before"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 # --------------
 
@@ -114,11 +114,11 @@ execute "cd $trunk_worktree" "change to trunk worktree"
 
 execute "$GVN wmerge test" "merge with test"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 execute "$GVN uc" "update commit to svn"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 # ===============================================
 execute "echo 'subtest'" "test merge with svn update in between"
@@ -133,34 +133,34 @@ echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file6.pl
 # merge fine
 echo -e '<html>\n  <title>foo35</title>\n  <body>\n    bar246\n  </body>\n</html>' > file.html
 
-execute "git add file6.pl" "added new file"
+execute "$GIT add file6.pl" "added new file"
 
-execute "git commit -a -m 'changes_test_worktree_merge_svn_up'" "changes in test worktree merge svn up"
+execute "$GIT commit -a -m 'changes_test_worktree_merge_svn_up'" "changes in test worktree merge svn up"
 
 # --------------
 execute "cd $trunk_worktree" "change to trunk worktree"
 
-execute "$GVN up" "git svn update"
+execute "$GVN up" "$GIT svn update"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 # --------------
 cd ..
 cd git_user2/
 
-execute "$GVN up" "git svn update"
+execute "$GVN up" "$GIT svn update"
 
 echo -e 'class foo23458:\n  def bar23458(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file8.pl
 echo -e '<html>\n  <title>foo35</title>\n  <body>\n    bar24\n  </body>\n<p>bla8</p>\n</html>' > file.html
 
-execute "git add file8.pl" "added new file"
+execute "$GIT add file8.pl" "added new file"
 
-execute "git commit -a -m 'changes_trunk_worktree_merge_svn_change_from_other_svn_sandbox'" "changes in trunk worktree merge svn change"
+execute "$GIT commit -a -m 'changes_trunk_worktree_merge_svn_change_from_other_svn_sandbox'" "changes in trunk worktree merge svn change"
 
-execute "$GVN commit" "git svn commit from other svn sandbox"
+execute "$GVN commit" "$GIT svn commit from other svn sandbox"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 # --------------
 cd ..
@@ -173,31 +173,31 @@ echo -e 'class foo23457:\n  def bar23457(self, test):\n    self.test = test\n\n'
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file7.pl
 echo -e '<html>\n  <title>foo357</title>\n  <body>\n    bar24\n  </body>\n</html>' > file.html
 
-execute "git add file7.pl" "added new file"
+execute "$GIT add file7.pl" "added new file"
 
-execute "git commit -a -m 'changes_trunk_worktree_merge_svn_change'" "changes in trunk worktree merge"
+execute "$GIT commit -a -m 'changes_trunk_worktree_merge_svn_change'" "changes in trunk worktree merge"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 set +e
 # disable abort of script => known error due to merge conflict !
-execute "$GVN up" "git svn update and so get conflict and new files from other sandbox"
+execute "$GVN up" "$GIT svn update and so get conflict and new files from other sandbox"
 set -e
 
 echo -e 'class foo234578:\n  def bar234578(self, test):\n    self.test = test\n\n' > file.py
 
-execute "git add file.py" "fixed gvn up conflict - set to common base"
+execute "$GIT add file.py" "fixed gvn up conflict - set to common base"
 
-execute "GIT_EDITOR=true git rebase --continue" "finish rebase after fixing conflict from other sandbox - using auto message / same message as before"
+execute "GIT_EDITOR=true $GIT rebase --continue" "finish rebase after fixing conflict from other sandbox - using auto message / same message as before"
 
-execute "$GVN commit" "git svn commit"
+execute "$GVN commit" "$GIT svn commit"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 # --------------
 execute "cd $test_worktree" "change to test worktree"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 set +e
 execute "$GVN wrebase trunk" "rebase with trunk"
@@ -205,20 +205,20 @@ set -e
 
 echo -e 'class foo2345678:\n  def bar2345678(self, test):\n    self.test = test\n\n' > file.py
 
-execute "git add file.py" "add changes"
+execute "$GIT add file.py" "add changes"
 
-execute "GIT_EDITOR=true git rebase --continue" "finish rebase"
+execute "GIT_EDITOR=true $GIT rebase --continue" "finish rebase"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 # --------------
 execute "cd $trunk_worktree" "change to trunk worktree"
 
 execute "$GVN wmerge test" "merge with test"
 
-execute "$GVN commit" "git svn commit"
+execute "$GVN commit" "$GIT svn commit"
 
-execute "git lgasb"
+execute "$GIT lgasb"
 
 # ---------------
 cd ..
@@ -228,7 +228,7 @@ cd ..
 cd git_user2/
 execute "$GVN up" "updated to see and get test0 branch"
 
-execute "git bl" "show all branches"
+execute "$GIT bl" "show all branches"
 
 # ---------------
 # FIXXME:
@@ -250,7 +250,7 @@ show_status() {
 
   execute "$GVN wl" "list worktrees"
 
-  dot_git_abs=`git get-dot-git-path-abs`
+  dot_git_abs=`$GIT get-dot-git-path-abs`
   
   execute "ls $dot_git_abs/gvn/branch" "show contents of gvn status folder"
 }
@@ -284,28 +284,28 @@ show_status
 execute "$GVN bd test0a" "remove branch test0a"
 
 show_status
-# execute "git ba test6" "add branch test6"
+# execute "$GIT ba test6" "add branch test6"
 # 
-# # execute "git bp test6 origin" "push branch test6 to origin"
+# # execute "$GIT bp test6 origin" "push branch test6 to origin"
 # 
-# execute "git bdl test6" "remove branch test6 locally"
+# execute "$GIT bdl test6" "remove branch test6 locally"
 # 
 # # FIXME: how to create new remote svn branch ???
 # execute "$GVN wa test6 origin/test6" "add branch test6 from remote"
 # 
-# execute "git ba test7" "add branch test7"
+# execute "$GIT ba test7" "add branch test7"
 # 
-# # execute "git bp test7 origin" "push branch test7 to origin"
+# # execute "$GIT bp test7 origin" "push branch test7 to origin"
 # 
-# execute "git bdl test7" "remove branch test7 locally"
+# execute "$GIT bdl test7" "remove branch test7 locally"
 # 
 # execute "$GVN wa origin/test7" "add branch test7 from remote using same name for local branch"
 
-execute "git wl" "list worktrees"
+execute "$GIT wl" "list worktrees"
 
-execute "git lgab" "show all branches in log"
+execute "$GIT lgab" "show all branches in log"
 
-execute "git bl" "show all branches"
+execute "$GIT bl" "show all branches"
 
 ################
 # check functionallity of updates in a subfolder in a worktree of a branch

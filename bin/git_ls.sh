@@ -14,7 +14,7 @@ p1=$1;
 p2=$2;
 
 if [[ "$#" == "1" ]]; then
-  is_branch=`git branch -a --no-color -l --format "%(refname:short)"| grep "^$p1$"` || true;
+  is_branch=`$GIT branch -a --no-color -l --format "%(refname:short)"| grep "^$p1$"` || true;
   if [[ "$is_branch" == "" ]]; then
     tree="HEAD";
     path=$p1;
@@ -34,7 +34,7 @@ else
 fi
 
 current_dir=`pwd`
-root_dir=`git root`
+root_dir=`$GIT root`
 
 if [[ $path =~ ^/ ]]; then
   target_dir=`realpath $path`
@@ -55,7 +55,7 @@ fi
 
 cd $root_dir
 
-files=`git ls-tree --name-only -r $tree | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,,g" | perl -pe "s,\/.+$,\/," | sort -u | sed "s,^,$relative_to_reduced,g" | grep -v "^$target_dir$"`
+files=`$GIT ls-tree --name-only -r $tree | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,,g" | perl -pe "s,\/.+$,\/," | sort -u | sed "s,^,$relative_to_reduced,g" | grep -v "^$target_dir$"`
 
 for file in $files;
 do

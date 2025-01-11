@@ -25,9 +25,9 @@ ln -s ../gvn_cmd.sh .
 cd git_user3/
 
 # -----------------------------------------
-execute "$GITO init" "init git overlay"
+execute "$GITO init" "init $GIT overlay"
 
-execute "$GITO status" "status git overlay"
+execute "$GITO status" "status $GIT overlay"
 
 echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file.pl
@@ -43,21 +43,21 @@ execute "$GITO status" "show status"
 
 execute "$GITO lgab" "show history"
 
-execute "git add -f .gitignore .gitignore_base" "add ignores"
+execute "$GIT add -f .gitignore .gitignore_base" "add ignores"
 
-execute "git commit -m 'add_gitignore'" "add gitignor files"
+execute "$GIT commit -m 'add_gitignore'" "add gitignor files"
 
-execute "git status" "show status"
+execute "$GIT status" "show status"
 
-execute "git lgasb" "show history"
+execute "$GIT lgasb" "show history"
 
 execute "echo \"overlay1.txt\" >> .gitignore_overlay" "add new file to ignores"
 
 execute "make .gitignore" "update .gitignore"
 
-execute "git status" "show status"
+execute "$GIT status" "show status"
 
-execute "git lgasb" "show history"
+execute "$GIT lgasb" "show history"
 
 overlay_repo=`realpath ../git_overlay/`
 execute "$GITO remote add origin $overlay_repo" "add bare overlay repo"

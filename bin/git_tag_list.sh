@@ -48,8 +48,8 @@ args=$@
 add_newline=0
 
 if [[ $list_local ]]; then
-  git tag
-  local_tags=`git tag`
+  $GIT tag
+  local_tags=`$GIT tag`
   if [[ ! "$local_tags" == "" ]]; then
     # echo "$local_tags"
     add_newline=1
@@ -59,26 +59,26 @@ fi
 skip_remote_all=0
 if [[ "$list_remote" == "1" ]]; then
   if [[ "$args_nr" == "1" ]]; then
-    remote_tags=`git ls-remote --tags $args`
+    remote_tags=`$GIT ls-remote --tags $args`
 
     if [[ "$add_newline" == "1" && ! "$remote_tags" == "" ]]; then
       echo ""
     fi
 
-    git ls-remote --tags $args
+    $GIT ls-remote --tags $args
     skip_remote_all=1
   fi
 fi
 
 if [[ "$skip_remote_all" == "0" ]]; then
   if [[ "$list_remote_all" == "1" ]]; then
-    for remote in `git remote`; do
+    for remote in `$GIT remote`; do
       if [[ "$add_newline" == "1" ]]; then
         echo ""
       fi
       echo "Remote: $remote"
-      git ls-remote --tags $remote
-      remote_tags=`git ls-remote --tags $remote`
+      $GIT ls-remote --tags $remote
+      remote_tags=`$GIT ls-remote --tags $remote`
       if [[ ! "$remote_tags" == "" ]]; then
         # echo "$remote_tags"
         add_newline=1

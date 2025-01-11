@@ -34,11 +34,11 @@ remote_branch=0
 if [[ "$#" == "1" ]]; then
   worktree_name="$1"
   branch_name="$1"
-  if [[ `git check-branch-exists-remote $branch_name` == "1" ]]; then
+  if [[ `$GIT check-branch-exists-remote $branch_name` == "1" ]]; then
     # checkout remote branch in worktree if exists
     # FIXME: is it a git-svn branch ?
     commit_ish="$branch_name"
-    branch_name=`echo $branch_name | sed 's,/, ,g' | git awk2`
+    branch_name=`echo $branch_name | sed 's,/, ,g' | $GIT awk2`
     worktree_name="$branch_name"
     remote_branch=1
   fi
@@ -47,14 +47,14 @@ if [[ "$#" == "1" ]]; then
   worktree_name="$1"
   branch_name="$2"
   commit_ish=""
-  if [[ `git check-branch-exists $branch_name` == "0" ]]; then
+  if [[ `$GIT check-branch-exists $branch_name` == "0" ]]; then
     # create new branch with same name as worktree_name from commit_ish if branch does not exist already
     branch_name="$worktree_name"
     commit_ish="$2"
-  elif [[ `git check-branch-exists-remote $branch_name` == "1" ]]; then
+  elif [[ `$GIT check-branch-exists-remote $branch_name` == "1" ]]; then
     # checkout remote branch in worktree if exists
     commit_ish="$branch_name"
-    branch_name=`echo $branch_name | sed 's,/, ,g' | git awk2`
+    branch_name=`echo $branch_name | sed 's,/, ,g' | $GIT awk2`
     remote_branch=1
   # elif commit-ish exists then create create new branch with same name as worktree_name from commit_ish ?
   fi
@@ -79,14 +79,14 @@ if [[ $is_gvn ]]; then
   gvn check-for-branch-name-match
 fi
 
-main_path=`git rev-parse --path-format=absolute --show-toplevel`
+main_path=`$GIT rev-parse --path-format=absolute --show-toplevel`
 cd $main_path
 cd ..
 cwd=`pwd`
 cd $main_path
 path="$cwd/$worktree_name"
 
-dot_git_path_abs=`git get-dot-git-path-abs`
+dot_git_path_abs=`$GIT get-dot-git-path-abs`
 
 if [[ $is_gvn ]]; then
   if ! [[ -e $dot_git_path_abs/svn/.metadata ]]; then
@@ -94,7 +94,7 @@ if [[ $is_gvn ]]; then
     exit -1
   fi
 
-  branch_current=`git branch --show-current`
+  branch_current=`$GIT branch --show-current`
 
   mkdir -p $dot_git_path_abs/gvn/branch/
 
@@ -103,7 +103,7 @@ if [[ $is_gvn ]]; then
     exit -1
   fi
 
-  worktree_of_branch_exists=`git worktree list | egrep "\[$branch_name\]$" || true`
+  worktree_of_branch_exists=`$GIT worktree list | egrep "\[$branch_name\]$" || true`
   if [[ $worktree_of_branch_exists ]]; then
     echo "ERROR: Branch $branch_name already checked out as worktree. Aborting creation of new worktree/branch."
     exit -1
@@ -124,11 +124,11 @@ fi
 
 
 if [[ "$remote_branch" == "1" ]]; then
-  git worktree add $path -b $branch_name $commit_ish
-elif [[ `git check-branch-exists $branch_name` == "1" ]]; then
-  git worktree add $path $branch_name $commit_ish
+  $GIT worktree add $path -b $branch_name $commit_ish
+elif [[ `$GIT check-branch-exists $branch_name` == "1" ]]; then
+  $GIT worktree add $path $branch_name $commit_ish
 else
-  git worktree add $path -b $branch_name $commit_ish
+  $GIT worktree add $path -b $branch_name $commit_ish
 fi
 
 if [[ $is_gvn ]]; then

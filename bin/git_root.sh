@@ -14,7 +14,7 @@ set -e
 # below does not always work properly in subfolders in worktrees hence replaced with below implementation
 #root = "rev-parse --show-toplevel"
 
-git_dir=`git rev-parse --git-dir`
+git_dir=`$GIT rev-parse --git-dir`
 git_dir=`realpath $git_dir`
 
 git_dir2=$git_dir
@@ -24,7 +24,7 @@ fi
 
 root_dir1=`echo $git_dir2 | sed 's,.git$,,g'`
 
-cdup_dir=`git rev-parse --show-cdup`
+cdup_dir=`$GIT rev-parse --show-cdup`
 if [[ ! $cdup_dir ]]; then
   cdup_dir="."
 fi

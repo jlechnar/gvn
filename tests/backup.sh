@@ -24,51 +24,51 @@ ln -s ../gvn_cmd.sh .
 cd git_user2/
 
 ######################
-#execute "git --no-pager lgs" "log with svn revisions"
-# execute "git lgsb" "log with svn revisions"
+#execute "$GIT --no-pager lgs" "log with svn revisions"
+# execute "$GIT lgsb" "log with svn revisions"
 
 echo -e 'class foo:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 2;\n$test++;\nprint(\"%d\",$test);\n' > file.pl
 echo -e '<html>\n  <title>foo</title>\n  <body>\n    bar\n  </body>\n</html>' > file.html
 
-execute "git add file*" "add some files"
+execute "$GIT add file*" "add some files"
 
-execute "git commit -a -m 'files'" "commit new files"
+execute "$GIT commit -a -m 'files'" "commit new files"
 
-execute "git bb without_changes" "backup with no change"
+execute "$GIT bb without_changes" "backup with no change"
 
 echo -e 'class bar2:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 
-execute "git commit -a -m 'files'" "commit new files"
+execute "$GIT commit -a -m 'files'" "commit new files"
 
 sleep 2
-execute "git bb" "backup with no change and no title"
+execute "$GIT bb" "backup with no change and no title"
 
 echo -e 'class bar:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 echo -e 'my $test = 3;\n$test++;\nprint(\"%d\",$test);\n' > file2.pl
 
-execute "git add file2.pl" "add new file2.pl"
+execute "$GIT add file2.pl" "add new file2.pl"
 
-execute "git bb with_changes" "backup with change"
+execute "$GIT bb with_changes" "backup with change"
 
 echo -e 'class bar44:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 
 sleep 2
-execute "git bb" "backup with change and no title"
+execute "$GIT bb" "backup with change and no title"
 
-execute "git lgasb" "show all branches"
+execute "$GIT lgasb" "show all branches"
 
 set +e
-execute "git bb \." "check for wrong branch name"
+execute "$GIT bb \." "check for wrong branch name"
 set -e
 
-execute "git lgasb" "show all branches"
+execute "$GIT lgasb" "show all branches"
 
 echo -e 'class bar123:\n  def bar(self, test):\n    self.test = test\n\n' > file.py
 
 dt=`date +'%Y_%m_%d-%H_%M_%S'`; \
 
-execute "git bb test test_$dt" "backup with own datetime"
+execute "$GIT bb test test_$dt" "backup with own datetime"
 
-execute "git lgasb" "show all branches"
+execute "$GIT lgasb" "show all branches"
 

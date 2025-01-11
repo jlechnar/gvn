@@ -53,7 +53,7 @@ else
   fi
 fi
 
-dot_git_path_abs=`git get-dot-git-path-abs`
+dot_git_path_abs=`$GIT get-dot-git-path-abs`
 
 if [[ $is_gvn ]]; then
   if ! [[ -e $dot_git_path_abs/svn/.metadata ]]; then
@@ -68,7 +68,7 @@ else
 fi
 
 if [[ "$delete_local" == "1" ]]; then
-  git branch -d $branch_name
+  $GIT branch -d $branch_name
 
   if [[ $is_gvn ]]; then
     rm -rf $dot_git_path_abs/gvn/branch/$branch_name
@@ -76,6 +76,6 @@ if [[ "$delete_local" == "1" ]]; then
 fi
 
 if [[ "$delete_remote" == "1" ]]; then
-  git push -d $remote_name $branch_name
+  $GIT push -d $remote_name $branch_name
 fi
 

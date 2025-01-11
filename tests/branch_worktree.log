@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -124,14 +124,14 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file* test1/*
+ | Executing:  .../../bin/git.sh add file* test1/*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -m 'files'
+ | Executing:  .../../bin/git.sh commit -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  6 files changed, 30 insertions(+)
@@ -240,7 +240,7 @@ ERROR: Branch is not a real svn branch as branch name does not match svn remote 
 
  .============================================================================
  |             change on test2 worktree
- | Executing:  git commit -a -m 'wt_test2_change'
+ | Executing:  .../../bin/git.sh commit -a -m 'wt_test2_change'
  |============================================================================
 [test2  <HASH>] wt_test2_change
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -265,7 +265,7 @@ ERROR: Master worktree detected / Could not detect base to sync. Candidates are:
 
  .============================================================================
  |             change on test worktree
- | Executing:  git commit -a -m 'wt_test_change'
+ | Executing:  .../../bin/git.sh commit -a -m 'wt_test_change'
  |============================================================================
 [test  <HASH>] wt_test_change
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -348,7 +348,7 @@ HEAD is now at <HASH> wt_test2_change
 
  .============================================================================
  |             change on test worktree
- | Executing:  git commit -a -m 'wt_test_change'
+ | Executing:  .../../bin/git.sh commit -a -m 'wt_test_change'
  |============================================================================
 [test  <HASH>] wt_test_change
  1 file changed, 2 insertions(+), 2 deletions(-)
@@ -376,7 +376,7 @@ Created Tag for git rebase: gvn_worktree_rebase_<DATE>_<TIME>_5_<HASH>_to_t_<HAS
 
  .============================================================================
  |             change on test5 worktree
- | Executing:  git commit -a -m 'wt_test5_change'
+ | Executing:  .../../bin/git.sh commit -a -m 'wt_test5_change'
  |============================================================================
 [test5  <HASH>] wt_test5_change
  1 file changed, 2 insertions(+), 2 deletions(-)
@@ -414,7 +414,7 @@ Fast-forward
 
  .============================================================================
  |             log with svn revisions
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m
@@ -448,7 +448,7 @@ HEAD is now at <HASH> wt_test5_change
 
  .============================================================================
  |             log with svn revisions
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5, test4)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m
@@ -485,7 +485,7 @@ HEAD is now at <HASH> wt_test5_change
 
  .============================================================================
  |             log with svn revisions
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5, test4)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m
@@ -521,7 +521,7 @@ HEAD is now at <HASH> wt_test5_change
 
  .============================================================================
  |             log with svn revisions
- | Executing:  git lgasb
+ | Executing:  .../../bin/git.sh lgasb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test5_change[m [1;35m (HEAD -> test, test5, test4)[m
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mwt_test_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_t_<HASH>_to_5_<HASH>)[m

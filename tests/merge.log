@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -124,7 +124,7 @@ Checked out HEAD:
 
  .============================================================================
  |             log with svn revisions
- | Executing:  git lgsb
+ | Executing:  .../../bin/git.sh lgsb
  |============================================================================
 * [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (HEAD -> trunk, origin/trunk)[m
  '============================================================================
@@ -132,21 +132,21 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  .../../bin/git.sh add file*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add some more files
- | Executing:  git add foo/file* bar/file*
+ | Executing:  .../../bin/git.sh add foo/file* bar/file*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -m 'files'
+ | Executing:  .../../bin/git.sh commit -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  5 files changed, 25 insertions(+)
@@ -227,7 +227,7 @@ Committed revision 3.
 
  .============================================================================
  |             show status
- | Executing:  git st
+ | Executing:  .../../bin/git.sh st
  |============================================================================
 On branch trunk
 Changes not staged for commit:
@@ -242,7 +242,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
  .============================================================================
  |             conflicting changes
- | Executing:  git commit -a -m 'conflicting_changes'
+ | Executing:  .../../bin/git.sh commit -a -m 'conflicting_changes'
  |============================================================================
 [trunk  <HASH>] conflicting_changes
  2 files changed, 3 insertions(+), 3 deletions(-)
@@ -274,7 +274,7 @@ rebase refs/remotes/origin/trunk: command returned error: 1
 
  .============================================================================
  |             show status
- | Executing:  git st
+ | Executing:  .../../bin/git.sh st
  |============================================================================
 [31minteractive rebase in progress; onto [m<HASH>
 Last command done (1 command done):
@@ -297,7 +297,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
  .============================================================================
  |             generate diff files
- | Executing:  git merge-file-diff file.py
+ | Executing:  .../../bin/git.sh merge-file-diff file.py
  |============================================================================
  '============================================================================
 
@@ -340,7 +340,7 @@ class foo123:
 
  .============================================================================
  |             generate diff files
- | Executing:  git mfd file.py
+ | Executing:  .../../bin/git.sh mfd file.py
  |============================================================================
  '============================================================================
 
@@ -383,7 +383,7 @@ class foo123:
 
  .============================================================================
  |             generate diff files
- | Executing:  git merge-file-diff file.pl
+ | Executing:  .../../bin/git.sh merge-file-diff file.pl
  |============================================================================
  '============================================================================
 
@@ -423,7 +423,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             generate diff files
- | Executing:  git mfd file.pl
+ | Executing:  .../../bin/git.sh mfd file.pl
  |============================================================================
  '============================================================================
 
@@ -463,7 +463,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff file.py
+ | Executing:  .../../bin/git.sh merge-diff file.py
  |============================================================================
 ================================================================================
 ================================================================================
@@ -540,7 +540,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git md file.py
+ | Executing:  .../../bin/git.sh md file.py
  |============================================================================
 ================================================================================
 ================================================================================
@@ -617,7 +617,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-ours file.py
+ | Executing:  .../../bin/git.sh merge-diff-ours file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -643,7 +643,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdo file.py
+ | Executing:  .../../bin/git.sh mdo file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -669,7 +669,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-theirs file.py
+ | Executing:  .../../bin/git.sh merge-diff-theirs file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -695,7 +695,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdt file.py
+ | Executing:  .../../bin/git.sh mdt file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -721,7 +721,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-base file.py
+ | Executing:  .../../bin/git.sh merge-diff-base file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -747,7 +747,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdb file.py
+ | Executing:  .../../bin/git.sh mdb file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -773,7 +773,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise file.py
+ | Executing:  .../../bin/git.sh merge-diff-wordwise file.py
  |============================================================================
 ================================================================================
 ================================================================================
@@ -838,7 +838,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdw file.py
+ | Executing:  .../../bin/git.sh mdw file.py
  |============================================================================
 ================================================================================
 ================================================================================
@@ -903,7 +903,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise-ours file.py
+ | Executing:  .../../bin/git.sh merge-diff-wordwise-ours file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -925,7 +925,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdwo file.py
+ | Executing:  .../../bin/git.sh mdwo file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -947,7 +947,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise-theirs file.py
+ | Executing:  .../../bin/git.sh merge-diff-wordwise-theirs file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -969,7 +969,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdwt file.py
+ | Executing:  .../../bin/git.sh mdwt file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -991,7 +991,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise-base file.py
+ | Executing:  .../../bin/git.sh merge-diff-wordwise-base file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -1013,7 +1013,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdwb file.py
+ | Executing:  .../../bin/git.sh mdwb file.py
  |============================================================================
 * Unmerged path file.py
 [36mdiff --git a/file.py b/file.py[m
@@ -1035,75 +1035,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff file.pl
- |============================================================================
-================================================================================
-================================================================================
-MERGE REBASE - BASE
-================================================================================
-* Unmerged path bar/file.pl
-[36mdiff --git a/bar/file.pl b/bar/file.pl[m
-[36mindex <HASH>..<HASH> 100644[m
-[36m--- a/bar/file.pl[m
-[36m+++ b/bar/file.pl[m
-[34;105m@@ -1,4 +1,10 @@[m
-[34;102m+[m[34;102m<<<<<<< HEAD[m
-[34;102m+[m[34;102mmy $test2 = 3;[m
-[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
-[30m my $test = 2;[m
-[34;102m+[m[34;102m=======[m
-[34;102m+[m[34;102mmy $test = 4;[m
-[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
-[30m $test++;[m
-[30m print(\"%d\",$test);[m
-[30m [m
-================================================================================
-================================================================================
-MERGE REBASE - OURS
-================================================================================
-* Unmerged path bar/file.pl
-[36mdiff --git a/bar/file.pl b/bar/file.pl[m
-[36mindex <HASH>..<HASH> 100644[m
-[36m--- a/bar/file.pl[m
-[36m+++ b/bar/file.pl[m
-[34;105m@@ -1,4 +1,10 @@[m
-[34;102m+[m[34;102m<<<<<<< HEAD[m
-[34;102m+[m[34;102mmy $test2 = 3;[m
-[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
-[34;102m+[m[34;102mmy $test = 2;[m
-[34;102m+[m[34;102m=======[m
-[30m my $test = 4;[m
-[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
-[30m $test++;[m
-[30m print(\"%d\",$test);[m
-[30m [m
-================================================================================
-================================================================================
-MERGE REBASE - THEIRS
-================================================================================
-* Unmerged path bar/file.pl
-[36mdiff --git a/bar/file.pl b/bar/file.pl[m
-[36mindex <HASH>..<HASH> 100644[m
-[36m--- a/bar/file.pl[m
-[36m+++ b/bar/file.pl[m
-[34;105m@@ -1,4 +1,10 @@[m
-[34;102m+[m[34;102m<<<<<<< HEAD[m
-[30m my $test2 = 3;[m
-[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
-[34;102m+[m[34;102mmy $test = 2;[m
-[34;102m+[m[34;102m=======[m
-[34;102m+[m[34;102mmy $test = 4;[m
-[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
-[30m $test++;[m
-[30m print(\"%d\",$test);[m
-[30m [m
-================================================================================
- '============================================================================
-
-
- .============================================================================
- |             show merge diff
- | Executing:  git md file.pl
+ | Executing:  .../../bin/git.sh merge-diff file.pl
  |============================================================================
 ================================================================================
 ================================================================================
@@ -1171,7 +1103,75 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-ours file.pl
+ | Executing:  .../../bin/git.sh md file.pl
+ |============================================================================
+================================================================================
+================================================================================
+MERGE REBASE - BASE
+================================================================================
+* Unmerged path bar/file.pl
+[36mdiff --git a/bar/file.pl b/bar/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/bar/file.pl[m
+[36m+++ b/bar/file.pl[m
+[34;105m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[30m my $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+================================================================================
+================================================================================
+MERGE REBASE - OURS
+================================================================================
+* Unmerged path bar/file.pl
+[36mdiff --git a/bar/file.pl b/bar/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/bar/file.pl[m
+[36m+++ b/bar/file.pl[m
+[34;105m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[34;102m+[m[34;102mmy $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[30m my $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+================================================================================
+================================================================================
+MERGE REBASE - THEIRS
+================================================================================
+* Unmerged path bar/file.pl
+[36mdiff --git a/bar/file.pl b/bar/file.pl[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/bar/file.pl[m
+[36m+++ b/bar/file.pl[m
+[34;105m@@ -1,4 +1,10 @@[m
+[34;102m+[m[34;102m<<<<<<< HEAD[m
+[30m my $test2 = 3;[m
+[34;102m+[m[34;102m||||||| parent of <HASH> (conflicting_changes)[m
+[34;102m+[m[34;102mmy $test = 2;[m
+[34;102m+[m[34;102m=======[m
+[34;102m+[m[34;102mmy $test = 4;[m
+[34;102m+[m[34;102m>>>>>>> <HASH> (conflicting_changes)[m
+[30m $test++;[m
+[30m print(\"%d\",$test);[m
+[30m [m
+================================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             show merge diff
+ | Executing:  .../../bin/git.sh merge-diff-ours file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1194,7 +1194,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdo file.pl
+ | Executing:  .../../bin/git.sh mdo file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1217,7 +1217,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-theirs file.pl
+ | Executing:  .../../bin/git.sh merge-diff-theirs file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1240,7 +1240,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdt file.pl
+ | Executing:  .../../bin/git.sh mdt file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1263,7 +1263,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-base file.pl
+ | Executing:  .../../bin/git.sh merge-diff-base file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1286,7 +1286,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdb file.pl
+ | Executing:  .../../bin/git.sh mdb file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1309,7 +1309,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise file.pl
+ | Executing:  .../../bin/git.sh merge-diff-wordwise file.pl
  |============================================================================
 ================================================================================
 ================================================================================
@@ -1368,7 +1368,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdw file.pl
+ | Executing:  .../../bin/git.sh mdw file.pl
  |============================================================================
 ================================================================================
 ================================================================================
@@ -1427,7 +1427,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise-ours file.pl
+ | Executing:  .../../bin/git.sh merge-diff-wordwise-ours file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1447,7 +1447,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdwo file.pl
+ | Executing:  .../../bin/git.sh mdwo file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1467,7 +1467,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise-theirs file.pl
+ | Executing:  .../../bin/git.sh merge-diff-wordwise-theirs file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1487,7 +1487,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdwt file.pl
+ | Executing:  .../../bin/git.sh mdwt file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1507,7 +1507,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git merge-diff-wordwise-base file.pl
+ | Executing:  .../../bin/git.sh merge-diff-wordwise-base file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1527,7 +1527,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             show merge diff
- | Executing:  git mdwb file.pl
+ | Executing:  .../../bin/git.sh mdwb file.pl
  |============================================================================
 * Unmerged path bar/file.pl
 [36mdiff --git a/bar/file.pl b/bar/file.pl[m
@@ -1547,7 +1547,7 @@ MERGE REBASE - THEIRS
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-ours file.py
+ | Executing:  .../../bin/git.sh merge-file-ours file.py
  |============================================================================
 test
 Updated 1 path from the index
@@ -1568,7 +1568,7 @@ class foo123:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mfo file.py
+ | Executing:  .../../bin/git.sh mfo file.py
  |============================================================================
 test
 Updated 0 paths from the index
@@ -1589,7 +1589,7 @@ class foo123:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-theirs file.py
+ | Executing:  .../../bin/git.sh merge-file-theirs file.py
  |============================================================================
 Updated 1 path from the index
  '============================================================================
@@ -1609,7 +1609,7 @@ class foo234:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mft file.py
+ | Executing:  .../../bin/git.sh mft file.py
  |============================================================================
 Updated 0 paths from the index
  '============================================================================
@@ -1629,7 +1629,7 @@ class foo234:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-base file.py
+ | Executing:  .../../bin/git.sh merge-file-base file.py
  |============================================================================
  '============================================================================
 
@@ -1648,7 +1648,7 @@ class foo23:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mfb file.py
+ | Executing:  .../../bin/git.sh mfb file.py
  |============================================================================
  '============================================================================
 
@@ -1667,7 +1667,7 @@ class foo23:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-merge file.py
+ | Executing:  .../../bin/git.sh merge-file-merge file.py
  |============================================================================
 Recreated 1 merge conflict
  '============================================================================
@@ -1695,7 +1695,7 @@ class foo123:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mfm file.py
+ | Executing:  .../../bin/git.sh mfm file.py
  |============================================================================
 Recreated 1 merge conflict
  '============================================================================
@@ -1723,7 +1723,7 @@ class foo123:
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-ours file.pl
+ | Executing:  .../../bin/git.sh merge-file-ours file.pl
  |============================================================================
 test
 Updated 1 path from the index
@@ -1743,7 +1743,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mfo file.pl
+ | Executing:  .../../bin/git.sh mfo file.pl
  |============================================================================
 test
 Updated 0 paths from the index
@@ -1763,7 +1763,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-theirs file.pl
+ | Executing:  .../../bin/git.sh merge-file-theirs file.pl
  |============================================================================
 Updated 1 path from the index
  '============================================================================
@@ -1782,7 +1782,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mft file.pl
+ | Executing:  .../../bin/git.sh mft file.pl
  |============================================================================
 Updated 0 paths from the index
  '============================================================================
@@ -1801,7 +1801,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-base file.pl
+ | Executing:  .../../bin/git.sh merge-file-base file.pl
  |============================================================================
  '============================================================================
 
@@ -1819,7 +1819,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mfb file.pl
+ | Executing:  .../../bin/git.sh mfb file.pl
  |============================================================================
  '============================================================================
 
@@ -1837,7 +1837,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git merge-file-merge file.pl
+ | Executing:  .../../bin/git.sh merge-file-merge file.pl
  |============================================================================
 Recreated 1 merge conflict
  '============================================================================
@@ -1862,7 +1862,7 @@ print(\"%d\",$test);
 
  .============================================================================
  |             checkout fixed solution
- | Executing:  git mfm file.pl
+ | Executing:  .../../bin/git.sh mfm file.pl
  |============================================================================
 Recreated 1 merge conflict
  '============================================================================
@@ -1887,14 +1887,14 @@ print(\"%d\",$test);
 
  .============================================================================
  |             abort merge
- | Executing:  git rebase --abort
+ | Executing:  .../../bin/git.sh rebase --abort
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             show status
- | Executing:  git st
+ | Executing:  .../../bin/git.sh st
  |============================================================================
 On branch trunk
 nothing to commit (use -u to show untracked files)
@@ -1903,7 +1903,7 @@ nothing to commit (use -u to show untracked files)
 
  .============================================================================
  |             log with svn revisions
- | Executing:  git lgsb
+ | Executing:  .../../bin/git.sh lgsb
  |============================================================================
 * [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2           [m [30mconflicting_changes[m [1;35m (HEAD -> trunk, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 * [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m

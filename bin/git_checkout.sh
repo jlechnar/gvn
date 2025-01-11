@@ -12,12 +12,12 @@ set -e
 
 if [ "$#" -ne 1 ]; then
   remote_name=$1
-  local_name=`echo $remote_name | sed 's,/, ,g' | git awk-1`
-  git checkout -b $local_name $remote_name
+  local_name=`echo $remote_name | sed 's,/, ,g' | $GIT awk-1`
+  $GIT checkout -b $local_name $remote_name
 elif [ "$#" -ne 2 ]; then
   local_name=$1
   remote_name=$2
-  git checkout -b $local_name $remote_name
+  $GIT checkout -b $local_name $remote_name
 else
   echo "ERROR: Unexpected number of arguments"
 fi

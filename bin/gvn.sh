@@ -23,10 +23,13 @@ if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
 fi
 
 # activate below to debug commands that are executed
-if [[ "$GVN_CMD_DEBUG" == "1" ]]; then
+if [[ "$GVN_DEBUG_CMD" == "1" ]]; then
   CMD_DEBUG=1
+  git_bin=`realpath ~/bin/git.sh`
+  export GIT="$git_bin"
 else
   CMD_DEBUG=0
+  export GIT="git"
 fi
 
 set -e
@@ -38,50 +41,74 @@ do_clone() {
   opts=$3
 
   set +e
-  git svn clone $from $to $opts
+  cmd2="$GIT svn clone $from $to $opts"
+  eval $cmd2
   cwd=`pwd`
 
   # repeat some times in case server connection is lost due to to fast fetching during above clone
   cd $to
   for ((n=0;n<10;n++)); do
-    git svn fetch
+    cmd2="$GIT svn fetch"
+    eval $cmd2
   done
   gvn umdb
   cd $cwd
 }
 
 # ---------------------------
-cmd=$1
-shift
+first=1
+opt=""
+cmd=""
+whitespace="[[:space:]]"
+all=$@
+for i in "$@"
+do
+    if [[ $i =~ $whitespace ]]
+    then
+        i=\"$i\"
+    fi
+
+    if [[ "$first" == "1" ]]; then
+      first=0
+      cmd=$i
+    else
+      opt="$opt $i"
+    fi
+done
+
+# set -x
 
 if [[ "$cmd" == "clone" ]]; then
+  a=$all
+  shift
   path=$1
   shift
   to=$1
+
   # we need to get rid of /trunk for full clone with all branches !
   from=`echo $path | sed 's,/trunk$,,g' | sed 's,/trunk/$,,g'`
   if [[ "$to" == "" ]]; then
     to="."
   fi
 
-  do_clone $from $to "-s"
+  opts="-s"
+
+  do_clone $from $to $opts
   # git branch -m trunk
 elif [[ "$cmd" == "clone-none-standard" || "$cmd" == "clone-ns" || "$cmd" == "clone-none-std" ]]; then
+  a=$all
+  shift
   from=$1
   shift
   to=$1
+
   if [[ "$to" == "" ]]; then
     to="."
   fi
+  opts=""
 
-  do_clone $from $to ""
+  do_clone $from $to $opts
 else
-  opt=$@
-
-  if [[ "$CMD_DEBUG" == "1" ]]; then
-    echo "GVN_CMD: gvn $cmd $opt" >> /dev/stderr
-  fi
-
   if [[ "$cmd" == "hash" || "$cmd" == "convert-hashes" || "$cmd" == "cmd-convert-hashes" ]]; then
     # do not map done by gvn_hash.sh
     true
@@ -91,6 +118,12 @@ else
     opt=`gvn convert-hashes -c "$cmd" "$opt2"`
   fi
 
-  git gvn-$cmd $opt
+  cmd2="$GIT gvn-$cmd $opt"
+
+  if [[ "$CMD_DEBUG" == "1" ]]; then
+    echo "GVN_CMD: $cmd2" >> /dev/stderr
+  fi
+
+  eval $cmd2
 fi
 

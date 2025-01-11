@@ -71,7 +71,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -110,7 +110,7 @@ Checked out HEAD:
 
  .============================================================================
  |             Rename master to trunk to match name for gvn
- | Executing:  git branch -m trunk
+ | Executing:  .../../bin/git.sh branch -m trunk
  |============================================================================
  '============================================================================
 
@@ -124,14 +124,14 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  .../../bin/git.sh add file*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 18 insertions(+)
@@ -143,7 +143,7 @@ Checked out HEAD:
 
  .============================================================================
  |             change1
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 8 insertions(+), 8 deletions(-)
@@ -152,7 +152,7 @@ Checked out HEAD:
 
  .============================================================================
  |             change2
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 8 insertions(+), 8 deletions(-)
@@ -161,7 +161,7 @@ Checked out HEAD:
 
  .============================================================================
  |             change3
- | Executing:  git commit -a -m 'files'
+ | Executing:  .../../bin/git.sh commit -a -m 'files'
  |============================================================================
 [trunk  <HASH>] files
  3 files changed, 9 insertions(+), 9 deletions(-)
@@ -170,7 +170,7 @@ Checked out HEAD:
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  .../../bin/git.sh add file*
  |============================================================================
  '============================================================================
 

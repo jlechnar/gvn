@@ -23,7 +23,7 @@ Initialized empty Git repository in .../test_worktree_git/server1/repo/
 .../test_worktree_git/server1_create
 
  .============================================================================
- | Executing:  git clone file://.../test_worktree_git/server1/repo .
+ | Executing:  .../../bin/git.sh clone file://.../test_worktree_git/server1/repo .
  |============================================================================
 Cloning into '.'...
 warning: You appear to have cloned an empty repository.
@@ -43,7 +43,7 @@ To file://.../test_worktree_git/server1/repo
 .../test_worktree_git/git_user1
 
  .============================================================================
- | Executing:  git clone file://.../test_worktree_git/server1/repo .
+ | Executing:  .../../bin/git.sh clone file://.../test_worktree_git/server1/repo .
  |============================================================================
 Cloning into '.'...
  '============================================================================
@@ -51,14 +51,14 @@ Cloning into '.'...
 
  .============================================================================
  |             add some files
- | Executing:  git add file*
+ | Executing:  .../../bin/git.sh add file*
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             commit new files
- | Executing:  git commit -m 'files'
+ | Executing:  .../../bin/git.sh commit -m 'files'
  |============================================================================
 [master  <HASH>] files
  3 files changed, 15 insertions(+)
@@ -70,7 +70,7 @@ Cloning into '.'...
 
  .============================================================================
  |             add worktree test1 of head
- | Executing:  git wa test1
+ | Executing:  .../../bin/git.sh wa test1
  |============================================================================
 Preparing worktree (new branch 'test1')
 HEAD is now at <HASH> files
@@ -79,7 +79,7 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             add worktree test2
- | Executing:  git wa test2 HEAD^
+ | Executing:  .../../bin/git.sh wa test2 HEAD^
  |============================================================================
 Preparing worktree (new branch 'test2')
 HEAD is now at <HASH> initial commit
@@ -88,7 +88,7 @@ HEAD is now at <HASH> initial commit
 
  .============================================================================
  |             add worktree test3 in test4 folder
- | Executing:  git wa test3 test4 HEAD^
+ | Executing:  .../../bin/git.sh wa test3 test4 HEAD^
  |============================================================================
 Preparing worktree (new branch 'test3')
 HEAD is now at <HASH> initial commit
@@ -97,14 +97,14 @@ HEAD is now at <HASH> initial commit
 
  .============================================================================
  |             add branch test5
- | Executing:  git ba test5
+ | Executing:  .../../bin/git.sh ba test5
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             add worktree test5 from existing branch
- | Executing:  git wa test5
+ | Executing:  .../../bin/git.sh wa test5
  |============================================================================
 Preparing worktree (checking out 'test5')
 HEAD is now at <HASH> files
@@ -113,7 +113,7 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             list worktrees
- | Executing:  git wl
+ | Executing:  .../../bin/git.sh wl
  |============================================================================
 .../test_worktree_git/git_user1  <HASH> [master]
 .../test_worktree_git/test1      <HASH> [test1]
@@ -125,7 +125,7 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             show all branches in log
- | Executing:  git lgab
+ | Executing:  .../../bin/git.sh lgab
  |============================================================================
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1           [m [30mfiles[m [1;35m (HEAD -> master, test5, test1)[m
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup      [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
@@ -134,7 +134,7 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             show all branches
- | Executing:  git bl
+ | Executing:  .../../bin/git.sh bl
  |============================================================================
 * [32mmaster[m
 + [36mtest1[m
@@ -148,14 +148,14 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             add branch test6
- | Executing:  git ba test6
+ | Executing:  .../../bin/git.sh ba test6
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             push branch test6 to origin
- | Executing:  git bp test6 origin
+ | Executing:  .../../bin/git.sh bp test6 origin
  |============================================================================
 To file://.../test_worktree_git/server1/repo
  * [new branch]      test6 -> test6
@@ -165,7 +165,7 @@ branch 'test6' set up to track 'origin/test6'.
 
  .============================================================================
  |             remove branch test6 locally
- | Executing:  git bdl test6
+ | Executing:  .../../bin/git.sh bdl test6
  |============================================================================
 Deleted branch test6 (was <HASH>).
  '============================================================================
@@ -173,7 +173,7 @@ Deleted branch test6 (was <HASH>).
 
  .============================================================================
  |             add branch test6 from remote
- | Executing:  git wa test6 origin/test6
+ | Executing:  .../../bin/git.sh wa test6 origin/test6
  |============================================================================
 Preparing worktree (new branch 'test6')
 branch 'test6' set up to track 'origin/test6'.
@@ -183,14 +183,14 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             add branch test7
- | Executing:  git ba test7
+ | Executing:  .../../bin/git.sh ba test7
  |============================================================================
  '============================================================================
 
 
  .============================================================================
  |             push branch test7 to origin
- | Executing:  git bp test7 origin
+ | Executing:  .../../bin/git.sh bp test7 origin
  |============================================================================
 To file://.../test_worktree_git/server1/repo
  * [new branch]      test7 -> test7
@@ -200,7 +200,7 @@ branch 'test7' set up to track 'origin/test7'.
 
  .============================================================================
  |             remove branch test7 locally
- | Executing:  git bdl test7
+ | Executing:  .../../bin/git.sh bdl test7
  |============================================================================
 Deleted branch test7 (was <HASH>).
  '============================================================================
@@ -208,7 +208,7 @@ Deleted branch test7 (was <HASH>).
 
  .============================================================================
  |             add branch test7 from remote using same name for local branch
- | Executing:  git wa origin/test7
+ | Executing:  .../../bin/git.sh wa origin/test7
  |============================================================================
 Preparing worktree (new branch 'test7')
 branch 'test7' set up to track 'origin/test7'.
@@ -218,7 +218,7 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             list worktrees
- | Executing:  git wl
+ | Executing:  .../../bin/git.sh wl
  |============================================================================
 .../test_worktree_git/git_user1  <HASH> [master]
 .../test_worktree_git/test1      <HASH> [test1]
@@ -232,7 +232,7 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             show all branches in log
- | Executing:  git lgab
+ | Executing:  .../../bin/git.sh lgab
  |============================================================================
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1           [m [30mfiles[m [1;35m (HEAD -> master, origin/test7, origin/test6, test7, test6, test5, test1)[m
 * [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup      [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
@@ -241,7 +241,7 @@ HEAD is now at <HASH> files
 
  .============================================================================
  |             show all branches
- | Executing:  git bl
+ | Executing:  .../../bin/git.sh bl
  |============================================================================
 * [32mmaster[m
 + [36mtest1[m

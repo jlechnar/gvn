@@ -24,6 +24,6 @@ ln -s ../gvn_cmd.sh .
 cd git_user2/
 
 ######################
-#execute "git --no-pager lgs" "log with svn revisions"
-execute "git lgsb" "log with svn revisions"
+#execute "$GIT --no-pager lgs" "log with svn revisions"
+execute "$GIT lgsb" "log with svn revisions"
 

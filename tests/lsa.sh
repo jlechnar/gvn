@@ -55,69 +55,69 @@ echo "3" > test9/c.file
 echo "4" > test9/d.file
 echo "5" > test9/foo
 
-execute "git add test1" "add some files in folders"
+execute "$GIT add test1" "add some files in folders"
 
-execute "git add test5" "add some files in folders"
+execute "$GIT add test5" "add some files in folders"
 
-execute "git add test9" "add some files in folders"
+execute "$GIT add test9" "add some files in folders"
 
-execute "git commit -a -m 'test_folders_with_files'" "more files"
+execute "$GIT commit -a -m 'test_folders_with_files'" "more files"
 
 # -------------------------------------
 execute "pwd" "current directory"
 
-execute "git lsa test5/" "lsa test5"
+execute "$GIT lsa test5/" "lsa test5"
 
-execute "git lsa" "lsa no args"
+execute "$GIT lsa" "lsa no args"
 
 # -------------------------------------
 execute "cd test5/" "cd test5"
 
 execute "pwd" "current directory"
 
-execute "git lsa" "lsa no args"
+execute "$GIT lsa" "lsa no args"
 
-execute "git lsa test6/" "lsa test6"
+execute "$GIT lsa test6/" "lsa test6"
 
-execute "git lsa ." "lsa current"
+execute "$GIT lsa ." "lsa current"
 
-execute "git lsa ../" "lsa one up"
+execute "$GIT lsa ../" "lsa one up"
 
-execute "git lsa ../test1/test2" "lsa test1 subfolder"
+execute "$GIT lsa ../test1/test2" "lsa test1 subfolder"
 
 # -----------------------------
 execute "cd test6/" "cd test6"
 
 execute "pwd" "current directory"
 
-execute "git lsa" "lsa no args"
+execute "$GIT lsa" "lsa no args"
 
-execute "git lsa ." "lsa current"
+execute "$GIT lsa ." "lsa current"
 
-execute "git lsa ../" "lsa one up"
+execute "$GIT lsa ../" "lsa one up"
 
-execute "git lsa ../.." "lsa two up"
+execute "$GIT lsa ../.." "lsa two up"
 
-execute "git lsa ../../test1/test2/test3" "lsa test1 subfolder"
+execute "$GIT lsa ../../test1/test2/test3" "lsa test1 subfolder"
 
 # -----------------------------
 set +e
-execute "git lsa ../../../outside/dir" "lsa outside dir none existing"
+execute "$GIT lsa ../../../outside/dir" "lsa outside dir none existing"
 
-execute "git lsa ../../../git_user2" "lsa outside dir existing"
+execute "$GIT lsa ../../../git_user2" "lsa outside dir existing"
 
-execute "git lsa inside/none_existing/dir" "lsa none existing dir"
+execute "$GIT lsa inside/none_existing/dir" "lsa none existing dir"
 
-execute "git lsa inside_none_existing_dir" "lsa none existing dir"
+execute "$GIT lsa inside_none_existing_dir" "lsa none existing dir"
 
 set -e
 
 # -----------------------------
 execute "cd ../../test9/" "go to test9"
 
-execute "git lsa" "lsa current"
+execute "$GIT lsa" "lsa current"
 
-execute "git lsa ." "lsa current"
+execute "$GIT lsa ." "lsa current"
 
 # --------------
 execute "$GVN wa test" "add worktree test"
@@ -131,20 +131,20 @@ execute "cd ../test5/test6/" "cd test6"
 
 execute "pwd" "current directory"
 
-execute "git lsa" "lsa no args"
+execute "$GIT lsa" "lsa no args"
 
-execute "git lsa ." "lsa current"
+execute "$GIT lsa ." "lsa current"
 
-execute "git lsa ../" "lsa one up"
+execute "$GIT lsa ../" "lsa one up"
 
-execute "git lsa ../.." "lsa two up"
+execute "$GIT lsa ../.." "lsa two up"
 
-execute "git lsa ../../test1/test2/test3" "lsa test1 subfolder"
+execute "$GIT lsa ../../test1/test2/test3" "lsa test1 subfolder"
 
 # -----------------------------
 execute "cd ../../test9/" "go to test9"
 
-execute "git lsa" "lsa current"
+execute "$GIT lsa" "lsa current"
 
-execute "git lsa ." "lsa current"
+execute "$GIT lsa ." "lsa current"
 

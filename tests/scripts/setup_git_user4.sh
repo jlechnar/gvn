@@ -16,10 +16,10 @@ unlink scripts
 REPO_PATH=`realpath ../server2/repo`
 
 # initialize local repository
-execute "git clone file://$REPO_PATH ." ""
+execute "$GIT clone file://$REPO_PATH ." ""
 
-git config user.name "user4"
-git config user.email user4@domain
-git config protocol.file.allow always
+$GIT config user.name "user4"
+$GIT config user.email user4@domain
+$GIT config protocol.file.allow always
 
 # source ../scripts/setup_gvn.sh

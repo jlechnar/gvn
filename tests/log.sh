@@ -56,8 +56,8 @@ echo "4" > test9/d.file
 echo "5" > test9/foo
 
 for file in `find test1/ test5/ test9/ -type f | sort`; do
-  execute "git add $file" "add $file"
-  execute "git commit $file -m \"add_$file\"" "commit $file"
+  execute "$GIT add $file" "add $file"
+  execute "$GIT commit $file -m \"add_$file\"" "commit $file"
 done
 
 execute "$GVN uc" "push to svn"
@@ -80,8 +80,8 @@ lglb
 lglfb"
 
 for cmd2 in $cmd_git; do
-  execute "git $cmd2" "$cmd2"
-  execute "git $cmd2 test9" "$cmd2"
+  execute "$GIT $cmd2" "$cmd2"
+  execute "$GIT $cmd2 test9" "$cmd2"
 done
 
 for cmd2 in $cmd_gvn; do
@@ -94,11 +94,11 @@ cd test1
 execute "pwd" "current directory"
 
 for cmd2 in $cmd_git; do
-  execute "git $cmd2" "$cmd2"
-  execute "git $cmd2 ." "$cmd2"
-  execute "git $cmd2 test2" "$cmd2"
-  execute "git $cmd2 ../" "$cmd2"
-  execute "git $cmd2 ../test5" "$cmd2"
+  execute "$GIT $cmd2" "$cmd2"
+  execute "$GIT $cmd2 ." "$cmd2"
+  execute "$GIT $cmd2 test2" "$cmd2"
+  execute "$GIT $cmd2 ../" "$cmd2"
+  execute "$GIT $cmd2 ../test5" "$cmd2"
 done
 
 for cmd2 in $cmd_gvn; do
@@ -127,8 +127,8 @@ lgalb
 lgalfb"
 
 for cmd2 in $cmd_git; do
-  execute "git $cmd2" "$cmd2"
-  execute "git $cmd2 test9" "$cmd2"
+  execute "$GIT $cmd2" "$cmd2"
+  execute "$GIT $cmd2 test9" "$cmd2"
 done
 
 for cmd2 in $cmd_gvn; do
@@ -141,8 +141,8 @@ cd test1
 execute "pwd" "current directory"
 
 for cmd2 in $cmd_git; do
-  execute "git $cmd2" "$cmd2"
-  execute "git $cmd2 test2" "$cmd2"
+  execute "$GIT $cmd2" "$cmd2"
+  execute "$GIT $cmd2 test2" "$cmd2"
 done
 
 for cmd2 in $cmd_gvn; do

@@ -10,12 +10,10 @@ if [[ "$GVN_DEBUG" == "1" ]]; then
 fi
 set -e
 
-rt=`git root`
-
 tree="HEAD"
 
 current_dir=`pwd`
-root_dir=`git root`
+root_dir=`$GIT root`
 
 if [[ "$#" == "0" ]]; then
   search="."
@@ -52,7 +50,7 @@ cd $root_dir
 
 IFS=$'\n'
 
-cmd="git ls-tree --name-only -r $tree"
+cmd="$GIT ls-tree --name-only -r $tree"
 for result in `eval $cmd`;
 do
   result2=`echo $result | sed "s,^,$root_dir/,g" | grep "^$target_dir/" | sed "s,^$target_dir/,$relative_to_reduced,g" | grep -v "^$target_dir$" | egrep "$search"` || true

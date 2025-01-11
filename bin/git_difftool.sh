@@ -42,40 +42,55 @@ while getopts "dcf" o; do
 done
 shift $((OPTIND-1))
 
-root=`git root`
+root=`$GIT root`
 export GIT_WORK_TREE=$root
 
 opts2="--no-symlinks "
 
-args=$@
+args="$@"
 
 if [[ "$do_follow" == "1" ]]; then
-  cmd="git log -n 1 --follow $args"
-  cmd2="git grep $args"
+  cmd="$GIT log -n 1 --follow $args"
   set +e
   t=`eval $cmd 2>&1`
-  t2=`eval $cmd2 2>&1`
-  t2="$?"
   set -e
+  args_addon=""
+  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+    args_addon="$root"
+  fi
 
-  # grep passes if multiple pathspecs are given or one valid
-  # grep fails with exit code 128 if no pathspec given
-  # case 1
-  #   empty => 128 and log issue => use follow
-  # case 2
-  #   valid grep and no log issue => use follow
-  # case 3
-  #   valid grep and log issue => multiple paths => do not use follow
-
-  if [[ "$t2" != "128" && "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-    true
-  else
-    if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-      args="$args $root"
-    fi
+  nr_files=`$GIT ls-files | grep -c .`
+  if [[ "$nr_files" == "1" ]]; then
+    args="$args $args_addon"
     opts="$opts --follow"
   fi
+
+#  cmd="$GIT log -n 1 --follow $args"
+#  cmd2="$GIT grep $args"
+#  set +e
+#  t=`eval $cmd 2>&1`
+#  t2=`eval $cmd2 2>&1`
+#  t2="$?"
+#  set -e
+#
+#  # grep passes if multiple pathspecs are given or one valid
+#  # grep fails with exit code 128 if no pathspec given
+#  # case 1
+#  #   empty => 128 and log issue => use follow
+#  # case 2
+#  #   valid grep and no log issue => use follow
+#  # case 3
+#  #   valid grep and log issue => multiple paths => do not use follow
+#
+#  if [[ "$t2" != "128" && "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+#    true
+#  else
+#    if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+#      args="$args $root"
+#    fi
+#    opts="$opts --follow"
+#  fi
 fi
 
-git difftool $opts $opts2 $args
+$GIT difftool $opts $opts2 $args
 
