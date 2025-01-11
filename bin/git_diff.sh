@@ -20,7 +20,7 @@ opts=""
 
 do_follow=0
 
-while getopts "icNfw" o; do
+while getopts "icNfwbBWls" o; do
     case "${o}" in
         i)
             opts="$opts --ignore-all-space --ignore-blank-lines --ignore-space-change"
@@ -31,12 +31,26 @@ while getopts "icNfw" o; do
         N)
             opts="$opts --no-color"
             ;;
+        l)
+            opts="$opts --name-only"
+            ;;
+        s)
+            opts="$opts --name-status"
+            ;;
         f)
             do_follow=1
             ;;
-        w) # all branches
-            wordwise=1
+        b)
+            opts="$opts -b -U0 --word-diff=color"
+            ;;
+        w)
             opts="$opts -w -U0 --word-diff-regex=[^[:space:]] --word-diff=color"
+            ;;
+        B)
+            opts="$opts -b -U3 --word-diff=color"
+            ;;
+        W)
+            opts="$opts -w -U3 --word-diff-regex=[^[:space:]] --word-diff=color"
             ;;
         *)
             usage
@@ -54,13 +68,30 @@ args=$@
 
 if [[ "$do_follow" == "1" ]]; then
   cmd="git log -n 1 --follow $args"
+  cmd2="git grep $args"
   set +e
   t=`eval $cmd 2>&1`
+  t2=`eval $cmd2 2>&1`
+  t2="$?"
   set -e
-  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-    args="$args $root"
+
+  # grep passes if multiple pathspecs are given or one valid
+  # grep fails with exit code 128 if no pathspec given
+  # case 1
+  #   empty => 128 and log issue => use follow
+  # case 2
+  #   valid grep and no log issue => use follow
+  # case 3
+  #   valid grep and log issue => multiple paths => do not use follow
+
+  if [[ "$t2" != "128" && "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+    true
+  else
+    if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+      args="$args $root"
+    fi
+    opts="$opts --follow"
   fi
-  opts="$opts --follow"
 fi
 
 git diff $opts $opts2 $args

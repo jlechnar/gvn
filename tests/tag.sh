@@ -17,7 +17,9 @@ setup_path "${PREFIX_EXAMPLE_PATH}_tag" "Setup tag"
 ln -s ../gvn_cmd.sh .
 
 ./scripts/setup_git_server1.sh
+./scripts/setup_git_server1a.sh
 ./scripts/setup_git_user1.sh
+./scripts/setup_git_user1a.sh
 
 cd git_user1/
 
@@ -51,6 +53,7 @@ for file in `find test1/ test5/ test9/ -type f | sort`; do
 done
 
 execute "git push" "push to git repo"
+execute "git push origin1a" "push to git repo origin1a"
 
 # -------------------------------------
 execute "pwd" "current directory"
@@ -61,7 +64,8 @@ execute "git ta 1.0 -m \"bla\""
 
 execute "git tl origin"
 
-execute "git tp 1.0 origin"
+execute "git tp 1.0 origin" ""
+execute "git tp 1.0 origin1a" ""
 
 execute "git tl origin"
 
@@ -71,15 +75,25 @@ execute "git tl origin"
 
 execute "git ta 2.0 HEAD^ -m \"bla 2\""
 execute "git tp 2.0 origin"
+#
+execute "git tp 2.0 origin1a"
 
 execute "git ta 3.0 HEAD^^ -m \"bla 3\""
 execute "git tp 3.0 origin"
+#
+execute "git tp 3.0 origin1a"
 
 execute "git ta 4.0 HEAD^^ -m \"bla 4\""
 execute "git tp 4.0 origin"
+#
+execute "git ta 4.0a HEAD^^ -m \"bla 4 1a\""
+execute "git tp 4.0a origin1a"
 
 execute "git ta 5.0 HEAD^ -m \"bla 5\""
 execute "git tp 5.0 origin"
+#
+execute "git ta 5.0a HEAD^ -m \"bla 5 1a\""
+execute "git tp 5.0a origin1a" ""
 
 execute "git tdl 2.0"
 
@@ -104,4 +118,7 @@ execute "git tll"
 
 execute "git tlr origin"
 
+execute "git tlra"
+
+execute "git tlra origin"
 

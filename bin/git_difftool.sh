@@ -51,13 +51,30 @@ args=$@
 
 if [[ "$do_follow" == "1" ]]; then
   cmd="git log -n 1 --follow $args"
+  cmd2="git grep $args"
   set +e
   t=`eval $cmd 2>&1`
+  t2=`eval $cmd2 2>&1`
+  t2="$?"
   set -e
-  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-    args="$args $root"
+
+  # grep passes if multiple pathspecs are given or one valid
+  # grep fails with exit code 128 if no pathspec given
+  # case 1
+  #   empty => 128 and log issue => use follow
+  # case 2
+  #   valid grep and no log issue => use follow
+  # case 3
+  #   valid grep and log issue => multiple paths => do not use follow
+
+  if [[ "$t2" != "128" && "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+    true
+  else
+    if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
+      args="$args $root"
+    fi
+    opts="$opts --follow"
   fi
-  opts="$opts --follow"
 fi
 
 git difftool $opts $opts2 $args

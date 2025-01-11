@@ -362,16 +362,34 @@
         dcnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -N -c -- \"$@\"' --"
 
         diff-wordwise-no-follow = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -- \"$@\"' --"
+        dwnf = "diff-wordwise-no-follow"
 
-        diff-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -- \"$@\"' --"
-        diffw = "diff-wordwise"
-        dw = "diff-wordwise"
+        dw = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -- \"$@\"' --"
+        diff-wordwise = "dw"
+        diffw = "dw"
         dwc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -- \"$@\"' --"
         dwnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -N -- \"$@\"' --"
         dwcnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -N -- \"$@\"' --"
 
+        dw3 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -W -f -- \"$@\"' --"
+        dw3c = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -W -f -c -- \"$@\"' --"
+        dw3nc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -W -f -N -- \"$@\"' --"
+        dw3cnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -W -f -c -N -- \"$@\"' --"
+
         diffw2 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -i -- \"$@\"' --"
         dw2 = "diffw2"
+
+        dl = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -l -f -- \"$@\"' --"
+        dlc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -l -f -c -- \"$@\"' --"
+
+        ds = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -s -f -- \"$@\"' --"
+        dsc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -s -f -c -- \"$@\"' --"
+
+        db = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -b -f -- \"$@\"' --"
+        dbc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -b -f -c -- \"$@\"' --"
+
+        db3 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -B -f -- \"$@\"' --"
+        db3c = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -B -f -c -- \"$@\"' --"
 
         # ----------------------------
         # diff/difftool files
@@ -678,7 +696,12 @@
                   echo 1; \
                 fi' --"
 
+        bm = "branch -m"
 
+        bc = "checkout"
+
+        branch-list-all = "branch -vva"
+        bla = "branch-list-all"
         branch-list = "branch -a"
         bl = "branch-list"
         branch-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_add.sh \"$@\"' --"
@@ -784,6 +807,8 @@
         # aliases
         aliases = "!git config --list | grep alias | sort"
         aliases-names = "!git config --list | grep alias | sed 's,\\., ,g' | sed 's,\\=, ,g' | awk '{print $2}' | sort"
+        a = "aliases"
+        al = "aliases-names"
 
         # ---------------------------
         # changelog
@@ -938,26 +963,20 @@
            ' --"
         tm = "tag-move"
 
-        tag-list-local = "tag"
+        tag-list-local = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_tag_list.sh -l \"$@\"' --"
         tll = "tag-list-local"
 
-        tag-list-remote = "!bash -c ' \
-           remote=$1; \
-           if [[ \"$#\" == \"1\" ]]; then \
-             git ls-remote --tags $remote; \
-           fi; \
-           ' --"
-        tlr = tag-list-remote
+        tag-list-remote = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_tag_list.sh -r -a \"$@\"' --"
+        tlr = "tag-list-remote"
 
-        tag-list-all = "!bash -c ' \
-           remote=$1; \
-           git tag; \
-           if [[ \"$#\" == \"1\" ]]; then \
-             git tlr $remote; \
-           fi; \
-           ' --"
+        tag-list-remote-all = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_tag_list.sh -R \"$@\"' --"
+        tlra = "tag-list-remote-all"
+
+        tag-list-all = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_tag_list.sh -a -R \"$@\"' --"
         tla = "tag-list-all"
-        tl = "tag-list-all"
+
+        tag-list = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_tag_list.sh -r -l \"$@\"' --"
+        tl = "tag-list"
 
         tag-push-remote = "!bash -c ' \
            tag=$1; \
