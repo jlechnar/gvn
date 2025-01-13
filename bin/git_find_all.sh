@@ -16,17 +16,14 @@ current_dir=`pwd`
 root_dir=`$GIT root`
 
 
+path="$root_dir"
+
 if [[ "$#" == "0" ]]; then
   search="."
-  path="."
 elif [[ "$#" == "1" ]]; then
   search="$1"
-  path="."
-elif [[ "$#" == "2" ]]; then
-  search="$1"
-  path="$2"
 else
-  echo "ERROR: options missing - check parameters git find <file_name> <folder> OR git find <file_name> to search in current folder recursively"; \
+  echo "ERROR: options missing - check parameters git find_all <file_name>"; \
   exit -1; \
 fi
 

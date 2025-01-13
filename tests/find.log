@@ -251,23 +251,11 @@ test9/foo
  |             find all
  | Executing:  .../../bin/git.sh find
  |============================================================================
-../.svnignore
-../test1/file.e
-../test1/foo.bar
-../test1/test2/file.d
-../test1/test2/test3/file.c
-../test1/test2/test3/test4/file.a
-../test1/test2/test3/test4/file.b
-../test5/file.i
-../test5/test6/file.h
-../test5/test6/file/bar
-../test5/test6/test7/file.g
-../test5/test6/test7/test8/file.f
-../test9/afile
-../test9/bfile
-../test9/c.file
-../test9/d.file
-../test9/foo
+file.i
+test6/file.h
+test6/file/bar
+test6/test7/file.g
+test6/test7/test8/file.f
  '============================================================================
 
 
@@ -382,23 +370,10 @@ test6/test7/test8/file.f
  |             find all no args
  | Executing:  .../../bin/git.sh find .
  |============================================================================
-../../.svnignore
-../../test1/file.e
-../../test1/foo.bar
-../../test1/test2/file.d
-../../test1/test2/test3/file.c
-../../test1/test2/test3/test4/file.a
-../../test1/test2/test3/test4/file.b
-../../test5/file.i
-../../test5/test6/file.h
-../../test5/test6/file/bar
-../../test5/test6/test7/file.g
-../../test5/test6/test7/test8/file.f
-../../test9/afile
-../../test9/bfile
-../../test9/c.file
-../../test9/d.file
-../../test9/foo
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
  '============================================================================
 
 
@@ -512,20 +487,10 @@ d.file
  |             find file in current
  | Executing:  .../../bin/git.sh find file
  |============================================================================
-../test1/file.e
-../test1/test2/file.d
-../test1/test2/test3/file.c
-../test1/test2/test3/test4/file.a
-../test1/test2/test3/test4/file.b
-../test5/file.i
-../test5/test6/file.h
-../test5/test6/file/bar
-../test5/test6/test7/file.g
-../test5/test6/test7/test8/file.f
-../test9/afile
-../test9/bfile
-../test9/c.file
-../test9/d.file
+afile
+bfile
+c.file
+d.file
  '============================================================================
 
 
@@ -544,6 +509,42 @@ foo
  .============================================================================
  |             find all in current
  | Executing:  .../../bin/git.sh find .
+ |============================================================================
+afile
+bfile
+c.file
+d.file
+foo
+ '============================================================================
+
+
+ .============================================================================
+ |             find all
+ | Executing:  .../../bin/git.sh fa .
+ |============================================================================
+../.svnignore
+../test1/file.e
+../test1/foo.bar
+../test1/test2/file.d
+../test1/test2/test3/file.c
+../test1/test2/test3/test4/file.a
+../test1/test2/test3/test4/file.b
+../test5/file.i
+../test5/test6/file.h
+../test5/test6/file/bar
+../test5/test6/test7/file.g
+../test5/test6/test7/test8/file.f
+../test9/afile
+../test9/bfile
+../test9/c.file
+../test9/d.file
+../test9/foo
+ '============================================================================
+
+
+ .============================================================================
+ |             find all no args
+ | Executing:  .../../bin/git.sh fa
  |============================================================================
 ../.svnignore
 ../test1/file.e
@@ -614,23 +615,10 @@ paths:      .../test_find/git_user3/test9 => .../test_find/test/test9
  |             find all no args
  | Executing:  .../../bin/git.sh find .
  |============================================================================
-../../.svnignore
-../../test1/file.e
-../../test1/foo.bar
-../../test1/test2/file.d
-../../test1/test2/test3/file.c
-../../test1/test2/test3/test4/file.a
-../../test1/test2/test3/test4/file.b
-../../test5/file.i
-../../test5/test6/file.h
-../../test5/test6/file/bar
-../../test5/test6/test7/file.g
-../../test5/test6/test7/test8/file.f
-../../test9/afile
-../../test9/bfile
-../../test9/c.file
-../../test9/d.file
-../../test9/foo
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
  '============================================================================
 
 
@@ -692,6 +680,54 @@ test7/test8/file.f
 
 
  .============================================================================
+ |             find all
+ | Executing:  .../../bin/git.sh fa .
+ |============================================================================
+../../.svnignore
+../../test1/file.e
+../../test1/foo.bar
+../../test1/test2/file.d
+../../test1/test2/test3/file.c
+../../test1/test2/test3/test4/file.a
+../../test1/test2/test3/test4/file.b
+../../test5/file.i
+../../test5/test6/file.h
+../../test5/test6/file/bar
+../../test5/test6/test7/file.g
+../../test5/test6/test7/test8/file.f
+../../test9/afile
+../../test9/bfile
+../../test9/c.file
+../../test9/d.file
+../../test9/foo
+ '============================================================================
+
+
+ .============================================================================
+ |             find all no args
+ | Executing:  .../../bin/git.sh fa
+ |============================================================================
+../../.svnignore
+../../test1/file.e
+../../test1/foo.bar
+../../test1/test2/file.d
+../../test1/test2/test3/file.c
+../../test1/test2/test3/test4/file.a
+../../test1/test2/test3/test4/file.b
+../../test5/file.i
+../../test5/test6/file.h
+../../test5/test6/file/bar
+../../test5/test6/test7/file.g
+../../test5/test6/test7/test8/file.f
+../../test9/afile
+../../test9/bfile
+../../test9/c.file
+../../test9/d.file
+../../test9/foo
+ '============================================================================
+
+
+ .============================================================================
  |             go to test9
  | Executing:  cd ../../test9/
  |============================================================================
@@ -713,20 +749,10 @@ d.file
  |             find file in current
  | Executing:  .../../bin/git.sh find file
  |============================================================================
-../test1/file.e
-../test1/test2/file.d
-../test1/test2/test3/file.c
-../test1/test2/test3/test4/file.a
-../test1/test2/test3/test4/file.b
-../test5/file.i
-../test5/test6/file.h
-../test5/test6/file/bar
-../test5/test6/test7/file.g
-../test5/test6/test7/test8/file.f
-../test9/afile
-../test9/bfile
-../test9/c.file
-../test9/d.file
+afile
+bfile
+c.file
+d.file
  '============================================================================
 
 
@@ -745,6 +771,42 @@ foo
  .============================================================================
  |             find all in current
  | Executing:  .../../bin/git.sh find .
+ |============================================================================
+afile
+bfile
+c.file
+d.file
+foo
+ '============================================================================
+
+
+ .============================================================================
+ |             find all
+ | Executing:  .../../bin/git.sh fa .
+ |============================================================================
+../.svnignore
+../test1/file.e
+../test1/foo.bar
+../test1/test2/file.d
+../test1/test2/test3/file.c
+../test1/test2/test3/test4/file.a
+../test1/test2/test3/test4/file.b
+../test5/file.i
+../test5/test6/file.h
+../test5/test6/file/bar
+../test5/test6/test7/file.g
+../test5/test6/test7/test8/file.f
+../test9/afile
+../test9/bfile
+../test9/c.file
+../test9/d.file
+../test9/foo
+ '============================================================================
+
+
+ .============================================================================
+ |             find all no args
+ | Executing:  .../../bin/git.sh fa
  |============================================================================
 ../.svnignore
 ../test1/file.e

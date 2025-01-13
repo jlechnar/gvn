@@ -636,6 +636,13 @@
                 fi' --"
         f = "find"
 
+        find-all = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_find_all.sh \"$@\" #' --"
+        afind = "find-all"
+        finda = "find-all"
+        fa = "find-all"
+        find-all-nc = "find-all --no-color"
+        fanc = "find-all-nc"
+
         g = "grep"
         grep-nc = "grep --no-color"
         grepnc ="grep-nc"

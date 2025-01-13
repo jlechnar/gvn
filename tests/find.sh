@@ -129,6 +129,10 @@ execute "$GIT find . ." "find all in current"
 
 execute "$GIT find ." "find all in current"
 
+execute "$GIT fa ." "find all"
+
+execute "$GIT fa" "find all no args"
+
 # --------------
 execute "$GVN wa test" "add worktree test"
 
@@ -151,6 +155,10 @@ execute "$GIT find . ../.." "find all two up"
 
 execute "$GIT find . ../../test1/test2/test3" "find all test1 subfolder"
 
+execute "$GIT fa ." "find all"
+
+execute "$GIT fa" "find all no args"
+
 # -----------------------------
 execute "cd ../../test9/" "go to test9"
 
@@ -161,3 +169,7 @@ execute "$GIT find file" "find file in current"
 execute "$GIT find . ." "find all in current"
 
 execute "$GIT find ." "find all in current"
+
+execute "$GIT fa ." "find all"
+
+execute "$GIT fa" "find all no args"
