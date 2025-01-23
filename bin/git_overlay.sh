@@ -193,7 +193,7 @@ else
   cmd2="git $cmd $opt"
 
   if [[ "$CMD_DEBUG" == "1" ]]; then
-    echo "GVN_CMD: $cmd2" >> /dev/stderr
+    echo "GVN_CMD (GITO): $cmd2" >> /dev/stderr
   fi
 
   eval $cmd2

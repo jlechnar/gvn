@@ -25,6 +25,8 @@ GetOptions ("c:s" => \$opts{c}, # command
 or die("Error in command line arguments\n");
 #getopts("dm", \%opts) or die;
 
+my $max_revision_positions=5;
+
 # ------------------------------
 my $data = join(' ', @ARGV);
 
@@ -72,7 +74,7 @@ if ($opts{m}) {
   
     if($line =~ /^\s*commit\s+(\S+)(\s+|$)/) {
       $hash = $1;
-    } elsif($line =~ /^\s+git-svn-id:\s+([^\@]+)\@(\d+)\s+/) {
+    } elsif($line =~ /^\s+git-svn-id:\s+([^\@]+)\@(\d{1,$max_revision_positions})\s+/) {
       $source = $1;
       $revision = $2;
       if($hash ne "") {
@@ -95,7 +97,7 @@ if ($opts{m}) {
 
 # ------------------------------
 # multi matches
-while($data =~ /(^| )(-r|r)((\d+):(r|)(\d+))( |$)/) {
+while($data =~ /(^| )(-r|r)((\d{1,$max_revision_positions}):(r|)(\d{1,$max_revision_positions}))( |$)/) {
   my $svn_revision_before = $1;
   my $svn_revision_rev_prefix = $2;
   my $svn_revision_block = $3;
@@ -133,7 +135,7 @@ while($data =~ /(^| )(-r|r)((\d+):(r|)(\d+))( |$)/) {
 
 # ------------------------------
 # single matches
-while($data =~ /(^| |-|\.\.\.|\.\.)r(\d+)(\.\.| |$)/) {
+while($data =~ /(^| |-|\.\.\.|\.\.)r(\d{1,$max_revision_positions})(\.\.| |$)/) {
   my $svn_revision_before = $1;
   my $svn_revision = $2;
   my $svn_revision_after = $3;
