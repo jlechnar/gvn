@@ -66,11 +66,11 @@ elif [[ "$#" == "3" ]]; then
   commit_ish="$3"
 else
   if [[ $is_gvn ]]; then
-    echo "ERROR: options missing - check parameters gvn wa <worktree_name> OR gvn wa <worktree_name> <commit-ish> OR gvn wa <worktree_name> <branch_name> <commit-ish> to add a new or existing branch to a new worktree"; \
+    echo "ERROR: options missing - check parameters gvn wa <worktree_name> OR gvn wa <worktree_name> <commit-ish> OR gvn wa <worktree_name> <branch_name> <commit-ish> to add a new or existing branch to a new worktree"
   else
-    echo "ERROR: options missing - check parameters git wa <worktree_name> OR git wa <worktree_name> <commit-ish> OR git wa <worktree_name> <branch_name> <commit-ish> to add a new or existing branch to a new worktree"; \
+    echo "ERROR: options missing - check parameters git wa <worktree_name> OR git wa <worktree_name> <commit-ish> OR git wa <worktree_name> <branch_name> <commit-ish> to add a new or existing branch to a new worktree"
   fi
-  exit -1; \
+  exit -1
 fi
 
 if [[ $is_gvn ]]; then
@@ -79,12 +79,15 @@ if [[ $is_gvn ]]; then
   gvn check-for-branch-name-match
 fi
 
+worktree_prefix=`git config gvn.worktree.prefix || true`
+worktree_postfix=`git config gvn.worktree.postfix || true`
+
 main_path=`$GIT rev-parse --path-format=absolute --show-toplevel`
 cd $main_path
 cd ..
 cwd=`pwd`
 cd $main_path
-path="$cwd/$worktree_name"
+path="$cwd/$worktree_prefix$worktree_name$worktree_postfix"
 
 dot_git_path_abs=`$GIT get-dot-git-path-abs`
 
@@ -103,6 +106,8 @@ if [[ $is_gvn ]]; then
     exit -1
   fi
 
+  mkdir -p $path
+
   worktree_of_branch_exists=`$GIT worktree list | egrep "\[$branch_name\]$" || true`
   if [[ $worktree_of_branch_exists ]]; then
     echo "ERROR: Branch $branch_name already checked out as worktree. Aborting creation of new worktree/branch."
@@ -117,9 +122,16 @@ else
   if [[ ! -z "$IGNORE_GVN_REPO" ]]; then
     true
   elif [[ -e $dot_git_path_abs/svn/.metadata ]]; then
-    echo "ERROR: Detected repository to be a git-svn folder. Use gvn worktree-add / gvn wa instead. Aborting.";
+    echo "ERROR: Detected repository to be a git folder. Use git worktree-add / git wa instead. Aborting.";
     exit -1
   fi
+
+  if [ -d $path ]; then
+    echo "ERROR: folder $path for new worktree $worktree_name already exists. Aborting creation of new worktree/branch."
+    exit -1
+  fi
+
+  mkdir -p $path
 fi
 
 
