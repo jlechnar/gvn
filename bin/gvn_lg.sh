@@ -5,6 +5,19 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+WIDTH_AUTHOR=`$GIT config gvn.lg.width-author || true`
+WIDTH_AUTHOR_DATE=`$GIT config gvn.lg.width-author-date || true`
+WIDTH_GRAPH=`$GIT config gvn.lg.width-graph || true`
+WIDTH_ABBREVIATED_HASH=`$GIT config gvn.lg.width-abbreviated-hash || true`
+
+ABBREVIATED_HASH=`$GIT config gvn.all.width-abbreviated-hash || true`
+COLOR_DATE_TIME=`$GIT config gvn.all.color-date-time || true`
+COLOR_AUTHOR=`$GIT config gvn.all.color-author || true`
+COLOR_REF_NAMES=`$GIT config gvn.all.color-ref-names || true`
+
+COLOR_SUBJECT=`$GIT config gvn.lg.color-subject || true`
+COLOR_BODY=`$GIT config gvn.lg.color-body || true`
+
 if [[ "$GVN_DEBUG" == "1" ]]; then
   set -x
 fi
@@ -15,7 +28,7 @@ is_gvn=`basename $cmd | grep ^gvn_ || true`
 
 usage() { echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <-n: additional newline> ..." 1>&2; exit 1; }
 
-opts="--graph --abbrev=9 --abbrev-commit --decorate"
+opts="--graph --abbrev=$ABBREVIATED_HASH --abbrev-commit --decorate"
 
 do_follow=1
 
@@ -93,7 +106,7 @@ fi
 
 if [[ $is_gvn ]]; then
   hashfmt="<hash>%H</hash> "
-  annotate="gvn cmd-annotate"
+  annotate="$GVN cmd-annotate"
   end_cmd=""
 else
   hashfmt=""
@@ -105,7 +118,7 @@ if [[ "$comments" == "1" ]]; then
   if [[ "$pager" == "1" ]]; then
     $GIT $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
-      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
+      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
       $args | \
       grep -v '^...$' | \
       $annotate | \
@@ -113,7 +126,7 @@ if [[ "$comments" == "1" ]]; then
   else
     $GIT $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
-      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)%n%n%C(white)%b%C(reset)$newline" \
+      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
       $args | \
       grep -v '^...$' | \
       $annotate
@@ -123,7 +136,7 @@ else
   if [[ "$pager" == "1" ]]; then
     $GIT $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
-      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
+      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)$newline" \
       $args | \
       grep -v '^...$' | \
       $annotate | \
@@ -132,7 +145,7 @@ else
   else
     $GIT $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
-      --format=format:"%C(03)%>|(16)%h%C(reset) ${hashfmt}%C(bold green)%<(19,trunc)%ad%C(reset) %C(dim blue)%<(16,trunc)%an%C(reset) %C(black)%s%C(reset) %C(bold magenta)%d%C(reset)$newline" \
+      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)$newline" \
       $args | \
       grep -v '^...$' | \
       $annotate |
@@ -140,7 +153,6 @@ else
     #eval $end_cmd
   fi
 fi
-
 
 
 

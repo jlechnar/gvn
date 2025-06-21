@@ -5,6 +5,17 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+WIDTH_AUTHOR=`$GIT config gvn.lg.width-author || true`
+WIDTH_AUTHOR_DATE=`$GIT config gvn.lg.width-author-date || true`
+WIDTH_GRAPH=`$GIT config gvn.lg.width-graph || true`
+
+COLOR_DATE_TIME=`$GIT config gvn.all.color-date-time || true`
+COLOR_AUTHOR=`$GIT config gvn.all.color-author || true`
+COLOR_REF_NAMES=`$GIT config gvn.all.color-ref-names || true`
+
+COLOR_SUBJECT=`$GIT config gvn.log.color-subject || true`
+COLOR_BODY=`$GIT config gvn.log.color-body || true`
+
 if [[ "$GVN_DEBUG" == "1" ]]; then
   set -x
 fi
@@ -99,7 +110,7 @@ fi
 
 if [[ $is_gvn ]]; then
   hashfmt="SVN:    <hash>%H</hash>%n"
-  annotate="gvn cmd-annotate"
+  annotate="$GVN cmd-annotate"
   end_cmd=""
 else
   hashfmt=""
@@ -107,24 +118,22 @@ else
   end_cmd="echo ''; echo '$separator'"
 fi
 
-#     --format=format:"------------------------------------------------%nCommit: %C(03)%H%C(reset) %C(bold magenta)%d%C(reset)%nAuthor: %C(dim blue)%<(16,trunc)%an%nDate:   %C(bold green)%<(19,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C(red)%s%C(reset)%n%n%C(cyan)%b%C(reset)$newline" \
 
 separator="------------------------------------------------"
 
 if [[ "$pager" == "1" ]]; then
   $GIT --work-tree=$root --no-pager log $opts \
     --date=format-local:'%Y-%m-%d %H:%M:%S' \
-    --format=format:"$separator%nCommit: %C(03)%H%C(reset) %C(bold magenta)%d%C(reset)%n${hashfmt}Author: %C(dim blue)%<(16,trunc)%an%C(reset)%nDate:   %C(bold green)%<(19,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C(red)%s%C(reset)%n%n%C(cyan)%b%C(reset)$newline" \
+    --format=format:"$separator%nCommit: %C($WIDTH_GRAPH)%H%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n${hashfmt}Author: %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset)%nDate:   %C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C($COLOR_SUBJECT)%s%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
     $args | \
     $annotate \
     | less $opts_less
 else
   $GIT --work-tree=$root --no-pager log $opts \
     --date=format-local:"%Y-%m-%d %H:%M:%S" \
-    --format=format:"$separator%nCommit: %C(03)%H%C(reset) %C(bold magenta)%d%C(reset)%n${hashfmt}Author: %C(dim blue)%<(16,trunc)%an%C(reset)%nDate:   %C(bold green)%<(19,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C(red)%s%C(reset)%n%n%C(cyan)%b%C(reset)$newline" \
+    --format=format:"$separator%nCommit: %C($WIDTH_GRAPH)%H%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n${hashfmt}Author: %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset)%nDate:   %C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C($COLOR_SUBJECT)%s%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
     $args | \
     $annotate
   echo $separator
   #$end_cmd
 fi
-

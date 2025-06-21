@@ -21,6 +21,10 @@
 # We only allow one parameter no <commit-ish> parameter selection, hence it is always forked of the current branch which must be a real svn branch !
 # Note that base information is required and stored in .git/gvn/branch/<worktree/branch> files as "<worktree> <base svn branch of worktree>".
 # Worktrees can only be created on branch that is related to real svn branch (name match of branch and svn repo branch) !
+#
+# worktrees are placed in parallel to the main git work folder using the <worktree_branch_name>
+# optionally the <worktree_branch_name> can be prefixed/postfixed using the configuration variables gvn.worktree.postfix and gvn.worktree.prefix
+# Note that with this the worktree folder can also be placed in subfolders relative to the main git work folder
 
 if [[ "$GVN_DEBUG" == "1" ]]; then
   set -x
@@ -75,12 +79,12 @@ fi
 
 if [[ $is_gvn ]]; then
   # sanity checks that current branch is git svn branch
-  gvn check-branch-to-be-svn-branch
-  gvn check-for-branch-name-match
+  $GVN check-branch-to-be-svn-branch
+  $GVN check-for-branch-name-match
 fi
 
-worktree_prefix=`git config gvn.worktree.prefix || true`
-worktree_postfix=`git config gvn.worktree.postfix || true`
+worktree_prefix=`$GIT config gvn.worktree.prefix || true`
+worktree_postfix=`$GIT config gvn.worktree.postfix || true`
 
 main_path=`$GIT rev-parse --path-format=absolute --show-toplevel`
 cd $main_path

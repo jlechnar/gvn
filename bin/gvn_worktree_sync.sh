@@ -15,12 +15,12 @@ set -e
 
 branch_to_sync=$1
 
-gvn check-branch-to-be-svn-branch
+$GVN check-branch-to-be-svn-branch
 
 root=`$GIT root`
 
 branch_current=`$GIT branch --show-current`
-branch_current_svn=`gvn currentbranch`
+branch_current_svn=`$GVN currentbranch`
 dot_git_path=`$GIT get-dot-git-path-abs`
 
 if [ -z $branch_to_sync ]; then
@@ -62,7 +62,7 @@ if [[ "$branch_current" == "$branch_current_svn" ]]; then
     echo "INFO: merging branch to sync <$branch_to_sync> into current branch <$branch_current>."
     export GIT_WORK_TREE=$root
     changes=`$GIT stash-local-changes-if-any`
-    gvn worktree-merge $branch_to_sync
+    $GVN worktree-merge $branch_to_sync
     if [[ "$changes" != "" ]]; then
       $GIT stash pop
     fi
@@ -88,7 +88,7 @@ elif [[ "$branch_to_sync" == "$branch_current_svn" ]]; then
     echo "INFO: rebasing current branch <$branch_current> onto branch to sync <$branch_to_sync>."
     export GIT_WORK_TREE=$root
     changes=`$GIT stash-local-changes-if-any`
-    gvn worktree-rebase $branch_to_sync
+    $GVN worktree-rebase $branch_to_sync
     if [[ "$changes" != "" ]]; then
       $GIT stash pop
     fi

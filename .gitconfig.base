@@ -25,13 +25,13 @@
         decorate = always
         showbranch = always
 [color "diff"]
-##	plain = normal
-##	meta = bold
-##	frag = cyan
-##	old = red
-##	new = green
-##	commit = yellow
-##	whitespace = normal red
+##      plain = normal
+##      meta = bold
+##      frag = cyan
+##      old = red
+##      new = green
+##      commit = yellow
+##      whitespace = normal red
         context = "black"
         frag = "blue brightmagenta"
 #        meta = "blue"
@@ -41,30 +41,30 @@
 #       old = "black red strike"
 #       new = "black green italic"
 [color "branch"]
-##	current = green
-##	local = normal
-##	remote = red
-##	plain = normal
+##      current = green
+##      local = normal
+##      remote = red
+##      plain = normal
 #       current = yellow reverse
 #       local = yellow
 #       remote = green
 [color "status"]
-##	header = normal
-##	added = red
-##	updated = green
-##	changed = red
-##	untracked = red
-##	nobranch = red
+##      header = normal
+##      added = red
+##      updated = green
+##      changed = red
+##      untracked = red
+##      nobranch = red
         added = green
         changed = red
         untracked = cyan
 [color "grep"]
-##	match = normal
+##      match = normal
 [color "interactive"]
-##	prompt = normal
-##	header = normal
-##	help = normal
-##	error = normal
+##      prompt = normal
+##      header = normal
+##      help = normal
+##      error = normal
 
 [merge]
         tool = meld
@@ -99,3 +99,34 @@
         binary = true
         textconv = odt2txt
 
+[gvn "worktree"]
+        prefix = 
+        postfix = 
+
+[gvn "history"]
+        enable = 1
+        filename = "~/.git_history"
+        length = 300
+
+[gvn "lg"]
+        width-author = 20
+        width-author-date = 19
+        width-graph = 03
+        width-abbreviated-hash = 16
+        color-subject = black
+        color-body = white
+
+[gvn "log"]
+        width-author = 20
+        width-author-date = 19
+        width-graph = 03
+        color-subject = red
+        color-body = cyan
+
+[gvn "all"]
+        width-abbreviated-hash = 9
+        color-date-time = bold green
+        color-author = dim blue
+
+        color-ref-names = bold magenta
+        color-svn-revision = bold blue

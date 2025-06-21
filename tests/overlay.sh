@@ -84,3 +84,10 @@ execute "$GITO push" "push changes"
 
 execute "$GITO remove-all" "remove gito from local folder"
 
+
+execute "$GITO init" "init $GIT overlay"
+
+execute "$GITO remote add origin $overlay_repo" "add bare overlay repo"
+
+execute "$GITO pull" "recover removed files"
+

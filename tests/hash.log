@@ -260,8 +260,8 @@ Dropped refs/stash@{0} (<HASH>)
  |             log for r2 revision
  | Executing:  .../../bin/gvn.sh lgb r2
  |============================================================================
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m[m
  '============================================================================
 
 
@@ -269,7 +269,7 @@ Dropped refs/stash@{0} (<HASH>)
  |             log for r2 revision only
  | Executing:  .../../bin/gvn.sh lgb r2:r2
  |============================================================================
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
@@ -277,7 +277,7 @@ Dropped refs/stash@{0} (<HASH>)
  |             log for r2 revision only
  | Executing:  .../../bin/gvn.sh lgb r2:2
  |============================================================================
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
@@ -285,9 +285,9 @@ Dropped refs/stash@{0} (<HASH>)
  |             log for r2 to r4 revision
  | Executing:  .../../bin/gvn.sh lgb r2:r4
  |============================================================================
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
@@ -295,9 +295,9 @@ Dropped refs/stash@{0} (<HASH>)
  |             log for r2 to r4 revision
  | Executing:  .../../bin/gvn.sh lgb r2:4
  |============================================================================
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
@@ -321,9 +321,9 @@ ERROR: Reverse mapping of versions not supported for command lgb. Aborting.
  |             log for r2 to r4 revision
  | Executing:  .../../bin/gvn.sh lgb -r2:4
  |============================================================================
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
  '============================================================================
 
 
@@ -331,9 +331,9 @@ ERROR: Reverse mapping of versions not supported for command lgb. Aborting.
  |             log for r2 to r4 revision
  | Executing:  .../../bin/gvn.sh lgb -r2:r4
  |============================================================================
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
  '============================================================================
 
 

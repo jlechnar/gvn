@@ -5,22 +5,21 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+ABBREVIATED_HASH=`$GIT config gvn.all.width-abbreviated-hash || true`
+
 if [[ "$GVN_DEBUG" == "1" ]]; then
   set -x
 fi
 set -e
 
-usage() { # echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <-n: additional newline> ..." 1>&2; exit 1;
-  echo "FIXME"
-  exit -1
-}
+usage() { echo "Usage: $0 <-a: all>" 1>&2; exit 1; }
 
-root=""
+opts="-vv --abbrev=$ABBREVIATED_HASH"
 
-while getopts "r:" o; do
+while getopts "a" o; do
     case "${o}" in
-        r)
-            root=${OPTARG}
+        a)
+            opts="$opts -a"
             ;;
         *)
             usage
@@ -29,10 +28,4 @@ while getopts "r:" o; do
 done
 shift $((OPTIND-1))
 
-run_path=""
-if ! [[ "$root" == "" ]]; then
-  run_path="-C $root"
-fi
-
-$GIT $run_path svn fetch
-$GVN update-mapping-database
+$GIT branch $opts

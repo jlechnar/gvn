@@ -14,7 +14,7 @@ p1=$1;
 p2=$2;
 
 if [[ "$#" == "1" ]]; then
-  is_branch=`$GIT branch -a --no-color -l --format "%(refname:short)"| grep "^$p1$"` || true;
+  is_branch=`$GIT branch -a --no-color -l --format \"\%\(refname:short\)\" | grep "^$p1$"` || true;
   if [[ "$is_branch" == "" ]]; then
     tree="HEAD";
     path=$p1;

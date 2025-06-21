@@ -36,37 +36,38 @@ TARGETS_FOLDERS+=$(addprefix test_, $(TARGETS_LOGS))
 
 default: $(TARGETS)
 
-CWD:=$(shell pwd | xargs realpath)
-CWD_REAL = ${PWD}
+CWD:=$(shell pwd)
 
 always:
 
 %.log: %.sh always
 	rm -rf $@* test_$*/
-	echo "GIT=\"$(CWD)/../bin/git.sh\"" > gvn_cmd.sh
+	echo "export GIT=\"$(CWD)/../bin/git.sh\"" > gvn_cmd.sh
 	echo "GITO=\"$(CWD)/../bin/gito\"" >> gvn_cmd.sh
-	echo "GVN=\"$(CWD)/../bin/gvn.sh\"" >> gvn_cmd.sh
+	echo "export GVN=\"$(CWD)/../bin/gvn.sh\"" >> gvn_cmd.sh
 	echo "GVN_BASE=\"$(CWD)/../\"" >> gvn_cmd.sh
 	echo "CDW=\"source $(CWD)/../bin/cdw.sh\"" >> gvn_cmd.sh
 	./$< |& tee $@.tmp
-	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $@.tmp > $@.tmp2
+	./scripts/patch_for_compare.sh $(CWD) $(USER) $@.tmp > $@.tmp2
 	./scripts/cleanup.sh $@.tmp2 > $@
+	cat test_$*/.git_history >> $@.history.tmp
+	./scripts/patch_for_compare.sh $(CWD) $(USER) $@.history.tmp > $@.history.tmp2
+	./scripts/cleanup.sh $@.history.tmp2 > $@.history
 
 %.log.repatch:
 	mv -f $*.log $*.log.tmp_repatch
-	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp_repatch > $*.log
+	./scripts/patch_for_compare.sh $(CWD) $(USER) $*.log.tmp_repatch > $*.log
 
 %.log.repatch_tmp:
 	mv -f $*.log $*.log.tmp_repatch_tmp
-	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp > $*.log
+	./scripts/patch_for_compare.sh $(CWD) $(USER) $*.log.tmp > $*.log
 
 %.log.repatch_tmp_debug:
-	./scripts/patch_for_compare.sh $(CWD) $(CWD_REAL) $(USER) $*.log.tmp
+	./scripts/patch_for_compare.sh $(CWD) $(USER) $*.log.tmp
 
 test:
-	echo $(CWD)
-	echo $(CWD_REAL)
-	echo $(USER)
+	echo "<$(CWD)>"
+	echo "<$(USER)>"
 
 view:
 	less -R basic.log

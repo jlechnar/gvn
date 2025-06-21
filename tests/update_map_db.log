@@ -171,8 +171,8 @@ Resetting to the latest refs/remotes/git-svn
  |             log with svn revisions
  | Executing:  .../../bin/gvn.sh lgb
  |============================================================================
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (HEAD -> trunk, git-svn)[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m (HEAD -> trunk, git-svn)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m[m
  '============================================================================
 
 

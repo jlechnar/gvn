@@ -15,8 +15,8 @@ branch_to_merge_to=$1
 root=`$GIT root`
 export GIT_WORK_TREE=$root
 
-gvn check-branch-to-be-svn-branch
-gvn check-for-branch-name-match
+$GVN check-branch-to-be-svn-branch
+$GVN check-for-branch-name-match
 
 if [ `$GIT rev-parse --verify $branch_to_merge_to 2>/dev/null` ]; then
   branch_to_merge=`$GIT rev-parse --abbrev-ref HEAD`

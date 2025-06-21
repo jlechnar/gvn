@@ -16,8 +16,8 @@ branch_to_rebase_to=$1
 root=`$GIT root`
 export GIT_WORK_TREE=$root
 
-gvn check-branch-to-be-svn-branch
-gvn check-for-branch-name-missmatch
+$GVN check-branch-to-be-svn-branch
+$GVN check-for-branch-name-missmatch
 
 if [ `$GIT rev-parse --verify $branch_to_rebase_to 2>/dev/null` ]; then
   branch_to_rebase=`$GIT rev-parse --abbrev-ref HEAD`
@@ -27,8 +27,10 @@ if [ `$GIT rev-parse --verify $branch_to_rebase_to 2>/dev/null` ]; then
     datetime=`date +'%Y_%m_%d-%H_%M_%S'`
     $GIT tag -a gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to} -m "$GIT rebase tag $datetime ($GIT ${branch_to_rebase} ${head_branch_to_rebase} to ${branch_to_rebase_to} ${head_branch_to_rebase_to})"
     echo "Created Tag for $GIT rebase: gvn_worktree_rebase_${datetime}_${branch_to_rebase}_${head_branch_to_rebase}_to_${branch_to_rebase_to}_${head_branch_to_rebase_to}"
+    $GIT rebase-notag $@
+  else
+    $GIT rebase $@
   fi
-  $GIT rebase $@
 else
   $GIT rebase $@
 fi

@@ -127,8 +127,8 @@ HEAD is now at <HASH> files
  |             show all branches in log
  | Executing:  .../../bin/git.sh lgab
  |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1           [m [30mfiles[m [1;35m (HEAD -> master, test5, test1)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup      [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1               [m [30mfiles[m [1;35m (HEAD -> master, test5, test1)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup          [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
  '============================================================================
 
 
@@ -136,13 +136,11 @@ HEAD is now at <HASH> files
  |             show all branches
  | Executing:  .../../bin/git.sh bl
  |============================================================================
-* [32mmaster[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtest5[m
-  [31mremotes/origin/HEAD[m -> origin/master
-  [31mremotes/origin/master[m
+* [32mmaster[m <HASH> [[34morigin/master[m: ahead 1] files
++ [36mtest1 [m <HASH> ([36m.../test_worktree_git/test1[m) files
++ [36mtest2 [m <HASH> ([36m.../test_worktree_git/test2[m) initial commit
++ [36mtest3 [m <HASH> ([36m.../test_worktree_git/test4[m) initial commit
++ [36mtest5 [m <HASH> ([36m.../test_worktree_git/test5[m) files
  '============================================================================
 
 
@@ -234,8 +232,8 @@ HEAD is now at <HASH> files
  |             show all branches in log
  | Executing:  .../../bin/git.sh lgab
  |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1           [m [30mfiles[m [1;35m (HEAD -> master, origin/test7, origin/test6, test7, test6, test5, test1)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup      [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1               [m [30mfiles[m [1;35m (HEAD -> master, origin/test7, origin/test6, test7, test6, test5, test1)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup          [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
  '============================================================================
 
 
@@ -243,16 +241,12 @@ HEAD is now at <HASH> files
  |             show all branches
  | Executing:  .../../bin/git.sh bl
  |============================================================================
-* [32mmaster[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtest5[m
-+ [36mtest6[m
-+ [36mtest7[m
-  [31mremotes/origin/HEAD[m -> origin/master
-  [31mremotes/origin/master[m
-  [31mremotes/origin/test6[m
-  [31mremotes/origin/test7[m
+* [32mmaster[m <HASH> [[34morigin/master[m: ahead 1] files
++ [36mtest1 [m <HASH> ([36m.../test_worktree_git/test1[m) files
++ [36mtest2 [m <HASH> ([36m.../test_worktree_git/test2[m) initial commit
++ [36mtest3 [m <HASH> ([36m.../test_worktree_git/test4[m) initial commit
++ [36mtest5 [m <HASH> ([36m.../test_worktree_git/test5[m) files
++ [36mtest6 [m <HASH> ([36m.../test_worktree_git/test6[m) [[34morigin/test6[m] files
++ [36mtest7 [m <HASH> ([36m.../test_worktree_git/test7[m) [[34morigin/test7[m] files
  '============================================================================
 

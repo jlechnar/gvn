@@ -421,3 +421,8 @@
                 remote=`git branch -ra --no-color | egrep \"\\/$1\"`; \
                 git checkout -b \"$1\" $remote' --"
         gvn-cko = "gvn-checkout"
+
+
+        gvn-worktree-prefix = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_worktree_prefix.sh \"$@\"' --"
+        gvn-worktree-postfix = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_worktree_postfix.sh \"$@\"' --"
+

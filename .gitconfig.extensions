@@ -521,6 +521,8 @@
             git rebase $@; \
           fi' --"
 
+        rebase-notag="!bash -c 'git rebase $@;' --"
+
 
         # --------------------------
         # list files
@@ -674,7 +676,7 @@
 
         get-current-branch = "rev-parse --abbrev-ref HEAD"
 
-        # branch_exists=`git for-each-ref --format=\"%(refname:short)\" | grep \"^$branch_name$\"`; 
+        # branch_exists=`git for-each-ref --format=\"%(refname:short)\" | grep \"^$branch_name$\"`;
 
         check-branch-exists = "!bash -c '\
                 branch_name=$1; \
@@ -707,9 +709,9 @@
 
         bc = "checkout"
 
-        branch-list-all = "branch -vva"
+        branch-list-all = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_list.sh -a' --"
         bla = "branch-list-all"
-        branch-list = "branch -a"
+        branch-list = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_list.sh' --"
         bl = "branch-list"
         branch-add = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_branch_add.sh \"$@\"' --"
         ba = "branch-add"
@@ -997,4 +999,8 @@
            ' --"
         tpr = "tag-push-remote"
         tp = "tag-push-remote"
+
+        # --------------------------
+        history = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_history.sh \"$@\"' --"
+        h = "history"
 

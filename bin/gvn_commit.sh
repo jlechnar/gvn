@@ -35,4 +35,4 @@ if ! [[ "$root" == "" ]]; then
 fi
 
 $GIT $run_path svn dcommit
-gvn update-mapping-database
+$GVN update-mapping-database

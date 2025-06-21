@@ -22,4 +22,4 @@ $GIT config user.name "user1"
 $GIT config user.email user1@domain
 $GIT config protocol.file.allow always
 
-# source ../scripts/setup_gvn.sh
+source ../scripts/setup_git.sh

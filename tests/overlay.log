@@ -216,8 +216,8 @@ nothing added to commit but untracked files present (use "git add" to track)
  |             show history
  | Executing:  .../../bin/gito lgab
  |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_ignore[m [1;35m (HEAD -> master)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30minit_ignores[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30madd_ignore[m [1;35m (HEAD -> master)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30minit_ignores[m [1;35m[m
  '============================================================================
 
 
@@ -260,8 +260,8 @@ nothing added to commit but untracked files present (use "git add" to track)
  |             show history
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_gitignore[m [1;35m (HEAD -> trunk)[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (git-svn)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30madd_gitignore[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (git-svn)[m
  '============================================================================
 
 
@@ -309,8 +309,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
  |             show history
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30madd_gitignore[m [1;35m (HEAD -> trunk)[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (git-svn)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30madd_gitignore[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (git-svn)[m
  '============================================================================
 
 
@@ -385,4 +385,57 @@ To .../test_overlay/git_overlay
  | Executing:  .../../bin/gito remove-all
  |============================================================================
  '============================================================================
+
+
+ .============================================================================
+ |             init .../../bin/git.sh overlay
+ | Executing:  .../../bin/gito init
+ |============================================================================
+Adding overlay to git repo in .../test_overlay/git_user3 ...
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in .../test_overlay/git_user3/.overlay/.git/
+make[1]: Entering directory '.../test_overlay/git_user3'
+Makefile:6: warning: overriding recipe for target '.gitignore'
+Makefile:2: warning: ignoring old recipe for target '.gitignore'
+echo "\n# AUTOMATIC GENERATED FILE - DO NOT EDIT\n\n" > .gitignore
+cat .gitignore_base >> .gitignore
+tail -n +`grep -n -m 1 "add user defined ignores below" .gitignore_overlay | cut -f1 -d:` .gitignore_overlay | grep -v "add user defined ignores below" >> .gitignore
+make[1]: Leaving directory '.../test_overlay/git_user3'
+[master (root-commit) <HASH>] init_ignores
+ 1 file changed, 7 insertions(+)
+ create mode 100644 .gitignore_overlay
+ '============================================================================
+
+
+ .============================================================================
+ |             add bare overlay repo
+ | Executing:  .../../bin/gito remote add origin .../test_overlay/git_overlay
+ |============================================================================
+ '============================================================================
+
+
+ .============================================================================
+ |             recover removed files
+ | Executing:  .../../bin/gito pull
+ |============================================================================
+From .../test_overlay/git_overlay
+ * [new branch]      master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
 

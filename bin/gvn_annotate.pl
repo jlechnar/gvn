@@ -31,8 +31,8 @@ if ($opts{m}) {
   my $db_filename="$dot_git_path/gvn/rev/db.list";
 
   open(FILE, "<$db_filename") or die "Couldn't open file $db_filename for reading, $!";
- 
-  my $linenr = 0; 
+
+  my $linenr = 0;
   my $nr = 0;
   while(my $line = <FILE>) {
     chomp $line;
@@ -45,20 +45,20 @@ if ($opts{m}) {
       $nr++;
     }
   }
-  
+
   close(FILE);
 
   if ($opts{d}) {
     print("DEBUG: Read $nr hash->svn entries from $db_filename at length $revision_length.\n")
   }
-  
+
 } else {
 
   open(my $fh, '-|', 'git log --all --no-color') or die $!;
   my $nr = 0;
   while (my $line = <$fh>) {
     chomp $line;
-  
+
     if($line =~ /^\s*commit\s+(\S+)(\s+|$)/) {
       $hash = $1;
     } elsif($line =~ /^\s+git-svn-id:\s+([^\@]+)\@(\d+)\s+/) {
@@ -82,6 +82,8 @@ if ($opts{m}) {
   }
 }
 
+my $color_svn_revision=`git config gvn.all.color-svn-revision || true`;
+
 # ------------------------------
 while(my $line = <>) {
   if($line =~ /(\<hash\>([^\<]+)\<\/hash\>)/) {
@@ -90,13 +92,13 @@ while(my $line = <>) {
     my $replacement = "";
     if(exists $db{$hash}) {
       my $revision_length_print = $revision_length + 1;
-      $replacement = colored(sprintf("%-${revision_length_print}s", "r$db{$hash}"), 'bold blue');
+      $replacement = colored(sprintf("%-${revision_length_print}s", "r$db{$hash}"), $color_svn_revision);
     } else {
       my $replacement_rev = "r";
       for (my $i=0; $i < $revision_length; $i++) {
         $replacement_rev .= "?";
       }
-      $replacement = colored($replacement_rev, 'bold blue');
+      $replacement = colored($replacement_rev, $color_svn_revision);
     }
     $line =~ s/$hash_replace/$replacement/g;
   }

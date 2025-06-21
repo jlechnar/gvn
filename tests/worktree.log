@@ -324,7 +324,7 @@ subtest
  |             rebase with trunk
  | Executing:  .../../bin/gvn.sh wrebase trunk
  |============================================================================
-Created Tag for git rebase: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>
+Created Tag for .../../bin/git.sh rebase: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>
 Rebasing (1/1)Auto-merging file.html
 Auto-merging file.py
 CONFLICT (content): Merge conflict in file.py
@@ -358,14 +358,14 @@ Could not apply <HASH>... changes_test_worktree_rebase
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> test)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (trunk)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> test)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (trunk)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (git-svn)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m (git-svn)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -380,7 +380,7 @@ Could not apply <HASH>... changes_test_worktree_rebase
  |             merge with test
  | Executing:  .../../bin/gvn.sh wmerge test
  |============================================================================
-Created Tag for git merge: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>
+Created Tag for .../../bin/git.sh merge: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>
 Updating <HASH>..<HASH>
 Fast-forward
  file.html | 2 [34;102m+[m[34;101m-[m
@@ -394,14 +394,14 @@ Fast-forward
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, test)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, test)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m (git-svn)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m (git-svn)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -436,17 +436,17 @@ Resetting to the latest refs/remotes/git-svn
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, git-svn)[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, test)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, git-svn)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, test)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
 [31m|[m[31m/[m  
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [33m|[m[33m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -501,18 +501,18 @@ Current branch trunk is up to date.
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
-[31m|[m * [33m   <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, git-svn)[m
-[31m|[m * [33m   <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m (HEAD -> trunk, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, git-svn)[m
+[31m|[m * [33m   <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
 [31m|[m[31m/[m  
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [33m|[m[33m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -577,11 +577,11 @@ Resetting to the latest refs/remotes/origin/trunk
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m (HEAD -> trunk, origin/trunk)[m
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m (HEAD -> trunk, origin/trunk)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -612,19 +612,19 @@ Resetting to the latest refs/remotes/origin/trunk
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk)[m
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, git-svn)[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, git-svn)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
 [31m|[m[31m/[m  
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [33m|[m[33m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -690,22 +690,22 @@ Resetting to the latest refs/remotes/git-svn
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk, git-svn)[m
-* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (HEAD -> trunk, git-svn)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
 [32m|[m[32m/[m  
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [32m|[m[32m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-[34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+[34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [34m|[m[34m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -719,22 +719,22 @@ Resetting to the latest refs/remotes/git-svn
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
-* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> test)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> test)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
 [32m|[m[32m/[m  
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [32m|[m[32m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-[34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+[34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [34m|[m[34m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -742,7 +742,7 @@ Resetting to the latest refs/remotes/git-svn
  |             rebase with trunk
  | Executing:  .../../bin/gvn.sh wrebase trunk
  |============================================================================
-Created Tag for git rebase: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>
+Created Tag for .../../bin/git.sh rebase: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>
 warning: skipped previously applied commit <HASH>
 warning: skipped previously applied commit <HASH>
 hint: use --reapply-cherry-picks to include skipped commits
@@ -780,23 +780,23 @@ Could not apply <HASH>... changes_test_worktree_merge_svn_up
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> test)[m
-* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
-* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> test)[m
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (git-svn, trunk)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
 [32m|[m[32m/[m  
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [32m|[m[32m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-[34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+[34m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [34m|[m[34m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -811,7 +811,7 @@ Could not apply <HASH>... changes_test_worktree_merge_svn_up
  |             merge with test
  | Executing:  .../../bin/gvn.sh wmerge test
  |============================================================================
-Created Tag for git merge: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>
+Created Tag for .../../bin/git.sh merge: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>
 Updating <HASH>..<HASH>
 Fast-forward
  file.html | 2 [34;102m+[m[34;101m-[m
@@ -843,25 +843,25 @@ Resetting to the latest refs/remotes/git-svn
  .============================================================================
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr7[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> trunk, git-svn)[m
-[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
+* [33m     <HASH>[m [1;34mr7[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (HEAD -> trunk, git-svn)[m
+[31m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (test)[m
 [31m|[m[31m/[m  
-* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
-* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
-[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr6[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
+* [33m     <HASH>[m [1;34mr5[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m[m
+[32m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [32m|[m[32m/[m  
-* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
-[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_k_<HASH>_to_t_<HASH>)[m
+* [33m     <HASH>[m [1;34mr4[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr3[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
+[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_trunk_worktree_rebase[m [1;35m (tag: gvn_worktree_merge_<DATE>_<TIME>_trunk_<HASH>_to_test_<HASH>)[m
 [33m|[m[33m/[m  
-[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_t_<HASH>_to_k_<HASH>)[m
+[33m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mchanges_test_worktree_rebase[m [1;35m (tag: gvn_worktree_rebase_<DATE>_<TIME>_test_<HASH>_to_trunk_<HASH>)[m
 [33m|[m[33m/[m  
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-[35m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3           [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+[35m|[m * [33m   <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
 [35m|[m[35m/[m  
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -900,9 +900,7 @@ Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
  |             show all branches
  | Executing:  .../../bin/git.sh bl
  |============================================================================
-* [32mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtrunk[m <HASH> changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -958,13 +956,11 @@ paths:      .../test_worktree/git_user2 => .../test_worktree/test0/
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0[m <HASH> created test0 branch from trunk
++ [36mtest1[m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2[m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3[m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk[m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1003,14 +999,12 @@ HEAD is now at <HASH> created test0 branch from trunk
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-+ [36mtest0a[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0 [m <HASH> created test0 branch from trunk
++ [36mtest0a[m <HASH> ([36m.../test_worktree/test0a[m) created test0 branch from trunk
++ [36mtest1 [m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2 [m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3 [m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk [m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1049,14 +1043,12 @@ test3
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-  test0a[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0 [m <HASH> created test0 branch from trunk
+  test0a[m <HASH> created test0 branch from trunk
++ [36mtest1 [m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2 [m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3 [m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk [m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1076,7 +1068,6 @@ test3
  |             show contents of gvn status folder
  | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
  |============================================================================
-test0a
 test1
 test2
 test3
@@ -1096,14 +1087,12 @@ HEAD is now at <HASH> created test0 branch from trunk
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-+ [36mtest0a[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0 [m <HASH> created test0 branch from trunk
++ [36mtest0a[m <HASH> ([36m.../test_worktree/test0a2[m) created test0 branch from trunk
++ [36mtest1 [m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2 [m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3 [m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk [m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1142,14 +1131,12 @@ test3
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-  test0a[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0 [m <HASH> created test0 branch from trunk
+  test0a[m <HASH> created test0 branch from trunk
++ [36mtest1 [m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2 [m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3 [m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk [m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1169,7 +1156,6 @@ test3
  |             show contents of gvn status folder
  | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
  |============================================================================
-test0a
 test1
 test2
 test3
@@ -1188,13 +1174,11 @@ Deleted branch test0a (was <HASH>).
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0[m <HASH> created test0 branch from trunk
++ [36mtest1[m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2[m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3[m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk[m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1231,14 +1215,12 @@ test3
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-  test0a[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0 [m <HASH> created test0 branch from trunk
+  test0a[m <HASH> created test0 branch from trunk
++ [36mtest1 [m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2 [m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3 [m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk [m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1278,14 +1260,12 @@ HEAD is now at <HASH> created test0 branch from trunk
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-+ [36mtest0a[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0 [m <HASH> created test0 branch from trunk
++ [36mtest0a[m <HASH> ([36m.../test_worktree/test0a[m) created test0 branch from trunk
++ [36mtest1 [m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2 [m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3 [m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk [m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1324,14 +1304,12 @@ test3
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-  test0a[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0 [m <HASH> created test0 branch from trunk
+  test0a[m <HASH> created test0 branch from trunk
++ [36mtest1 [m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2 [m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3 [m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk [m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1351,7 +1329,6 @@ test3
  |             show contents of gvn status folder
  | Executing:  ls .../test_worktree/git_user2/.git/gvn/branch
  |============================================================================
-test0a
 test1
 test2
 test3
@@ -1370,13 +1347,11 @@ Deleted branch test0a (was <HASH>).
  |             list branches
  | Executing:  .../../bin/gvn.sh bl
  |============================================================================
-* [32mtest0[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0[m <HASH> created test0 branch from trunk
++ [36mtest1[m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2[m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3[m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk[m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
@@ -1418,14 +1393,14 @@ test3
  |             show all branches in log
  | Executing:  .../../bin/git.sh lgab
  |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mcreated test0 branch from trunk[m [1;35m (HEAD -> test0, origin/test0)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (origin/trunk, trunk, test1)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (test3, test2)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_test_worktree_rebase[m [1;35m[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>         [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mcreated test0 branch from trunk[m [1;35m (HEAD -> test0, origin/test0)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_merge_svn_up[m [1;35m (origin/trunk, trunk, test1)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change[m [1;35m (test3, test2)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_merge_svn_change_from_other_svn_sandbox[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_test_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mchanges_trunk_worktree_rebase[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
  '============================================================================
 
 
@@ -1433,13 +1408,11 @@ test3
  |             show all branches
  | Executing:  .../../bin/git.sh bl
  |============================================================================
-* [32mtest0[m
-+ [36mtest1[m
-+ [36mtest2[m
-+ [36mtest3[m
-+ [36mtrunk[m
-  [31mremotes/origin/test0[m
-  [31mremotes/origin/trunk[m
+* [32mtest0[m <HASH> created test0 branch from trunk
++ [36mtest1[m <HASH> ([36m.../test_worktree/test1[m) changes_test_worktree_merge_svn_up
++ [36mtest2[m <HASH> ([36m.../test_worktree/test2[m) changes_trunk_worktree_merge_svn_change
++ [36mtest3[m <HASH> ([36m.../test_worktree/test4[m) changes_trunk_worktree_merge_svn_change
++ [36mtrunk[m <HASH> ([36m.../test_worktree/git_user2[m) changes_test_worktree_merge_svn_up
  '============================================================================
 
 
