@@ -38,10 +38,8 @@
         lbsf = "gvn-lbf"
         lsbf = "gvn-lbf"
         lsfb = "gvn-lbf"
-        lfsb = "gvn-lbf"
         lfbs = "gvn-lbf"
         gvn-lf  = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_log.sh -p -f -- \"$@\"' --"
-        lfs = "gvn-lf"
         lsf = "gvn-lf"
 
         gvn-lab = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/gvn_log.sh -a -- \"$@\"' --"

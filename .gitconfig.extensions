@@ -77,27 +77,20 @@
 
         # --------------------------
         rebase-in-progress = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                dot_git_path=`git get-dot-git-path-abs`; \
-                rebase_folder_name=`ls $dot_git_path | grep rebase`; \
-                if [[ \"$rebase_folder_name\" == \"\" ]]; then \
-                  echo 0; \
-                else \
-                  echo 1; \
-                fi' --"
+                 check=`git rev-parse --verify REBASE_HEAD &> /dev/null`; \
+                 if [[ \"$?\" == \"0\" ]]; then \
+                   echo 1; \
+                 else \
+                   echo 0; \
+                 fi' --"
 
         merge-in-progress = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                dot_git_path=`git get-dot-git-path-abs`; \
-                merge_folder_name=`ls $dot_git_path | grep merge`; \
-                if [[ \"$merge_folder_name\" == \"\" ]]; then \
-                  echo 0; \
-                else \
-                  rebase_in_progress=`git rebase-in-progress`; \
-                  if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                    echo 0; \
-                  else \
-                    echo 1; \
-                  fi; \
-                fi' --"
+                 check=`git rev-parse --verify MERGE_HEAD &> /dev/null`; \
+                 if [[ \"$?\" == \"0\" ]]; then \
+                   echo 1; \
+                 else \
+                   echo 0; \
+                 fi' --"
 
         # --------------------------
         # merge
@@ -108,180 +101,40 @@
         merge-file-diff = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_merge_file_diff.sh \"$@\"' --"
         mfd = "merge-file-diff"
 
-        merge-diff = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                a=\"================================================================================\"; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  echo \"$a\n$a\nMERGE REBASE - BASE\n$a\"; \
-                  git diff -1 $1; \
-                  echo \"$a\n$a\nMERGE REBASE - OURS\n$a\"; \
-                  git diff -3 $1; \
-                  echo \"$a\n$a\nMERGE REBASE - THEIRS\n$a\"; \
-                  git diff -2 $1; \
-                  echo \"$a\"; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  echo \"$a\n$a\nMERGE - BASE\n$a\"; \
-                  git diff -1 $1; \
-                  echo \"$a\n$a\nMERGE - OURS\n$a\"; \
-                  git diff -2 $1; \
-                  echo \"$a\n$a\nMERGE - THEIRS\n$a\"; \
-                  git diff -3 $1; \
-                  echo \"$a\"; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m all -- \"$@\"' --"
         md = "merge-diff"
 
-        merge-diff-ours = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git diff -3 $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git diff -2 $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff-ours = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m ours -- \"$@\"' --"
         mdo = "merge-diff-ours"
 
-        merge-diff-theirs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git diff -2 $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git diff -3 $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff-theirs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m theirs -- \"$@\"' --"
         mdt = "merge-diff-theirs"
 
-        merge-diff-base = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git diff -1 $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git diff -1 $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff-base = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m base -- \"$@\"' --"
         mdb = "merge-diff-base"
 
-        merge-diff-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                a=\"================================================================================\"; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  echo \"$a\n$a\nMERGE REBASE - BASE\n$a\"; \
-                  git dw -1 $1; \
-                  echo \"$a\n$a\nMERGE REBASE - OURS\n$a\"; \
-                  git dw -3 $1; \
-                  echo \"$a\n$a\nMERGE REBASE - THEIRS\n$a\"; \
-                  git dw -2 $1; \
-                  echo \"$a\"; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  echo \"$a\n$a\nMERGE - BASE\n$a\"; \
-                  git dw -1 $1; \
-                  echo \"$a\n$a\nMERGE - OURS\n$a\"; \
-                  git dw -2 $1; \
-                  echo \"$a\n$a\nMERGE - THEIRS\n$a\"; \
-                  git dw -3 $1; \
-                  echo \"$a\"; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m all -w -f -- \"$@\"' --"
         mdw = "merge-diff-wordwise"
 
-        merge-diff-wordwise-ours = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git dw -3 $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git dw -2 $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff-wordwise-ours = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m ours -w -f -- \"$@\"' --"
         mdwo = "merge-diff-wordwise-ours"
 
-        merge-diff-wordwise-theirs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git dw -2 $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git dw -3 $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff-wordwise-theirs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m theirs -w -f -- \"$@\"' --"
         mdwt = "merge-diff-wordwise-theirs"
 
-        merge-diff-wordwise-base = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git dw -1 $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git dw -1 $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-diff-wordwise-base = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -m base -w -f -- \"$@\"' --"
         mdwb = "merge-diff-wordwise-base"
 
-        merge-file-ours = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                echo \"test\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                a=\"================================================================================\"; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git checkout --theirs $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git checkout --ours $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-file-ours = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_merge_file.sh -f ours -- \"$@\"' --"
         mfo = "merge-file-ours"
 
-        merge-file-theirs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                a=\"================================================================================\"; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git checkout --ours $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git checkout --theirs $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-file-theirs = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_merge_file.sh -f theirs -- \"$@\"' --"
         mft = "merge-file-theirs"
 
         merge-file-base = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_merge_file_base.sh \"$@\"' --"
         mfb = "merge-file-base"
 
-        merge-file-merge = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-                rebase_in_progress=`git rebase-in-progress`; \
-                merge_in_progress=`git merge-in-progress`; \
-                a=\"================================================================================\"; \
-                if [[ \"$rebase_in_progress\" == \"1\" ]]; then \
-                  git checkout --merge $1; \
-                elif [[ \"$merge_in_progress\" == \"1\" ]]; then \
-                  git checkout --merge $1; \
-                else \
-                  echo \"ERROR: There is no merge nor rebase in progress. Aborting operation.\"; \
-                  exit -1; \
-                fi' --"
+        merge-file-merge = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_merge_file.sh -f merge -- \"$@\"' --"
         mfm = "merge-file-merge"
 
         dtm = "dt HEAD..REBASE_HEAD"

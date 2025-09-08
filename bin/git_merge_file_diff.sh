@@ -10,6 +10,9 @@
 # automatic detecting rebase-merges helps to avoid confusion
 # with ours in below commands always our/mine changes are meant independent on merge operation type
 
+if [[ "$GVN_DEBUG" == "1" ]]; then
+  set -x
+fi
 set -e
 
 file=$1

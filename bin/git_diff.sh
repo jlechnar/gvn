@@ -19,8 +19,10 @@ usage() {
 opts=""
 
 do_follow=0
+merge_diff=0
+merge_case=""
 
-while getopts "icNfwbBWls" o; do
+while getopts "m:icNfwbBWls" o; do
     case "${o}" in
         i)
             opts="$opts --ignore-all-space --ignore-blank-lines --ignore-space-change"
@@ -36,6 +38,10 @@ while getopts "icNfwbBWls" o; do
             ;;
         s)
             opts="$opts --name-status"
+            ;;
+        m)
+            merge_diff=1
+            merge_case=${OPTARG}
             ;;
         f)
             do_follow=1
@@ -61,8 +67,6 @@ shift $((OPTIND-1))
 
 root=`$GIT root`
 export GIT_WORK_TREE=$root
-
-opts2=""
 
 args="$@"
 
@@ -109,5 +113,53 @@ if [[ "$do_follow" == "1" ]]; then
 #  fi
 fi
 
-$GIT diff $opts $opts2 $args
+if [[ "$merge_diff" == "1" ]]; then
+  rebase_in_progress=`git rebase-in-progress`
+  merge_in_progress=`git merge-in-progress`
+
+  a="================================================================================"; \
+
+  if [[ "$rebase_in_progress" == "1" ]]; then
+    case "$merge_case" in
+      "theirs") opts="$opts -2" ;;
+      "base")   opts="$opts -1" ;;
+      "ours")   opts="$opts -3" ;;
+      "all")    echo -e "$a\n$a\nMERGE REBASE - BASE\n$a"
+                $GIT diff $opts -1 $args
+                echo -e "$a\n$a\nMERGE REBASE - OURS\n$a"
+                $GIT diff $opts -3 $args
+                echo -e "$a\n$a\nMERGE REBASE - THEIRS\n$a"
+                $GIT diff $opts -2 $args
+                echo -e "$a"
+                exit 0
+                ;;
+      *)        echo "ERROR: Unsupported merge case "$merge_case". Aborting operation."
+                exit -1
+                ;;
+    esac
+  elif [[ "$merge_in_progress" == "1" ]]; then
+    case "$merge_case" in
+      "theirs") opts="$opts -3" ;;
+      "base")   opts="$opts -1" ;;
+      "ours")   opts="$opts -2" ;;
+      "all")    echo -e "$a\n$a\nMERGE - BASE\n$a"
+                $GIT diff $opts -1 $args
+                echo -e "$a\n$a\nMERGE - OURS\n$a"
+                $GIT diff $opts -2 $args
+                echo -e "$a\n$a\nMERGE - THEIRS\n$a"
+                $GIT diff $opts -3 $args
+                echo -e "$a"
+                exit 0
+                ;;
+      *)        echo "ERROR: Unsupported merge case "$merge_case". Aborting operation."
+                exit -1
+                ;;
+    esac
+  else
+    echo "ERROR: There is no merge nor rebase in progress. Aborting operation."
+    exit -1
+  fi
+fi
+
+$GIT diff $opts $args
 

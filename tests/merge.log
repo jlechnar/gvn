@@ -1549,7 +1549,6 @@ MERGE REBASE - THEIRS
  |             checkout fixed solution
  | Executing:  .../../bin/git.sh merge-file-ours file.py
  |============================================================================
-test
 Updated 1 path from the index
  '============================================================================
 
@@ -1570,7 +1569,6 @@ class foo123:
  |             checkout fixed solution
  | Executing:  .../../bin/git.sh mfo file.py
  |============================================================================
-test
 Updated 0 paths from the index
  '============================================================================
 
@@ -1725,7 +1723,6 @@ class foo123:
  |             checkout fixed solution
  | Executing:  .../../bin/git.sh merge-file-ours file.pl
  |============================================================================
-test
 Updated 1 path from the index
  '============================================================================
 
@@ -1745,7 +1742,6 @@ print(\"%d\",$test);
  |             checkout fixed solution
  | Executing:  .../../bin/git.sh mfo file.pl
  |============================================================================
-test
 Updated 0 paths from the index
  '============================================================================
 
