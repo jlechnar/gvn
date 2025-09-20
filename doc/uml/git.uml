@@ -1,0 +1,172 @@
+' Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+' Author:      jlechnar
+' Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+' Source:      https://github.com/jlechnar/gvn
+
+@startuml
+!pragma teoz true
+
+!include format.uml!format
+
+title "GIT - operation releated command overview"
+
+box "local" #DCDDDA
+  box "Sandbox(es)" #D2CBC0
+    box "other worktree(s) (optional)" #BBAB92
+      database "Other\nWorkspace(s)"  as sandbox_other
+    end box
+    box "(main) worktree" #C5B69D
+      '  box "Sandbox" #ffffaa
+      database "Workspace\n"  as sandbox
+    end box
+  end box
+  box "Database (.git)" #D2CBC0
+    box #C5B69D
+      database "Stage\n(index)"     as stage
+    end box
+    box #BBAB92
+      database "Stash\n"  as stash
+    end box
+    box #B09B7E
+      database "Local Repository\n"     as repo_local
+    end box
+  end box
+end box
+
+box "remote" #DCDDDA
+  box #C5B69D
+    database "(main) Remote Repository\n(e.g. origin)"     as repo_remote
+  end box
+  box #BBAB92
+    database "Other (optional)\nRemote Repository(ies)"     as repo_remote_other
+  end box
+end box
+
+== setup ==
+repo_remote -> repo_local
+& repo_local -> sandbox : clone
+
+== update / release ==
+
+'sandbox -> stage : add
+
+stage -> repo_local : commit
+
+sandbox -> stage : commit -a
+& stage -> repo_local
+
+repo_local -> repo_remote : push
+
+repo_local <- repo_remote : fetch
+
+sandbox <-> repo_local : merge
+
+sandbox <-> repo_local : rebase
+
+repo_local <- repo_remote
+& sandbox <- repo_local : pull
+
+== file operations ==
+
+sandbox -> stage : add
+
+sandbox -> stage : rm
+
+sandbox -> stage : mv
+
+' FIXME: reset
+
+== revert / cherry-pick ==
+
+sandbox <-> repo_local : revert <commit>
+note left: Revert <commit>
+
+sandbox <-> repo_local : cherry-pick <commit>
+note left: Apply specific <commit> e.g. from other branch
+
+== restore ==
+
+sandbox <- stage : restore <filename|:/> OR checkout -- <filename|:/>
+note left: Restore the contents of a file OR all files to the stage contents or the current version if not staged
+& stage <[#blue]- repo_local
+
+sandbox <- stage : restore --staged <filename|:/>
+note left: Restore the contents of a file OR all files to the stage contents and unstage the changes
+
+sandbox <- repo_local : restore --source <commit-ish> <filename|:/>
+note left: Restore the contents of a file OR all files a specific version define with <commit-ish>\n and leaving it in the stage as is
+
+sandbox <- stage : restore --patch <filename|:/|>
+note left: Restore the contents of a file OR all files partially interactive\nto the stage contents of the current version if not staged
+
+sandbox <- stage : restore --patch --staged <filename|:/|>
+note left: Restore the contents of a file OR all files partially interactive\nto the stage contents and unstage the selected changes
+& stage <[#blue]- repo_local
+
+== misc ==
+
+sandbox -> stage : add --interactive OR add -i
+note left: Selective add contents to stage
+
+sandbox <-> repo_local : git rebase --interactive <commit>
+note left: Select and modify commit's (message/content/delete/reorder/fix/squash/combine/...)\nRewrites History
+
+
+
+== browse ==
+
+repo_local <- repo_local : log
+
+repo_local <- repo_local : ls-files
+
+sandbox <-> stage : diff/difftool <path>
+
+stage <-> repo_local : diff/difftool --cached <path>
+
+repo_local <-> repo_local : diff/difftool <commit-ish>..<commit-ish>
+
+' repo_local <- repo_local : blame
+
+sandbox <-> repo_local : grep
+
+sandbox <-> repo_local : blame
+
+== branches ==
+
+repo_local <-> repo_local : branch (list)/(add)/(remove)/(configure)
+
+== stash ==
+
+sandbox -> stash : stash
+
+sandbox <- stash : stash apply
+
+sandbox <- stash : stash pop
+
+stash <- stash : stash drop
+
+== tags ==
+
+repo_local <-> repo_local : tag
+
+== notes ==
+
+repo_local <-> repo_local : notes FIXME ???
+
+
+== remotes ==
+
+repo_local <-> repo_local : remote (list)/(configure)/remove/rename
+
+repo_local <-> repo_remote_other : remote add
+
+== worktree ==
+
+sandbox_other <-> repo_local : worktree add
+
+sandbox_other <-> repo_local : worktree remove
+
+repo_local <-> repo_local : worktree list
+
+
+@enduml

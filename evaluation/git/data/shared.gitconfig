@@ -1,0 +1,51 @@
+[core]
+        # editor for commit messages
+        editor = vim
+        # automatic handle linefeed correct for linux environments
+        autocrlf = input
+        # get rid of automatically calling a pager e.g. in case of long commit logs
+        pager = less
+
+[push]
+        default = simple
+
+[pull]
+        # disable automatic rebase in case of pull - lets user descide what to do
+        rebase = false
+
+[diff]
+        tool = meld
+        guitool = meld
+
+[color]
+        ui = always
+        branch = always
+        status = always
+        diff = always
+        interactive = always
+        grep = always
+        pager = true
+        decorate = always
+        showbranch = always
+
+[color "diff"]
+        context = "black"
+        frag = "blue brightmagenta"
+        meta = "cyan"
+        old = "blue brightred"
+        new = "blue brightgreen"
+
+[color "decorate"]
+    tag = "bold blue"
+
+[merge]
+        tool = meld
+        # enable diff3 conflict style for merge conflicts (<<<<<<< outgoing/my changes ||||||| common base for outgoing/incomming ======= incoming/their changes >>>>>>>)
+        conflictstyle = diff3
+
+[difftool "meld"]
+        path = /usr/bin/meld
+        trustExitCode = false
+
+[difftool]
+        prompt = false

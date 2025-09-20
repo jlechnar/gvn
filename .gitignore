@@ -1,8 +1,11 @@
 tests/*.tmp
 tests/*.tmp2
+tests/*log.history
 tests/gvn_cmd.sh
 tests/test_*
 bin/__pycache__/
 *.pyc
 *~
 check.sh
+evaluation/git/test
+doc/uml/*.jar
