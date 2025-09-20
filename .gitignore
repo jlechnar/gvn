@@ -9,3 +9,5 @@ bin/__pycache__/
 check.sh
 evaluation/git/test
 doc/uml/*.jar
+evaluation/git/run.expanded.log
+evaluation/git/run.reduced.log
