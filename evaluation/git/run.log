@@ -612,14 +612,14 @@ Date:   <DATE_TIME>
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit log --all --graph[0m
 * [33mcommit <HASH>[33m
   Author: user1 <user1@domain>
-  Date:   Sat Sep 20 <TIME> 2025 +0200
+  Date:   Thu Sep 25 <TIME> 2025 +0200
   
       initial commit
 [1;36mCMT:[0m [1;35mshow reference names (branches, tags, etc.)[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit log --all --graph --decorate[0m
 * [33mcommit <HASH>[33m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
   Author: user1 <user1@domain>
-  Date:   Sat Sep 20 <TIME> 2025 +0200
+  Date:   Thu Sep 25 <TIME> 2025 +0200
   
       initial commit
 [1;36mCMT:[0m [1;35mshow short logs[0m
@@ -720,12 +720,12 @@ origin	../test/local_shared_repo (push)
 * [32mmaster[m
   [31mremotes/origin/master[m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit branch -va[0m
-* [32mmaster               [m 1154722 commit message structure demo
-  [31mremotes/origin/master[m 1154722 commit message structure demo
+* [32mmaster               [m feae4af commit message structure demo
+  [31mremotes/origin/master[m feae4af commit message structure demo
 [1;36mCMT:[0m [1;35mbelow shows additonally the upstream connection (where default push/pull goes to/from)[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit branch -vva[0m
 * [32mmaster               [m <HASH> [[34morigin/master[m] commit message structure demo
-  [31mremotes/origin/master[m 1154722 commit message structure demo
+  [31mremotes/origin/master[m feae4af commit message structure demo
 
 [1;36mH1 : [0m [1;34m.====================================================================================[0m
 [1;36mH1 : [0m [1;34m| add dummy repo's and add them as remote[0m
@@ -762,7 +762,7 @@ origin	../test/local_shared_repo (fetch)
 origin	../test/local_shared_repo (push)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit branch -vva[0m
 * [32mmaster               [m <HASH> [[34morigin/master[m] commit message structure demo
-  [31mremotes/origin/master[m 1154722 commit message structure demo
+  [31mremotes/origin/master[m feae4af commit message structure demo
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
 [1;36mH2 : [0m [1;34m| push the current branch to the remote repo's[0m
@@ -773,8 +773,8 @@ To ../test/local_shared_repo2
  * [new branch]      master -> master
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit branch -vva[0m
 * [32mmaster                           [m <HASH> [[34morigin/master[m] commit message structure demo
-  [31mremotes/local_shared_repo2/master[m 1154722 commit message structure demo
-  [31mremotes/origin/master            [m 1154722 commit message structure demo
+  [31mremotes/local_shared_repo2/master[m feae4af commit message structure demo
+  [31mremotes/origin/master            [m feae4af commit message structure demo
 
 [1;36mH1 : [0m [1;34m.====================================================================================[0m
 [1;36mH1 : [0m [1;34m| ignoring files[0m
@@ -923,7 +923,7 @@ rm 'links/fa.sv'
 [1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash -- verilog/carry_ripple_adder.v[0m
-Saved working directory and index state WIP on master: be9fdf2 adding git ignores
+Saved working directory and index state WIP on master: 068e790 adding git ignores
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit status[0m
 On branch master
 Your branch is ahead of 'origin/master' by 1 commit.
@@ -945,7 +945,7 @@ Changes not staged for commit:
 [1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash[0m
-Saved working directory and index state WIP on master: be9fdf2 adding git ignores
+Saved working directory and index state WIP on master: 068e790 adding git ignores
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit status[0m
 On branch master
 Your branch is ahead of 'origin/master' by 1 commit.
@@ -958,8 +958,8 @@ nothing to commit, working tree clean
 [1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash list[0m
-stash@{0}: WIP on master: be9fdf2 adding git ignores
-stash@{1}: WIP on master: be9fdf2 adding git ignores
+stash@{0}: WIP on master: 068e790 adding git ignores
+stash@{1}: WIP on master: 068e790 adding git ignores
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
 [1;36mH2 : [0m [1;34m| apply stash and drop it[0m
@@ -981,7 +981,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 Dropped refs/stash@{0} (<HASH>)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash list[0m
-stash@{0}: WIP on master: be9fdf2 adding git ignores
+stash@{0}: WIP on master: 068e790 adding git ignores
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit status[0m
 On branch master
 Your branch is ahead of 'origin/master' by 1 commit.
@@ -1004,7 +1004,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 Saved working directory and index state On master: stash with certain name
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash list[0m
 stash@{0}: On master: stash with certain name
-stash@{1}: WIP on master: be9fdf2 adding git ignores
+stash@{1}: WIP on master: 068e790 adding git ignores
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
 [1;36mH2 : [0m [1;34m| apply stash but keep it for other usage[0m
@@ -1025,7 +1025,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash list[0m
 stash@{0}: On master: stash with certain name
-stash@{1}: WIP on master: be9fdf2 adding git ignores
+stash@{1}: WIP on master: 068e790 adding git ignores
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit status[0m
 On branch master
 Your branch is ahead of 'origin/master' by 1 commit.
@@ -1181,12 +1181,12 @@ Saved working directory and index state On master: another change to cra
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash list[0m
 stash@{0}: On master: another change to cra
 stash@{1}: On master: stash with certain name
-stash@{2}: WIP on master: be9fdf2 adding git ignores
+stash@{2}: WIP on master: 068e790 adding git ignores
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit log -g stash[0m
 [33mcommit <HASH>[33m
 Reflog: stash@{0} (user1 <user1@domain>)
 Reflog message: On master: another change to cra
-Merge: be9fdf2 6944da1
+Merge: 068e790 8d84683
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
@@ -1195,7 +1195,7 @@ Date:   <DATE_TIME>
 [33mcommit <HASH>[33m
 Reflog: stash@{1} (user1 <user1@domain>)
 Reflog message: On master: stash with certain name
-Merge: be9fdf2 3ce6f34
+Merge: 068e790 c356667
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
@@ -1203,16 +1203,16 @@ Date:   <DATE_TIME>
 
 [33mcommit <HASH>[33m
 Reflog: stash@{2} (user1 <user1@domain>)
-Reflog message: WIP on master: be9fdf2 adding git ignores
-Merge: be9fdf2 ec55474
+Reflog message: WIP on master: 068e790 adding git ignores
+Merge: 068e790 f42c55c
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
-    WIP on master: be9fdf2 adding git ignores
+    WIP on master: 068e790 adding git ignores
 [1;36mCMT:[0m [1;35mgit log does not show stashes at all, --all shows only some, --decorate additionally show all reference names (e.g. branches, tags, stashes, etc.)[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit log --all --decorate[0m
 [33mcommit <HASH>[33m[33m ([m[1;35mrefs/stash[m[33m)[m
-Merge: be9fdf2 6944da1
+Merge: 068e790 8d84683
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
@@ -1222,7 +1222,7 @@ Date:   <DATE_TIME>
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
-    index on master: be9fdf2 adding git ignores
+    index on master: 068e790 adding git ignores
 
 [33mcommit <HASH>[33m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
 Author: user1 <user1@domain>
@@ -1249,7 +1249,7 @@ Date:   <DATE_TIME>
     initial commit
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit log --all --decorate $(git reflog show --format="%h" stash)[0m
 [33mcommit <HASH>[33m[33m ([m[1;35mrefs/stash[m[33m)[m
-Merge: be9fdf2 6944da1
+Merge: 068e790 8d84683
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
@@ -1259,10 +1259,10 @@ Date:   <DATE_TIME>
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
-    index on master: be9fdf2 adding git ignores
+    index on master: 068e790 adding git ignores
 
 [33mcommit <HASH>[33m
-Merge: be9fdf2 3ce6f34
+Merge: 068e790 c356667
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
@@ -1272,7 +1272,7 @@ Date:   <DATE_TIME>
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
-    index on master: be9fdf2 adding git ignores
+    index on master: 068e790 adding git ignores
 
 [33mcommit <HASH>[33m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
 Author: user1 <user1@domain>
@@ -1281,17 +1281,17 @@ Date:   <DATE_TIME>
     adding git ignores
 
 [33mcommit <HASH>[33m
-Merge: be9fdf2 ec55474
+Merge: 068e790 f42c55c
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
-    WIP on master: be9fdf2 adding git ignores
+    WIP on master: 068e790 adding git ignores
 
 [33mcommit <HASH>[33m
 Author: user1 <user1@domain>
 Date:   <DATE_TIME>
 
-    index on master: be9fdf2 adding git ignores
+    index on master: 068e790 adding git ignores
 
 [33mcommit <HASH>[33m[33m ([m[1;31morigin/master[m[33m, [m[1;31mlocal_shared_repo2/master[m[33m)[m
 Author: user1 <user1@domain>
@@ -1318,15 +1318,15 @@ fatal: unrecognized argument: --online
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit log --oneline --graph --decorate --all $(git reflog show --format="%h" stash)[0m
 *   [33m<HASH>[m[33m ([m[1;35mrefs/stash[m[33m)[m On master: another change to cra
 [31m|[m[32m\[m  
-[31m|[m * [33m<HASH>[m index on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m index on master: 068e790 adding git ignores
 [31m|[m[31m/[m  
 [31m|[m * [33m<HASH>[m On master: stash with certain name
 [31m|[m[31m/[m[34m|[m 
-[31m|[m * [33m<HASH>[m index on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m index on master: 068e790 adding git ignores
 [31m|[m[31m/[m  
-[31m|[m * [33m<HASH>[m WIP on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m WIP on master: 068e790 adding git ignores
 [31m|[m[31m/[m[36m|[m 
-[31m|[m * [33m<HASH>[m index on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m index on master: 068e790 adding git ignores
 [31m|[m[31m/[m  
 * [33m<HASH>[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m adding git ignores
 * [33m<HASH>[m[33m ([m[1;31morigin/master[m[33m, [m[1;31mlocal_shared_repo2/master[m[33m)[m commit message structure demo
@@ -1334,7 +1334,7 @@ fatal: unrecognized argument: --online
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit stash list[0m
 stash@{0}: On master: another change to cra
 stash@{1}: On master: stash with certain name
-stash@{2}: WIP on master: be9fdf2 adding git ignores
+stash@{2}: WIP on master: 068e790 adding git ignores
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
 [1;36mH2 : [0m [1;34m| aliases can be used to avoid remembering/typing long commands[0m
@@ -1353,7 +1353,7 @@ aliasanycmd = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; any_cmd.sh -- \"$@\"' --"
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit aliaslogallstash[0m
 *   [33m<HASH>[m[33m ([m[1;35mrefs/stash[m[33m)[m On master: another change to cra
 [31m|[m[32m\[m  
-[31m|[m * [33m<HASH>[m index on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m index on master: 068e790 adding git ignores
 [31m|[m[31m/[m  
 * [33m<HASH>[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m adding git ignores
 * [33m<HASH>[m[33m ([m[1;31morigin/master[m[33m, [m[1;31mlocal_shared_repo2/master[m[33m)[m commit message structure demo
@@ -1384,7 +1384,7 @@ Switched to branch 'feature1'
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliaslogall[0m
 *   [33m<HASH>[m[33m ([m[1;35mrefs/stash[m[33m)[m On master: another change to cra
 [31m|[m[32m\[m  
-[31m|[m * [33m<HASH>[m index on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m index on master: 068e790 adding git ignores
 [31m|[m[31m/[m  
 * [33m<HASH>[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature1[m[33m, [m[1;32mmaster[m[33m)[m adding git ignores
 * [33m<HASH>[m[33m ([m[1;31morigin/master[m[33m, [m[1;31mlocal_shared_repo2/master[m[33m)[m commit message structure demo
@@ -1412,7 +1412,7 @@ Switched to branch 'feature1'
 * [33m<HASH>[m some change in branch
 [31m|[m * [33m<HASH>[m[33m ([m[1;35mrefs/stash[m[33m)[m On master: another change to cra
 [31m|[m[31m/[m[33m|[m 
-[31m|[m * [33m<HASH>[m index on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m index on master: 068e790 adding git ignores
 [31m|[m[31m/[m  
 * [33m<HASH>[m[33m ([m[1;32mmaster[m[33m)[m adding git ignores
 * [33m<HASH>[m[33m ([m[1;31morigin/master[m[33m, [m[1;31mlocal_shared_repo2/master[m[33m)[m commit message structure demo
@@ -1457,10 +1457,10 @@ To have this happen automatically for branches without a tracking
 upstream, see 'push.autoSetupRemote' in 'git help config'.
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit branch -vva[0m
-* [32mfeature1                         [m 5d2e926 rename halve_adder to ha
+* [32mfeature1                         [m 2594d6f rename halve_adder to ha
   master                           [m <HASH> [[34morigin/master[m] adding git ignores
-  [31mremotes/local_shared_repo2/master[m 1154722 commit message structure demo
-  [31mremotes/origin/master            [m be9fdf2 adding git ignores
+  [31mremotes/local_shared_repo2/master[m feae4af commit message structure demo
+  [31mremotes/origin/master            [m 068e790 adding git ignores
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit push --set-upstream origin feature1[0m
 To ../test/local_shared_repo
  * [new branch]      feature1 -> feature1
@@ -1474,7 +1474,7 @@ Everything up-to-date
 * [33m<HASH>[m some change in branch
 [31m|[m * [33m<HASH>[m[33m ([m[1;35mrefs/stash[m[33m)[m On master: another change to cra
 [31m|[m[31m/[m[33m|[m 
-[31m|[m * [33m<HASH>[m index on master: be9fdf2 adding git ignores
+[31m|[m * [33m<HASH>[m index on master: 068e790 adding git ignores
 [31m|[m[31m/[m  
 * [33m<HASH>[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m adding git ignores
 * [33m<HASH>[m[33m ([m[1;31mlocal_shared_repo2/master[m[33m)[m commit message structure demo
@@ -1482,9 +1482,9 @@ Everything up-to-date
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit branch -vva[0m
 * [32mfeature1                         [m <HASH> [[34morigin/feature1[m] rename halve_adder to ha
   master                           [m <HASH> [[34morigin/master[m] adding git ignores
-  [31mremotes/local_shared_repo2/master[m 1154722 commit message structure demo
-  [31mremotes/origin/feature1          [m 5d2e926 rename halve_adder to ha
-  [31mremotes/origin/master            [m be9fdf2 adding git ignores
+  [31mremotes/local_shared_repo2/master[m feae4af commit message structure demo
+  [31mremotes/origin/feature1          [m 2594d6f rename halve_adder to ha
+  [31mremotes/origin/master            [m 068e790 adding git ignores
 
 [1;36mH1 : [0m [1;34m.====================================================================================[0m
 [1;36mH1 : [0m [1;34m| diff[0m
@@ -1769,7 +1769,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 [1;36mH2 : [0m [1;34m| commit hashes can also be used[0m
 [1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
 
-[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliasdiffall 0891fb255d4aa95b5479880d2b2e84d46f695f51..be9fdf2bb5a3faff04a8bec6e8165f9db8a06fae verilog/full_adder.v[0m
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliasdiffall 4696c867810087820b30053b34e18d0cddcbd5ed..068e790200f6cba4807c916d0dfef2e41d33e627 verilog/full_adder.v[0m
 [36mdiff --git a/verilog/full_adder.v b/verilog/full_adder.v[m
 [36mindex <HASH>..<HASH> 100644[m
 [36m--- a/verilog/full_adder.v[m
@@ -1852,8 +1852,8 @@ branch 'master' set up to track 'origin/master'.
 * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : commit message structure demo [m[m
 * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : initial commit [m[m[1;36mRUN:[0m [1;32muser2[0m @ [38;5;67;1m../test/user2_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit branch -vva[0m
 * [32mmaster                 [m <HASH> [[34morigin/master[m] adding git ignores
-  [31mremotes/origin/feature1[m 5d2e926 rename halve_adder to ha
-  [31mremotes/origin/master  [m be9fdf2 adding git ignores
+  [31mremotes/origin/feature1[m 2594d6f rename halve_adder to ha
+  [31mremotes/origin/master  [m 068e790 adding git ignores
 [1;36mRUN:[0m [1;32muser2[0m @ [38;5;67;1m../test/user2_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit status[0m
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -1957,7 +1957,7 @@ Fast-forward
 [31m|[m[31m/[m  
 [31m|[m * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : On master: another change to cra [m[33m ([m[1;35mrefs/stash[m[33m)[m[m
 [31m|[m[31m/[m[34m|[m 
-[31m|[m * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : index on master: be9fdf2 adding git ignores [m[m
+[31m|[m * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : index on master: 068e790 adding git ignores [m[m
 [31m|[m[31m/[m  
 * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : adding git ignores [m[m
 * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : commit message structure demo [m[33m ([m[1;31mlocal_shared_repo2/master[m[33m)[m[m
@@ -1970,7 +1970,7 @@ Fast-forward
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit checkout -b master_duplicate_for_merge master[0m
 Switched to a new branch 'master_duplicate_for_merge'
 [1;36mCMT:[0m [1;35mcreating branches works on references and also on commit hashes[0m
-[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master_duplicate_for_merge][0m $ [1;31mgit checkout -b master_duplicate_for_merge_using_hash 1f2a34c2b3530fe04c3630f72ed7e58083a95586[0m
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master_duplicate_for_merge][0m $ [1;31mgit checkout -b master_duplicate_for_merge_using_hash 4f33416d81f181dd1ea49071278e038244767683[0m
 Switched to a new branch 'master_duplicate_for_merge_using_hash'
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master_duplicate_for_merge_using_hash][0m $ [1;31mgit checkout master_duplicate_for_merge[0m
 Switched to branch 'master_duplicate_for_merge'
@@ -2025,7 +2025,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 [34;105m@@@ -1,12 -1,12 +1,34 @@@[m
 [34;102m++<<<<<<< HEAD[m
 [34;102m +module fa_carry_la ([m
-[34;102m++||||||| be9fdf2[m
+[34;102m++||||||| 068e790[m
 [34;102m++module full_adder_cla ([m
 [34;102m++=======[m
 [34;102m+ module full_adder_carry_lookahead_adder ([m
@@ -2034,7 +2034,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 [30m    input  wire b,[m
 [34;102m++<<<<<<< HEAD[m
 [34;102m +  input  wire carry_p../ prev carry_arry[m
-[34;102m++||||||| be9fdf2[m
+[34;102m++||||||| 068e790[m
 [34;102m++  input  wire cp../ prev carry[m
 [34;102m++=======[m
 [34;102m+   input  wire cp../ previous carry[m
@@ -2045,7 +2045,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 [34;102m +  output reg  p,[m
 [34;102m +  output reg  g,[m
 [34;102m +  output reg  carry);[m
-[34;102m++||||||| be9fdf2[m
+[34;102m++||||||| 068e790[m
 [34;102m++  output reg  p,[m
 [34;102m++  output reg  g,[m
 [34;102m++  output reg  c);[m
@@ -2288,12 +2288,12 @@ Could not apply <HASH>... reg to logic (conflicts with user2: c to carry_)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[HEAD][0m $ [1;31mgit status[0m
 [31minteractive rebase in progress; onto [m<HASH>
 Last commands done (6 commands done):
-   pick 0891fb2 changes to files
-   pick 3edbbe3 reg to logic (conflicts with user2: c to carry_)
+   pick 4696c86 changes to files
+   pick 6e09bad reg to logic (conflicts with user2: c to carry_)
   (see more in file .git/rebase-merge/done)
 Next commands to do (2 remaining commands):
-   pick ece3e62 prev to previous in comment (conflicts with user2: c to carry_)
-   pick 56ceb61 module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
+   pick 5e7090e prev to previous in comment (conflicts with user2: c to carry_)
+   pick 0275e2b module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
   (use "git rebase --edit-todo" to view and edit)
 You are currently rebasing branch 'feature1_duplicate_for_rebase' on '<HASH>'.
   (fix conflicts and then run "git rebase --continue")
@@ -2342,7 +2342,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 [34;102m +  output reg  p,[m
 [34;102m +  output reg  g,[m
 [34;102m +  output reg  carry);[m
-[34;102m++||||||| parent of 3edbbe3 (reg to logic (conflicts with user2: c to carry_))[m
+[34;102m++||||||| parent of 6e09bad (reg to logic (conflicts with user2: c to carry_))[m
 [34;102m++  output reg  p,[m
 [34;102m++  output reg  g,[m
 [34;102m++  output reg  c);[m
@@ -2350,7 +2350,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 [34;102m+   output logic  p,[m
 [34;102m+   output logic  g,[m
 [34;102m+   output logic  c);[m
-[34;102m++>>>>>>> 3edbbe3 (reg to logic (conflicts with user2: c to carry_))[m
+[34;102m++>>>>>>> 6e09bad (reg to logic (conflicts with user2: c to carry_))[m
 [30m  [m
 [30m    assign p = a ^ b../ propagate[m
 [30m    assign g = a & b../ generate[m
@@ -2443,12 +2443,12 @@ Recreated 1 merge conflict
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[HEAD][0m $ [1;31mgit status[0m
 [31minteractive rebase in progress; onto [m<HASH>
 Last commands done (6 commands done):
-   pick 0891fb2 changes to files
-   pick 3edbbe3 reg to logic (conflicts with user2: c to carry_)
+   pick 4696c86 changes to files
+   pick 6e09bad reg to logic (conflicts with user2: c to carry_)
   (see more in file .git/rebase-merge/done)
 Next commands to do (2 remaining commands):
-   pick ece3e62 prev to previous in comment (conflicts with user2: c to carry_)
-   pick 56ceb61 module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
+   pick 5e7090e prev to previous in comment (conflicts with user2: c to carry_)
+   pick 0275e2b module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
   (use "git rebase --edit-todo" to view and edit)
 You are currently rebasing branch 'feature1_duplicate_for_rebase' on '<HASH>'.
   (fix conflicts and then run "git rebase --continue")
@@ -2750,7 +2750,7 @@ Updated 1 path from the index
 [35m|[m[35m/[m  
 [35m|[m * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : On master: another change to cra [m[33m ([m[1;35mrefs/stash[m[33m)[m[m
 [35m|[m[35m/[m[1;31m|[m 
-[35m|[m * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : index on master: be9fdf2 adding git ignores [m[m
+[35m|[m * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : index on master: 068e790 adding git ignores [m[m
 [35m|[m[35m/[m  
 * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : adding git ignores [m[m
 * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : commit message structure demo [m[33m ([m[1;31mlocal_shared_repo2/master[m[33m)[m[m
@@ -2901,7 +2901,7 @@ From ../test/local_shared_repo
 [1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
+../test/user1_sb1  4f33416 [master]
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
 [1;36mH2 : [0m [1;34m| add worktree[0m
@@ -2912,13 +2912,13 @@ From ../test/local_shared_repo
 Preparing worktree (checking out 'feature1')
 HEAD is now at <HASH> module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mcat ../user1_sb2/.git[0m
 gitdir: ../test/user1_sb1/.git/worktrees/user1_sb2
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mtree .git/ > tree_of_.git_dir_after_worktree[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mdiff tree_of_.git_dir_before_worktree tree_of_.git_dir_after_worktree[0m
-317,333c317,342
+318,334c318,343
 < └── refs
 <     ├── heads
 <     │   ├── feature1
@@ -2963,10 +2963,10 @@ gitdir: ../test/user1_sb1/.git/worktrees/user1_sb2
 >         ├── logs
 >         │   └── HEAD
 >         └── ORIG_HEAD
-335c344
-< 133 directories, 200 files
+336c345
+< 134 directories, 200 files
 ---
-> 136 directories, 206 files
+> 137 directories, 206 files
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
 [1;36mH2 : [0m [1;34m| add worktree of branch already in use is not possible ![0m
@@ -2991,22 +2991,22 @@ fatal: 'feature1' is already used by worktree at '../test/user1_sb2'
 Preparing worktree (checking out 'feature1a')
 HEAD is now at <HASH> module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
-../test/user1_sb3  56ceb61 [feature1a]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
+../test/user1_sb3  0275e2b [feature1a]
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
 [1;36mH2 : [0m [1;34m| remove worktree[0m
 [1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
-../test/user1_sb3  56ceb61 [feature1a]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
+../test/user1_sb3  0275e2b [feature1a]
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit worktree remove ../user1_sb3[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
 [1;36mCMT:[0m [1;35musually this breaks as there are local uncommitted changes and/or local untracked files, use option -f instead[0m
 
 [1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
@@ -3021,17 +3021,17 @@ HEAD is now at <HASH> module name change from full_adder_cla to full_adder_carry
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mgit worktree remove ../user1_sb3[0m
 fatal: '../user1_sb3' contains modified or untracked files, use --force to delete it
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
-../test/user1_sb3  56ceb61 [feature1a]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
+../test/user1_sb3  0275e2b [feature1a]
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mcd ../user1_sb2[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree remove ../user1_sb3[0m
 fatal: '../user1_sb3' contains modified or untracked files, use --force to delete it
 [1;36mCMT:[0m [1;35mfails because there is a local file that is not tracked[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
-../test/user1_sb3  56ceb61 [feature1a]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
+../test/user1_sb3  0275e2b [feature1a]
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mcd ../user1_sb3[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mecho 'some more changes' >> verilog/full_adder.v[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mgit status[0m
@@ -3051,15 +3051,15 @@ no changes added to commit (use "git add" and/or "git commit -a")
 fatal: '../user1_sb3' contains modified or untracked files, use --force to delete it
 [1;36mCMT:[0m [1;35mfails because there is a local file that is not tracked and a changed file (changed file alone would also be enough !)[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
-../test/user1_sb3  56ceb61 [feature1a]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
+../test/user1_sb3  0275e2b [feature1a]
 [1;36mCMT:[0m [1;35mfinally force removal does the trick[0m
 [1;36mCMT:[0m [1;35mRECOMMENDATAION: Double check contents before delete as there is no way to recover from this using git.[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree remove --force ../user1_sb3[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
 
 [1;36mH3 : [0m [1;34m.-----------------------------[0m
 [1;36mH3 : [0m [1;34m| alternative use stash to save changes before removing worktree[0m
@@ -3072,25 +3072,25 @@ HEAD is now at <HASH> module name change from full_adder_cla to full_adder_carry
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mdd if=/dev/urandom bs=1024 count=10000 of=test_10MB conv=notrunc[0m
 10000+0 records in
 10000+0 records out
-10240000 bytes (10 MB, 9.8 MiB) copied, 0.309394 s, 33.1 MB/s
+10240000 bytes (10 MB, 9.8 MiB) copied, 0.353966 s, 28.9 MB/s
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mecho 'some more changes' >> verilog/full_adder.v[0m
 [1;36mCMT:[0m [1;35muse stash to save all changes including untracked files[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mdu -sh ../*[0m
-394K	../local_shared_repo
+416K	../local_shared_repo
 177K	../local_shared_repo2
 1.3M	../user1_sb1
 48K	../user1_sb2
 9.9M	../user1_sb3
-454K	../user2_sb1
+493K	../user2_sb1
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mgit stash --include-untracked[0m
-Saved working directory and index state WIP on feature1a: 56ceb61 module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
+Saved working directory and index state WIP on feature1a: 0275e2b module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mdu -sh ../*[0m
-402K	../local_shared_repo
+424K	../local_shared_repo
 177K	../local_shared_repo2
 1.3M	../user1_sb1
 48K	../user1_sb2
 44K	../user1_sb3
-486K	../user2_sb1
+509K	../user2_sb1
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb3[0m [38;5;55;1m[feature1a][0m $ [1;31mcd ../user1_sb2[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit status[0m
 On branch feature1
@@ -3100,8 +3100,8 @@ Your branch is ahead of 'origin/feature1' by 4 commits.
 nothing to commit, working tree clean
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree remove ../user1_sb3[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
 [1;36mCMT:[0m [1;35mrestore stored data on different worktree including untracked files (--include-untracked)[0m
 [1;36mCMT:[0m [1;35mnote that this is also possible with tracked only (without option)[0m
 [1;36mCMT:[0m [1;35mnote that this is also possible with untracked only (--only-untracked)[0m
@@ -3147,13 +3147,13 @@ Preparing worktree (checking out 'feature1a')
 HEAD is now at <HASH> module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mrm -rf ../user1_sb3[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
-../test/user1_sb3  56ceb61 [feature1a] prunable
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
+../test/user1_sb3  0275e2b [feature1a] prunable
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree prune[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb2[0m [38;5;55;1m[feature1][0m $ [1;31mgit worktree list[0m
-../test/user1_sb1  1f2a34c [master]
-../test/user1_sb2  56ceb61 [feature1]
+../test/user1_sb1  4f33416 [master]
+../test/user1_sb2  0275e2b [feature1]
 
 [1;36mH3 : [0m [1;34m.-----------------------------[0m
 [1;36mH3 : [0m [1;34m| cleanup[0m
@@ -3346,7 +3346,7 @@ module full_adder_cla (
   assign c = gp | pp & cp;
 
 endmodule
-[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit show 56ceb61b4b1a830634a6352565e12aced48ae1ef:verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit show 0275e2bf007476ef5db7d16fa3cf08895a5b97ea:verilog/full_adder_cla.v[0m
 module full_adder_carry_lookahead_adder (
   input  wire a,
   input  wire b,
@@ -3368,54 +3368,54 @@ endmodule
 [1;36mH1 : [0m [1;34m'====================================================================================[0m
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit blame verilog/full_adder_cla.v[0m
-de407475 (user2 <DATE> <TIME> +0200  1) module fa_carry_la (
-^0b7346e (user1 <DATE> <TIME> +0200  2)   input  wire a,
-^0b7346e (user1 <DATE> <TIME> +0200  3)   input  wire b,
-de407475 (user2 <DATE> <TIME> +0200  4)   input  wire carry_p../ prev carry_arry
-^0b7346e (user1 <DATE> <TIME> +0200  5)   input  wire pp../ previous propagate
-^0b7346e (user1 <DATE> <TIME> +0200  6)   input  wire gp../ previous generate
-^0b7346e (user1 <DATE> <TIME> +0200  7)   output reg  p,
-^0b7346e (user1 <DATE> <TIME> +0200  8)   output reg  g,
-de407475 (user2 <DATE> <TIME> +0200  9)   output reg  carry);
-^0b7346e (user1 <DATE> <TIME> +0200 10) 
-^0b7346e (user1 <DATE> <TIME> +0200 11)   assign p = a ^ b../ propagate
-^0b7346e (user1 <DATE> <TIME> +0200 12)   assign g = a & b../ generate
-de407475 (user2 <DATE> <TIME> +0200 13)   assign carry = gp | pp & carry_p;
-^0b7346e (user1 <DATE> <TIME> +0200 14) 
-1f2a34c2 (user2 <DATE> <TIME> +0200 15) endmodul../ some commen../ some note
+bdbb241b (user2 <DATE> <TIME> +0200  1) module fa_carry_la (
+^4e24e01 (user1 <DATE> <TIME> +0200  2)   input  wire a,
+^4e24e01 (user1 <DATE> <TIME> +0200  3)   input  wire b,
+bdbb241b (user2 <DATE> <TIME> +0200  4)   input  wire carry_p../ prev carry_arry
+^4e24e01 (user1 <DATE> <TIME> +0200  5)   input  wire pp../ previous propagate
+^4e24e01 (user1 <DATE> <TIME> +0200  6)   input  wire gp../ previous generate
+^4e24e01 (user1 <DATE> <TIME> +0200  7)   output reg  p,
+^4e24e01 (user1 <DATE> <TIME> +0200  8)   output reg  g,
+bdbb241b (user2 <DATE> <TIME> +0200  9)   output reg  carry);
+^4e24e01 (user1 <DATE> <TIME> +0200 10) 
+^4e24e01 (user1 <DATE> <TIME> +0200 11)   assign p = a ^ b../ propagate
+^4e24e01 (user1 <DATE> <TIME> +0200 12)   assign g = a & b../ generate
+bdbb241b (user2 <DATE> <TIME> +0200 13)   assign carry = gp | pp & carry_p;
+^4e24e01 (user1 <DATE> <TIME> +0200 14) 
+4f33416d (user2 <DATE> <TIME> +0200 15) endmodul../ some commen../ some note
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31msed -i "s,previous ,prev ,g" verilog/full_adder_cla.v[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit blame verilog/full_adder_cla.v[0m
-de407475 (user2             <DATE> <TIME> +0200  1) module fa_carry_la (
-^0b7346e (user1             <DATE> <TIME> +0200  2)   input  wire a,
-^0b7346e (user1             <DATE> <TIME> +0200  3)   input  wire b,
-de407475 (user2             <DATE> <TIME> +0200  4)   input  wire carry_p../ prev carry_arry
+bdbb241b (user2             <DATE> <TIME> +0200  1) module fa_carry_la (
+^4e24e01 (user1             <DATE> <TIME> +0200  2)   input  wire a,
+^4e24e01 (user1             <DATE> <TIME> +0200  3)   input  wire b,
+bdbb241b (user2             <DATE> <TIME> +0200  4)   input  wire carry_p../ prev carry_arry
 00000000 (Not Committed Yet <DATE> <TIME> +0200  5)   input  wire pp../ prev propagate
 00000000 (Not Committed Yet <DATE> <TIME> +0200  6)   input  wire gp../ prev generate
-^0b7346e (user1             <DATE> <TIME> +0200  7)   output reg  p,
-^0b7346e (user1             <DATE> <TIME> +0200  8)   output reg  g,
-de407475 (user2             <DATE> <TIME> +0200  9)   output reg  carry);
-^0b7346e (user1             <DATE> <TIME> +0200 10) 
-^0b7346e (user1             <DATE> <TIME> +0200 11)   assign p = a ^ b../ propagate
-^0b7346e (user1             <DATE> <TIME> +0200 12)   assign g = a & b../ generate
-de407475 (user2             <DATE> <TIME> +0200 13)   assign carry = gp | pp & carry_p;
-^0b7346e (user1             <DATE> <TIME> +0200 14) 
-1f2a34c2 (user2             <DATE> <TIME> +0200 15) endmodul../ some commen../ some note
+^4e24e01 (user1             <DATE> <TIME> +0200  7)   output reg  p,
+^4e24e01 (user1             <DATE> <TIME> +0200  8)   output reg  g,
+bdbb241b (user2             <DATE> <TIME> +0200  9)   output reg  carry);
+^4e24e01 (user1             <DATE> <TIME> +0200 10) 
+^4e24e01 (user1             <DATE> <TIME> +0200 11)   assign p = a ^ b../ propagate
+^4e24e01 (user1             <DATE> <TIME> +0200 12)   assign g = a & b../ generate
+bdbb241b (user2             <DATE> <TIME> +0200 13)   assign carry = gp | pp & carry_p;
+^4e24e01 (user1             <DATE> <TIME> +0200 14) 
+4f33416d (user2             <DATE> <TIME> +0200 15) endmodul../ some commen../ some note
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[master][0m $ [1;31mgit blame HEAD verilog/full_adder_cla.v[0m
-de407475 (user2 <DATE> <TIME> +0200  1) module fa_carry_la (
-^0b7346e (user1 <DATE> <TIME> +0200  2)   input  wire a,
-^0b7346e (user1 <DATE> <TIME> +0200  3)   input  wire b,
-de407475 (user2 <DATE> <TIME> +0200  4)   input  wire carry_p../ prev carry_arry
-^0b7346e (user1 <DATE> <TIME> +0200  5)   input  wire pp../ previous propagate
-^0b7346e (user1 <DATE> <TIME> +0200  6)   input  wire gp../ previous generate
-^0b7346e (user1 <DATE> <TIME> +0200  7)   output reg  p,
-^0b7346e (user1 <DATE> <TIME> +0200  8)   output reg  g,
-de407475 (user2 <DATE> <TIME> +0200  9)   output reg  carry);
-^0b7346e (user1 <DATE> <TIME> +0200 10) 
-^0b7346e (user1 <DATE> <TIME> +0200 11)   assign p = a ^ b../ propagate
-^0b7346e (user1 <DATE> <TIME> +0200 12)   assign g = a & b../ generate
-de407475 (user2 <DATE> <TIME> +0200 13)   assign carry = gp | pp & carry_p;
-^0b7346e (user1 <DATE> <TIME> +0200 14) 
-1f2a34c2 (user2 <DATE> <TIME> +0200 15) endmodul../ some commen../ some note
+bdbb241b (user2 <DATE> <TIME> +0200  1) module fa_carry_la (
+^4e24e01 (user1 <DATE> <TIME> +0200  2)   input  wire a,
+^4e24e01 (user1 <DATE> <TIME> +0200  3)   input  wire b,
+bdbb241b (user2 <DATE> <TIME> +0200  4)   input  wire carry_p../ prev carry_arry
+^4e24e01 (user1 <DATE> <TIME> +0200  5)   input  wire pp../ previous propagate
+^4e24e01 (user1 <DATE> <TIME> +0200  6)   input  wire gp../ previous generate
+^4e24e01 (user1 <DATE> <TIME> +0200  7)   output reg  p,
+^4e24e01 (user1 <DATE> <TIME> +0200  8)   output reg  g,
+bdbb241b (user2 <DATE> <TIME> +0200  9)   output reg  carry);
+^4e24e01 (user1 <DATE> <TIME> +0200 10) 
+^4e24e01 (user1 <DATE> <TIME> +0200 11)   assign p = a ^ b../ propagate
+^4e24e01 (user1 <DATE> <TIME> +0200 12)   assign g = a & b../ generate
+bdbb241b (user2 <DATE> <TIME> +0200 13)   assign carry = gp | pp & carry_p;
+^4e24e01 (user1 <DATE> <TIME> +0200 14) 
+4f33416d (user2 <DATE> <TIME> +0200 15) endmodul../ some commen../ some note
 
 [1;36mH1 : [0m [1;34m.====================================================================================[0m
 [1;36mH1 : [0m [1;34m| log follow[0m
@@ -4035,7 +4035,7 @@ Your branch is ahead of 'origin/feature1' by 4 commits.
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit commit --amend -m "updated commit message of top most commit"[0m
 [feature1  <HASH>] updated commit message of top most commit
- Date: Sat Sep 20 <TIME> 2025 +0200
+ Date: Thu Sep 25 <TIME> 2025 +0200
  1 file changed, 1 insertion(+), 1 deletion(-)
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliaslog2[0m
 * [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : updated commit message of top most commit [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature1[m[33m)[m[m
@@ -4065,9 +4065,9 @@ Your branch is ahead of 'origin/feature1' by 4 commits.
 [1;36mCMT:[0m [1;35m  i CHANGED MESSAGE <Escape>:wq<enter>[0m
 Press Enter to continue[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit rebase -i feature1^[0m
 Vim: Warning: Output is not to a terminal
-[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;50r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[50;1H"../test/user1_sb1/.git/rebase-merge/git-rebase-todo" 32L, 1535B[1;1H[32mpick[m [36mb906918[m[31m updated commit message of top most commit[m
+[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;50r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[50;1H"../test/user1_sb1/.git/rebase-merge/git-rebase-todo" 32L, 1535B[1;1H[32mpick[m [36meee73b2[m[31m updated commit message of top most commit[m
 
-[34m# Rebase [m[36mece3e62[m[34m..[m[36mb906918[m[34m onto [m[36mece3e62[m[34m (1 command)
+[34m# Rebase [m[36m5e7090e[m[34m..[m[36meee73b2[m[34m onto [m[36m5e7090e[m[34m (1 command)
 #
 # Commands:
 # p, pick <commit> = use commit
@@ -4097,20 +4097,20 @@ Vim: Warning: Output is not to a terminal
 #
 # However, if you remove everything, the rebase will be aborted.
 #[m
-[94m~                                                                                                                                                                                                       [34;1H~                                                                                                                                                                                                       [35;1H~                                                                                                                                                                                                       [36;1H~                                                                                                                                                                                                       [37;1H~                                                                                                                                                                                                       [38;1H~                                                                                                                                                                                                       [39;1H~                                                                                                                                                                                                       [40;1H~                                                                                                                                                                                                       [41;1H~                                                                                                                                                                                                       [42;1H~                                                                                                                                                                                                       [43;1H~                                                                                                                                                                                                       [44;1H~                                                                                                                                                                                                       [45;1H~                                                                                                                                                                                                       [46;1H~                                                                                                                                                                                                       [47;1H~                                                                                                                                                                                                       [48;1H~                                                                                                                                                                                                       [49;1H~                                                                                                                                                                                                       [m[50;183H1,1[11CAll]2;git-rebase-todo (../test/user1_sb1/.git/rebase-merge) - VIM[1;1H[?25h[?4m[?25l[50;1H[1m-- INSERT --[m[50;13H[K[50;183H1,1[11CAll[1;1H[?25h[?25lrpick [36mb906918[m[31m updated commit message of top most commit[m[50;185H2]2;git-rebase-todo + (../test/user1_sb1/.git/rebase-merge) - VIM[1;2H[?25h[?25lepick [36mb906918[m[31m updated commit message of top most commit[m[50;185H3[1;3H[?25h[?25lwpick [36mb906918[m[31m updated commit message of top most commit[m[50;185H4[1;4H[?25h[?25lopick [36mb906918[m[31m updated commit message of top most commit[m[50;185H5[1;5H[?25h[?25lrpick [36mb906918[m[31m updated commit message of top most commit[m[50;185H6[1;6H[?25h[?25ldpick [36mb906918[m[31m updated commit message of top most commit[m[50;185H7[1;7H[?25h[?25lick [36mb906918[m[31m updated commit message of top most commit[m[1;60H[K[1;7H[?25h[?25lck [36mb906918[m[31m updated commit message of top most commit[m[1;59H[K[1;7H[?25h[?25lk [36mb906918[m[31m updated commit message of top most commit[m[1;58H[K[1;7H[?25h[?25l[38;5;130mreword[m [36mb906918[m[31m updated commit message of top most commit[m[1;57H[K[1;7H[?25h[50;1H[K[1;6H[?25l[50;183H1,6[11CAll[1;6H[?25h[?25l[50;183H[K[50;1H:[?25hwq[?25l[?2004l[>4;m".git/rebase-merge/git-rebase-todo" 32L, 1537B written]2; [23;2t[23;1t[22;2t[22;1t[23;2t[23;1t
+[94m~                                                                                                                                                                                                       [34;1H~                                                                                                                                                                                                       [35;1H~                                                                                                                                                                                                       [36;1H~                                                                                                                                                                                                       [37;1H~                                                                                                                                                                                                       [38;1H~                                                                                                                                                                                                       [39;1H~                                                                                                                                                                                                       [40;1H~                                                                                                                                                                                                       [41;1H~                                                                                                                                                                                                       [42;1H~                                                                                                                                                                                                       [43;1H~                                                                                                                                                                                                       [44;1H~                                                                                                                                                                                                       [45;1H~                                                                                                                                                                                                       [46;1H~                                                                                                                                                                                                       [47;1H~                                                                                                                                                                                                       [48;1H~                                                                                                                                                                                                       [49;1H~                                                                                                                                                                                                       [m[50;183H1,1[11CAll]2;git-rebase-todo (../test/user1_sb1/.git/rebase-merge) - VIM[1;1H[?25h[?4m[?25l[50;1H[1m-- INSERT --[m[50;13H[K[50;183H1,1[11CAll[1;1H[?25h[?25lrpick [2C[36me73b2[m[31m updated commit message of top most commit[m[50;185H2]2;git-rebase-todo + (../test/user1_sb1/.git/rebase-merge) - VIM[1;2H[?25h[?25lepick [2C[36me73b2[m[31m updated commit message of top most commit[m[50;185H3[1;3H[?25h[?25lwpick [2C[36me73b2[m[31m updated commit message of top most commit[m[50;185H4[1;4H[?25h[?25lopick [2C[36me73b2[m[31m updated commit message of top most commit[m[50;185H5[1;5H[?25h[?25lrpick [2C[36me73b2[m[31m updated commit message of top most commit[m[50;185H6[1;6H[?25h[?25ldpick [2C[36me73b2[m[31m updated commit message of top most commit[m[50;185H7[1;7H[?25h[?25lick [36meee73b2[m[31m updated commit message of top most commit[m[1;60H[K[1;7H[?25h[?25lck [36meee73b2[m[31m updated commit message of top most commit[m[1;59H[K[1;7H[?25h[?25lk [36meee73b2[m[31m updated commit message of top most commit[m[1;58H[K[1;7H[?25h[?25l[38;5;130mreword[m [36meee73b2[m[31m updated commit message of top most commit[m[1;57H[K[1;7H[?25h[50;1H[K[1;6H[?25l[50;183H1,6[11CAll[1;6H[?25h[?25l[50;183H[K[50;1H:[?25hwq[?25l[?2004l[>4;m".git/rebase-merge/git-rebase-todo" 32L, 1537B written]2; [23;2t[23;1t[22;2t[22;1t[23;2t[23;1t
 [?1004l[?2004l[?1l>[?1049l[23;0;0t[?25h[>4;mRebasing (1/1)Vim: Warning: Output is not to a terminal
 [?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;50r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[50;1H"../test/user1_sb1/.git/COMMIT_EDITMSG" 20L, 642B[1;1H[38;5;130mupdated commit message of top most commit[m
 
 [34m# Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 #
-# [m[35mDate:[m[34m      Sat Sep 20 <TIME> 2025 +0200
+# [m[35mDate:[m[34m      Thu Sep 25 <TIME> 2025 +0200
 #
-# interactive rebase in progress; onto ece3e62
+# interactive rebase in progress; onto 5e7090e
 # [m[35mLast command done (1 command done):[m
-[34m#    reword b906918 updated commit message of top most commit
+[34m#    reword eee73b2 updated commit message of top most commit
 # No commands remaining.
-# You are currently editing a commit while rebasing branch 'feature1' on 'ece3e62'.
+# You are currently editing a commit while rebasing branch 'feature1' on '5e7090e'.
 #
 # [m[35mChanges to be committed:[m
 [34m#       [m[32mmodified[m[34m:   [m[31mverilog/full_adder_cla.v[m
@@ -4119,9 +4119,9 @@ Vim: Warning: Output is not to a terminal
 [34m#       [m[31mtree_of_.git_dir_after_worktree[m
 [34m#       [m[31mtree_of_.git_dir_before_worktree[m
 [34m#[m
-[94m~                                                                                                                                                                                                       [22;1H~                                                                                                                                                                                                       [23;1H~                                                                                                                                                                                                       [24;1H~                                                                                                                                                                                                       [25;1H~                                                                                                                                                                                                       [26;1H~                                                                                                                                                                                                       [27;1H~                                                                                                                                                                                                       [28;1H~                                                                                                                                                                                                       [29;1H~                                                                                                                                                                                                       [30;1H~                                                                                                                                                                                                       [31;1H~                                                                                                                                                                                                       [32;1H~                                                                                                                                                                                                       [33;1H~                                                                                                                                                                                                       [34;1H~                                                                                                                                                                                                       [35;1H~                                                                                                                                                                                                       [36;1H~                                                                                                                                                                                                       [37;1H~                                                                                                                                                                                                       [38;1H~                                                                                                                                                                                                       [39;1H~                                                                                                                                                                                                       [40;1H~                                                                                                                                                                                                       [41;1H~                                                                                                                                                                                                       [42;1H~                                                                                                                                                                                                       [43;1H~                                                                                                                                                                                                       [44;1H~                                                                                                                                                                                                       [45;1H~                                                                                                                                                                                                       [46;1H~                                                                                                                                                                                                       [47;1H~                                                                                                                                                                                                       [48;1H~                                                                                                                                                                                                       [49;1H~                                                                                                                                                                                                       [m[50;183H1,1[11CAll]2;COMMIT_EDITMSG (../test/user1_sb1/.git) - VIM[1;1H[?25h[?4m[?25l[50;1H[1m-- INSERT --[m[50;13H[K[50;183H1,1[11CAll[1;1H[?25h[?25l[38;5;130mCupdated commit message of top most commit[m[50;185H2]2;COMMIT_EDITMSG + (../test/user1_sb1/.git) - VIM[1;2H[?25h[?25l[38;5;130mHupdated commit message of top most commit[m[50;185H3[1;3H[?25h[?25l[38;5;130mAupdated commit message of top most commit[m[50;185H4[1;4H[?25h[?25l[38;5;130mNupdated commit message of top most commit[m[50;185H5[1;5H[?25h[?25l[38;5;130mGupdated commit message of top most commit[m[50;185H6[1;6H[?25h[?25l[38;5;130mEupdated commit message of top most commit[m[50;185H7[1;7H[?25h[?25l[38;5;130mDupdated commit message of top most commit[m[50;185H8[1;8H[?25h[?25l[38;5;130m updated commit message of top most commit[m[50;185H9[1;9H[?25h[?25l[38;5;130mMupdated commit message of top most commit[m[50;185H10[1;10H[?25h[?25l[38;5;130mEupdated commit message of top most commi[mt[50;186H1[1;11H[?25h[?25l[38;5;130mSupdated commit message of top most comm[mit[50;186H2[1;12H[?25h[?25l[38;5;130mSupdated commit message of top most co[m[1Cmit[50;186H3[1;13H[?25h[?25l[38;5;130mAupdated commit message of top most co[mmmit[50;186H4[1;14H[?25h[?25l[38;5;130mGupdated commit message of top most c[mommit[50;186H5[1;15H[?25h[?25l[38;5;130mEupdated commit message of top most [mcommit[50;186H6[1;16H[?25h[?25l[38;5;130m updated commit message of top most[m commit[50;186H7[1;17H[?25h[50;1H[K[1;16H[?25l[50;183H1,16[10CAll[1;16H[?25h[?25l[50;183H[K[50;1H:[?25hwq[?25l[?2004l[>4;m".git/COMMIT_EDITMSG" 20L, 658B written]2; [23;2t[23;1t[22;2t[22;1t[23;2t[23;1t
-[?1004l[?2004l[?1l>[?1049l[23;0;0t[?25h[>4;m[detached HEAD 14c592c] CHANGED MESSAGE updated commit message of top most commit
- Date: Sat Sep 20 <TIME> 2025 +0200
+[94m~                                                                                                                                                                                                       [22;1H~                                                                                                                                                                                                       [23;1H~                                                                                                                                                                                                       [24;1H~                                                                                                                                                                                                       [25;1H~                                                                                                                                                                                                       [26;1H~                                                                                                                                                                                                       [27;1H~                                                                                                                                                                                                       [28;1H~                                                                                                                                                                                                       [29;1H~                                                                                                                                                                                                       [30;1H~                                                                                                                                                                                                       [31;1H~                                                                                                                                                                                                       [32;1H~                                                                                                                                                                                                       [33;1H~                                                                                                                                                                                                       [34;1H~                                                                                                                                                                                                       [35;1H~                                                                                                                                                                                                       [36;1H~                                                                                                                                                                                                       [37;1H~                                                                                                                                                                                                       [38;1H~                                                                                                                                                                                                       [39;1H~                                                                                                                                                                                                       [40;1H~                                                                                                                                                                                                       [41;1H~                                                                                                                                                                                                       [42;1H~                                                                                                                                                                                                       [43;1H~                                                                                                                                                                                                       [44;1H~                                                                                                                                                                                                       [45;1H~                                                                                                                                                                                                       [46;1H~                                                                                                                                                                                                       [47;1H~                                                                                                                                                                                                       [48;1H~                                                                                                                                                                                                       [49;1H~                                                                                                                                                                                                       [m[50;183H1,1[11CAll]2;COMMIT_EDITMSG (../test/user1_sb1/.git) - VIM[1;1H[?25h[?4m[?25l[50;1H[1m-- INSERT --[m[50;13H[K[50;183H1,1[11CAll[1;1H[?25h[?25l[38;5;130mCupdated commit message of top most commit[m[50;185H2]2;COMMIT_EDITMSG + (../test/user1_sb1/.git) - VIM[1;2H[?25h[?25l[38;5;130mHupdated commit message of top most commit[m[50;185H3[1;3H[?25h[?25l[38;5;130mAupdated commit message of top most commit[m[50;185H4[1;4H[?25h[?25l[38;5;130mNupdated commit message of top most commit[m[50;185H5[1;5H[?25h[?25l[38;5;130mGupdated commit message of top most commit[m[50;185H6[1;6H[?25h[?25l[38;5;130mEupdated commit message of top most commit[m[50;185H7[1;7H[?25h[?25l[38;5;130mDupdated commit message of top most commit[m[50;185H8[1;8H[?25h[?25l[38;5;130m updated commit message of top most commit[m[50;185H9[1;9H[?25h[?25l[38;5;130mMupdated commit message of top most commit[m[50;185H10[1;10H[?25h[?25l[38;5;130mupdated commit message of top most commit[m[1;50H[K[50;185H9 [1;9H[?25h[?25l[38;5;130mupdated commit message of top most commit[m[1;49H[K[50;185H8[1;8H[?25h[?25l[38;5;130mupdated commit message of top most commit[m[1;48H[K[50;185H7[1;7H[?25h[?25l[38;5;130m updated commit message of top most commit[m[50;185H8[1;8H[?25h[?25l[38;5;130mupdated commit message of top most commit[m[1;48H[K[50;185H7[1;7H[?25h[?25l[38;5;130mDupdated commit message of top most commit[m[50;185H8[1;8H[?25h[?25l[38;5;130m updated commit message of top most commit[m[50;185H9[1;9H[?25h[?25l[38;5;130mMupdated commit message of top most commit[m[50;185H10[1;10H[?25h[?25l[38;5;130mEupdated commit message of top most commi[mt[50;186H1[1;11H[?25h[?25l[38;5;130mSupdated commit message of top most comm[mit[50;186H2[1;12H[?25h[?25l[38;5;130mSupdated commit message of top most co[m[1Cmit[50;186H3[1;13H[?25h[?25l[38;5;130mAupdated commit message of top most co[mmmit[50;186H4[1;14H[?25h[?25l[38;5;130mGupdated commit message of top most c[mommit[50;186H5[1;15H[?25h[?25l[38;5;130mEupdated commit message of top most [mcommit[50;186H6[1;16H[?25h[?25l[38;5;130m updated commit message of top most[m commit[50;186H7[1;17H[?25h[50;1H[K[1;16H[?25l[50;183H1,16[10CAll[1;16H[?25h[?25l[50;183H[K[50;1H:[?25hwq[?25l[?2004l[>4;m".git/COMMIT_EDITMSG" 20L, 658B written]2; [23;2t[23;1t[22;2t[22;1t[23;2t[23;1t
+[?1004l[?2004l[?1l>[?1049l[23;0;0t[?25h[>4;m[detached HEAD 2b945ff] CHANGED MESSAGE updated commit message of top most commit
+ Date: Thu Sep 25 <TIME> 2025 +0200
  1 file changed, 1 insertion(+), 1 deletion(-)
 [KSuccessfully rebased and updated refs/heads/feature1.
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliaslog2[0m
@@ -4199,85 +4199,85 @@ Vim: Warning: Output is not to a terminal
 [33m<HASH>[m HEAD@{53}: commit: commit message structure demo
 [33m<HASH>[m HEAD@{54}: commit (initial): initial commit
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mGIT_PAGER=cat git reflog --relative-date[0m
-[33m<HASH>[m HEAD@{8 seconds ago}: rebase (finish): returning to refs/heads/feature1
+[33m<HASH>[m HEAD@{9 seconds ago}: rebase (finish): returning to refs/heads/feature1
 [33m<HASH>[m HEAD@{8 seconds ago}: rebase (reword): CHANGED MESSAGE updated commit message of top most commit
-[33m<HASH>[m HEAD@{8 seconds ago}: rebase: fast-forward
-[33m<HASH>[m HEAD@{8 seconds ago}: rebase (start): checkout feature1^
-[33m<HASH>[m HEAD@{2 minutes ago}: commit (amend): updated commit message of top most commit
-[33m<HASH>[m HEAD@{2 minutes ago}: checkout: moving from master to feature1
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1_duplicate_for_rebase to master
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (finish): returning to refs/heads/feature1_duplicate_for_rebase
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (continue): REBASE CONFLICT 3/3:
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (continue): REBASE CONFLICT 2/3:
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (continue): REBASE CONFLICT 1/3:
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): changes to files
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): rename halve_adder to ha
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): rename full_adder to fa
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): another change in branch
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): some change in branch
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (start): checkout master
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (abort): returning to refs/heads/feature1_duplicate_for_rebase
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): changes to files
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): rename halve_adder to ha
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): rename full_adder to fa
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): another change in branch
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (pick): some change in branch
-[33m<HASH>[m HEAD@{3 minutes ago}: rebase (start): checkout master
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1_duplicate_for_rebase to feature1_duplicate_for_rebase
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1 to feature1_duplicate_for_rebase
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1_duplicate_for_merge to feature1
-[33m<HASH>[m HEAD@{3 minutes ago}: commit (merge): Merge branch "master" into feature1_duplicate_for_merge
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1_duplicate_for_merge to feature1_duplicate_for_merge
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1 to feature1_duplicate_for_merge
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from master_duplicate_for_merge to feature1
-[33m<HASH>[m HEAD@{3 minutes ago}: commit (merge): Merge branch "feature1" into master_duplicate_for_merge
-[33m<HASH>[m HEAD@{3 minutes ago}: reset: moving to HEAD
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from master_duplicate_for_merge_using_hash to master_duplicate_for_merge
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from master_duplicate_for_merge to master_duplicate_for_merge_using_hash
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from master to master_duplicate_for_merge
-[33m<HASH>[m HEAD@{3 minutes ago}: pull: Fast-forward
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1 to master
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1 to feature1
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: prev to previous in comment (conflicts with user2: c to carry_)
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: reg to logic (conflicts with user2: c to carry_)
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: changes to files
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from master to feature1
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from feature1 to master
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: rename halve_adder to ha
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: rename full_adder to fa
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: another change in branch
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: some change in branch
-[33m<HASH>[m HEAD@{3 minutes ago}: checkout: moving from master to feature1
-[33m<HASH>[m HEAD@{3 minutes ago}: reset: moving to HEAD
-[33m<HASH>[m HEAD@{3 minutes ago}: reset: moving to HEAD
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: adding git ignores
-[33m<HASH>[m HEAD@{3 minutes ago}: commit: commit message structure demo
-[33m<HASH>[m HEAD@{3 minutes ago}: commit (initial): initial commit
+[33m<HASH>[m HEAD@{9 seconds ago}: rebase: fast-forward
+[33m<HASH>[m HEAD@{9 seconds ago}: rebase (start): checkout feature1^
+[33m<HASH>[m HEAD@{20 seconds ago}: commit (amend): updated commit message of top most commit
+[33m<HASH>[m HEAD@{20 seconds ago}: checkout: moving from master to feature1
+[33m<HASH>[m HEAD@{39 seconds ago}: checkout: moving from feature1_duplicate_for_rebase to master
+[33m<HASH>[m HEAD@{40 seconds ago}: rebase (finish): returning to refs/heads/feature1_duplicate_for_rebase
+[33m<HASH>[m HEAD@{40 seconds ago}: rebase (continue): REBASE CONFLICT 3/3:
+[33m<HASH>[m HEAD@{41 seconds ago}: rebase (continue): REBASE CONFLICT 2/3:
+[33m<HASH>[m HEAD@{42 seconds ago}: rebase (continue): REBASE CONFLICT 1/3:
+[33m<HASH>[m HEAD@{43 seconds ago}: rebase (pick): changes to files
+[33m<HASH>[m HEAD@{43 seconds ago}: rebase (pick): rename halve_adder to ha
+[33m<HASH>[m HEAD@{43 seconds ago}: rebase (pick): rename full_adder to fa
+[33m<HASH>[m HEAD@{43 seconds ago}: rebase (pick): another change in branch
+[33m<HASH>[m HEAD@{44 seconds ago}: rebase (pick): some change in branch
+[33m<HASH>[m HEAD@{44 seconds ago}: rebase (start): checkout master
+[33m<HASH>[m HEAD@{45 seconds ago}: rebase (abort): returning to refs/heads/feature1_duplicate_for_rebase
+[33m<HASH>[m HEAD@{46 seconds ago}: rebase (pick): changes to files
+[33m<HASH>[m HEAD@{46 seconds ago}: rebase (pick): rename halve_adder to ha
+[33m<HASH>[m HEAD@{46 seconds ago}: rebase (pick): rename full_adder to fa
+[33m<HASH>[m HEAD@{47 seconds ago}: rebase (pick): another change in branch
+[33m<HASH>[m HEAD@{47 seconds ago}: rebase (pick): some change in branch
+[33m<HASH>[m HEAD@{47 seconds ago}: rebase (start): checkout master
+[33m<HASH>[m HEAD@{47 seconds ago}: checkout: moving from feature1_duplicate_for_rebase to feature1_duplicate_for_rebase
+[33m<HASH>[m HEAD@{47 seconds ago}: checkout: moving from feature1 to feature1_duplicate_for_rebase
+[33m<HASH>[m HEAD@{48 seconds ago}: checkout: moving from feature1_duplicate_for_merge to feature1
+[33m<HASH>[m HEAD@{48 seconds ago}: commit (merge): Merge branch "master" into feature1_duplicate_for_merge
+[33m<HASH>[m HEAD@{49 seconds ago}: checkout: moving from feature1_duplicate_for_merge to feature1_duplicate_for_merge
+[33m<HASH>[m HEAD@{49 seconds ago}: checkout: moving from feature1 to feature1_duplicate_for_merge
+[33m<HASH>[m HEAD@{49 seconds ago}: checkout: moving from master_duplicate_for_merge to feature1
+[33m<HASH>[m HEAD@{49 seconds ago}: commit (merge): Merge branch "feature1" into master_duplicate_for_merge
+[33m<HASH>[m HEAD@{50 seconds ago}: reset: moving to HEAD
+[33m<HASH>[m HEAD@{51 seconds ago}: checkout: moving from master_duplicate_for_merge_using_hash to master_duplicate_for_merge
+[33m<HASH>[m HEAD@{51 seconds ago}: checkout: moving from master_duplicate_for_merge to master_duplicate_for_merge_using_hash
+[33m<HASH>[m HEAD@{51 seconds ago}: checkout: moving from master to master_duplicate_for_merge
+[33m<HASH>[m HEAD@{51 seconds ago}: pull: Fast-forward
+[33m<HASH>[m HEAD@{52 seconds ago}: checkout: moving from feature1 to master
+[33m<HASH>[m HEAD@{52 seconds ago}: checkout: moving from feature1 to feature1
+[33m<HASH>[m HEAD@{57 seconds ago}: commit: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user2: c to carry_ / full_adder_cla to fa_cla)
+[33m<HASH>[m HEAD@{57 seconds ago}: commit: prev to previous in comment (conflicts with user2: c to carry_)
+[33m<HASH>[m HEAD@{57 seconds ago}: commit: reg to logic (conflicts with user2: c to carry_)
+[33m<HASH>[m HEAD@{58 seconds ago}: commit: changes to files
+[33m<HASH>[m HEAD@{60 seconds ago}: checkout: moving from master to feature1
+[33m<HASH>[m HEAD@{60 seconds ago}: checkout: moving from feature1 to master
+[33m<HASH>[m HEAD@{60 seconds ago}: commit: rename halve_adder to ha
+[33m<HASH>[m HEAD@{61 seconds ago}: commit: rename full_adder to fa
+[33m<HASH>[m HEAD@{61 seconds ago}: commit: another change in branch
+[33m<HASH>[m HEAD@{61 seconds ago}: commit: some change in branch
+[33m<HASH>[m HEAD@{61 seconds ago}: checkout: moving from master to feature1
+[33m<HASH>[m HEAD@{63 seconds ago}: reset: moving to HEAD
+[33m<HASH>[m HEAD@{64 seconds ago}: reset: moving to HEAD
+[33m<HASH>[m HEAD@{65 seconds ago}: commit: adding git ignores
+[33m<HASH>[m HEAD@{68 seconds ago}: commit: commit message structure demo
+[33m<HASH>[m HEAD@{69 seconds ago}: commit (initial): initial commit
 
 [1;36mH1 : [0m [1;34m.====================================================================================[0m
 [1;36mH1 : [0m [1;34m| check the database for consistency (filesystem check)[0m
 [1;36mH1 : [0m [1;34m'====================================================================================[0m
 
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit fsck[0m
-dangling tag 3fc4b4da6da1ab55d1cf3ec0aab4eba7a006351e
+dangling tree 03bad524b6080a34b44b92e154f1d8d9bd0243e7
+dangling tag 47a833982ca35b8a6c6556a0248039dd217bde66
+dangling tree 5f02d1c21638199462ad9254bf68505ed4f6335f
+dangling tree 7a188d530a9c0db7b2fe5c23ba4abc5be02cefe6
 dangling blob 9c12a7c25a9332ad9b1df35a39066ec13c481885
+dangling commit a35444e34ae1b1d640e2d2826edd1ecff25b7b72
+dangling commit a8c8117baa67cf7c540734abf61a781605556403
+dangling tag b772062745905c3d623470373d5f64903df2873a
 dangling tree bcba1186cb47a95825a3937015c94d8d8a23350d
-dangling tag c028a80aec790ad3e99b90dc2dfa12b5b8eec5c7
-dangling tree c13c7ab12ea7289f1821f87a128c65462e25a8d9
-dangling commit c506f652c910f82cb89eac4e0bcfe43ec06777c4
-dangling tree d234a3fa90b82d8c157852ea52a70c0de22f0805
+dangling tag c01e8272a0c2140352c86f22097b3876df0a4b34
 dangling tree d8009470fab42cbf9e0c7df26ab53e58977f99d0
+dangling tag de4270ef30f9813bfa1d3d62deb8c61ccfc9b2af
 dangling blob 421376db9e8aee847e9d774891e73098a7415e94
-dangling tree 4cc95aa8e8729ca97f62a97acb482997c9eeaccf
-dangling commit 52ef1253be6485497db26ac0a5e5a07d2f46b290
+dangling tree 6483b6c52965fb64700ed269daed628a2f8ceebf
+dangling tree 6a8d8966de8b36b4cd0482bfecbf5b07eee42976
 dangling blob 7451a4c9b02b6e34ccfe3c84606334f268502b01
-dangling tag baebb4799970f960d78143d05658e50426f2001a
 dangling blob c135361047df2a926a601a88936cabbb8686d37f
-dangling tree ebe19db5f9a800cb9aa781bd57ee92a6a0305858
-dangling tree f1175a11fc4894690bcd6b633cc9215722d5e94d
 dangling blob f297fb94dfaa989d02e01c9a2faf249b7beb0347
-dangling tag fdc3c3c915637784e2d073916b36fe731345b338
 
 [1;36mH1 : [0m [1;34m.====================================================================================[0m
 [1;36mH1 : [0m [1;34m| clean up repository from dangling blobs = stuff that was added to staging area but never got committed, dangling commits = commits with no connection to any other commit/refrence/branch/tag[0m
@@ -4288,3 +4288,56 @@ dangling tag fdc3c3c915637784e2d073916b36fe731345b338
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit gc --prune=now[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit fsck[0m
 [1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mGIT_PAGER=cat git reflog[0m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| reverting changes[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit checkout feature1[0m
+Already on 'feature1'
+Your branch is ahead of 'origin/feature1' by 4 commits.
+  (use "git push" to publish your local commits)
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliaslog2[0m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : CHANGED MESSAGE updated commit message of top most commit [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature1[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : prev to previous in comment (conflicts with user2: c to carry_) [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : reg to logic (conflicts with user2: c to carry_) [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : changes to files [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : rename halve_adder to ha [m[33m ([m[1;31morigin/feature1[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : rename full_adder to fa [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : another change in branch [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : some change in branch [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : adding git ignores [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : commit message structure demo [m[33m ([m[1;31mlocal_shared_repo2/master[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : initial commit [m[m
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit revert 2b945ffbe6e9f48c426f2844f0f923fc03c7726b --no-edit[0m
+[feature1  <HASH>] Revert "CHANGED MESSAGE updated commit message of top most commit"
+ Date: Thu Sep 25 <TIME> 2025 +0200
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliaslog2[0m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : Revert "CHANGED MESSAGE updated commit message of top most commit" [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature1[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : CHANGED MESSAGE updated commit message of top most commit [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : prev to previous in comment (conflicts with user2: c to carry_) [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : reg to logic (conflicts with user2: c to carry_) [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : changes to files [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : rename halve_adder to ha [m[33m ([m[1;31morigin/feature1[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : rename full_adder to fa [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : another change in branch [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : some change in branch [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : adding git ignores [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : commit message structure demo [m[33m ([m[1;31mlocal_shared_repo2/master[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : initial commit [m[m
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit reset --hard 2b945ffbe6e9f48c426f2844f0f923fc03c7726b[0m
+HEAD is now at <HASH> CHANGED MESSAGE updated commit message of top most commit
+[1;36mCMT:[0m [1;35mReset hard must only be used on local changes that were not published yet[0m
+[1;36mRUN:[0m [1;32muser1[0m @ [38;5;67;1m../test/user1_sb1[0m [38;5;55;1m[feature1][0m $ [1;31mgit aliaslog2[0m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : CHANGED MESSAGE updated commit message of top most commit [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature1[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : prev to previous in comment (conflicts with user2: c to carry_) [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : reg to logic (conflicts with user2: c to carry_) [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : changes to files [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : rename halve_adder to ha [m[33m ([m[1;31morigin/feature1[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : rename full_adder to fa [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : another change in branch [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : some change in branch [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : adding git ignores [m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : commit message structure demo [m[33m ([m[1;31mlocal_shared_repo2/master[m[33m)[m[m
+* [33m<HASH>[m - [34muser1[m, [32m<DATE> <TIME>[m : initial commit [m[m

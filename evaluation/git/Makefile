@@ -4,6 +4,7 @@
 # Source:      https://github.com/jlechnar/gvn
 
 run: clean
+	rm -rf *.log
 	./run.sh
 	./patch.sh
 

@@ -954,3 +954,15 @@ run "git gc --prune=now"
 run "git fsck"
 run "GIT_PAGER=cat git reflog"
 
+#####################################################################
+h1 "reverting changes"
+run "git checkout feature1"
+hash1=`git log -n 1 --pretty=format:"%H" feature1`
+run "git aliaslog2"
+run "git revert $hash1 --no-edit"
+run "git aliaslog2"
+run "git reset --hard $hash1"
+cmt "Reset hard must only be used on local changes that were not published yet"
+run "git aliaslog2"
+
+
