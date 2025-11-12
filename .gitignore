@@ -7,7 +7,11 @@ bin/__pycache__/
 *.pyc
 *~
 check.sh
-evaluation/git/test
 doc/uml/*.jar
+evaluation/git/test
 evaluation/git/run.expanded.log
 evaluation/git/run.reduced.log
+evaluation/gvn/test
+evaluation/gvn/run.expanded.log
+evaluation/gvn/run.reduced.log
+

@@ -1,0 +1,176 @@
+' Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+' Author:      jlechnar
+' Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+' Source:      https://github.com/jlechnar/gvn
+
+@startuml
+!pragma teoz true
+
+!include format.uml!format
+
+title "GIT SVN - operation releated command overview"
+
+box "local" #DCDDDA
+  box "Sandbox(es)" #D2CBC0
+    box "other worktree(s) (optional)" #BBAB92
+      database "Other\nWorkspace(s)"  as sandbox_other
+    end box
+    box "(main) worktree" #C5B69D
+      '  box "Sandbox" #ffffaa
+      database "Workspace\n"  as sandbox
+    end box
+  end box
+  box "Database (.git)" #D2CBC0
+    box #C5B69D
+      database "Stage\n(index)"     as stage
+    end box
+    box #BBAB92
+      database "Stash\n"  as stash
+    end box
+    box #B09B7E
+      database "Local Repository\n"     as repo_local
+    end box
+  end box
+end box
+
+box "remote" #DCDDDA
+  box #C5B69D
+    database "(main) Remote Repository\n(e.g. origin)"     as repo_remote
+  end box
+'  box #BBAB92
+'    database "Other (optional)\nRemote Repository(ies)"     as repo_remote_other
+'  end box
+end box
+
+== setup ==
+repo_remote -> repo_local
+& repo_local -> sandbox : <font color=blue>git svn clone
+
+== update / release ==
+
+'sandbox -> stage : git add
+
+stage -> repo_local : git commit
+
+sandbox -> stage : git commit -a
+& stage -> repo_local
+
+repo_local -> repo_remote : <font color=blue>git svn dcommit
+
+repo_local <- repo_remote : <font color=blue>git svn fetch
+
+sandbox <-> repo_local : <font color=blue>git svn rebase
+
+== file operations ==
+
+sandbox -> stage : git add
+
+sandbox -> stage : git rm
+
+sandbox -> stage : git mv
+
+' FIXME: reset
+
+' == revert / cherry-pick ==
+' 
+' sandbox <-> repo_local : git revert <commit>
+' note left: Revert <commit>
+' 
+' sandbox <-> repo_local : git cherry-pick <commit>
+' note left: Apply specific <commit> e.g. from other branch
+' 
+' == restore ==
+' 
+' sandbox <- stage : git restore <filename|:/> OR checkout -- <filename|:/>
+' note left: Restore the contents of a file OR all files to the stage contents or the current version if not staged
+' & stage <[#blue]- repo_local
+' 
+' sandbox <- stage : git restore --staged <filename|:/>
+' note left: Restore the contents of a file OR all files to the stage contents and unstage the changes
+' 
+' sandbox <- repo_local : git restore --source <commit-ish> <filename|:/>
+' note left: Restore the contents of a file OR all files a specific version define with <commit-ish>\n and leaving it in the stage as is
+' 
+' sandbox <- stage : git restore --patch <filename|:/|>
+' note left: Restore the contents of a file OR all files partially interactive\nto the stage contents of the current version if not staged
+' 
+' sandbox <- stage : git restore --patch --staged <filename|:/|>
+' note left: Restore the contents of a file OR all files partially interactive\nto the stage contents and unstage the selected changes
+' & stage <[#blue]- repo_local
+
+== misc ==
+
+sandbox <- stage : git restore
+
+sandbox <- stage : git checkout
+
+sandbox -> stage : git add --interactive OR add -i
+note left: Selective add contents to stage
+
+sandbox <-> repo_local : git rebase --interactive <commit>
+note left: Select and modify commit's (message/content/delete/reorder/fix/squash/combine/...)\nRewrites History\nMust only be done for commits that are not released to svn yet!
+
+== browse git svn specific ==
+
+sandbox <-> repo_local : <font color=blue>git svn blame
+
+repo_local <- repo_local : <font color=blue>git svn info
+
+repo_local <- repo_local : <font color=blue>git svn log
+
+== browse ==
+
+repo_local <- repo_local : git info
+
+repo_local <- repo_local : git log
+
+repo_local <- repo_local : git ls-files
+
+sandbox <-> stage : git diff/difftool <path>
+
+stage <-> repo_local : git diff/difftool --cached <path>
+
+repo_local <-> repo_local : git diff/difftool <commit-ish>..<commit-ish>
+
+' repo_local <- repo_local : git blame
+
+sandbox <-> repo_local : git grep
+
+sandbox <-> repo_local : git blame
+
+== branches ==
+
+repo_local <-> repo_local : git branch (list)/(add)/(remove)/(configure)
+
+== stash ==
+
+sandbox -> stash : git stash
+
+sandbox <- stash : git stash apply
+
+sandbox <- stash : git stash pop
+
+stash <- stash : git stash drop
+
+'== tags ==
+'
+'repo_local <-> repo_local : git tag
+
+== worktree ==
+
+sandbox_other <-> repo_local : git worktree add
+
+sandbox_other <-> repo_local : git worktree remove
+
+repo_local <-> repo_local : git worktree list
+
+sandbox_other -> sandbox : git merge --only-ff
+note left: merge with fast forward only in case of integrating changes\n from 'feature branches' to 'git managed svn branches'\n(usually requires rebase on 'feature branch' to be run before)
+& sandbox <-> repo_local
+
+sandbox_other <- sandbox : git rebase
+note left: rebase in case of integrating changes\n from 'git managed svn branch' to 'feature branch'
+& sandbox <-> repo_local
+
+
+@enduml

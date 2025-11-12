@@ -1,0 +1,2522 @@
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| used git version[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../[0m [38;5;55;1m[0m $ [1;31mgit --version[0m
+git version 2.43.0
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| used svn version[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../[0m [38;5;55;1m[0m $ [1;31msvn --version[0m
+svn, version 1.14.3 (r1914484)
+   compiled Apr  1 2024, <TIME> on x86_64-pc-linux-gnu
+
+Copyright (C) 2023 The Apache Software Foundation.
+This software consists of contributions made by many people;
+see the NOTICE file for more information.
+Subversion is open source software, see htt../subversion.apache.org/
+
+The following repository access (RA) modules are available:
+
+* ra_svn : Module for accessing a repository using the svn network protocol.
+  - with Cyrus SASL authentication
+  - handles 'svn' scheme
+* ra_local : Module for accessing a repository on local disk.
+  - handles 'file' scheme
+* ra_serf : Module for accessing a repository via WebDAV protocol using serf.
+  - using serf 1.3.10 (compiled with 1.3.10)
+  - handles 'http' scheme
+  - handles 'https' scheme
+
+The following authentication credential caches are available:
+
+* Plaintext cache in /home/<user>/.subversion
+* Gnome Keyring
+* GPG-Agent
+* KWallet (KDE)
+
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| create environment[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../[0m [38;5;55;1m[0m $ [1;31mrm -rf test[0m
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../[0m [38;5;55;1m[0m $ [1;31mmkdir test[0m
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../[0m [38;5;55;1m[0m $ [1;31mcd test[0m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| create svn filesystem repository[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mmkdir svn_repo[0m
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd svn_repo[0m
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../test/svn_repo[0m [38;5;55;1m[0m $ [1;31msvnadmin create .[0m
+[1;36mRUN:[0m [1;32mnone[0m @ [38;5;67;1m../test/svn_repo[0m [38;5;55;1m[0m $ [1;31mtree -a[0m
+.
+├── conf
+│   ├── authz
+│   ├── hooks-env.tmpl
+│   ├── passwd
+│   └── svnserve.conf
+├── <HASH_INDEX>
+│   ├── current
+│   ├── format
+│   ├── fsfs.conf
+│   ├── fs-type
+│   ├── min-unpacked-rev
+│   ├── revprops
+│   │   └── 0
+│   │       └── 0
+│   ├── revs
+│   │   └── 0
+│   │       └── 0
+│   ├── transactions
+│   ├── txn-current
+│   ├── txn-current-lock
+│   ├── txn-protorevs
+│   ├── uuid
+│   └── write-lock
+├── format
+├── hooks
+│   ├── post-commit.tmpl
+│   ├── post-lock.tmpl
+│   ├── post-revprop-change.tmpl
+│   ├── post-unlock.tmpl
+│   ├── pre-commit.tmpl
+│   ├── pre-lock.tmpl
+│   ├── pre-revprop-change.tmpl
+│   ├── pre-unlock.tmpl
+│   └── start-commit.tmpl
+├── locks
+│   ├── db.lock
+│   └── db-logs.lock
+└── README.txt
+
+11 directories, 28 files
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| create svn sandbox for user1.svn[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/svn_repo[0m [38;5;55;1m[0m $ [1;31mcd ..[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mmkdir user1_svn_sb1[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user1_svn_sb1[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn checkout fil../../test/svn_repo .[0m
+Checked out revision 0.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mtree -a[0m
+.
+└── .svn
+    ├── entries
+    ├── format
+    ├── pristine
+    ├── tmp
+    ├── wc.db
+    └── wc.db-journal
+
+4 directories, 4 files
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| creating structures and adding contents[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mCMT:[0m [1;35mproject structures can vary. Common examples are single folder projects, basic trunk/branches/tags, projects-as-branch-siblings, etc.[0m
+[1;36mCMT:[0m [1;35msee http../svnbook.red-bean.com/en/1.7/svn.reposadmin.planning.html[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout1/project1[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout1/project1[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout2/trunk/project1 layout2/branches/project1 layout2/tags/project1[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout2/trunk/project1[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout3/project1/trunk layout3/project1/branches layout3/project1/tags[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout3/project1/trunk[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout1/project2[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout1/project2[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout2/trunk/project2 layout2/branches/project2 layout2/tags/project2[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout2/trunk/project2[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout3/project2/trunk layout3/project2/branches layout3/project2/tags[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout3/project2/trunk[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout1/project3[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout1/project3[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout2/trunk/project3 layout2/branches/project3 layout2/tags/project3[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout2/trunk/project3[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mmkdir -p layout3/project3/trunk layout3/project3/branches layout3/project3/tags[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcp -R ../../data/* layout3/project3/trunk[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mtree[0m
+.
+├── layout1
+│   ├── project1
+│   │   ├── links
+│   │   │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│   │   │   ├── fa.sv -> ../verilog/full_adder.v
+│   │   │   └── ha.sv -> ../verilog/halve_adder.v
+│   │   ├── readme.txt
+│   │   ├── shared.gitconfig
+│   │   └── verilog
+│   │       ├── carry_lookahead_adder.v
+│   │       ├── carry_ripple_adder.v
+│   │       ├── full_adder_cla.v
+│   │       ├── full_adder.v
+│   │       └── halve_adder.v
+│   ├── project2
+│   │   ├── links
+│   │   │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│   │   │   ├── fa.sv -> ../verilog/full_adder.v
+│   │   │   └── ha.sv -> ../verilog/halve_adder.v
+│   │   ├── readme.txt
+│   │   ├── shared.gitconfig
+│   │   └── verilog
+│   │       ├── carry_lookahead_adder.v
+│   │       ├── carry_ripple_adder.v
+│   │       ├── full_adder_cla.v
+│   │       ├── full_adder.v
+│   │       └── halve_adder.v
+│   └── project3
+│       ├── links
+│       │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│       │   ├── fa.sv -> ../verilog/full_adder.v
+│       │   └── ha.sv -> ../verilog/halve_adder.v
+│       ├── readme.txt
+│       ├── shared.gitconfig
+│       └── verilog
+│           ├── carry_lookahead_adder.v
+│           ├── carry_ripple_adder.v
+│           ├── full_adder_cla.v
+│           ├── full_adder.v
+│           └── halve_adder.v
+├── layout2
+│   ├── branches
+│   │   ├── project1
+│   │   ├── project2
+│   │   └── project3
+│   ├── tags
+│   │   ├── project1
+│   │   ├── project2
+│   │   └── project3
+│   └── trunk
+│       ├── project1
+│       │   ├── links
+│       │   │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│       │   │   ├── fa.sv -> ../verilog/full_adder.v
+│       │   │   └── ha.sv -> ../verilog/halve_adder.v
+│       │   ├── readme.txt
+│       │   ├── shared.gitconfig
+│       │   └── verilog
+│       │       ├── carry_lookahead_adder.v
+│       │       ├── carry_ripple_adder.v
+│       │       ├── full_adder_cla.v
+│       │       ├── full_adder.v
+│       │       └── halve_adder.v
+│       ├── project2
+│       │   ├── links
+│       │   │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│       │   │   ├── fa.sv -> ../verilog/full_adder.v
+│       │   │   └── ha.sv -> ../verilog/halve_adder.v
+│       │   ├── readme.txt
+│       │   ├── shared.gitconfig
+│       │   └── verilog
+│       │       ├── carry_lookahead_adder.v
+│       │       ├── carry_ripple_adder.v
+│       │       ├── full_adder_cla.v
+│       │       ├── full_adder.v
+│       │       └── halve_adder.v
+│       └── project3
+│           ├── links
+│           │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│           │   ├── fa.sv -> ../verilog/full_adder.v
+│           │   └── ha.sv -> ../verilog/halve_adder.v
+│           ├── readme.txt
+│           ├── shared.gitconfig
+│           └── verilog
+│               ├── carry_lookahead_adder.v
+│               ├── carry_ripple_adder.v
+│               ├── full_adder_cla.v
+│               ├── full_adder.v
+│               └── halve_adder.v
+└── layout3
+    ├── project1
+    │   ├── branches
+    │   ├── tags
+    │   └── trunk
+    │       ├── links
+    │       │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+    │       │   ├── fa.sv -> ../verilog/full_adder.v
+    │       │   └── ha.sv -> ../verilog/halve_adder.v
+    │       ├── readme.txt
+    │       ├── shared.gitconfig
+    │       └── verilog
+    │           ├── carry_lookahead_adder.v
+    │           ├── carry_ripple_adder.v
+    │           ├── full_adder_cla.v
+    │           ├── full_adder.v
+    │           └── halve_adder.v
+    ├── project2
+    │   ├── branches
+    │   ├── tags
+    │   └── trunk
+    │       ├── links
+    │       │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+    │       │   ├── fa.sv -> ../verilog/full_adder.v
+    │       │   └── ha.sv -> ../verilog/halve_adder.v
+    │       ├── readme.txt
+    │       ├── shared.gitconfig
+    │       └── verilog
+    │           ├── carry_lookahead_adder.v
+    │           ├── carry_ripple_adder.v
+    │           ├── full_adder_cla.v
+    │           ├── full_adder.v
+    │           └── halve_adder.v
+    └── project3
+        ├── branches
+        ├── tags
+        └── trunk
+            ├── links
+            │   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+            │   ├── fa.sv -> ../verilog/full_adder.v
+            │   └── ha.sv -> ../verilog/halve_adder.v
+            ├── readme.txt
+            ├── shared.gitconfig
+            └── verilog
+                ├── carry_lookahead_adder.v
+                ├── carry_ripple_adder.v
+                ├── full_adder_cla.v
+                ├── full_adder.v
+                └── halve_adder.v
+
+49 directories, 90 files
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mfind . -type d | grep -v '^.$' | grep -v svn | sort | xargs svn add --depth=empty[0m
+A         layout1
+A         layout1/project1
+A         layout1/project1/links
+A         layout1/project1/verilog
+A         layout1/project2
+A         layout1/project2/links
+A         layout1/project2/verilog
+A         layout1/project3
+A         layout1/project3/links
+A         layout1/project3/verilog
+A         layout2
+A         layout2/branches
+A         layout2/branches/project1
+A         layout2/branches/project2
+A         layout2/branches/project3
+A         layout2/tags
+A         layout2/tags/project1
+A         layout2/tags/project2
+A         layout2/tags/project3
+A         layout2/trunk
+A         layout2/trunk/project1
+A         layout2/trunk/project1/links
+A         layout2/trunk/project1/verilog
+A         layout2/trunk/project2
+A         layout2/trunk/project2/links
+A         layout2/trunk/project2/verilog
+A         layout2/trunk/project3
+A         layout2/trunk/project3/links
+A         layout2/trunk/project3/verilog
+A         layout3
+A         layout3/project1
+A         layout3/project1/branches
+A         layout3/project1/tags
+A         layout3/project1/trunk
+A         layout3/project1/trunk/links
+A         layout3/project1/trunk/verilog
+A         layout3/project2
+A         layout3/project2/branches
+A         layout3/project2/tags
+A         layout3/project2/trunk
+A         layout3/project2/trunk/links
+A         layout3/project2/trunk/verilog
+A         layout3/project3
+A         layout3/project3/branches
+A         layout3/project3/tags
+A         layout3/project3/trunk
+A         layout3/project3/trunk/links
+A         layout3/project3/trunk/verilog
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user1.svn -m 'folder structure (initial commit)'[0m
+Adding         layout1
+Adding         layout1/project1
+Adding         layout1/project1/links
+Adding         layout1/project1/verilog
+Adding         layout1/project2
+Adding         layout1/project2/links
+Adding         layout1/project2/verilog
+Adding         layout1/project3
+Adding         layout1/project3/links
+Adding         layout1/project3/verilog
+Adding         layout2
+Adding         layout2/branches
+Adding         layout2/branches/project1
+Adding         layout2/branches/project2
+Adding         layout2/branches/project3
+Adding         layout2/tags
+Adding         layout2/tags/project1
+Adding         layout2/tags/project2
+Adding         layout2/tags/project3
+Adding         layout2/trunk
+Adding         layout2/trunk/project1
+Adding         layout2/trunk/project1/links
+Adding         layout2/trunk/project1/verilog
+Adding         layout2/trunk/project2
+Adding         layout2/trunk/project2/links
+Adding         layout2/trunk/project2/verilog
+Adding         layout2/trunk/project3
+Adding         layout2/trunk/project3/links
+Adding         layout2/trunk/project3/verilog
+Adding         layout3
+Adding         layout3/project1
+Adding         layout3/project1/branches
+Adding         layout3/project1/tags
+Adding         layout3/project1/trunk
+Adding         layout3/project1/trunk/links
+Adding         layout3/project1/trunk/verilog
+Adding         layout3/project2
+Adding         layout3/project2/branches
+Adding         layout3/project2/tags
+Adding         layout3/project2/trunk
+Adding         layout3/project2/trunk/links
+Adding         layout3/project2/trunk/verilog
+Adding         layout3/project3
+Adding         layout3/project3/branches
+Adding         layout3/project3/tags
+Adding         layout3/project3/trunk
+Adding         layout3/project3/trunk/links
+Adding         layout3/project3/trunk/verilog
+Committing transaction...
+Committed revision 1.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mfind -name shared.gitconfig | sort | xargs svn add[0m
+A         layout1/project1/shared.gitconfig
+A         layout1/project2/shared.gitconfig
+A         layout1/project3/shared.gitconfig
+A         layout2/trunk/project1/shared.gitconfig
+A         layout2/trunk/project2/shared.gitconfig
+A         layout2/trunk/project3/shared.gitconfig
+A         layout3/project1/trunk/shared.gitconfig
+A         layout3/project2/trunk/shared.gitconfig
+A         layout3/project3/trunk/shared.gitconfig
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user1.svn -m 'added shared config'[0m
+Adding         layout1/project1/shared.gitconfig
+Adding         layout1/project2/shared.gitconfig
+Adding         layout1/project3/shared.gitconfig
+Adding         layout2/trunk/project1/shared.gitconfig
+Adding         layout2/trunk/project2/shared.gitconfig
+Adding         layout2/trunk/project3/shared.gitconfig
+Adding         layout3/project1/trunk/shared.gitconfig
+Adding         layout3/project2/trunk/shared.gitconfig
+Adding         layout3/project3/trunk/shared.gitconfig
+Transmitting file data .........done
+Committing transaction...
+Committed revision 2.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mfind -name readme.txt | sort | xargs svn add[0m
+A         layout1/project1/readme.txt
+A         layout1/project2/readme.txt
+A         layout1/project3/readme.txt
+A         layout2/trunk/project1/readme.txt
+A         layout2/trunk/project2/readme.txt
+A         layout2/trunk/project3/readme.txt
+A         layout3/project1/trunk/readme.txt
+A         layout3/project2/trunk/readme.txt
+A         layout3/project3/trunk/readme.txt
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user1.svn -m 'added readme'[0m
+Adding         layout1/project1/readme.txt
+Adding         layout1/project2/readme.txt
+Adding         layout1/project3/readme.txt
+Adding         layout2/trunk/project1/readme.txt
+Adding         layout2/trunk/project2/readme.txt
+Adding         layout2/trunk/project3/readme.txt
+Adding         layout3/project1/trunk/readme.txt
+Adding         layout3/project2/trunk/readme.txt
+Adding         layout3/project3/trunk/readme.txt
+Transmitting file data .........done
+Committing transaction...
+Committed revision 3.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mfind -type f -name full* | sort | xargs svn add[0m
+A         layout1/project1/verilog/full_adder_cla.v
+A         layout1/project1/verilog/full_adder.v
+A         layout1/project2/verilog/full_adder_cla.v
+A         layout1/project2/verilog/full_adder.v
+A         layout1/project3/verilog/full_adder_cla.v
+A         layout1/project3/verilog/full_adder.v
+A         layout2/trunk/project1/verilog/full_adder_cla.v
+A         layout2/trunk/project1/verilog/full_adder.v
+A         layout2/trunk/project2/verilog/full_adder_cla.v
+A         layout2/trunk/project2/verilog/full_adder.v
+A         layout2/trunk/project3/verilog/full_adder_cla.v
+A         layout2/trunk/project3/verilog/full_adder.v
+A         layout3/project1/trunk/verilog/full_adder_cla.v
+A         layout3/project1/trunk/verilog/full_adder.v
+A         layout3/project2/trunk/verilog/full_adder_cla.v
+A         layout3/project2/trunk/verilog/full_adder.v
+A         layout3/project3/trunk/verilog/full_adder_cla.v
+A         layout3/project3/trunk/verilog/full_adder.v
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user1.svn -m 'added full adder'[0m
+Adding         layout1/project1/verilog/full_adder.v
+Adding         layout1/project1/verilog/full_adder_cla.v
+Adding         layout1/project2/verilog/full_adder.v
+Adding         layout1/project2/verilog/full_adder_cla.v
+Adding         layout1/project3/verilog/full_adder.v
+Adding         layout1/project3/verilog/full_adder_cla.v
+Adding         layout2/trunk/project1/verilog/full_adder.v
+Adding         layout2/trunk/project1/verilog/full_adder_cla.v
+Adding         layout2/trunk/project2/verilog/full_adder.v
+Adding         layout2/trunk/project2/verilog/full_adder_cla.v
+Adding         layout2/trunk/project3/verilog/full_adder.v
+Adding         layout2/trunk/project3/verilog/full_adder_cla.v
+Adding         layout3/project1/trunk/verilog/full_adder.v
+Adding         layout3/project1/trunk/verilog/full_adder_cla.v
+Adding         layout3/project2/trunk/verilog/full_adder.v
+Adding         layout3/project2/trunk/verilog/full_adder_cla.v
+Adding         layout3/project3/trunk/verilog/full_adder.v
+Adding         layout3/project3/trunk/verilog/full_adder_cla.v
+Transmitting file data ..................done
+Committing transaction...
+Committed revision 4.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mfind -type f -name halve* | sort | xargs svn add[0m
+A         layout1/project1/verilog/halve_adder.v
+A         layout1/project2/verilog/halve_adder.v
+A         layout1/project3/verilog/halve_adder.v
+A         layout2/trunk/project1/verilog/halve_adder.v
+A         layout2/trunk/project2/verilog/halve_adder.v
+A         layout2/trunk/project3/verilog/halve_adder.v
+A         layout3/project1/trunk/verilog/halve_adder.v
+A         layout3/project2/trunk/verilog/halve_adder.v
+A         layout3/project3/trunk/verilog/halve_adder.v
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user1.svn -m 'added halve adder'[0m
+Adding         layout1/project1/verilog/halve_adder.v
+Adding         layout1/project2/verilog/halve_adder.v
+Adding         layout1/project3/verilog/halve_adder.v
+Adding         layout2/trunk/project1/verilog/halve_adder.v
+Adding         layout2/trunk/project2/verilog/halve_adder.v
+Adding         layout2/trunk/project3/verilog/halve_adder.v
+Adding         layout3/project1/trunk/verilog/halve_adder.v
+Adding         layout3/project2/trunk/verilog/halve_adder.v
+Adding         layout3/project3/trunk/verilog/halve_adder.v
+Transmitting file data .........done
+Committing transaction...
+Committed revision 5.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mfind -type f -name carry* | sort | xargs svn add[0m
+A         layout1/project1/verilog/carry_lookahead_adder.v
+A         layout1/project1/verilog/carry_ripple_adder.v
+A         layout1/project2/verilog/carry_lookahead_adder.v
+A         layout1/project2/verilog/carry_ripple_adder.v
+A         layout1/project3/verilog/carry_lookahead_adder.v
+A         layout1/project3/verilog/carry_ripple_adder.v
+A         layout2/trunk/project1/verilog/carry_lookahead_adder.v
+A         layout2/trunk/project1/verilog/carry_ripple_adder.v
+A         layout2/trunk/project2/verilog/carry_lookahead_adder.v
+A         layout2/trunk/project2/verilog/carry_ripple_adder.v
+A         layout2/trunk/project3/verilog/carry_lookahead_adder.v
+A         layout2/trunk/project3/verilog/carry_ripple_adder.v
+A         layout3/project1/trunk/verilog/carry_lookahead_adder.v
+A         layout3/project1/trunk/verilog/carry_ripple_adder.v
+A         layout3/project2/trunk/verilog/carry_lookahead_adder.v
+A         layout3/project2/trunk/verilog/carry_ripple_adder.v
+A         layout3/project3/trunk/verilog/carry_lookahead_adder.v
+A         layout3/project3/trunk/verilog/carry_ripple_adder.v
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user1.svn -m 'added carry adder'[0m
+Adding         layout1/project1/verilog/carry_lookahead_adder.v
+Adding         layout1/project1/verilog/carry_ripple_adder.v
+Adding         layout1/project2/verilog/carry_lookahead_adder.v
+Adding         layout1/project2/verilog/carry_ripple_adder.v
+Adding         layout1/project3/verilog/carry_lookahead_adder.v
+Adding         layout1/project3/verilog/carry_ripple_adder.v
+Adding         layout2/trunk/project1/verilog/carry_lookahead_adder.v
+Adding         layout2/trunk/project1/verilog/carry_ripple_adder.v
+Adding         layout2/trunk/project2/verilog/carry_lookahead_adder.v
+Adding         layout2/trunk/project2/verilog/carry_ripple_adder.v
+Adding         layout2/trunk/project3/verilog/carry_lookahead_adder.v
+Adding         layout2/trunk/project3/verilog/carry_ripple_adder.v
+Adding         layout3/project1/trunk/verilog/carry_lookahead_adder.v
+Adding         layout3/project1/trunk/verilog/carry_ripple_adder.v
+Adding         layout3/project2/trunk/verilog/carry_lookahead_adder.v
+Adding         layout3/project2/trunk/verilog/carry_ripple_adder.v
+Adding         layout3/project3/trunk/verilog/carry_lookahead_adder.v
+Adding         layout3/project3/trunk/verilog/carry_ripple_adder.v
+Transmitting file data ..................done
+Committing transaction...
+Committed revision 6.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mfind -type l | sort | xargs svn add[0m
+A         layout1/project1/links/cra.sv
+A         layout1/project1/links/fa.sv
+A         layout1/project1/links/ha.sv
+A         layout1/project2/links/cra.sv
+A         layout1/project2/links/fa.sv
+A         layout1/project2/links/ha.sv
+A         layout1/project3/links/cra.sv
+A         layout1/project3/links/fa.sv
+A         layout1/project3/links/ha.sv
+A         layout2/trunk/project1/links/cra.sv
+A         layout2/trunk/project1/links/fa.sv
+A         layout2/trunk/project1/links/ha.sv
+A         layout2/trunk/project2/links/cra.sv
+A         layout2/trunk/project2/links/fa.sv
+A         layout2/trunk/project2/links/ha.sv
+A         layout2/trunk/project3/links/cra.sv
+A         layout2/trunk/project3/links/fa.sv
+A         layout2/trunk/project3/links/ha.sv
+A         layout3/project1/trunk/links/cra.sv
+A         layout3/project1/trunk/links/fa.sv
+A         layout3/project1/trunk/links/ha.sv
+A         layout3/project2/trunk/links/cra.sv
+A         layout3/project2/trunk/links/fa.sv
+A         layout3/project2/trunk/links/ha.sv
+A         layout3/project3/trunk/links/cra.sv
+A         layout3/project3/trunk/links/fa.sv
+A         layout3/project3/trunk/links/ha.sv
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user1.svn -m 'added links'[0m
+Adding         layout1/project1/links/cra.sv
+Adding         layout1/project1/links/fa.sv
+Adding         layout1/project1/links/ha.sv
+Adding         layout1/project2/links/cra.sv
+Adding         layout1/project2/links/fa.sv
+Adding         layout1/project2/links/ha.sv
+Adding         layout1/project3/links/cra.sv
+Adding         layout1/project3/links/fa.sv
+Adding         layout1/project3/links/ha.sv
+Adding         layout2/trunk/project1/links/cra.sv
+Adding         layout2/trunk/project1/links/fa.sv
+Adding         layout2/trunk/project1/links/ha.sv
+Adding         layout2/trunk/project2/links/cra.sv
+Adding         layout2/trunk/project2/links/fa.sv
+Adding         layout2/trunk/project2/links/ha.sv
+Adding         layout2/trunk/project3/links/cra.sv
+Adding         layout2/trunk/project3/links/fa.sv
+Adding         layout2/trunk/project3/links/ha.sv
+Adding         layout3/project1/trunk/links/cra.sv
+Adding         layout3/project1/trunk/links/fa.sv
+Adding         layout3/project1/trunk/links/ha.sv
+Adding         layout3/project2/trunk/links/cra.sv
+Adding         layout3/project2/trunk/links/fa.sv
+Adding         layout3/project2/trunk/links/ha.sv
+Adding         layout3/project3/trunk/links/cra.sv
+Adding         layout3/project3/trunk/links/fa.sv
+Adding         layout3/project3/trunk/links/ha.sv
+Transmitting file data ...........................done
+Committing transaction...
+Committed revision 7.
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| git svn clone from layout1 for project1[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcd ..[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mmkdir user1_git_svn_sb1[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user1_git_svn_sb1[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb1[0m [38;5;55;1m[0m $ [1;31mgit svn clone fil../../test/svn_repo/layout1/project1 .[0m
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in ../test/user1_git_svn_sb1/.git/
+W: +empty_dir: links
+W: +empty_dir: verilog
+r1 = <HASH> (refs/remotes/git-svn)
+	A	shared.gitconfig
+r2 = <HASH> (refs/remotes/git-svn)
+	A	readme.txt
+r3 = <HASH> (refs/remotes/git-svn)
+	A	verilog/full_adder.v
+	A	verilog/full_adder_cla.v
+r4 = <HASH> (refs/remotes/git-svn)
+	A	verilog/halve_adder.v
+r5 = <HASH> (refs/remotes/git-svn)
+	A	verilog/carry_lookahead_adder.v
+	A	verilog/carry_ripple_adder.v
+r6 = <HASH> (refs/remotes/git-svn)
+	A	links/cra.sv
+	A	links/fa.sv
+	A	links/ha.sv
+r7 = <HASH> (refs/remotes/git-svn)
+Checked out HEAD:
+  fil../../test/svn_repo/layout1/project1 r7
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb1[0m [38;5;55;1m[0m $ [1;31mtree -a[0m
+.
+├── .git
+│   ├── branches
+│   ├── config
+│   ├── description
+│   ├── HEAD
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── sendemail-validate.sample
+│   │   └── update.sample
+│   ├── index
+│   ├── info
+│   │   └── exclude
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── master
+│   │       └── remotes
+│   │           └── git-svn
+│   ├── objects
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   ├── <HASH>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── info
+│   │   └── pack
+│   ├── refs
+│   │   ├── heads
+│   │   │   └── master
+│   │   ├── remotes
+│   │   │   └── git-svn
+│   │   └── tags
+│   └── svn
+│       ├── .metadata
+│       └── refs
+│           └── remotes
+│               └── git-svn
+│                   ├── index
+│                   ├── .rev_map.<GIT_SVN_HASH>
+│                   └── unhandled.log
+├── links
+│   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│   ├── fa.sv -> ../verilog/full_adder.v
+│   └── ha.sv -> ../verilog/halve_adder.v
+├── readme.txt
+├── shared.gitconfig
+└── verilog
+    ├── carry_lookahead_adder.v
+    ├── carry_ripple_adder.v
+    ├── full_adder_cla.v
+    ├── full_adder.v
+    └── halve_adder.v
+
+49 directories, 66 files
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcat .git/config[0m
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[svn-remote "svn"]
+	url = fil../../test/svn_repo/layout1/project1
+	fetch = :refs/remotes/git-svn
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| git svn clone from layout2 for project1[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcd ..[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mmkdir user1_git_svn_sb2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user1_git_svn_sb2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb2[0m [38;5;55;1m[0m $ [1;31mgit svn clone fil../../test/svn_repo --trunk layout2/trunk/project1 --branches layout2/branches/project1 --tags layout2/tags/project1 .[0m
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in ../test/user1_git_svn_sb2/.git/
+W: +empty_dir: layout2/trunk/project1/links
+W: +empty_dir: layout2/trunk/project1/verilog
+r1 = <HASH> (refs/remotes/origin/trunk)
+	A	shared.gitconfig
+r2 = <HASH> (refs/remotes/origin/trunk)
+	A	readme.txt
+r3 = <HASH> (refs/remotes/origin/trunk)
+	A	verilog/full_adder.v
+	A	verilog/full_adder_cla.v
+r4 = <HASH> (refs/remotes/origin/trunk)
+	A	verilog/halve_adder.v
+r5 = <HASH> (refs/remotes/origin/trunk)
+	A	verilog/carry_lookahead_adder.v
+	A	verilog/carry_ripple_adder.v
+r6 = <HASH> (refs/remotes/origin/trunk)
+	A	links/cra.sv
+	A	links/fa.sv
+	A	links/ha.sv
+r7 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  fil../../test/svn_repo/layout2/trunk/project1 r7
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb2[0m [38;5;55;1m[0m $ [1;31mtree -a[0m
+.
+├── .git
+│   ├── branches
+│   ├── config
+│   ├── description
+│   ├── HEAD
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── sendemail-validate.sample
+│   │   └── update.sample
+│   ├── index
+│   ├── info
+│   │   └── exclude
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── master
+│   │       └── remotes
+│   │           └── origin
+│   │               └── trunk
+│   ├── objects
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── info
+│   │   └── pack
+│   ├── refs
+│   │   ├── heads
+│   │   │   └── master
+│   │   ├── remotes
+│   │   │   └── origin
+│   │   │       └── trunk
+│   │   └── tags
+│   └── svn
+│       ├── .metadata
+│       └── refs
+│           └── remotes
+│               └── origin
+│                   ├── git-svn
+│                   └── trunk
+│                       ├── index
+│                       ├── .rev_map.<GIT_SVN_HASH>
+│                       └── unhandled.log
+├── links
+│   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│   ├── fa.sv -> ../verilog/full_adder.v
+│   └── ha.sv -> ../verilog/halve_adder.v
+├── readme.txt
+├── shared.gitconfig
+└── verilog
+    ├── carry_lookahead_adder.v
+    ├── carry_ripple_adder.v
+    ├── full_adder_cla.v
+    ├── full_adder.v
+    └── halve_adder.v
+
+54 directories, 66 files
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb2[0m [38;5;55;1m[0m $ [1;31mcat .git/config[0m
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[svn-remote "svn"]
+	url = fil../../test/svn_repo
+	fetch = layout2/trunk/project1:refs/remotes/origin/trunk
+	branches = layout2/branches/project1/*:refs/remotes/origin/*
+	tags = layout2/tags/project1/*:refs/remotes/origin/tags/*
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| git svn clone from layout3 for project1[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb2[0m [38;5;55;1m[0m $ [1;31mcd ..[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mmkdir user1_git_svn_sb3[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user1_git_svn_sb3[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn clone fil../../test/svn_repo/layout3/project1 -s .[0m
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in ../test/user1_git_svn_sb3/.git/
+Using higher level of URL: fil../../test/svn_repo/layout3/project1 => fil../../test/svn_repo
+W: +empty_dir: layout3/project1/trunk/links
+W: +empty_dir: layout3/project1/trunk/verilog
+r1 = <HASH> (refs/remotes/origin/trunk)
+	A	shared.gitconfig
+r2 = <HASH> (refs/remotes/origin/trunk)
+	A	readme.txt
+r3 = <HASH> (refs/remotes/origin/trunk)
+	A	verilog/full_adder.v
+	A	verilog/full_adder_cla.v
+r4 = <HASH> (refs/remotes/origin/trunk)
+	A	verilog/halve_adder.v
+r5 = <HASH> (refs/remotes/origin/trunk)
+	A	verilog/carry_lookahead_adder.v
+	A	verilog/carry_ripple_adder.v
+r6 = <HASH> (refs/remotes/origin/trunk)
+	A	links/cra.sv
+	A	links/fa.sv
+	A	links/ha.sv
+r7 = <HASH> (refs/remotes/origin/trunk)
+Checked out HEAD:
+  fil../../test/svn_repo/layout3/project1/trunk r7
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mtree -a[0m
+.
+├── .git
+│   ├── branches
+│   ├── config
+│   ├── description
+│   ├── HEAD
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── sendemail-validate.sample
+│   │   └── update.sample
+│   ├── index
+│   ├── info
+│   │   └── exclude
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── master
+│   │       └── remotes
+│   │           └── origin
+│   │               └── trunk
+│   ├── objects
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── info
+│   │   └── pack
+│   ├── refs
+│   │   ├── heads
+│   │   │   └── master
+│   │   ├── remotes
+│   │   │   └── origin
+│   │   │       └── trunk
+│   │   └── tags
+│   └── svn
+│       ├── .metadata
+│       └── refs
+│           └── remotes
+│               └── origin
+│                   ├── git-svn
+│                   └── trunk
+│                       ├── index
+│                       ├── .rev_map.<GIT_SVN_HASH>
+│                       └── unhandled.log
+├── links
+│   ├── cra.sv -> ../verilog/carry_ripple_adder.v
+│   ├── fa.sv -> ../verilog/full_adder.v
+│   └── ha.sv -> ../verilog/halve_adder.v
+├── readme.txt
+├── shared.gitconfig
+└── verilog
+    ├── carry_lookahead_adder.v
+    ├── carry_ripple_adder.v
+    ├── full_adder_cla.v
+    ├── full_adder.v
+    └── halve_adder.v
+
+54 directories, 66 files
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcat .git/config[0m
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[svn-remote "svn"]
+	url = fil../../test/svn_repo
+	fetch = layout3/project1/trunk:refs/remotes/origin/trunk
+	branches = layout3/project1/branches/*:refs/remotes/origin/*
+	tags = layout3/project1/tags/*:refs/remotes/origin/tags/*
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| configure username/e-mail/color/etc.[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit config user.name "user1.git_svn"[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit config user.email "user1.git_svn@domain"[0m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| rename master to trunk for better readability[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit branch -m master trunk[0m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| adding some useful configuration including aliases used later, the shared config is just used here for simplicty and is usually local only and not checked in ![0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mecho -e "[include]
+ path=../shared.gitconfig" >> .git/config[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcat .git/config[0m
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[svn-remote "svn"]
+	url = fil../../test/svn_repo
+	fetch = layout3/project1/trunk:refs/remotes/origin/trunk
+	branches = layout3/project1/branches/*:refs/remotes/origin/*
+	tags = layout3/project1/tags/*:refs/remotes/origin/tags/*
+[user]
+	name = user1.git_svn
+	email = user1.git_svn@domain
+[include]
+ path=../shared.gitconfig
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit config --list --local --includes[0m
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+svn-remote.svn.url=fil../../test/svn_repo
+svn-remote.svn.fetch=layout3/project1/trunk:refs/remotes/origin/trunk
+svn-remote.svn.branches=layout3/project1/branches/*:refs/remotes/origin/*
+svn-remote.svn.tags=layout3/project1/tags/*:refs/remotes/origin/tags/*
+user.name=user1.git_svn
+user.email=user1.git_svn@domain
+include.path=../shared.gitconfig
+core.editor=vim
+core.autocrlf=input
+core.pager=less
+push.default=simple
+pull.rebase=false
+diff.tool=meld
+diff.guitool=meld
+color.ui=always
+color.branch=always
+color.status=always
+color.diff=always
+color.interactive=always
+color.grep=always
+color.pager=true
+color.decorate=always
+color.showbranch=always
+color.diff.context=black
+color.diff.frag=blue brightmagenta
+color.diff.meta=cyan
+color.diff.old=blue brightred
+color.diff.new=blue brightgreen
+color.decorate.tag=bold blue
+merge.tool=meld
+merge.conflictstyle=diff3
+difftool.meld.path=/usr/bin/meld
+difftool.meld.trustexitcode=false
+difftool.prompt=false
+alias.aliaslogall=log --oneline --graph --decorate --all
+alias.aliaslogall2=log --oneline --graph --decorate --all '--date=format-local:%Y-%m-%d %H:%M:%S' --pretty=tformat:"%C(yellow)%h%C(reset) - %C(blue)%an%C(reset), %C(green)%ad%C(reset) : %s %C(auto)%d%C(reset)"
+alias.aliaslog2=log --oneline --graph --decorate '--date=format-local:%Y-%m-%d %H:%M:%S' --pretty=tformat:"%C(yellow)%h%C(reset) - %C(blue)%an%C(reset), %C(green)%ad%C(reset) : %s %C(auto)%d%C(reset)"
+alias.aliassvnnotessetall=!bash -c 'cd -- "${GIT_PREFIX:-.}"; (git log --pretty=format:'%H'; echo "") | while read hash; do svn_rev=$(git svn find-rev $hash); if [[ "$svn_rev" == "" ]]; then svn_rev="---"; fi; git notes add -m "r$svn_rev" $hash -f; done;' --
+alias.aliassvnnotessetunset=!bash -c 'cd -- "${GIT_PREFIX:-.}";           (git log --pretty=format:'%H'; echo "") |           while read hash;           do             note=`git notes show "$hash" > /dev/null 2>&1`;              if [[ "$?" != "0" ]]; then                svn_rev=`git svn find-rev $hash`;               if [[ "$svn_rev" == "" ]]; then                 svn_rev="---";               fi;               echo "$hash -> $svn_rev";               git notes add -m "r$svn_rev" $hash;             fi;           done;' --
+alias.aliaslogsvn=!bash -c 'cd -- "${GIT_PREFIX:-.}"; (echo "@
+"; git log --oneline --graph --decorate "--date=format-local:%Y-%m-%d %H:%M:%S" --pretty=tformat:"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@" --show-notes) | egrep -v "Notes added by .+git notes add.+" | perl -pe "\$/="@\n"; s/#(.*)\n.*#/\$1/g; s/#(.*)#/r???/g; s,@\n,\n,g;" | egrep -v "^$"' --
+alias.aliaslogsvnall=!bash -c 'cd -- "${GIT_PREFIX:-.}"; (echo "@
+"; git log --oneline --graph --all --decorate "--date=format-local:%Y-%m-%d %H:%M:%S" --pretty=tformat:"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@" --show-notes | egrep -v "Notes added by .+git notes add.+") | perl -pe "BEGIN { \$/=\"@\n\"; } s/#(.*)\n.*#/\$1/g; s/#(.*)#/r???/g; s,@\n,\n,g;" | egrep -v "^$"' --
+alias.aliaslogsvnall2=!bash -c 'cd -- "${GIT_PREFIX:-.}"; (echo "@
+"; git log --oneline --graph --all --decorate "--date=format-local:%Y-%m-%d %H:%M:%S" --pretty=tformat:"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@" --show-notes | egrep -v "Notes added by .+git notes add.+") | perl -pe "BEGIN { \$/=\"@\n\"; } s/#(.*)\n.*#/\$1/g; s/#(.*)#/r???/g; s,@\n,\n,g;" | egrep -v "^$"' --
+alias.aliaslogsvnallraw=!bash -c 'cd -- "${GIT_PREFIX:-.}"; git log --oneline --graph --all --decorate "--date=format-local:%Y-%m-%d %H:%M:%S" --pretty=tformat:"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@" --show-notes | egrep -v "Notes added by .+git notes add.+"' --
+alias.alias-svn-stash-fetch-tag-rebase-dcommit-svnnotessetunset-unstash=!bash -c 'cd -- "${GIT_PREFIX:-.}";           set -e;           changes=`git status --short | grep -v "??"`;           if [[ "$changes" != "" ]]; then             echo "Detected local changes. Auto stashing them for later restore.";             git stash -m "Automatic stashed local changes before git svn update";           fi;           git svn fetch;           datetime=`date '+%Y%m%d_%H%M%S'`;           git tag -a auto_tag_svn_rebase_$datetime -m "Auto added rebase tag $datetime";           git svn rebase;           git svn dcommit;           git aliassvnnotessetunset;           if [[ "$changes" != "" ]]; then             git stash pop;           fi;' --
+alias.aliasdiffall=diff '--word-diff-regex=[^[:space:]]' --word-diff=color -U0 --ignore-all-space --ignore-blank-lines --ignore-space-change
+alias.alias-worktree-merge=!bash -c 'cd -- "${GIT_PREFIX:-.}";           to_merge=$1;           datetime=`date '+%Y%m%d_%H%M%S'`;           to_merge_into=`git rev-parse --abbrev-ref HEAD`;           tag_name="auto_tag_worktree_merge_${to_merge}_into_${to_merge_into}_${datetime}";           changes=`git status --short | grep -v "??"`;           if [[ "$changes" != "" ]]; then             echo "Detected local changes. Auto stashing them for later restore.";             git stash -m "Automatic stashed local changes before git merge ($tag_name)";           fi;           git tag -a $tag_name -m "Auto added tag for worktree merge $to_merge into $to_mergo_into at $datetime";           git merge --ff-only $to_merge;           if [[ "$changes" != "" ]]; then             git stash pop;           fi;' --
+alias.alias-worktree-rebase=!bash -c 'cd -- "${GIT_PREFIX:-.}";           to_rebase_onto=$1;           datetime=`date '+%Y%m%d_%H%M%S'`;           to_rebase=`git rev-parse --abbrev-ref HEAD`;           tag_name="auto_tag_worktree_rebase_${to_rebase}_onto_${to_rebase_onto}_${datetime}" ;           changes=`git status --short | grep -v "??"`;           if [[ "$changes" != "" ]]; then             echo "Detected local changes. Auto stashing them for later restore.";             git stash -m "Automatic stashed local changes before git rebase ($tag_name)";           fi;           git tag -a $tag_name -m "Auto added tag for worktree rebase from $to_rebase onto $to_rebase_onto at $datetime";           git rebase $to_rebase_onto;           if [[ "$changes" != "" ]]; then             git stash pop;           fi;' --
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| showing info in svn info format[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn info[0m
+Path: .
+URL: fil../../test/svn_repo/layout3/project1/trunk
+Repository Root: fil../../test/svn_repo
+Repository UUID: <GIT_SVN_HASH>
+Revision: 7
+Node Kind: directory
+Schedule: normal
+Last Changed Author: user1.svn
+Last Changed Rev: 7
+Last Changed Date: <DATE>_<TIME>_<EXT>
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn info --url[0m
+fil../../test/svn_repo/layout3/project1/trunk
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| showing logs in svn log format[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log[0m
+------------------------------------------------------------------------
+r7 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added links
+
+------------------------------------------------------------------------
+r6 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added carry adder
+
+------------------------------------------------------------------------
+r5 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added halve adder
+
+------------------------------------------------------------------------
+r4 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added full adder
+
+------------------------------------------------------------------------
+r3 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added readme
+
+------------------------------------------------------------------------
+r2 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added shared config
+
+------------------------------------------------------------------------
+r1 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+folder structure (initial commit)
+
+------------------------------------------------------------------------
+[1;36mCMT:[0m [1;35m-v or --verbose[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log -v[0m
+------------------------------------------------------------------------
+r7 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+Changed paths:
+   A links/cra.sv
+   A links/fa.sv
+   A links/ha.sv
+
+added links
+
+------------------------------------------------------------------------
+r6 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+Changed paths:
+   A verilog/carry_lookahead_adder.v
+   A verilog/carry_ripple_adder.v
+
+added carry adder
+
+------------------------------------------------------------------------
+r5 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+Changed paths:
+   A verilog/halve_adder.v
+
+added halve adder
+
+------------------------------------------------------------------------
+r4 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+Changed paths:
+   A verilog/full_adder.v
+   A verilog/full_adder_cla.v
+
+added full adder
+
+------------------------------------------------------------------------
+r3 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+Changed paths:
+   A readme.txt
+
+added readme
+
+------------------------------------------------------------------------
+r2 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+Changed paths:
+   A shared.gitconfig
+
+added shared config
+
+------------------------------------------------------------------------
+r1 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+folder structure (initial commit)
+
+------------------------------------------------------------------------
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log --oneline[0m
+r7 | added links
+r6 | added carry adder
+r5 | added halve adder
+r4 | added full adder
+r3 | added readme
+r2 | added shared config
+r1 | folder structure (initial commit)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log -r 3[0m
+------------------------------------------------------------------------
+r3 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added readme
+
+------------------------------------------------------------------------
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log -r 2:3[0m
+------------------------------------------------------------------------
+r2 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added shared config
+
+------------------------------------------------------------------------
+r3 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added readme
+
+------------------------------------------------------------------------
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log -r 3:2[0m
+------------------------------------------------------------------------
+r3 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added readme
+
+------------------------------------------------------------------------
+r2 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added shared config
+
+------------------------------------------------------------------------
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log --limit=1[0m
+------------------------------------------------------------------------
+r7 | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added links
+
+------------------------------------------------------------------------
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log --show-commit[0m
+------------------------------------------------------------------------
+r7 | <HASH> | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added links
+
+------------------------------------------------------------------------
+r6 | <HASH> | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added carry adder
+
+------------------------------------------------------------------------
+r5 | <HASH> | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added halve adder
+
+------------------------------------------------------------------------
+r4 | <HASH> | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added full adder
+
+------------------------------------------------------------------------
+r3 | <HASH> | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added readme
+
+------------------------------------------------------------------------
+r2 | <HASH> | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+added shared config
+
+------------------------------------------------------------------------
+r1 | <HASH> | user1.svn | <DATE>_<TIME>_<EXT> | 2 lines
+
+folder structure (initial commit)
+
+------------------------------------------------------------------------
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn log --oneline --show-commit[0m
+r7 | <HASH> | added links
+r6 | <HASH> | added carry adder
+r5 | <HASH> | added halve adder
+r4 | <HASH> | added full adder
+r3 | <HASH> | added readme
+r2 | <HASH> | added shared config
+r1 | <HASH> | folder structure (initial commit)
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| showing logs using git log[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| showing logs as usual[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit log[0m
+[33mcommit <HASH>[33m
+Author: user1.svn <user1.svn@<GIT_SVN_HASH>>
+Date:   <DATE_TIME>
+
+    added links
+    
+    git-svn-id: fil../../test/svn_repo/layout3/project1/trunk@7 <GIT_SVN_HASH>
+
+[33mcommit <HASH>[33m
+Author: user1.svn <user1.svn@<GIT_SVN_HASH>>
+Date:   <DATE_TIME>
+
+    added carry adder
+    
+    git-svn-id: fil../../test/svn_repo/layout3/project1/trunk@6 <GIT_SVN_HASH>
+
+[33mcommit <HASH>[33m
+Author: user1.svn <user1.svn@<GIT_SVN_HASH>>
+Date:   <DATE_TIME>
+
+    added halve adder
+    
+    git-svn-id: fil../../test/svn_repo/layout3/project1/trunk@5 <GIT_SVN_HASH>
+
+[33mcommit <HASH>[33m
+Author: user1.svn <user1.svn@<GIT_SVN_HASH>>
+Date:   <DATE_TIME>
+
+    added full adder
+    
+    git-svn-id: fil../../test/svn_repo/layout3/project1/trunk@4 <GIT_SVN_HASH>
+
+[33mcommit <HASH>[33m
+Author: user1.svn <user1.svn@<GIT_SVN_HASH>>
+Date:   <DATE_TIME>
+
+    added readme
+    
+    git-svn-id: fil../../test/svn_repo/layout3/project1/trunk@3 <GIT_SVN_HASH>
+
+[33mcommit <HASH>[33m
+Author: user1.svn <user1.svn@<GIT_SVN_HASH>>
+Date:   <DATE_TIME>
+
+    added shared config
+    
+    git-svn-id: fil../../test/svn_repo/layout3/project1/trunk@2 <GIT_SVN_HASH>
+
+[33mcommit <HASH>[33m
+Author: user1.svn <user1.svn@<GIT_SVN_HASH>>
+Date:   <DATE_TIME>
+
+    folder structure (initial commit)
+    
+    git-svn-id: fil../../test/svn_repo/layout3/project1/trunk@1 <GIT_SVN_HASH>
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogall2[0m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added links [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added carry adder [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added halve adder [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added full adder [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added readme [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added shared config [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslog2[0m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added links [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added carry adder [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added halve adder [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added full adder [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added readme [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : added shared config [m[m
+* [33m<HASH>[m - [34muser1.svn[m, [32m<DATE> <TIME>[m : folder structure (initial commit) [m[m
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| showing logs with svn revisions[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvn[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliassvnnotessetall[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mecho 'some more text' >> readme.txt[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit commit -m 'more text' readme.txt[0m
+[trunk  <HASH>] more text
+ 1 file changed, 1 insertion(+)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliassvnnotessetall[0m
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  more text [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mecho 'even more text' > readme.txt[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit commit -m 'even more text' readme.txt[0m
+[trunk  <HASH>] even more text
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliassvnnotessetunset[0m
+<HASH> -> ---
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  even more text [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| committing changes to svn repository[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn dcommit[0m
+Committing to fil../../test/svn_repo/layout3/project1/trunk ...
+	M	readme.txt
+Committed r8
+	M	readme.txt
+r8 = <HASH> (refs/remotes/origin/trunk)
+	M	readme.txt
+Committed r9
+	M	readme.txt
+r9 = <HASH> (refs/remotes/origin/trunk)
+No changes between <HASH> and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvn[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliassvnnotessetunset[0m
+<HASH> -> 9
+<HASH> -> 8
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvn[0m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| receiving changes committed from svn side on git_svn side[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| add some changes from svn side[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcd ..[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user1_svn_sb1/layout3/project1/trunk[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1/layout3/project1/trunk[0m [38;5;55;1m[0m $ [1;31msvn status -u[0m
+        *        3   readme.txt
+Status against revision:      9
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1/layout3/project1/trunk[0m [38;5;55;1m[0m $ [1;31msvn update[0m
+Updating '.':
+U    readme.txt
+Updated to revision 9.
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1/layout3/project1/trunk[0m [38;5;55;1m[0m $ [1;31mecho 'some more text from user1' > readme.txt[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1/layout3/project1/trunk[0m [38;5;55;1m[0m $ [1;31msvn commit -m "some more text from user1" readme.txt[0m
+Sending        readme.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 10.
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| receive changes on git svn side[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test/user1_svn_sb1/layout3/project1/trunk[0m [38;5;55;1m[0m $ [1;31mcd ../../../..[0m
+[1;36mRUN:[0m [1;32muser1.svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user1_git_svn_sb3[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn fetch[0m
+	M	readme.txt
+r10 = <HASH> (refs/remotes/origin/trunk)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliassvnnotessetall[0m
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+Overwriting existing notes for object <HASH>
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn rebase[0m
+[KSuccessfully rebased and updated refs/heads/trunk.
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| generate some conflicts to show rebase issues[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| create svn sandbox for user2.svn[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcd ..[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mmkdir user2_svn_sb1[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user2_svn_sb1[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn checkout fil../../test/svn_repo/layout3/project1/trunk .[0m
+A    links
+A    links/cra.sv
+A    links/fa.sv
+A    links/ha.sv
+A    readme.txt
+A    shared.gitconfig
+A    verilog
+A    verilog/carry_lookahead_adder.v
+A    verilog/carry_ripple_adder.v
+A    verilog/full_adder.v
+A    verilog/full_adder_cla.v
+A    verilog/halve_adder.v
+Checked out revision 10.
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| add changes to create merge conflicts to be solved in user1.git_svn sandbox later[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i "s,c,cry_,g" verilog/carry_lookahead_adder.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user2.svn verilog/carry_lookahead_adder.v -m 'c to cry_ (no conflict, only changed from user2.svn)'[0m
+Sending        verilog/carry_lookahead_adder.v
+Transmitting file data .done
+Committing transaction...
+Committed revision 11.
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i "s,endmodule,endmodul../ some note,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user2.svn verilog/full_adder_cla.v -m 'note after endmodule (no conflict, no change from user1.git_svn at the same location)'[0m
+Sending        verilog/full_adder_cla.v
+Transmitting file data .done
+Committing transaction...
+Committed revision 12.
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i "s,full_adder_cla,fa_cla,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user2.svn verilog/full_adder_cla.v -m 'module name change from full_adder_cla to fa_cla (conflicts with user1.git_svn: full_adder_cla to full_adder_carry_lookahead_adder)'[0m
+Sending        verilog/full_adder_cla.v
+Transmitting file data .done
+Committing transaction...
+Committed revision 13.
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i "s,c,carry_,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i "s,carry_ ,carry ,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i -r "s,carry_$,carry,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i "s,carry_),carry),g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user2.svn verilog/full_adder_cla.v -m 'c to carry_ (conflicts with user1.git_svn: reg to logic / prev to previous / full_adder_cla to full_adder_carry_lookahead_adder)'[0m
+Sending        verilog/full_adder_cla.v
+Transmitting file data .done
+Committing transaction...
+Committed revision 14.
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msed -i "s,endmodule,endmodul../ some comment,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31msvn commit --username user2.svn verilog/full_adder_cla.v -m 'update of note - added a comment after endmodule (no conflict, no change from user1.git_svn at the same location)'[0m
+Sending        verilog/full_adder_cla.v
+Transmitting file data .done
+Committing transaction...
+Committed revision 15.
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| creating some conflicts and other changes from git svn side[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test/user2_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcd ..[0m
+[1;36mRUN:[0m [1;32muser2.svn[0m @ [38;5;67;1m../test[0m [38;5;55;1m[0m $ [1;31mcd user1_git_svn_sb3[0m
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| add local changes to create merge conflicts comming from a another user called user2.svn from svn side[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,halve_adder,ha,g" verilog/halve_adder.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit commit verilog/halve_adder.v -m "halve adder to ha (no conflict, only changed from user1.git_svn)"[0m
+[trunk  <HASH>] halve adder to ha (no conflict, only changed from user1.git_svn)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,reg,logic,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit commit verilog/full_adder_cla.v -m "reg to logic (conflicts with user1.git_svn: c to carry_)"[0m
+[trunk  <HASH>] reg to logic (conflicts with user1.git_svn: c to carry_)
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,prev ,previous ,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit commit verilog/full_adder_cla.v -m "prev to previous in comment (conflicts with user1.git_svn: c to carry_)"[0m
+[trunk  <HASH>] prev to previous in comment (conflicts with user1.git_svn: c to carry_)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,full_adder_cla,full_adder_carry_lookahead_adder,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit commit verilog/full_adder_cla.v -m "module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)"[0m
+[trunk  <HASH>] module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| get changes and solve conflicts[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| first add some local modifications[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,wire, wire ,g" verilog/halve_adder.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit add verilog/halve_adder.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,wire, wire ,g" verilog/halve_adder.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,reg, logic,g" verilog/halve_adder.v[0m
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| use alias command sequence to auto stash and rebase tag[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgrep alias-svn-stash-fetch-tag-rebase-dcommit-svnnotessetunset-unstash shared.gitconfig -A 14[0m
+        alias-svn-stash-fetch-tag-rebase-dcommit-svnnotessetunset-unstash="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+          set -e; \
+          changes=`git status --short | grep -v \"??\"`; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            echo \"Detected local changes. Auto stashing them for later restore.\"; \
+            git stash -m \"Automatic stashed local changes before git svn update\"; \
+          fi; \
+          git svn fetch; \
+          datetime=`date '+%Y%m%d_%H%M%S'`; \
+          git tag -a auto_tag_svn_rebase_$datetime -m \"Auto added rebase tag $datetime\"; \
+          git svn rebase; \
+          git svn dcommit; \
+          git aliassvnnotessetunset; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            git stash pop; \
+[1;36mCMT:[0m [1;35mrebase rewrites history hence tags or branches should be created to get back to the state before rebase is done[0m
+[1;36mCMT:[0m [1;35mautomatically stashing before an update helps to keep local changes[0m
+[1;36mCMT:[0m [1;35min case of rebase conflicts the stash must be applied manually afterwards[0m
+[1;36mCMT:[0m [1;35mbelow will fail because of conflicts[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit alias-svn-stash-fetch-tag-rebase-dcommit-svnnotessetunset-unstash[0m
+Detected local changes. Auto stashing them for later restore.
+Saved working directory and index state On trunk: Automatic stashed local changes before git svn update
+	M	verilog/carry_lookahead_adder.v
+r11 = <HASH> (refs/remotes/origin/trunk)
+	M	verilog/full_adder_cla.v
+r12 = <HASH> (refs/remotes/origin/trunk)
+	M	verilog/full_adder_cla.v
+r13 = <HASH> (refs/remotes/origin/trunk)
+	M	verilog/full_adder_cla.v
+r14 = <HASH> (refs/remotes/origin/trunk)
+	M	verilog/full_adder_cla.v
+r15 = <HASH> (refs/remotes/origin/trunk)
+Rebasing (1/4)Rebasing (2/4)Auto-merging verilog/full_adder_cla.v
+CONFLICT (content): Merge conflict in verilog/full_adder_cla.v
+error: could not apply <HASH>... reg to logic (conflicts with user1.git_svn: c to carry_)
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply <HASH>... reg to logic (conflicts with user1.git_svn: c to carry_)
+rebase refs/remotes/origin/trunk: command returned error: 1
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliassvnnotessetunset[0m
+<HASH> -> ---
+<HASH> -> 15
+<HASH> -> 14
+<HASH> -> 13
+<HASH> -> 12
+<HASH> -> 11
+<HASH> -> 10
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[33m ([m[1;36mHEAD[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr15[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  update of note - added a comment after endmodule (no conflict, no change from user1.git_svn at the same location) [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr14[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to carry_ (conflicts with user1.git_svn: reg to logic / prev to previous / full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr13[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to fa_cla (conflicts with user1.git_svn: full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr12[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  note after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr11[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to cry_ (no conflict, only changed from user2.svn) [m[m
+[32m|[m *   [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  On trunk: Automatic stashed local changes before git svn update [m[33m ([m[1;35mrefs/stash[m[33m)[m[m
+[32m|[m [33m|[m[34m\[m  
+[32m|[m [33m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  index on trunk: <HASH> module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[m
+[32m|[m [33m|[m[33m/[m  
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m, [m[1;32mtrunk[m[33m)[m[m
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[32m|[m[32m/[m  
+* [33m<HASH>[m - [1;34mr10[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| solve rebase conflicts[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit status[0m
+[31minteractive rebase in progress; onto [m<HASH>
+Last commands done (2 commands done):
+   pick <HASH> halve adder to ha (no conflict, only changed from user1.git_svn)
+   pick <HASH> reg to logic (conflicts with user1.git_svn: c to carry_)
+Next commands to do (2 remaining commands):
+   pick <HASH> prev to previous in comment (conflicts with user1.git_svn: c to carry_)
+   pick <HASH> module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'trunk' on '<HASH>'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+	[31mboth modified:   verilog/full_adder_cla.v[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+[1;36mH3 : [0m [1;34m.-----------------------------[0m
+[1;36mH3 : [0m [1;34m| solving conflict (1/3)[0m
+[1;36mH3 : [0m [1;34m'-----------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliasdiffall verilog/full_adder_cla.v[0m
+[36mdiff --cc verilog/full_adder_cla.v[m
+[36mindex <HASH>,<HASH>..<HASH>[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@@ -7,3 -7,3 +7,13 @@@[m[30m [mmodule fa_carry_la [m
+[34;102m++<<<<<<< HEAD[m
+[34;102m +  output reg  p,[m
+[34;102m +  output reg  g,[m
+[34;102m +  output reg  carry);[m
+[34;102m++||||||| parent of <HASH> (reg to logic (conflicts with user1.git_svn: c to carry_))[m
+[34;102m++  output reg  p,[m
+[34;102m++  output reg  g,[m
+[34;102m++  output reg  c);[m
+[34;102m++=======[m
+[34;102m+   output logic  p,[m
+[34;102m+   output logic  g,[m
+[34;102m+   output logic  c);[m
+[34;102m++>>>>>>> <HASH> (reg to logic (conflicts with user1.git_svn: c to carry_))[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit rebase --show-current-patch[0m
+[33mcommit <HASH>[33m
+Author: user1.git_svn <user1.git_svn@domain>
+Date:   <DATE_TIME>
+
+    reg to logic (conflicts with user1.git_svn: c to carry_)
+
+[36mdiff --git a/verilog/full_adder_cla.v b/verilog/full_adder_cla.v[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@ -4,9 +4,9 @@[m[30m [mmodule full_adder_cla ([m
+[30m   input  wire cp../ prev carry[m
+[30m   input  wire pp../ previous propagate[m
+[30m   input  wire gp../ previous generate[m
+[34;101m-  output reg  p,[m
+[34;101m-  output reg  g,[m
+[34;101m-  output reg  c);[m
+[34;102m+[m[34;102m  output logic  p,[m
+[34;102m+[m[34;102m  output logic  g,[m
+[34;102m+[m[34;102m  output logic  c);[m
+[30m [m
+[30m   assign p = a ^ b../ propagate[m
+[30m   assign g = a & b../ generate[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit checkout --ours verilog/full_adder_cla.v[0m
+Updated 1 path from the index
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,reg,logic,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliasdiffall verilog/full_adder_cla.v[0m
+[36mdiff --cc verilog/full_adder_cla.v[m
+[36mindex <HASH>,<HASH>..<HASH>[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@@ -7,3 -7,3 +7,3 @@@[m[30m [mmodule fa_carry_la [m
+[34;101m-   output reg  p,[m
+[34;101m-   output reg  g,[m
+[34;101m-   output reg  carry);[m
+[34;102m+   output logic  p,[m
+[34;102m+   output logic  g,[m
+[34;101m -  output logic  c);[m
+[34;102m++  output logic  carry);[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit add verilog/full_adder_cla.v[0m
+[1;36mCMT:[0m [1;35mbelow is a trick to avoid editor to pop up + modify message => required for continues flow in demonstration => usually interactive mode is fine[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mmv .git/rebase-merge/message .git/rebase-merge/message2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mecho 'REBASE CONFLICT 1/3: ' > .git/rebase-merge/message[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcat .git/rebase-merge/message2 >> .git/rebase-merge/message[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mrm -rf .git/rebase-merge/message2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mGIT_EDITOR=true git rebase --continue[0m
+[detached HEAD  <HASH>] REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_)
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+Rebasing (3/4)Auto-merging verilog/full_adder_cla.v
+CONFLICT (content): Merge conflict in verilog/full_adder_cla.v
+error: could not apply <HASH>... prev to previous in comment (conflicts with user1.git_svn: c to carry_)
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply <HASH>... prev to previous in comment (conflicts with user1.git_svn: c to carry_)
+
+[1;36mH3 : [0m [1;34m.-----------------------------[0m
+[1;36mH3 : [0m [1;34m| solving conflict (2/3)[0m
+[1;36mH3 : [0m [1;34m'-----------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliasdiffall verilog/full_adder_cla.v[0m
+[36mdiff --cc verilog/full_adder_cla.v[m
+[36mindex <HASH>,<HASH>..<HASH>[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@@ -4,1 -4,1 +4,7 @@@[m[30m [mmodule fa_carry_la [m
+[34;102m++<<<<<<< HEAD[m
+[34;102m +  input  wire carry_p../ prev carry_arry[m
+[34;102m++||||||| parent of <HASH> (prev to previous in comment (conflicts with user1.git_svn: c to carry_))[m
+[34;102m++  input  wire cp../ prev carry[m
+[34;102m++=======[m
+[34;102m+   input  wire cp../ previous carry[m
+[34;102m++>>>>>>> <HASH> (prev to previous in comment (conflicts with user1.git_svn: c to carry_))[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit rebase --show-current-patch[0m
+[33mcommit <HASH>[33m
+Author: user1.git_svn <user1.git_svn@domain>
+Date:   <DATE_TIME>
+
+    prev to previous in comment (conflicts with user1.git_svn: c to carry_)
+
+[36mdiff --git a/verilog/full_adder_cla.v b/verilog/full_adder_cla.v[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@ -1,7 +1,7 @@[m
+[30m module full_adder_cla ([m
+[30m   input  wire a,[m
+[30m   input  wire b,[m
+[34;101m-  input  wire cp../ prev carry[m
+[34;102m+[m[34;102m  input  wire cp../ previous carry[m
+[30m   input  wire pp../ previous propagate[m
+[30m   input  wire gp../ previous generate[m
+[30m   output logic  p,[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit checkout --ours verilog/full_adder_cla.v[0m
+Updated 1 path from the index
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,prev ,previous ,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliasdiffall verilog/full_adder_cla.v[0m
+[36mdiff --cc verilog/full_adder_cla.v[m
+[36mindex <HASH>,<HASH>..<HASH>[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@@ -4,1 -4,1 +4,1 @@@[m[30m [mmodule fa_carry_la [m
+[34;101m-   input  wire carry_p../ prev carry_arry[m
+[34;101m -  input  wire cp../ previous carry[m
+[34;102m++  input  wire carry_p../ previous carry_arry[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit add verilog/full_adder_cla.v[0m
+[1;36mCMT:[0m [1;35mbelow is a trick to avoid editor to pop up + modify message => required for continues flow in demonstration => usually interactive mode is fine[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mmv .git/rebase-merge/message .git/rebase-merge/message2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mecho 'REBASE CONFLICT 2/3: ' > .git/rebase-merge/message[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcat .git/rebase-merge/message2 >> .git/rebase-merge/message[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mrm -rf .git/rebase-merge/message2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mGIT_EDITOR=true git rebase --continue[0m
+[detached HEAD  <HASH>] REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Rebasing (4/4)Auto-merging verilog/full_adder_cla.v
+CONFLICT (content): Merge conflict in verilog/full_adder_cla.v
+error: could not apply <HASH>... module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply <HASH>... module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)
+
+[1;36mH3 : [0m [1;34m.-----------------------------[0m
+[1;36mH3 : [0m [1;34m| solving conflict (3/3)[0m
+[1;36mH3 : [0m [1;34m'-----------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliasdiffall verilog/full_adder_cla.v[0m
+[36mdiff --cc verilog/full_adder_cla.v[m
+[36mindex <HASH>,<HASH>..<HASH>[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@@ -1,1 -1,1 +1,7 @@@[m
+[34;102m++<<<<<<< HEAD[m
+[34;102m +module fa_carry_la ([m
+[34;102m++||||||| parent of <HASH> (module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla))[m
+[34;102m++module full_adder_cla ([m
+[34;102m++=======[m
+[34;102m+ module full_adder_carry_lookahead_adder ([m
+[34;102m++>>>>>>> <HASH> (module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla))[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit rebase --show-current-patch[0m
+[33mcommit <HASH>[33m
+Author: user1.git_svn <user1.git_svn@domain>
+Date:   <DATE_TIME>
+
+    module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)
+
+[36mdiff --git a/verilog/full_adder_cla.v b/verilog/full_adder_cla.v[m
+[36mindex <HASH>..<HASH> 100644[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@ -1,4 +1,4 @@[m
+[34;101m-module full_adder_cla ([m
+[34;102m+[m[34;102mmodule full_adder_carry_lookahead_adder ([m
+[30m   input  wire a,[m
+[30m   input  wire b,[m
+[30m   input  wire cp../ previous carry[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit checkout --ours verilog/full_adder_cla.v[0m
+Updated 1 path from the index
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,_la,_lookahead_adder,g" verilog/full_adder_cla.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliasdiffall verilog/full_adder_cla.v[0m
+[36mdiff --cc verilog/full_adder_cla.v[m
+[36mindex <HASH>,<HASH>..<HASH>[m
+[36m--- a/verilog/full_adder_cla.v[m
+[36m+++ b/verilog/full_adder_cla.v[m
+[34;105m@@@ -1,1 -1,1 +1,1 @@@[m
+[34;101m- module fa_carry_la ([m
+[34;101m -module full_adder_carry_lookahead_adder ([m
+[34;102m++module fa_carry_lookahead_adder ([m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit add verilog/full_adder_cla.v[0m
+[1;36mCMT:[0m [1;35mbelow is a trick to avoid editor to pop up + modify message => required for continues flow in demonstration => usually interactive mode is fine[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mmv .git/rebase-merge/message .git/rebase-merge/message2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mecho 'REBASE CONFLICT 3/3: ' > .git/rebase-merge/message[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcat .git/rebase-merge/message2 >> .git/rebase-merge/message[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mrm -rf .git/rebase-merge/message2[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mGIT_EDITOR=true git rebase --continue[0m
+[detached HEAD  <HASH>] REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[KSuccessfully rebased and updated refs/heads/trunk.
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| apply stash that was not unstashed beacuse of rebase conflict[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit stash pop[0m
+On branch trunk
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   verilog/halve_adder.v[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (<HASH>)
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| show final status after solving conflict[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit status[0m
+On branch trunk
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   verilog/halve_adder.v[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliassvnnotessetunset[0m
+<HASH> -> ---
+<HASH> -> ---
+<HASH> -> ---
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+* [33m<HASH>[m - [1;34mr15[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  update of note - added a comment after endmodule (no conflict, no change from user1.git_svn at the same location) [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr14[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to carry_ (conflicts with user1.git_svn: reg to logic / prev to previous / full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr13[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to fa_cla (conflicts with user1.git_svn: full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr12[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  note after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr11[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to cry_ (no conflict, only changed from user2.svn) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[32m|[m[32m/[m  
+* [33m<HASH>[m - [1;34mr10[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| showing blame in svn format[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mCMT:[0m [1;35m0 means locally changed but not committed to svn[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn blame verilog/full_adder_cla.v[0m
+     0 user1.git_svn module fa_carry_lookahead_adder (
+     4  user1.svn   input  wire a,
+     4  user1.svn   input  wire b,
+     0 user1.git_svn   input  wire carry_p../ previous carry_arry
+     4  user1.svn   input  wire pp../ previous propagate
+     4  user1.svn   input  wire gp../ previous generate
+     0 user1.git_svn   output logic  p,
+     0 user1.git_svn   output logic  g,
+     0 user1.git_svn   output logic  carry);
+     4  user1.svn 
+     4  user1.svn   assign p = a ^ b../ propagate
+     4  user1.svn   assign g = a & b../ generate
+    14  user2.svn   assign carry = gp | pp & carry_p;
+     4  user1.svn 
+    15  user2.svn endmodul../ some commen../ some note
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn blame --git-format verilog/full_adder_cla.v[0m
+0          (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  1) module fa_carry_lookahead_adder (
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET>  2)   input  wire a,
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET>  3)   input  wire b,
+0          (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  4)   input  wire carry_p../ previous carry_arry
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET>  5)   input  wire pp../ previous propagate
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET>  6)   input  wire gp../ previous generate
+0          (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  7)   output logic  p,
+0          (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  8)   output logic  g,
+0          (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  9)   output logic  carry);
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET> 10) 
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET> 11)   assign p = a ^ b../ propagate
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET> 12)   assign g = a & b../ generate
+14         (user2.svn     <DATE> <TIME> <TIME_OFFSET> 13)   assign carry = gp | pp & carry_p;
+4          (user1.svn     <DATE> <TIME> <TIME_OFFSET> 14) 
+15         (user2.svn     <DATE> <TIME> <TIME_OFFSET> 15) endmodul../ some commen../ some note
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit blame verilog/full_adder_cla.v[0m
+<HASH> (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  1) module fa_carry_lookahead_adder (
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET>  2)   input  wire a,
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET>  3)   input  wire b,
+<HASH> (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  4)   input  wire carry_p../ previous carry_arry
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET>  5)   input  wire pp../ previous propagate
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET>  6)   input  wire gp../ previous generate
+<HASH> (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  7)   output logic  p,
+<HASH> (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  8)   output logic  g,
+<HASH> (user1.git_svn <DATE> <TIME> <TIME_OFFSET>  9)   output logic  carry);
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET> 10) 
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET> 11)   assign p = a ^ b../ propagate
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET> 12)   assign g = a & b../ generate
+<HASH> (user2.svn     <DATE> <TIME> <TIME_OFFSET> 13)   assign carry = gp | pp & carry_p;
+<HASH> (user1.svn     <DATE> <TIME> <TIME_OFFSET> 14) 
+<HASH> (user2.svn     <DATE> <TIME> <TIME_OFFSET> 15) endmodul../ some commen../ some note
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit alias-svn-stash-fetch-tag-rebase-dcommit-svnnotessetunset-unstash[0m
+Detected local changes. Auto stashing them for later restore.
+Saved working directory and index state On trunk: Automatic stashed local changes before git svn update
+Current branch trunk is up to date.
+Committing to fil../../test/svn_repo/layout3/project1/trunk ...
+	M	verilog/halve_adder.v
+Committed r16
+	M	verilog/halve_adder.v
+r16 = <HASH> (refs/remotes/origin/trunk)
+	M	verilog/full_adder_cla.v
+Committed r17
+	M	verilog/full_adder_cla.v
+r17 = <HASH> (refs/remotes/origin/trunk)
+	M	verilog/full_adder_cla.v
+Committed r18
+	M	verilog/full_adder_cla.v
+r18 = <HASH> (refs/remotes/origin/trunk)
+	M	verilog/full_adder_cla.v
+Committed r19
+	M	verilog/full_adder_cla.v
+r19 = <HASH> (refs/remotes/origin/trunk)
+No changes between <HASH> and refs/remotes/origin/trunk
+Resetting to the latest refs/remotes/origin/trunk
+<HASH> -> 19
+<HASH> -> 18
+<HASH> -> 17
+<HASH> -> 16
+On branch trunk
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   verilog/halve_adder.v[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (<HASH>)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr19[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr18[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr17[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr16[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+* [33m<HASH>[m - [1;34mr15[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  update of note - added a comment after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr14[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to carry_ (conflicts with user1.git_svn: reg to logic / prev to previous / full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr13[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to fa_cla (conflicts with user1.git_svn: full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr12[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  note after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr11[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to cry_ (no conflict, only changed from user2.svn) [m[m
+[33m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[33m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[33m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[33m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[33m|[m[33m/[m  
+* [33m<HASH>[m - [1;34mr10[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn blame verilog/full_adder_cla.v[0m
+    19  user2.svn module fa_carry_lookahead_adder (
+     4  user1.svn   input  wire a,
+     4  user1.svn   input  wire b,
+    18  user2.svn   input  wire carry_p../ previous carry_arry
+     4  user1.svn   input  wire pp../ previous propagate
+     4  user1.svn   input  wire gp../ previous generate
+    17  user2.svn   output logic  p,
+    17  user2.svn   output logic  g,
+    17  user2.svn   output logic  carry);
+     4  user1.svn 
+     4  user1.svn   assign p = a ^ b../ propagate
+     4  user1.svn   assign g = a & b../ generate
+    14  user2.svn   assign carry = gp | pp & carry_p;
+     4  user1.svn 
+    15  user2.svn endmodul../ some commen../ some note
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit svn blame --git-format verilog/full_adder_cla.v[0m
+19         (user2.svn <DATE> <TIME> <TIME_OFFSET>  1) module fa_carry_lookahead_adder (
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET>  2)   input  wire a,
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET>  3)   input  wire b,
+18         (user2.svn <DATE> <TIME> <TIME_OFFSET>  4)   input  wire carry_p../ previous carry_arry
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET>  5)   input  wire pp../ previous propagate
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET>  6)   input  wire gp../ previous generate
+17         (user2.svn <DATE> <TIME> <TIME_OFFSET>  7)   output logic  p,
+17         (user2.svn <DATE> <TIME> <TIME_OFFSET>  8)   output logic  g,
+17         (user2.svn <DATE> <TIME> <TIME_OFFSET>  9)   output logic  carry);
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET> 10) 
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET> 11)   assign p = a ^ b../ propagate
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET> 12)   assign g = a & b../ generate
+14         (user2.svn <DATE> <TIME> <TIME_OFFSET> 13)   assign carry = gp | pp & carry_p;
+4          (user1.svn <DATE> <TIME> <TIME_OFFSET> 14) 
+15         (user2.svn <DATE> <TIME> <TIME_OFFSET> 15) endmodul../ some commen../ some note
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit blame verilog/full_adder_cla.v[0m
+<HASH> (user2.svn <DATE> <TIME> <TIME_OFFSET>  1) module fa_carry_lookahead_adder (
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET>  2)   input  wire a,
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET>  3)   input  wire b,
+<HASH> (user2.svn <DATE> <TIME> <TIME_OFFSET>  4)   input  wire carry_p../ previous carry_arry
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET>  5)   input  wire pp../ previous propagate
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET>  6)   input  wire gp../ previous generate
+<HASH> (user2.svn <DATE> <TIME> <TIME_OFFSET>  7)   output logic  p,
+<HASH> (user2.svn <DATE> <TIME> <TIME_OFFSET>  8)   output logic  g,
+<HASH> (user2.svn <DATE> <TIME> <TIME_OFFSET>  9)   output logic  carry);
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET> 10) 
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET> 11)   assign p = a ^ b../ propagate
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET> 12)   assign g = a & b../ generate
+<HASH> (user2.svn <DATE> <TIME> <TIME_OFFSET> 13)   assign carry = gp | pp & carry_p;
+<HASH> (user1.svn <DATE> <TIME> <TIME_OFFSET> 14) 
+<HASH> (user2.svn <DATE> <TIME> <TIME_OFFSET> 15) endmodul../ some commen../ some note
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| worktrees and none svn branches[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mCMT:[0m [1;35m(feature) branches of an git-svn managed trunk/branch are possible, but need special handling[0m
+[1;36mCMT:[0m [1;35msuch (feature) branches cannot be directly committed to svn, but need to be integrated to an existing git-svn managed trunk/branch first[0m
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| add worktree for feature1 branch[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit branch feature1[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit worktree add ../user1_git_svn_sb3_wt1 feature1[0m
+Preparing worktree (checking out 'feature1')
+HEAD is now at <HASH> REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla)
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| some change to be integrated to none svn feature1 branch from trunk[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31msed -i "s,carry_ripple_adder,cra,g" verilog/carry_ripple_adder.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit commit -m "change to cra from trunk side" verilog/carry_ripple_adder.v[0m
+[trunk  <HASH>] change to cra from trunk side
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| some change to be integrated to trunk from feature1 none svn branch[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mcd ../user1_git_svn_sb3_wt1[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3_wt1[0m [38;5;55;1m[0m $ [1;31msed -i "s,fas,full_adders,g" verilog/carry_ripple_adder.v[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3_wt1[0m [38;5;55;1m[0m $ [1;31mgit commit -m "change to cra from feature side" verilog/carry_ripple_adder.v[0m
+[feature1  <HASH>] change to cra from feature side
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3_wt1[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from feature side [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature1[m[33m)[m[m
+[31m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from trunk side [m[33m ([m[1;32mtrunk[m[33m)[m[m
+[31m|[m[31m/[m  
+* [33m<HASH>[m - [1;34mr19[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr18[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr17[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr16[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+* [33m<HASH>[m - [1;34mr15[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  update of note - added a comment after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr14[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to carry_ (conflicts with user1.git_svn: reg to logic / prev to previous / full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr13[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to fa_cla (conflicts with user1.git_svn: full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr12[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  note after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr11[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to cry_ (no conflict, only changed from user2.svn) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[34m|[m[34m/[m  
+* [33m<HASH>[m - [1;34mr10[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| integrate changes from trunk to none svn feature1 branch[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mCMT:[0m [1;35mrebase is required for none svn branches to integrate changes from an svn branch into it[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3_wt1[0m [38;5;55;1m[0m $ [1;31mgrep alias-worktree-rebase shared.gitconfig -A 15[0m
+        alias-worktree-rebase="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+          to_rebase_onto=$1; \
+          datetime=`date '+%Y%m%d_%H%M%S'`; \
+          to_rebase=`git rev-parse --abbrev-ref HEAD`; \
+          tag_name=\"auto_tag_worktree_rebase_${to_rebase}_onto_${to_rebase_onto}_${datetime}\" ; \
+          changes=`git status --short | grep -v \"??\"`; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            echo \"Detected local changes. Auto stashing them for later restore.\"; \
+            git stash -m \"Automatic stashed local changes before git rebase ($tag_name)\"; \
+          fi; \
+          git tag -a $tag_name -m \"Auto added tag for worktree rebase from $to_rebase onto $to_rebase_onto at $datetime\"; \
+          git rebase $to_rebase_onto; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            git stash pop; \
+          fi;' --"
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3_wt1[0m [38;5;55;1m[0m $ [1;31mgit alias-worktree-rebase trunk[0m
+Rebasing (1/1)[KSuccessfully rebased and updated refs/heads/feature1.
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3_wt1[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from feature side [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature1[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from trunk side [m[33m ([m[1;32mtrunk[m[33m)[m[m
+[31m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from feature side [m[33m ([m[1;34mtag: [m[1;34mauto_tag_worktree_rebase_feature1_onto_trunk_<DATE_TIME>[m[33m)[m[m
+[31m|[m[31m/[m  
+* [33m<HASH>[m - [1;34mr19[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr18[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr17[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr16[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+* [33m<HASH>[m - [1;34mr15[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  update of note - added a comment after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr14[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to carry_ (conflicts with user1.git_svn: reg to logic / prev to previous / full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr13[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to fa_cla (conflicts with user1.git_svn: full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr12[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  note after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr11[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to cry_ (no conflict, only changed from user2.svn) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[34m|[m[34m/[m  
+* [33m<HASH>[m - [1;34mr10[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH2 : [0m [1;34m.-----------------------------------------------[0m
+[1;36mH2 : [0m [1;34m| integrate changes from none svn feature1 branch to trunk[0m
+[1;36mH2 : [0m [1;34m'-----------------------------------------------[0m
+
+[1;36mCMT:[0m [1;35mmerge using -ff-only (fast forward only) is mandatory to keep linear history required for pushing to svn[0m
+[1;36mCMT:[0m [1;35monly aligned none svn branches must be integrated[0m
+[1;36mCMT:[0m [1;35malias-worktree-rebase must be run on branch to integrate before alias-worktree-merge is called[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3_wt1[0m [38;5;55;1m[0m $ [1;31mcd ../user1_git_svn_sb3[0m
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgrep alias-worktree-merge shared.gitconfig -A 15[0m
+        alias-worktree-merge="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+          to_merge=$1; \
+          datetime=`date '+%Y%m%d_%H%M%S'`; \
+          to_merge_into=`git rev-parse --abbrev-ref HEAD`; \
+          tag_name=\"auto_tag_worktree_merge_${to_merge}_into_${to_merge_into}_${datetime}\"; \
+          changes=`git status --short | grep -v \"??\"`; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            echo \"Detected local changes. Auto stashing them for later restore.\"; \
+            git stash -m \"Automatic stashed local changes before git merge ($tag_name)\"; \
+          fi; \
+          git tag -a $tag_name -m \"Auto added tag for worktree merge $to_merge into $to_mergo_into at $datetime\"; \
+          git merge --ff-only $to_merge; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            git stash pop; \
+          fi;' --"
+
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit alias-worktree-merge feature1[0m
+Detected local changes. Auto stashing them for later restore.
+Saved working directory and index state On trunk: Automatic stashed local changes before git merge (auto_tag_worktree_merge_feature1_into_trunk_<DATE_TIME>)
+Updating <HASH>..<HASH>
+Fast-forward
+ verilog/carry_ripple_adder.v | 2 [34;102m+[m[34;101m-[m
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+On branch trunk
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   verilog/halve_adder.v[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (<HASH>)
+[1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb3[0m [38;5;55;1m[0m $ [1;31mgit aliaslogsvnall[0m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from feature side [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;32mfeature1[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from trunk side [m[33m ([m[1;34mtag: [m[1;34mauto_tag_worktree_merge_feature1_into_trunk_<DATE_TIME>[m[33m)[m[m
+[31m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  change to cra from feature side [m[33m ([m[1;34mtag: [m[1;34mauto_tag_worktree_rebase_feature1_onto_trunk_<DATE_TIME>[m[33m)[m[m
+[31m|[m[31m/[m  
+* [33m<HASH>[m - [1;34mr19[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;31morigin/trunk[m[33m)[m[m
+* [33m<HASH>[m - [1;34mr18[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr17[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+* [33m<HASH>[m - [1;34mr16[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 3/3: module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 2/3: prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  REBASE CONFLICT 1/3: reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[32m|[m * [33m<HASH>[m - [1;34mr---[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+* [33m<HASH>[m - [1;34mr15[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  update of note - added a comment after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr14[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to carry_ (conflicts with user1.git_svn: reg to logic / prev to previous / full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr13[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to fa_cla (conflicts with user1.git_svn: full_adder_cla to full_adder_carry_lookahead_adder) [m[m
+* [33m<HASH>[m - [1;34mr12[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  note after endmodule (no conflict, no change from user1.git_svn at the same location) [m[m
+* [33m<HASH>[m - [1;34mr11[m, [34muser2.svn[m, [32m<DATE> <TIME>[m :  c to cry_ (no conflict, only changed from user2.svn) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  module name change from full_adder_cla to full_adder_carry_lookahead_adder (conflicts with user1.git_svn: c to carry_ / full_adder_cla to fa_cla) [m[33m ([m[1;34mtag: [m[1;34mauto_tag_svn_rebase_<DATE_TIME>[m[33m)[m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  prev to previous in comment (conflicts with user1.git_svn: c to carry_) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  reg to logic (conflicts with user1.git_svn: c to carry_) [m[m
+[34m|[m * [33m<HASH>[m - [1;34mr???[m, [34muser1.git_svn[m, [32m<DATE> <TIME>[m :  halve adder to ha (no conflict, only changed from user1.git_svn) [m[m
+[34m|[m[34m/[m  
+* [33m<HASH>[m - [1;34mr10[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  some more text from user1 [m[m
+* [33m<HASH>[m - [1;34mr9[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  even more text [m[m
+* [33m<HASH>[m - [1;34mr8[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  more text [m[m
+* [33m<HASH>[m - [1;34mr7[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added links [m[m
+* [33m<HASH>[m - [1;34mr6[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added carry adder [m[m
+* [33m<HASH>[m - [1;34mr5[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added halve adder [m[m
+* [33m<HASH>[m - [1;34mr4[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added full adder [m[m
+* [33m<HASH>[m - [1;34mr3[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added readme [m[m
+* [33m<HASH>[m - [1;34mr2[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  added shared config [m[m
+* [33m<HASH>[m - [1;34mr1[m, [34muser1.svn[m, [32m<DATE> <TIME>[m :  folder structure (initial commit) [m[m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| git svn branch[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mCMT:[0m [1;35mnot used at the moment => use svn instead[0m
+
+[1;36mH1 : [0m [1;34m.====================================================================================[0m
+[1;36mH1 : [0m [1;34m| merge of svn branches[0m
+[1;36mH1 : [0m [1;34m'====================================================================================[0m
+
+[1;36mCMT:[0m [1;35mThere is no working way available to merge svn branches. Must be done on svn side.[0m

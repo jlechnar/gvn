@@ -1,0 +1,190 @@
+@startuml
+!pragma teoz true
+
+!include format.uml!format
+
+title "Subversion (SVN) - operation releated command overview"
+
+box "local" #DCDDDA
+  box "Sandbox" #D2CBC0
+    database "Working Copy\n"  as sandbox
+  end box
+  box "Database (.svn)" #D2CBC0
+    database "database\n"  as local_db
+  end box
+' database "Sandbox\nWorking Copy"  as sandbox
+end box
+
+box "remote" #DCDDDA
+  box #C5B69D
+    database "Central Repository\n"        as central_repo
+  end box
+  box #BBAB92
+    database "Other\nCentral Repository" as other_central_repo
+  end box
+end box
+
+' ====================================================================
+== Initialization ==
+' ok
+sandbox <- local_db : checkout
+& local_db <- central_repo
+/' note left: Done once to setup sandbox '/
+
+' ====================================================================
+== Update / Release ==
+' ok
+sandbox <- local_db : update (up)
+note left: update sandbox with latest version
+& local_db <- central_repo
+
+' ok
+sandbox -> local_db : commit (ci)
+& local_db -> central_repo
+
+' ====================================================================
+' == Info, Status, Compare, List ==
+== Browse ==
+' ok
+local_db <- local_db : info
+
+' ok
+central_repo -[#blue]> local_db
+& local_db <- local_db : log
+
+' ok
+central_repo -[#blue]> local_db : in case of update information (status -u)
+& local_db <- local_db : status (stat, st)
+
+' ok
+central_repo -> central_repo : diff
+& central_repo -[#blue]> local_db : in case of revision option(s)
+& local_db <- local_db : diff
+
+' ok
+central_repo -> central_repo : cat
+& central_repo -[#blue]> local_db : in case of revision option(s)
+& local_db <- local_db : cat
+
+' ok
+central_repo -> central_repo : blame (praise, annotate, ann)
+& central_repo -[#blue]> local_db
+& local_db <- local_db : blame (praise, annotate, ann)
+
+' ok
+central_repo -> central_repo : list (ls)
+& central_repo -[#blue]> local_db :
+& local_db <- local_db : list (ls)
+
+' ====================================================================
+== Path/Change Tracking operations (Add/Move/Delete/Copy/Mkdir/Revert) ==
+' ok
+sandbox -> local_db : add
+note left: add local not version controlled file to version control 
+
+' ok
+sandbox <- local_db : revert
+
+' ok
+sandbox <-> local_db : move (mv, rename, ren)
+note left: move or rename local version controlled file OR folder
+& central_repo -> central_repo : move (mv, rename, ren)
+note right: move or rename remote version controlled file OR folder
+
+' ok
+sandbox <-> local_db : mkdir
+& central_repo -> central_repo : mkdir
+
+' ok
+sandbox <-> local_db : delete (del, remove, rm)
+note left: remove local file from version control and sandbox
+& central_repo -> central_repo : delete (del, remove, rm)
+note right: remove file OR folder (e.g. branch, tag, release)
+
+' ok
+sandbox <-> local_db : copy (cp)
+note left: duplicate local version controlled file
+& central_repo -> central_repo : copy (cp)
+note right: duplicate file OR folder (e.g. path)
+
+' ====================================================================
+== Merging / Branching ==
+local_db <- central_repo : merge
+& sandbox <- local_db
+
+local_db <- other_central_repo : merge
+& sandbox <- local_db
+
+central_repo -> central_repo : copy (cp)
+note right: duplicate file OR folder (e.g. branch, tag, release)
+
+central_repo -[#blue]> local_db :
+& sandbox <- local_db : resolve
+note left: resolve merge conflicts
+
+' central_repo -[#blue]> local_db : ???
+' & sandbox <- local_db : resolved
+' note left: resolve merge conflicts ???
+
+' ok
+central_repo -> local_db
+& sandbox <- local_db : switch (sw)
+note left: change to branch/tag/revision
+
+' ====================================================================
+== Miscellaneous ==
+
+other_central_repo -> local_db : relocate
+& sandbox <- local_db
+
+' == File Lock ==
+sandbox -> local_db : lock
+& local_db -> central_repo
+
+sandbox -> local_db : unlock
+& local_db -> central_repo
+
+/'
+   add                                          done
+   auth                                         -
+   blame (praise, annotate, ann)                done
+   cat                                          done
+   changelist (cl)                              - 
+   checkout (co)                                done
+   cleanup                                      -
+   commit (ci)                                  done 
+   copy (cp)                                    done
+   delete (del, remove, rm)                     done
+   diff (di)                                    done
+   export                                       -
+   help (?, h)                                  -
+   import                                       -
+   info                                         done
+   list (ls)                                    done
+   lock                                         done
+   log                                          done
+   merge                                        done
+   mergeinfo                                    -
+   mkdir                                        done
+   move (mv, rename, ren)                       done
+   patch                                        -
+   propdel (pdel, pd)                           -
+   propedit (pedit, pe)                         -
+   propget (pget, pg)                           -
+   proplist (plist, pl)                         -
+   propset (pset, ps)                           -
+   relocate                                     tbd
+   resolve                                      tbd
+   resolved                                     tbd
+   revert                                       done
+   status (stat, st)                            done
+   switch (sw)                                  done
+   unlock                                       done
+   update (up)                                  done
+   upgrade                                      -
+
+'/
+
+@enduml
+
+

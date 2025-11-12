@@ -1,0 +1,137 @@
+[core]
+        # editor for commit messages
+        editor = vim
+        # automatic handle linefeed correct for linux environments
+        autocrlf = input
+        # get rid of automatically calling a pager e.g. in case of long commit logs
+        pager = less
+
+[push]
+        default = simple
+
+[pull]
+        # disable automatic rebase in case of pull - lets user descide what to do
+        rebase = false
+
+[diff]
+        tool = meld
+        guitool = meld
+
+[color]
+        ui = always
+        branch = always
+        status = always
+        diff = always
+        interactive = always
+        grep = always
+        pager = true
+        decorate = always
+        showbranch = always
+
+[color "diff"]
+        context = "black"
+        frag = "blue brightmagenta"
+        meta = "cyan"
+        old = "blue brightred"
+        new = "blue brightgreen"
+
+[color "decorate"]
+    tag = "bold blue"
+
+[merge]
+        tool = meld
+        # enable diff3 conflict style for merge conflicts (<<<<<<< outgoing/my changes ||||||| common base for outgoing/incomming ======= incoming/their changes >>>>>>>)
+        conflictstyle = diff3
+
+[difftool "meld"]
+        path = /usr/bin/meld
+        trustExitCode = false
+
+[difftool]
+        prompt = false
+
+
+[alias]
+        aliaslogall="log --oneline --graph --decorate --all"
+       #aliaslogall2="log --oneline --graph --decorate --all '--date=format-local:%Y-%m-%d %H:%M:%S' --pretty=format:\"%C(yellow)%h%C(reset) - %C(blue)%an%C(reset), %C(green)%ad%C(reset) : %s %C(auto)%d%C(reset)\""
+        aliaslogall2="log --oneline --graph --decorate --all '--date=format-local:%Y-%m-%d %H:%M:%S' --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(blue)%an%C(reset), %C(green)%ad%C(reset) : %s %C(auto)%d%C(reset)\""
+        aliaslog2="log --oneline --graph --decorate '--date=format-local:%Y-%m-%d %H:%M:%S' --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(blue)%an%C(reset), %C(green)%ad%C(reset) : %s %C(auto)%d%C(reset)\""
+
+        aliassvnnotessetall="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (git log --pretty=format:'%H'; echo \"\") | while read hash; do svn_rev=$(git svn find-rev $hash); if [[ \"$svn_rev\" == \"\" ]]; then svn_rev=\"---\"; fi; git notes add -m \"r$svn_rev\" $hash -f; done;' --"
+
+        aliassvnnotessetunset="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+          (git log --pretty=format:'%H'; echo \"\") | \
+          while read hash; \
+          do \
+            note=`git notes show \"$hash\" > /dev/null 2>&1`;  \
+            if [[ \"$?\" != \"0\" ]]; then  \
+              svn_rev=`git svn find-rev $hash`; \
+              if [[ \"$svn_rev\" == \"\" ]]; then \
+                svn_rev=\"---\"; \
+              fi; \
+              echo \"$hash -> $svn_rev\"; \
+              git notes add -m \"r$svn_rev\" $hash; \
+            fi; \
+          done;' --"
+
+        aliaslogsvn="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes) | egrep -v \"Notes added by .+git notes add.+\" | perl -pe \"\\$/=\"@\\n\"; s/#(.*)\\n.*#/\\$1/g; s/#(.*)#/r???/g; s,@\\n,\\n,g;\" | egrep -v \"^$\"' --"
+
+        aliaslogsvnall="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --all --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\") | perl -pe \"BEGIN { \\$/=\\\"@\\n\\\"; } s/#(.*)\\n.*#/\\$1/g; s/#(.*)#/r???/g; s,@\\n,\\n,g;\" | egrep -v \"^$\"' --"
+
+  aliaslogsvnall2="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --all --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\") | perl -pe \"BEGIN { \\$/=\\\"@\\n\\\"; } s/#(.*)\\n.*#/\\$1/g; s/#(.*)#/r???/g; s,@\\n,\\n,g;\" | egrep -v \"^$\"' --"
+
+        aliaslogsvnallraw="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git log --oneline --graph --all --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\"' --"
+        # perl -pe "$/='@\n'; s/#(.*)\n.*#/\$1/g; s/#(.*)#/r???/g; s,@\n,\n,g;" 
+        # perl -pe "BEGIN { $/=\"@\n\"; } s/#(.*)\n.*#/\$1/g; s/#(.*)#/r???/g; s,@\n,\n,g;"
+
+        alias-svn-stash-fetch-tag-rebase-dcommit-svnnotessetunset-unstash="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+          set -e; \
+          changes=`git status --short | grep -v \"??\"`; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            echo \"Detected local changes. Auto stashing them for later restore.\"; \
+            git stash -m \"Automatic stashed local changes before git svn update\"; \
+          fi; \
+          git svn fetch; \
+          datetime=`date '+%Y%m%d_%H%M%S'`; \
+          git tag -a auto_tag_svn_rebase_$datetime -m \"Auto added rebase tag $datetime\"; \
+          git svn rebase; \
+          git svn dcommit; \
+          git aliassvnnotessetunset; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            git stash pop; \
+          fi;' --"
+
+        aliasdiffall="diff '--word-diff-regex=[^[:space:]]' --word-diff=color -U0 --ignore-all-space --ignore-blank-lines --ignore-space-change"
+
+        alias-worktree-merge="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+          to_merge=$1; \
+          datetime=`date '+%Y%m%d_%H%M%S'`; \
+          to_merge_into=`git rev-parse --abbrev-ref HEAD`; \
+          tag_name=\"auto_tag_worktree_merge_${to_merge}_into_${to_merge_into}_${datetime}\"; \
+          changes=`git status --short | grep -v \"??\"`; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            echo \"Detected local changes. Auto stashing them for later restore.\"; \
+            git stash -m \"Automatic stashed local changes before git merge ($tag_name)\"; \
+          fi; \
+          git tag -a $tag_name -m \"Auto added tag for worktree merge $to_merge into $to_mergo_into at $datetime\"; \
+          git merge --ff-only $to_merge; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            git stash pop; \
+          fi;' --"
+
+        alias-worktree-rebase="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
+          to_rebase_onto=$1; \
+          datetime=`date '+%Y%m%d_%H%M%S'`; \
+          to_rebase=`git rev-parse --abbrev-ref HEAD`; \
+          tag_name=\"auto_tag_worktree_rebase_${to_rebase}_onto_${to_rebase_onto}_${datetime}\" ; \
+          changes=`git status --short | grep -v \"??\"`; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            echo \"Detected local changes. Auto stashing them for later restore.\"; \
+            git stash -m \"Automatic stashed local changes before git rebase ($tag_name)\"; \
+          fi; \
+          git tag -a $tag_name -m \"Auto added tag for worktree rebase from $to_rebase onto $to_rebase_onto at $datetime\"; \
+          git rebase $to_rebase_onto; \
+          if [[ \"$changes\" != \"\" ]]; then \
+            git stash pop; \
+          fi;' --"
+

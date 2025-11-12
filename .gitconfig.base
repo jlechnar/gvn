@@ -128,5 +128,5 @@
         color-date-time = bold green
         color-author = dim blue
 
-        color-ref-names = bold magenta
+        color-ref-names = auto
         color-svn-revision = bold blue

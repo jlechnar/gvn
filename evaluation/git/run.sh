@@ -366,7 +366,7 @@ h1 "merge"
 cmt "h are used to integrate changes from one branch to another one"
 cmt "merging is used to integrate all changes from another branch to the current one"
 cmt "the changes are combined without changing the history"
-cmt "mergin just adds another commit where the changes are merged together on the working branch where the merge is started"
+cmt "merging just adds another commit where the changes are merged together on the working branch where the merge is started"
 
 h2 "add local changes to create merge conflicts comming from a another user called user2 via remote repository"
 
@@ -713,7 +713,7 @@ cmt "usually this breaks as there are local uncommitted changes and/or local unt
 h2 "remove worktree with changes"
 run "git worktree add ../$user1_sb3 feature1a"
 run "cd ../$user1_sb3"
-run "cat test > test"
+run "echo test > test"
 set +e
 run "git worktree remove ../$user1_sb3"
 set -e
@@ -903,13 +903,6 @@ cmt "  i CHANGED MESSAGE <Escape>:wq<enter>"
 waitforenter
 run 'git rebase -i feature1^'
 run 'git aliaslog2'
-
-#####################################################################
-# h1 "changing HEAD position / reverting commits"
-#
-# git reset --hard <commitish> => reset head to that item
-#
-# FIXME
 
 #####################################################################
 # h1 "submodules"
