@@ -49,7 +49,7 @@ sandbox -> local_db : commit (ci)
 local_db <- local_db : info
 
 ' ok
-central_repo -[#blue]> local_db
+central_repo -> local_db
 & local_db <- local_db : log
 
 ' ok
@@ -68,12 +68,12 @@ central_repo -> central_repo : cat
 
 ' ok
 central_repo -> central_repo : blame (praise, annotate, ann)
-& central_repo -[#blue]> local_db
+& central_repo -> local_db
 & local_db <- local_db : blame (praise, annotate, ann)
 
 ' ok
 central_repo -> central_repo : list (ls)
-& central_repo -[#blue]> local_db :
+& central_repo -> local_db :
 & local_db <- local_db : list (ls)
 
 ' ====================================================================
@@ -118,12 +118,12 @@ local_db <- other_central_repo : merge
 central_repo -> central_repo : copy (cp)
 note right: duplicate file OR folder (e.g. branch, tag, release)
 
-central_repo -[#blue]> local_db :
+central_repo -> local_db :
 & sandbox <- local_db : resolve
 note left: resolve merge conflicts
 
-' central_repo -[#blue]> local_db : ???
-' & sandbox <- local_db : resolved
+' central_repo -> local_db : ???
+local_db <- local_db : resolved
 ' note left: resolve merge conflicts ???
 
 ' ok

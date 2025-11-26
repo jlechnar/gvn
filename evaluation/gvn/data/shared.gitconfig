@@ -57,10 +57,10 @@
         aliaslogall2="log --oneline --graph --decorate --all '--date=format-local:%Y-%m-%d %H:%M:%S' --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(blue)%an%C(reset), %C(green)%ad%C(reset) : %s %C(auto)%d%C(reset)\""
         aliaslog2="log --oneline --graph --decorate '--date=format-local:%Y-%m-%d %H:%M:%S' --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(blue)%an%C(reset), %C(green)%ad%C(reset) : %s %C(auto)%d%C(reset)\""
 
-        aliassvnnotessetall="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (git log --pretty=format:'%H'; echo \"\") | while read hash; do svn_rev=$(git svn find-rev $hash); if [[ \"$svn_rev\" == \"\" ]]; then svn_rev=\"---\"; fi; git notes add -m \"r$svn_rev\" $hash -f; done;' --"
+        aliassvnnotessetall="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (git log --all --not refs/notes/commits --pretty=format:'%H'; echo \"\") | while read hash; do svn_rev=$(git svn find-rev $hash); if [[ \"$svn_rev\" == \"\" ]]; then svn_rev=\"---\"; fi; git notes add -m \"r$svn_rev\" $hash -f; done;' --"
 
         aliassvnnotessetunset="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
-          (git log --pretty=format:'%H'; echo \"\") | \
+          (git log --all --not refs/notes/commits --pretty=format:'%H'; echo \"\") | \
           while read hash; \
           do \
             note=`git notes show \"$hash\" > /dev/null 2>&1`;  \
@@ -74,15 +74,9 @@
             fi; \
           done;' --"
 
-        aliaslogsvn="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes) | egrep -v \"Notes added by .+git notes add.+\" | perl -pe \"\\$/=\"@\\n\"; s/#(.*)\\n.*#/\\$1/g; s/#(.*)#/r???/g; s,@\\n,\\n,g;\" | egrep -v \"^$\"' --"
+        aliaslogsvn="!bash -c 'cwd=`pwd`; cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --format=format:\"%C(03)%>|(16)%C(yellow)%h%C(reset) %C(bold blue)#%N#%C(reset) %C(blue)%<(20,trunc)%an%C(reset) %C(green)%ad%C(reset)  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\") | perl $cwd/patch.pl' --"
 
-        aliaslogsvnall="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --all --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\") | perl -pe \"BEGIN { \\$/=\\\"@\\n\\\"; } s/#(.*)\\n.*#/\\$1/g; s/#(.*)#/r???/g; s,@\\n,\\n,g;\" | egrep -v \"^$\"' --"
-
-  aliaslogsvnall2="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --all --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\") | perl -pe \"BEGIN { \\$/=\\\"@\\n\\\"; } s/#(.*)\\n.*#/\\$1/g; s/#(.*)#/r???/g; s,@\\n,\\n,g;\" | egrep -v \"^$\"' --"
-
-        aliaslogsvnallraw="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; git log --oneline --graph --all --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --pretty=tformat:\"%C(yellow)%h%C(reset) - %C(bold blue)#%N#%C(reset), %C(blue)%an%C(reset), %C(green)%ad%C(reset) :  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\"' --"
-        # perl -pe "$/='@\n'; s/#(.*)\n.*#/\$1/g; s/#(.*)#/r???/g; s,@\n,\n,g;" 
-        # perl -pe "BEGIN { $/=\"@\n\"; } s/#(.*)\n.*#/\$1/g; s/#(.*)#/r???/g; s,@\n,\n,g;"
+        aliaslogsvnall="!bash -c 'cwd=`pwd`; cd -- \"${GIT_PREFIX:-.}\"; (echo \"@\n\"; git log --oneline --graph --all --decorate \"--date=format-local:%Y-%m-%d %H:%M:%S\" --format=format:\"%C(03)%>|(16)%C(yellow)%h%C(reset) %C(bold blue)#%N#%C(reset) %C(blue)%<(20,trunc)%an%C(reset) %C(green)%ad%C(reset)  %s %C(auto)%d%C(reset)@\" --show-notes | egrep -v \"Notes added by .+git notes add.+\") | perl $cwd/patch.pl' --"
 
         alias-svn-stash-fetch-tag-rebase-dcommit-svnnotessetunset-unstash="!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; \
           set -e; \
@@ -134,4 +128,3 @@
           if [[ \"$changes\" != \"\" ]]; then \
             git stash pop; \
           fi;' --"
-

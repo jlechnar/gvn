@@ -76,6 +76,9 @@ run "svn commit --username $user -m 'folder structure (initial commit)'"
 run "find -name shared.gitconfig | sort | xargs svn add"
 run "svn commit --username $user -m 'added shared config'"
 
+run "find -name patch.pl | sort | xargs svn add"
+run "svn commit --username $user -m 'added patch.pl required for shared config'"
+
 run "find -name readme.txt | sort | xargs svn add"
 run "svn commit --username $user -m 'added readme'"
 
@@ -92,8 +95,14 @@ run "find -type l | sort | xargs svn add"
 run "svn commit --username $user -m 'added links'"
 
 #####################################################################
+h1 "git svn clone"
+cmt "cloning might take a long time in case of lots of svn revisions"
+cmt "in such cases the number of revisions can be limited to a start revision up to the HEAD revision"
+cmt "add the option '-r<svn_start_revision>:HEAD' to git svn clone"
+
+#####################################################################
 project="project1"
-h1 "git svn clone from layout1 for project1"
+h2 "git svn clone from layout1 for project1"
 user="user1.git_svn"
 user1_git_svn_sb1="user1_git_svn_sb1"
 run "cd .."
@@ -104,7 +113,7 @@ run "tree -a"
 run "cat .git/config"
 
 #####################################################################
-h1 "git svn clone from layout2 for project1"
+h2 "git svn clone from layout2 for project1"
 user="user1.git_svn"
 user1_git_svn_sb2="user1_git_svn_sb2"
 run "cd .."
@@ -115,7 +124,7 @@ run "tree -a"
 run "cat .git/config"
 
 #####################################################################
-h1 "git svn clone from layout3 for project1"
+h2 "git svn clone from layout3 for project1"
 user="user1.git_svn"
 user1_git_svn_sb3="user1_git_svn_sb3"
 run "cd .."
@@ -386,7 +395,7 @@ cmt "such (feature) branches cannot be directly committed to svn, but need to be
 h2 "add worktree for feature1 branch"
 user1_git_svn_sb3_wt1="user1_git_svn_sb3_wt1"
 run "git branch feature1"
-run "git worktree add ../user1_git_svn_sb3_wt1 feature1"
+run "git worktree add ../$user1_git_svn_sb3_wt1 feature1"
 
 h2 "some change to be integrated to none svn feature1 branch from trunk"
 run 'sed -i "s,carry_ripple_adder,cra,g" verilog/carry_ripple_adder.v'
@@ -415,6 +424,83 @@ run 'git aliaslogsvnall'
 
 
 #####################################################################
+h1 "working with svn branches"
+
+h2 "add branch using svn"
+run "cd .."
+run "cd $user2_svn_sb1"
+run "svn update"
+run "svn cp ^/layout3/project1/trunk ^/layout3/project1/branches/variant2 -m 'create svn variant2 branch'"
+
+h2 "checkout new svn branch in own worktree"
+run "cd .."
+run "cd $user1_git_svn_sb3"
+run "git svn fetch"
+user1_git_svn_sb3_wt2="user1_git_svn_sb3_wt2"
+run "git branch variant2 origin/variant2"
+run "git worktree add ../$user1_git_svn_sb3_wt2 variant2"
+run "cd ../$user1_git_svn_sb3_wt2"
+
+h2 "create feature2 git svn branch for variant2 svn branch"
+run "git branch variant2_feature2"
+user1_git_svn_sb3_wt3="user1_git_svn_sb3_wt3"
+run "git worktree add ../$user1_git_svn_sb3_wt3 variant2_feature2"
+run "cd ../$user1_git_svn_sb3_wt3"
+
+h2 "change something in feature2 git svn branch"
+run "echo 'feature2' >> readme.txt"
+run "git commit readme.txt -m 'feature2 change'"
+
+h2 "merge back to svn variant2 branch"
+run 'git alias-worktree-merge variant2_feature2'
+run "git aliassvnnotessetunset" 
+run 'git aliaslogsvnall'
+
+h2 "upload to svn"
+run "git svn dcommit"
+
+h2 "add changes to trunk in parallel to variant2 branch using git svn"
+run "cd ../$user1_git_svn_sb3"
+run "sed -i 's,some more text,changes from trunk,g' readme.txt"
+run "git commit verilog/halve_adder.v -m 'some local changes from before'"
+run "git commit readme.txt -m 'changes from trunk'"
+run "git svn dcommit"
+
+h2 "merge variant2 svn branch using svn"
+user="user2.svn"
+user2_svn_sb2="user2_svn_sb2"
+h2 "create svn sandbox for $user"
+run "cd .."
+run "mkdir $user2_svn_sb2"
+run "cd $user2_svn_sb2"
+run "svn checkout file://$svn_repo/layout3/project1/branches/variant2 ."
+run 'echo -e "p\n" | svn merge ^/layout3/project1/trunk'
+# solve conflict
+run 'cat readme.txt | grep "changes from trunk" > readme.txt2'
+run 'cat readme.txt | grep "feature2" >> readme.txt2'
+run 'cp -f readme.txt2 readme.txt'
+run 'svn resolved readme.txt'
+run "svn commit -m 'merged trunk into variant2'"
+
+h2 "merge trunk to variant2 svn branch using svn"
+run "cd .."
+run "cd $user2_svn_sb1"
+run "svn update"
+run 'svn merge ^/layout3/project1/branches/variant2'
+run "svn commit -m 'merged variant2 into trunk'"
+
+######
+h2 "update git svn database and show merge structure"
+run "cd .."
+run "cd $user1_git_svn_sb3"
+user="user1.git_svn"
+run "git svn fetch"
+run "git aliassvnnotessetunset" 
+run 'git aliaslogsvnall'
+run "git svn rebase"
+run 'git aliaslogsvnall'
+
+#####################################################################
 h1 "git svn branch"
 cmt "not used at the moment => use svn instead"
 
@@ -423,16 +509,15 @@ h1 "merge of svn branches"
 cmt "There is no working way available to merge svn branches. Must be done on svn side."
 
 #####################################################################
-# tag
-# used for svn revision numbers
+h1 "notes"
+cmt "used for svn revision numbers"
 
 #####################################################################
-# rebase interactive
-# FIXME:
+h1 "tags"
+cmt "used for local automatic rebase/merge tagging"
 
 #####################################################################
-# FIXME:
-# create branch from worktree ???
-# add svn branch as worktree
-# create branch from worktree none svn branch => create via svn checkout integrate using merge flow !
+h1 "rebase interactive"
+cmt "works as usual with git and must only be applied to not released commits as rebase is used"
+cmt "take care in case of git feature branches, any local merge/rebase to/from the base svn branch (e.g. trunk) count already as a release"
 

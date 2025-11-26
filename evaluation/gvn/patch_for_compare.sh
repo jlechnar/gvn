@@ -82,5 +82,6 @@ cat $file | \
   perl -pe 's/(index )([0-9a-fA-F]{7})(,)([0-9a-fA-F]{7})(\.\.)([0-9a-fA-F]{7})/$1<HASH>$3<HASH>$5<HASH>/g' | \
   perl -pe 's/(auto_tag_worktree_rebase_\S+_onto_\S+_)([0-9]{8}_[0-9]{6})/$1<DATE_TIME>/g' | \
   perl -pe 's/(auto_tag_worktree_merge_\S+_into_\S+_)([0-9]{8}_[0-9]{6})/$1<DATE_TIME>/g' | \
-  perl -pe 's/(\e\[m\s+)([0-9a-fA-F]+)(\s+(\(|\[|created |changes_))/$1<HASH>$3/g'
+  perl -pe 's/(\e\[m\s+)([0-9a-fA-F]+)(\s+(\(|\[|created |changes_))/$1<HASH>$3/g' | \
+  perl -pe 's/(Found merge parent \(.+\): )([0-9a-fA-F]+)/$1<HASH>/g'
 
