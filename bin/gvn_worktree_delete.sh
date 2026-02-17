@@ -15,6 +15,7 @@ is_gvn=`basename $cmd | grep ^gvn_ || true`
 
 worktree_or_branch_name=$1
 dot_git_path_abs=`$GIT get-dot-git-path-abs`
+option=$2
 
 if [[ $is_gvn ]]; then
   if ! [[ -e $dot_git_path_abs/svn/.metadata ]]; then
@@ -42,7 +43,7 @@ fi
 
 worktree_path=`$GIT worktree list -v | grep " \[$branch_name\]" | awk '{print $1}'`
 
-$GIT worktree remove $worktree_path
+$GIT worktree remove $worktree_path $option
 
 # cleanup gvn branch info
 if [[ $is_gvn ]]; then

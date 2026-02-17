@@ -43,6 +43,7 @@ cat $file | \
   perl -pe 's/^(r\d+\s+=\s+)[a-zA-Z0-9]+(\s+)/$1<HASH>$2/g' | \
   perl -pe 's/(\e\[[0-9;]*m\s+)[0-9a-fA-F]+(\e\[[0-9;]*m\s+\e\[[0-9;]*m\s*r\d+\s*\e\[[0-9;]*m\s+)/$1<HASH>$2/g' | \
   perl -pe 's/(\e\[[0-9;]*m\s*)[0-9a-fA-F]+(\e\[[0-9;]*m\s+\e\[[0-9;]*m\s*r\d+\s*\e\[[0-9;]*m\s+)/$1<HASH>$2/g' | \
+  perl -pe 's/auto_(\d{8}_\d{6})/auto_<DATE>_<TIME>/g' | \
   perl -pe 's/gvn_rebase_(\d+_\d+_\d+-\d+_\d+_\d+)_git_([0-9a-fA-F]{40})_to_svn_([0-9a-fA-F]{40})/gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>/g' | \
   perl -pe 's/git_rebase_(\d+_\d+_\d+-\d+_\d+_\d+)_\S+_([0-9a-fA-F]{40})_to_\S+_([0-9a-fA-F]{40})/git_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>/g' | \
   perl -pe 's/No changes between ([0-9a-fA-F]+) and/No changes between <HASH> and/g' | \

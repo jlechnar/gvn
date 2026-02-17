@@ -12,7 +12,7 @@
 .../test_lsa/server1_create
 
  .============================================================================
- | Executing:  svn checkout file://.../test_lsa/server1/repo .
+ | Executing:  svn checkout --username "server1_create"  file://.../test_lsa/server1/repo .
  |============================================================================
 Checked out revision 0.
  '============================================================================
@@ -37,7 +37,7 @@ Committed revision 1.
 .../test_lsa/svn_user1
 
  .============================================================================
- | Executing:  svn checkout file://.../test_lsa/server1/repo/trunk .
+ | Executing:  svn checkout --username "svn_user1" file://.../test_lsa/server1/repo/trunk .
  |============================================================================
 A    .svnignore
 Checked out revision 1.
@@ -51,6 +51,10 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_lsa/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_lsa/server1/repo
+TO:   .
+OPTS: -s 
+.../../bin/git.sh svn clone -s  file://.../test_lsa/server1/repo .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -90,6 +94,10 @@ Checked out HEAD:
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_lsa/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_lsa/server1/repo/trunk
+TO:   .
+OPTS: 
+.../../bin/git.sh svn clone  file://.../test_lsa/server1/repo/trunk .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -126,7 +134,7 @@ Checked out HEAD:
  |             update commit to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 Current branch trunk is up to date.
 Committing to file://.../test_lsa/server1/repo/trunk ...
  '============================================================================
@@ -136,7 +144,7 @@ Committing to file://.../test_lsa/server1/repo/trunk ...
  |             update commit to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 Current branch trunk is up to date.
 Committing to file://.../test_lsa/server1/repo/trunk ...
  '============================================================================

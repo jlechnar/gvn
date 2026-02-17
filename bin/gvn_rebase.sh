@@ -5,6 +5,14 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
+if [[ -n "${GVN_CONFIG_SH_OVERRIDE}" ]]; then
+  source $GVN_CONFIG_SH_OVERRIDE
+else
+  SCRIPT_DIR_REAL=`realpath $0`
+  SCRIPT_DIR=`dirname $SCRIPT_DIR_REAL`
+  source $SCRIPT_DIR/config.sh
+fi
+
 if [[ "$GVN_DEBUG" == "1" ]]; then
   set -x
 fi
@@ -37,8 +45,16 @@ fi
 head_svn=`$GIT svn log --oneline --show-commit --no-abbrev --limit 1 | $GIT awk3`
 head_git=`$GIT rev-parse HEAD`
 
-datetime=`date +'%Y_%m_%d-%H_%M_%S'`
-$GIT tag -a gvn_rebase_${datetime}_git_${head_git}_to_svn_${head_svn} -m "$GIT svn rebase tag $datetime ($GIT $head_$GIT rebased to svn $head_svn)"
-echo "Created Tag gvn_rebase_$datetime_${datetime}_git_${head_git}_to_svn_${head_svn}"
+head_svn_short=`echo $head_svn | cut -c 1-$GVN_ALL__WIDTH_ABBREVIATED_HASH`
+head_git_short=`echo $head_git | cut -c 1-$GVN_ALL__WIDTH_ABBREVIATED_HASH`
+
+branch_name=`$GIT rev-parse --abbrev-ref HEAD`
+
+
+datetime=`date +'%Y%m%d_%H%M%S'`
+tagname="auto_${datetime}_gvn_rebase_${branch_name}"
+#tagname="auto_gvn_rebase_${datetime}_git_${head_git_short}_to_svn_${head_svn_short}"
+$GIT tag -a $tagname -m "$GIT svn rebase tag $datetime ($GIT $head_git rebased to svn $head_svn)"
+echo "Created Tag $tagname"
 
 $GIT $run_path svn rebase

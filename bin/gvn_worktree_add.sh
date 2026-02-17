@@ -86,7 +86,7 @@ fi
 worktree_prefix=`$GIT config gvn.worktree.prefix || true`
 worktree_postfix=`$GIT config gvn.worktree.postfix || true`
 
-main_path=`$GIT rev-parse --path-format=absolute --show-toplevel`
+main_path=`$GIT rev-parse --path-format=absolute --git-common-dir | sed 's,/.git$,,g'`
 cd $main_path
 cd ..
 cwd=`pwd`

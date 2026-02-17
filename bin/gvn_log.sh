@@ -5,28 +5,24 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
-WIDTH_AUTHOR=`$GIT config gvn.lg.width-author || true`
-WIDTH_AUTHOR_DATE=`$GIT config gvn.lg.width-author-date || true`
-WIDTH_GRAPH=`$GIT config gvn.lg.width-graph || true`
-
-COLOR_DATE_TIME=`$GIT config gvn.all.color-date-time || true`
-COLOR_AUTHOR=`$GIT config gvn.all.color-author || true`
-COLOR_REF_NAMES=`$GIT config gvn.all.color-ref-names || true`
-
-COLOR_SUBJECT=`$GIT config gvn.log.color-subject || true`
-COLOR_BODY=`$GIT config gvn.log.color-body || true`
-
 if [[ "$GVN_DEBUG" == "1" ]]; then
   set -x
 fi
 set -e
+
+if [[ -n "${GVN_CONFIG_SH_OVERRIDE}" ]]; then
+  source $GVN_CONFIG_SH_OVERRIDE
+else
+  SCRIPT_DIR_REAL=`realpath $0`
+  SCRIPT_DIR=`dirname $SCRIPT_DIR_REAL`
+  source $SCRIPT_DIR/config.sh
+fi
 
 cmd=$0
 is_gvn=`basename $cmd | grep ^gvn_ || true`
 
 usage() { echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <-n: additional newline> ..." 1>&2; exit 1; }
 
-#opts="--graph --abbrev=9 --abbrev-commit --decorate"
 opts=""
 
 do_follow=1
@@ -75,7 +71,6 @@ root=`$GIT root`
 args="$@"
 
 
-
 if [[ "$do_follow" == "1" ]]; then
   cmd="$GIT log -n 1 --follow $args"
   set +e
@@ -91,15 +86,6 @@ if [[ "$do_follow" == "1" ]]; then
     args="$args $args_addon"
     opts="$opts --follow"
   fi
-
-#  cmd="$GIT log -n 1 $opts --follow $args"
-#  set +e
-#  t=`eval $cmd 2>&1`
-#  set -e
-#  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-#    args="$args $root"
-#  fi
-#  opts="$opts --follow"
 fi
 
 
@@ -109,13 +95,17 @@ if [[ "$root" == "" ]]; then
 fi
 
 if [[ $is_gvn ]]; then
+  dot_git_path=`$GIT get-dot-git-path-abs`
+
   hashfmt="SVN:    <hash>%H</hash>%n"
-  annotate="$GVN cmd-annotate"
-  end_cmd=""
+  color_expanded=`echo " $GVN_ALL__COLOR_SVN_REVISION" | sed -r 's,\s+, -c ,g'`
+  annotate_opts="$color_expanded"
+  rev_maps=`find $dot_git_path/svn/refs/remotes -name *.rev_map.* -type f -printf ' -r %p'`
+  annotate="$GVN cmd-annotate $rev_maps"
 else
   hashfmt=""
+  annotate_opts=""
   annotate="grep ^"
-  end_cmd="echo ''; echo '$separator'"
 fi
 
 
@@ -124,16 +114,15 @@ separator="------------------------------------------------"
 if [[ "$pager" == "1" ]]; then
   $GIT --work-tree=$root --no-pager log $opts \
     --date=format-local:'%Y-%m-%d %H:%M:%S' \
-    --format=format:"$separator%nCommit: %C($WIDTH_GRAPH)%H%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n${hashfmt}Author: %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset)%nDate:   %C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C($COLOR_SUBJECT)%s%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
+    --format=format:"$separator%nCommit: %C($GVN_LOG__WIDTH_GRAPH)%H%C(reset) %C($GVN_ALL__COLOR_REF_NAMES)%d%C(reset)%n${hashfmt}Author: %C($GVN_ALL__COLOR_AUTHOR)%<($GVN_LOG__WIDTH_AUTHOR,trunc)%an%C(reset)%nDate:   %C($GVN_ALL__COLOR_DATE_TIME)%<($GVN_LOG__WIDTH_AUTHOR_DATE,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C($GVN_LOG__COLOR_SUBJECT)%s%C(reset)%n%n%C($GVN_LOG__COLOR_BODY)%b%C(reset)$newline" \
     $args | \
-    $annotate \
+    $annotate $annotate_opts \
     | less $opts_less
 else
   $GIT --work-tree=$root --no-pager log $opts \
     --date=format-local:"%Y-%m-%d %H:%M:%S" \
-    --format=format:"$separator%nCommit: %C($WIDTH_GRAPH)%H%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n${hashfmt}Author: %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset)%nDate:   %C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C($COLOR_SUBJECT)%s%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
+    --format=format:"$separator%nCommit: %C($GVN_LOG__WIDTH_GRAPH)%H%C(reset) %C($GVN_ALL__COLOR_REF_NAMES)%d%C(reset)%n${hashfmt}Author: %C($GVN_ALL__COLOR_AUTHOR)%<($GVN_LOG__WIDTH_AUTHOR,trunc)%an%C(reset)%nDate:   %C($GVN_ALL__COLOR_DATE_TIME)%<($GVN_LOG__WIDTH_AUTHOR_DATE,trunc)%ad%C(reset)%nTitle:  %w(100,0,8)%C($GVN_LOG__COLOR_SUBJECT)%s%C(reset)%n%n%C($GVN_LOG__COLOR_BODY)%b%C(reset)$newline" \
     $args | \
-    $annotate
+    $annotate $annotate_opts
   echo $separator
-  #$end_cmd
 fi

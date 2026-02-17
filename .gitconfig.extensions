@@ -179,10 +179,14 @@
                 fi' --"
 
         stash-local-changes-if-any = "!bash -c '\
+                message=\"$@\"; \
                 changes=`git status --short | grep -v \"??\"`; \
                 if [[ \"$changes\" != \"\" ]]; then \
                   echo "INFO: Detected local changes. Automatic stashing them for later restore."; \
-                  git stash; \
+                  if [[ \"$message\" == \"\" ]]; then \
+                    message="auto generated stash for ???"; \
+                  fi; \
+                  git stash -m \"$message\"; \
                   echo "1"; \
                 fi' --"
 

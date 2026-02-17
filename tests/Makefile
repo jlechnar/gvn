@@ -47,6 +47,8 @@ always:
 	echo "export GVN=\"$(CWD)/../bin/gvn.sh\"" >> gvn_cmd.sh
 	echo "GVN_BASE=\"$(CWD)/../\"" >> gvn_cmd.sh
 	echo "CDW=\"source $(CWD)/../bin/cdw.sh\"" >> gvn_cmd.sh
+	echo "export GVN_CONFIG_SH_OVERRIDE=\"$(CWD)/config.sh\"" >> gvn_cmd.sh
+	cat $(CWD)/../bin/config.sh | perl -pe "s,GVN_HISTORY__FILENAME=.*,GVN_HISTORY__FILENAME=\"$(CWD)/test_$*/.git_history\",g" | perl -pe "s,GVN_HISTORY__ENABLE=.*,GVN_HISTORY__ENABLE=1,g" | perl -pe "s,GVN_HISTORY__LENGTH=.*,GVN_HISTORY__LENGTH=99999,g" > config.sh
 	./$< |& tee $@.tmp
 	./scripts/patch_for_compare.sh $(CWD) $(USER) $@.tmp > $@.tmp2
 	./scripts/cleanup.sh $@.tmp2 > $@

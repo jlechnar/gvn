@@ -127,8 +127,8 @@ HEAD is now at <HASH> files
  |             show all branches in log
  | Executing:  .../../bin/git.sh lgab
  |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1               [m [30mfiles[m [1;35m (HEAD -> master, test5, test1)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup          [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1               [m [30mfiles[m [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;32mtest5[m[33m, [m[1;32mtest1[m[33m)[m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup          [m [30minitial commit[m [m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mtest3[m[33m, [m[1;32mtest2[m[33m)[m[m
  '============================================================================
 
 
@@ -232,8 +232,8 @@ HEAD is now at <HASH> files
  |             show all branches in log
  | Executing:  .../../bin/git.sh lgab
  |============================================================================
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1               [m [30mfiles[m [1;35m (HEAD -> master, origin/test7, origin/test6, test7, test6, test5, test1)[m
-* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup          [m [30minitial commit[m [1;35m (origin/master, origin/HEAD, test3, test2)[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34muser1               [m [30mfiles[m [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/test7[m[33m, [m[1;31morigin/test6[m[33m, [m[1;32mtest7[m[33m, [m[1;32mtest6[m[33m, [m[1;32mtest5[m[33m, [m[1;32mtest1[m[33m)[m[m
+* [33m     <HASH>[m [1;32m<DATE> <TIME>[m [2;34mUser Setup          [m [30minitial commit[m [m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mtest3[m[33m, [m[1;32mtest2[m[33m)[m[m
  '============================================================================
 
 

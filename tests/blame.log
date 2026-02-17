@@ -12,7 +12,7 @@
 .../test_blame/server1_create
 
  .============================================================================
- | Executing:  svn checkout file://.../test_blame/server1/repo .
+ | Executing:  svn checkout --username "server1_create"  file://.../test_blame/server1/repo .
  |============================================================================
 Checked out revision 0.
  '============================================================================
@@ -37,7 +37,7 @@ Committed revision 1.
 .../test_blame/svn_user1
 
  .============================================================================
- | Executing:  svn checkout file://.../test_blame/server1/repo/trunk .
+ | Executing:  svn checkout --username "svn_user1" file://.../test_blame/server1/repo/trunk .
  |============================================================================
 A    .svnignore
 Checked out revision 1.
@@ -51,6 +51,10 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_blame/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_blame/server1/repo
+TO:   .
+OPTS: -s 
+.../../bin/git.sh svn clone -s  file://.../test_blame/server1/repo .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -90,6 +94,10 @@ Checked out HEAD:
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_blame/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_blame/server1/repo/trunk
+TO:   .
+OPTS: 
+.../../bin/git.sh svn clone  file://.../test_blame/server1/repo/trunk .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -145,7 +153,7 @@ Checked out HEAD:
  |             update commit to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 Current branch trunk is up to date.
 Committing to file://.../test_blame/server1/repo/trunk ...
 	A	file.html
@@ -165,12 +173,12 @@ Resetting to the latest refs/remotes/git-svn
  |             Blame html no syntax highlight
  | Executing:  .../../bin/gvn.sh blame file.html
  |============================================================================
-[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    1[m |  <html>
-[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    2[m |    <title>foo</title>
-[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    3[m |    <body>
-[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    4[m |      bar
-[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    5[m |    </body>
-[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    6[m |  </html>
+[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    1[m |  <html>
+[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    2[m |    <title>foo</title>
+[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    3[m |    <body>
+[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    4[m |      bar
+[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    5[m |    </body>
+[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    6[m |  </html>
  '============================================================================
 
 
@@ -178,12 +186,12 @@ Resetting to the latest refs/remotes/git-svn
  |             Blame html
  | Executing:  .../../bin/gvn.sh bs file.html
  |============================================================================
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    1[m |  <[38;5;28;01mhtml[39;00m>
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    2[m |    <[38;5;28;01mtitle[39;00m>foo</[38;5;28;01mtitle[39;00m>
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    3[m |    <[38;5;28;01mbody[39;00m>
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    4[m |      bar
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    5[m |    </[38;5;28;01mbody[39;00m>
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    6[m |  </[38;5;28;01mhtml[39;00m>
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    1[m |  <[38;5;28;01mhtml[39;00m>
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    2[m |    <[38;5;28;01mtitle[39;00m>foo</[38;5;28;01mtitle[39;00m>
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    3[m |    <[38;5;28;01mbody[39;00m>
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    4[m |      bar
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    5[m |    </[38;5;28;01mbody[39;00m>
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    6[m |  </[38;5;28;01mhtml[39;00m>
  '============================================================================
 
 
@@ -191,11 +199,11 @@ Resetting to the latest refs/remotes/git-svn
  |             Blame python
  | Executing:  .../../bin/gvn.sh bs file.py
  |============================================================================
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    1[m |  [38;5;28;01mclass[39;00m [38;5;21;01mfoo[39;00m:
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    2[m |    [38;5;28;01mdef[39;00m [38;5;21mbar[39m([38;5;28mself[39m, test):
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    3[m |      [38;5;28mself[39m[38;5;241m.[39mtest [38;5;241m=[39m test
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    4[m | 
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    5[m | 
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    1[m |  [38;5;28;01mclass[39;00m [38;5;21;01mfoo[39;00m:
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    2[m |    [38;5;28;01mdef[39;00m [38;5;21mbar[39m([38;5;28mself[39m, test):
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    3[m |      [38;5;28mself[39m[38;5;241m.[39mtest [38;5;241m=[39m test
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    4[m | 
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    5[m | 
  '============================================================================
 
 
@@ -203,9 +211,9 @@ Resetting to the latest refs/remotes/git-svn
  |             Blame perl
  | Executing:  .../../bin/gvn.sh bs file.pl
  |============================================================================
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    1[m |  [38;5;28;01mmy[39;00m [38;5;18m$[39m[38;5;18mtest[39m [38;5;241m=[39m [38;5;241m2[39m;
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    2[m |  [38;5;18m$[39m[38;5;18mtest[39m[38;5;241m+[39m[38;5;241m+[39m;
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    3[m |  [38;5;28;01mprint[39;00m([38;5;241m\[39m"[38;5;18m%[39m[38;5;18md[39m[38;5;241m\[39m",[38;5;18m$[39m[38;5;18mtest[39m);
-[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34m<user>[m [1;32m<DATE> <TIME>[m [91m    4[m | 
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    1[m |  [38;5;28;01mmy[39;00m [38;5;18m$[39m[38;5;18mtest[39m [38;5;241m=[39m [38;5;241m2[39m;
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    2[m |  [38;5;18m$[39m[38;5;18mtest[39m[38;5;241m+[39m[38;5;241m+[39m;
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    3[m |  [38;5;28;01mprint[39;00m([38;5;241m\[39m"[38;5;18m%[39m[38;5;18md[39m[38;5;241m\[39m",[38;5;18m$[39m[38;5;18mtest[39m);
+[48;2;225;225;225m[33m<HASH>[m [1;34mr2[m [2;34msvn_user1[m [1;32m<DATE> <TIME>[m [91m    4[m | 
  '============================================================================
 

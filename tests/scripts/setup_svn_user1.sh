@@ -14,6 +14,6 @@ setup_path "svn_user1" "create local / sandbox repository for user1"
 REPO_PATH=`realpath ../server1/repo`
 
 # initialize local repository
-execute "svn checkout file://$REPO_PATH/trunk ." ""
+execute "svn checkout --username \"svn_user1\" file://$REPO_PATH/trunk ." ""
 
 

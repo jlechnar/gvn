@@ -10,6 +10,29 @@
 # setup: change to git folder, then run "gito init"
 # usage: in git folder use gito instead of git to access overlayed git structure
 # 
+# add bare repository to share data for different worktrees/sandboxes:
+# mkdir <folder>
+# cd <folder>
+# git init --bare .
+#
+# for trunk folder (where .git folder is located with contents):
+# gito init
+# gito remote add origin <folder>
+# gito pull
+# gito branch --set-upstream-to=origin/master master
+# gito push
+#
+# for worktree:
+# gvn wa <wt>
+# cdw <wt>
+# worktree => copy/duplicate .git_overlay folder
+# gito st
+# gito restore :/
+#
+# OR
+#
+# simply use gito_duplicate.sh
+#
 
 if [[ "$GVN_DEBUG_GITO" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   set -x

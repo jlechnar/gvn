@@ -47,4 +47,3 @@ for wtb in $wtbs; do
   fi
   printf '%11s %11s   %-15s %s\n' "$nr_unpushed" "$nr_changed_files_cached/$nr_changed_files" $wtb $wtbp
 done
-

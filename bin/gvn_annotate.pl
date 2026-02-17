@@ -8,14 +8,37 @@
 use strict;
 use warnings;
 
-use Getopt::Std;
+# use Getopt::Std;
+use Getopt::Long;
 
 use List::Util qw( min max );
 
 use Term::ANSIColor;
 
 my %opts;
-getopts("dm", \%opts) or die;
+# m ... use gvn db.list file for decode
+# d ... debug
+# r ... use revmap db file for decode
+# b ... filter empty lines and ^...$ (both)
+# f ... filter ^...$
+# c ... color for svn revision
+# e ... extend end with empty line
+#getopts("dmr:fFc:", \%opts) or die;
+
+my @rs = ();
+my @cs = ();
+GetOptions('d' => \$opts{d},
+           'm' => \$opts{m},
+           'r=s@' => \@rs,
+           'b' => \$opts{b},
+           'f' => \$opts{f},
+           'e' => \$opts{e},
+           'c=s@' => \@cs);
+
+$opts{c} = join(' ', @cs);
+if($#rs!= -1) {
+  $opts{r} = 1;
+}
 
 # ------------------------------
 my $hash = "";
@@ -25,7 +48,89 @@ my $revision_length = 0;
 
 my %db = ();
 
-if ($opts{m}) {
+if ($opts{r}) {
+  my $nr = 0;
+
+  foreach my $filename (@rs) {
+    if ($opts{d}) {
+      warn ("Processing $filename ...\n");
+    }
+
+    open(my $fh, '<:raw', "$filename") or die "Couldn't open file $filename for reading, $!";
+
+    my $nr_bytes_read = 0;
+    my $buffer = '';
+    my $nr_bytes_to_read = 0;
+    my $abort = 0;
+    my $svn_revision;
+    my $git_revision;
+
+    while ($abort == 0) {
+      $buffer = '';
+      $nr_bytes_to_read = 4;
+      $nr_bytes_read = read($fh, $buffer, $nr_bytes_to_read);
+
+      #print("$nr_bytes_read\n");
+      if ($nr_bytes_read != $nr_bytes_to_read) {
+        $abort = 1;
+      } else {
+
+        #my $svn_revision = ; # dec
+        #push @values, unpack('N', $buffer);  # Assuming 4-byte unsigned integer
+        $svn_revision = unpack( 'NL*', $buffer );
+      }
+
+      if ($abort == 0) {
+        $buffer = '';
+        $nr_bytes_to_read = 20;
+        $nr_bytes_read = read($fh, $buffer, $nr_bytes_to_read);
+
+        #print("$nr_bytes_read\n");
+
+        if ($nr_bytes_read != $nr_bytes_to_read) {
+          $abort = 1;
+        } else {
+
+          $git_revision = unpack( 'H*', $buffer );
+          #print("$git_revision => $svn_revision\n");
+          #my $git_revision = ; # hash as hex string
+          $db{$git_revision} = $svn_revision;
+          $revision_length = max(length($svn_revision), $revision_length);
+          $nr++;
+          if ($opts{d}) {
+            warn ("$git_revision -> $svn_revision\n");
+          }
+        }
+      }
+    }
+
+    # Check for end of file
+    # vs. !defined $nr_bytes_read ??? FIXME
+    if (($nr_bytes_read == 0) && ($nr_bytes_to_read == 4)) {
+      #warn("EOD reached");
+      #    } elsif($nr_bytes_read != $nr_bytes_to_read) {
+      #      die("ERROR: Reading revision information from $filename failed due to unexpected read data size ($nr_bytes_read != $nr_bytes_to_read). Seems that the file is corrupted")
+    } else {
+      die("ERROR: Reading revision information from $filename failed due to unexpected read data size ($nr_bytes_read != $nr_bytes_to_read).")
+    }
+
+
+    if (!defined $buffer) {
+      if ($! == 0) {            # No error means EOF reached
+        print "End of file reached.\n";
+      } else {
+        die "Error reading binary data: $!";
+      }
+    }
+
+    close($fh);
+  }
+
+  if ($opts{d}) {
+    print("DEBUG: Decoded $nr hash->svn entries from $opts{r} at length $revision_length.\n")
+  }
+
+} elsif ($opts{m}) {
   my $dot_git_path=`git get-dot-git-path`;
   chomp $dot_git_path;
   my $db_filename="$dot_git_path/gvn/rev/db.list";
@@ -82,26 +187,44 @@ if ($opts{m}) {
   }
 }
 
-my $color_svn_revision=`git config gvn.all.color-svn-revision || true`;
-
 # ------------------------------
 while(my $line = <>) {
-  if($line =~ /(\<hash\>([^\<]+)\<\/hash\>)/) {
+  chomp($line);
+  if($opts{b}) {
+    next if($line =~ /^\.\.\.$/);
+    next if($line =~ /^\s*$/);
+  }
+  if($opts{f}) {
+    next if($line =~ /^\.\.\.$/);
+  }
+
+  if($line =~ /((\<hash\>|#)([^\<]+)(\<\/hash\>|#))/) {
     my $hash_replace = $1;
-    my $hash = $2;
+    my $hash = $3;
     my $replacement = "";
     if(exists $db{$hash}) {
       my $revision_length_print = $revision_length + 1;
-      $replacement = colored(sprintf("%-${revision_length_print}s", "r$db{$hash}"), $color_svn_revision);
+      if($opts{c}) {
+        $replacement = colored(sprintf("%-${revision_length_print}s", "r$db{$hash}"), $opts{c});
+      } else {
+        $replacement = sprintf("%-${revision_length_print}s", "r$db{$hash}");
+      }
     } else {
       my $replacement_rev = "r";
       for (my $i=0; $i < $revision_length; $i++) {
         $replacement_rev .= "?";
       }
-      $replacement = colored($replacement_rev, $color_svn_revision);
+      if($opts{c}) {
+        $replacement = colored($replacement_rev, $opts{c});
+      } else {
+        $replacement = $replacement_rev;
+      }
     }
     $line =~ s/$hash_replace/$replacement/g;
   }
-  print $line;
+  print "$line\n";
 }
-print "\n";
+
+if($opts{e}) {
+  print "\n";
+}

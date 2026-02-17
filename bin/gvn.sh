@@ -6,10 +6,6 @@
 # Source:      https://github.com/jlechnar/gvn
 
 
-GVN_HISTORY=`git config gvn.history.enable || true`
-GVN_HISTORY_FILE=`git config gvn.history.filename || true`
-GVN_HISTORY_FILE_LENGTH=`git config gvn.history.length || true`
-
 if [[ "$GVN_DEBUG_GVN" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   set -x
   export GIT_TRACE=2
@@ -20,6 +16,14 @@ if [[ "$GVN_DEBUG_GVN" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   export GIT_TRACE_PACKFILE=2
   export GIT_TRACE_SETUP=2
   export GIT_TRACE_SHALLOW=2
+fi
+
+if [[ -n "${GVN_CONFIG_SH_OVERRIDE}" ]]; then
+  source $GVN_CONFIG_SH_OVERRIDE
+else
+  SCRIPT_DIR_REAL=`realpath $0`
+  SCRIPT_DIR=`dirname $SCRIPT_DIR_REAL`
+  source $SCRIPT_DIR/config.sh
 fi
 
 if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
@@ -41,7 +45,7 @@ if [[ "$GVN_DEBUG_CMD" == "1" ]]; then
   fi
 else
   CMD_DEBUG=0
-  if [[ "$GVN_HISTORY" == "1" ]]; then
+  if [[ "$GVN_HISTORY__ENABLE" == "1" ]]; then
     GIT_ENV=`echo $GIT || true`
     if [[ "$GIT_ENV" == "" ]]; then
       git_bin=`realpath ~/bin/git.sh`
@@ -63,15 +67,19 @@ set -e
 # ---------------------------
 do_clone() {
   from=$1
-  to=$2
-  opts=$3
+  shift
+  to=$1
+  shift
+  opts=$@
+
+  echo "FROM: $from"
+  echo "TO:   $to"
+  echo "OPTS: $opts"
 
   set +e
-  cmd2="$GIT svn clone $from $to $opts"
-  eval $cmd2
-  cwd=`pwd`
-
-  # repeat some times in case server connection is lost due to to fast fetching during above clone
+  cmd2="$GIT svn clone $opts $from $to"
+  echo "$cmd2"
+  eval "$cmd2"
   cd $to
   for ((n=0;n<10;n++)); do
     cmd2="$GIT svn fetch"
@@ -110,6 +118,10 @@ if [[ "$cmd" == "clone" ]]; then
   path=$1
   shift
   to=$1
+  shift
+  cli_opts=$@
+
+  # cli_opts: e.g. "-r<REVISION>:HEAD" to limit the number of revisions to checkout from svn and so speedup clone procedure
 
   # <prefix>/<version/module>/trunk/...
   # <prefix>/<version/module>/branches/<branch_name>/...
@@ -121,9 +133,11 @@ if [[ "$cmd" == "clone" ]]; then
     to="."
   fi
 
+  # -s ... use standard layout !
   opts="-s"
+  opts+=" $cli_opts"
 
-  do_clone $from $to $opts
+  do_clone $from $to "$opts"
   # git branch -m trunk
 elif [[ "$cmd" == "clone2" ]]; then
   a=$all
@@ -131,12 +145,16 @@ elif [[ "$cmd" == "clone2" ]]; then
   path=$1
   shift
   to=$1
+  shift
+  cli_opts=$@
+
+  # cli_opts: e.g. "-r<REVISION>:HEAD" to limit the number of revisions to checkout from svn and so speedup clone procedure
 
   # <prefix>/trunk/<version/module>/...
   # <prefix>/branches/<version/module>/<branch_name>/...
   # <prefix>/tags/<version/module>/<tag_name>/...
 
-  prefix=`echo $path | perl -pe "s,^(.+)/(trunk|branches|tags)/,\$1,g"`
+  prefix=`echo $path | perl -pe 's,^(.+)/(trunk|branches|tags)/(.*)$,$1,g'`
   name=`echo $path | perl -pe "s,^.+/(trunk|branches|tags)/,,g" | sed 's,/, ,g' | awk '{print $1}'`
   trunk="$prefix/trunk/$name"
   tags="$prefix/tags/$name"
@@ -148,8 +166,9 @@ elif [[ "$cmd" == "clone2" ]]; then
   fi
 
   opts="--trunk $trunk --tags $tags --branches $branches"
+  opts+=" $cli_opts"
 
-  do_clone $from $to $opts
+  do_clone $from $to "$opts"
   # git branch -m trunk
 
 elif [[ "$cmd" == "clone-none-standard" || "$cmd" == "clone-ns" || "$cmd" == "clone-none-std" ]]; then
@@ -190,18 +209,18 @@ else
     echo "GVN_CMD (GVN): $cmd2" >> /dev/stderr
   fi
 
-  if [[ "$GVN_HISTORY" == "1" ]]; then
-    GVN_HISTORY_FILE2=$GVN_HISTORY_FILE
-    GVN_HISTORY_FILE=`eval echo $GVN_HISTORY_FILE2`
+  if [[ "$GVN_HISTORY__ENABLE" == "1" ]]; then
+    GVN_HISTORY__FILENAME2=$GVN_HISTORY__FILENAME
+    GVN_HISTORY__FILENAME3=`eval echo $GVN_HISTORY__FILENAME2`
 
-    echo "LS:  -----------------------------" >> $GVN_HISTORY_FILE
+    echo "LS:  -----------------------------" >> $GVN_HISTORY__FILENAME3
     cwd=`pwd`
     datetime=`date +'%Y.%m.%d %H:%M:%S'`
-    echo "DT:  $datetime" >> $GVN_HISTORY_FILE
-    echo "PWD: $cwd"      >> $GVN_HISTORY_FILE
-    echo "CMD: $cmd2"     >> $GVN_HISTORY_FILE
-    echo "$(tail -n $GVN_HISTORY_FILE_LENGTH $GVN_HISTORY_FILE | tr -d '\0')" > $GVN_HISTORY_FILE
+    echo "DT:  $datetime" >> $GVN_HISTORY__FILENAME3
+    echo "PWD: $cwd"      >> $GVN_HISTORY__FILENAME3
+    echo "CMD: $cmd2"     >> $GVN_HISTORY__FILENAME3
+    echo "$(tail -n $GVN_HISTORY__LENGTH $GVN_HISTORY__FILENAME3 | tr -d '\0')" > $GVN_HISTORY__FILENAME3
   fi
-                                                              
+
   eval $cmd2
 fi

@@ -12,7 +12,7 @@
 .../test_merge/server1_create
 
  .============================================================================
- | Executing:  svn checkout file://.../test_merge/server1/repo .
+ | Executing:  svn checkout --username "server1_create"  file://.../test_merge/server1/repo .
  |============================================================================
 Checked out revision 0.
  '============================================================================
@@ -37,7 +37,7 @@ Committed revision 1.
 .../test_merge/svn_user1
 
  .============================================================================
- | Executing:  svn checkout file://.../test_merge/server1/repo/trunk .
+ | Executing:  svn checkout --username "svn_user1" file://.../test_merge/server1/repo/trunk .
  |============================================================================
 A    .svnignore
 Checked out revision 1.
@@ -51,6 +51,10 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_merge/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_merge/server1/repo
+TO:   .
+OPTS: -s 
+.../../bin/git.sh svn clone -s  file://.../test_merge/server1/repo .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -90,6 +94,10 @@ Checked out HEAD:
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_merge/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_merge/server1/repo/trunk
+TO:   .
+OPTS: 
+.../../bin/git.sh svn clone  file://.../test_merge/server1/repo/trunk .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -126,7 +134,7 @@ Checked out HEAD:
  |             log with svn revisions
  | Executing:  .../../bin/git.sh lgsb
  |============================================================================
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (HEAD -> trunk, origin/trunk)[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34mserver1_create      [m [30minitial commit[m [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;31morigin/trunk[m[33m)[m[m
  '============================================================================
 
 
@@ -162,7 +170,7 @@ Checked out HEAD:
  |             update commit to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 Current branch trunk is up to date.
 Committing to file://.../test_merge/server1/repo/trunk ...
 	A	bar/file.pl
@@ -192,7 +200,7 @@ Resetting to the latest refs/remotes/origin/trunk
 	A	file.py
 	A	foo/file.html
 r2 = <HASH> (refs/remotes/git-svn)
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 [KSuccessfully rebased and updated refs/heads/trunk.
  '============================================================================
 
@@ -256,7 +264,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 	M	bar/file.pl
 	M	file.py
 r3 = <HASH> (refs/remotes/origin/trunk)
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 Rebasing (1/1)Auto-merging bar/file.pl
 CONFLICT (content): Merge conflict in bar/file.pl
 Auto-merging file.py
@@ -1901,8 +1909,8 @@ nothing to commit (use -u to show untracked files)
  |             log with svn revisions
  | Executing:  .../../bin/git.sh lgsb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2               [m [30mconflicting_changes[m [1;35m (HEAD -> trunk, tag: gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>)[m
-* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30mfiles[m [1;35m[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser2               [m [30mconflicting_changes[m [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m, [m[1;33mtag: [m[1;33mauto_<DATE>_<TIME>_gvn_rebase_trunk[m[33m)[m[m
+* [33m     <HASH>[m [1;34mr2[m [1;32m<DATE> <TIME>[m [2;34msvn_user1           [m [30mfiles[m [m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34mserver1_create      [m [30minitial commit[m [m[m
  '============================================================================
 

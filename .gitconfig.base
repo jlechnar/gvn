@@ -100,33 +100,5 @@
         textconv = odt2txt
 
 [gvn "worktree"]
-        prefix = 
-        postfix = 
-
-[gvn "history"]
-        enable = 1
-        filename = "~/.git_history"
-        length = 300
-
-[gvn "lg"]
-        width-author = 20
-        width-author-date = 19
-        width-graph = 03
-        width-abbreviated-hash = 16
-        color-subject = black
-        color-body = white
-
-[gvn "log"]
-        width-author = 20
-        width-author-date = 19
-        width-graph = 03
-        color-subject = red
-        color-body = cyan
-
-[gvn "all"]
-        width-abbreviated-hash = 9
-        color-date-time = bold green
-        color-author = dim blue
-
-        color-ref-names = auto
-        color-svn-revision = bold blue
+        prefix =
+        postfix =

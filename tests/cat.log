@@ -12,7 +12,7 @@
 .../test_cat/server1_create
 
  .============================================================================
- | Executing:  svn checkout file://.../test_cat/server1/repo .
+ | Executing:  svn checkout --username "server1_create"  file://.../test_cat/server1/repo .
  |============================================================================
 Checked out revision 0.
  '============================================================================
@@ -37,7 +37,7 @@ Committed revision 1.
 .../test_cat/svn_user1
 
  .============================================================================
- | Executing:  svn checkout file://.../test_cat/server1/repo/trunk .
+ | Executing:  svn checkout --username "svn_user1" file://.../test_cat/server1/repo/trunk .
  |============================================================================
 A    .svnignore
 Checked out revision 1.
@@ -51,6 +51,10 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_cat/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_cat/server1/repo
+TO:   .
+OPTS: -s 
+.../../bin/git.sh svn clone -s  file://.../test_cat/server1/repo .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -90,6 +94,10 @@ Checked out HEAD:
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_cat/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_cat/server1/repo/trunk
+TO:   .
+OPTS: 
+.../../bin/git.sh svn clone  file://.../test_cat/server1/repo/trunk .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -432,14 +440,14 @@ print(\"%d\",$test12);
  |             show all
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles5[m [1;35m (HEAD -> test)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles4[m [1;35m (trunk)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles3[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles2[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles1[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles0[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mtest_folders_with_files[m [1;35m[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (git-svn)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles5[m [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtest[m[33m)[m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles4[m [m[33m ([m[1;32mtrunk[m[33m)[m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles3[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles2[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles1[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles0[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mtest_folders_with_files[m [m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34mserver1_create      [m [30minitial commit[m [m[33m ([m[1;31mgit-svn[m[33m)[m[m
  '============================================================================
 
 
@@ -501,13 +509,13 @@ print(\"%d\",$test12);
  |             show all
  | Executing:  .../../bin/git.sh lgasb
  |============================================================================
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles5[m [1;35m (test)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles4[m [1;35m (HEAD -> trunk)[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles3[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles2[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles1[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles0[m [1;35m[m
-* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mtest_folders_with_files[m [1;35m[m
-* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34m<user>             [m [30minitial commit[m [1;35m (git-svn)[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles5[m [m[33m ([m[1;32mtest[m[33m)[m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles4[m [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtrunk[m[33m)[m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles3[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles2[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles1[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mfiles0[m [m[m
+* [33m     <HASH>[m [1;34mr?[m [1;32m<DATE> <TIME>[m [2;34muser3               [m [30mtest_folders_with_files[m [m[m
+* [33m     <HASH>[m [1;34mr1[m [1;32m<DATE> <TIME>[m [2;34mserver1_create      [m [30minitial commit[m [m[33m ([m[1;31mgit-svn[m[33m)[m[m
  '============================================================================
 

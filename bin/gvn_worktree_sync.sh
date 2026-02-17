@@ -61,7 +61,7 @@ if [[ "$branch_current" == "$branch_current_svn" ]]; then
     echo "INFO: detected current branch <$branch_current> to be base for branch to sync <$branch_to_sync>."
     echo "INFO: merging branch to sync <$branch_to_sync> into current branch <$branch_current>."
     export GIT_WORK_TREE=$root
-    changes=`$GIT stash-local-changes-if-any`
+    changes=`$GIT stash-local-changes-if-any "auto generated stash for gvn worktree sync: merging branch to sync <$branch_to_sync> into current branch <$branch_current>"`
     $GVN worktree-merge $branch_to_sync
     if [[ "$changes" != "" ]]; then
       $GIT stash pop
@@ -87,7 +87,7 @@ elif [[ "$branch_to_sync" == "$branch_current_svn" ]]; then
     echo "INFO: detected current branch <$branch_current> to base upon branch to sync <$branch_to_sync>."
     echo "INFO: rebasing current branch <$branch_current> onto branch to sync <$branch_to_sync>."
     export GIT_WORK_TREE=$root
-    changes=`$GIT stash-local-changes-if-any`
+    changes=`$GIT stash-local-changes-if-any "auto generated stash for gvn worktree sync: rebasing current branch <$branch_current> onto branch to sync <$branch_to_sync>"`
     $GVN worktree-rebase $branch_to_sync
     if [[ "$changes" != "" ]]; then
       $GIT stash pop

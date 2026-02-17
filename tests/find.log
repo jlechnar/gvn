@@ -12,7 +12,7 @@
 .../test_find/server1_create
 
  .============================================================================
- | Executing:  svn checkout file://.../test_find/server1/repo .
+ | Executing:  svn checkout --username "server1_create"  file://.../test_find/server1/repo .
  |============================================================================
 Checked out revision 0.
  '============================================================================
@@ -37,7 +37,7 @@ Committed revision 1.
 .../test_find/svn_user1
 
  .============================================================================
- | Executing:  svn checkout file://.../test_find/server1/repo/trunk .
+ | Executing:  svn checkout --username "svn_user1" file://.../test_find/server1/repo/trunk .
  |============================================================================
 A    .svnignore
 Checked out revision 1.
@@ -51,6 +51,10 @@ Checked out revision 1.
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone file://.../test_find/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_find/server1/repo
+TO:   .
+OPTS: -s 
+.../../bin/git.sh svn clone -s  file://.../test_find/server1/repo .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -90,6 +94,10 @@ Checked out HEAD:
  .============================================================================
  | Executing:  .../../bin/gvn.sh clone-ns file://.../test_find/server1/repo/trunk .
  |============================================================================
+FROM: file://.../test_find/server1/repo/trunk
+TO:   .
+OPTS: 
+.../../bin/git.sh svn clone  file://.../test_find/server1/repo/trunk .
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -126,7 +134,7 @@ Checked out HEAD:
  |             update commit to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 Current branch trunk is up to date.
 Committing to file://.../test_find/server1/repo/trunk ...
  '============================================================================
@@ -136,7 +144,7 @@ Committing to file://.../test_find/server1/repo/trunk ...
  |             update commit to svn
  | Executing:  .../../bin/gvn.sh uc
  |============================================================================
-Created Tag gvn_rebase_<DATE>_<TIME>_git_<HASH>_to_svn_<HASH>
+Created Tag auto_<DATE>_<TIME>_gvn_rebase_trunk
 Current branch trunk is up to date.
 Committing to file://.../test_find/server1/repo/trunk ...
  '============================================================================
@@ -316,11 +324,11 @@ test6/test7/test8/file.f
 ../test1/test2/test3/file.c
 ../test1/test2/test3/test4/file.a
 ../test1/test2/test3/test4/file.b
-../test5/file.i
-../test5/test6/file.h
-../test5/test6/file/bar
-../test5/test6/test7/file.g
-../test5/test6/test7/test8/file.f
+file.i
+test6/file.h
+test6/file/bar
+test6/test7/file.g
+test6/test7/test8/file.f
 ../test9/afile
 ../test9/bfile
 ../test9/c.file
@@ -393,10 +401,10 @@ test7/test8/file.f
  | Executing:  .../../bin/git.sh find . ../
  |============================================================================
 ../file.i
-../test6/file.h
-../test6/file/bar
-../test6/test7/file.g
-../test6/test7/test8/file.f
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
  '============================================================================
 
 
@@ -411,11 +419,11 @@ test7/test8/file.f
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
 ../../test1/test2/test3/test4/file.b
-../../test5/file.i
-../../test5/test6/file.h
-../../test5/test6/file/bar
-../../test5/test6/test7/file.g
-../../test5/test6/test7/test8/file.f
+../file.i
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
 ../../test9/afile
 ../../test9/bfile
 ../../test9/c.file
@@ -438,7 +446,7 @@ test7/test8/file.f
  |             find outside dir none existing
  | Executing:  .../../bin/git.sh find . ../../../outside/dir
  |============================================================================
-realpath: .../test_find/git_user3/test5/test6/../../../outside/dir: No such file or directory
+fatal: ../../../outside/dir: '../../../outside/dir' is outside repository at '.../test_find/git_user3'
  '============================================================================
 
 
@@ -446,7 +454,7 @@ realpath: .../test_find/git_user3/test5/test6/../../../outside/dir: No such file
  |             find outside dir existing
  | Executing:  .../../bin/git.sh find . ../../../git_user2
  |============================================================================
-ERROR: Target directory <.../test_find/git_user2> is outside of git repository <.../test_find/git_user3>. Aborting.
+fatal: ../../../git_user2: '../../../git_user2' is outside repository at '.../test_find/git_user3'
  '============================================================================
 
 
@@ -454,7 +462,6 @@ ERROR: Target directory <.../test_find/git_user2> is outside of git repository <
  |             find none existing dir
  | Executing:  .../../bin/git.sh find . inside/none_existing/dir
  |============================================================================
-realpath: .../test_find/git_user3/test5/test6/inside/none_existing/dir: No such file or directory
  '============================================================================
 
 
@@ -534,11 +541,11 @@ foo
 ../test5/test6/file/bar
 ../test5/test6/test7/file.g
 ../test5/test6/test7/test8/file.f
-../test9/afile
-../test9/bfile
-../test9/c.file
-../test9/d.file
-../test9/foo
+afile
+bfile
+c.file
+d.file
+foo
  '============================================================================
 
 
@@ -558,11 +565,11 @@ foo
 ../test5/test6/file/bar
 ../test5/test6/test7/file.g
 ../test5/test6/test7/test8/file.f
-../test9/afile
-../test9/bfile
-../test9/c.file
-../test9/d.file
-../test9/foo
+afile
+bfile
+c.file
+d.file
+foo
  '============================================================================
 
 
@@ -638,10 +645,10 @@ test7/test8/file.f
  | Executing:  .../../bin/git.sh find . ../
  |============================================================================
 ../file.i
-../test6/file.h
-../test6/file/bar
-../test6/test7/file.g
-../test6/test7/test8/file.f
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
  '============================================================================
 
 
@@ -656,11 +663,11 @@ test7/test8/file.f
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
 ../../test1/test2/test3/test4/file.b
-../../test5/file.i
-../../test5/test6/file.h
-../../test5/test6/file/bar
-../../test5/test6/test7/file.g
-../../test5/test6/test7/test8/file.f
+../file.i
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
 ../../test9/afile
 ../../test9/bfile
 ../../test9/c.file
@@ -690,11 +697,11 @@ test7/test8/file.f
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
 ../../test1/test2/test3/test4/file.b
-../../test5/file.i
-../../test5/test6/file.h
-../../test5/test6/file/bar
-../../test5/test6/test7/file.g
-../../test5/test6/test7/test8/file.f
+../file.i
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
 ../../test9/afile
 ../../test9/bfile
 ../../test9/c.file
@@ -714,11 +721,11 @@ test7/test8/file.f
 ../../test1/test2/test3/file.c
 ../../test1/test2/test3/test4/file.a
 ../../test1/test2/test3/test4/file.b
-../../test5/file.i
-../../test5/test6/file.h
-../../test5/test6/file/bar
-../../test5/test6/test7/file.g
-../../test5/test6/test7/test8/file.f
+../file.i
+file.h
+file/bar
+test7/file.g
+test7/test8/file.f
 ../../test9/afile
 ../../test9/bfile
 ../../test9/c.file
@@ -796,11 +803,11 @@ foo
 ../test5/test6/file/bar
 ../test5/test6/test7/file.g
 ../test5/test6/test7/test8/file.f
-../test9/afile
-../test9/bfile
-../test9/c.file
-../test9/d.file
-../test9/foo
+afile
+bfile
+c.file
+d.file
+foo
  '============================================================================
 
 
@@ -820,10 +827,10 @@ foo
 ../test5/test6/file/bar
 ../test5/test6/test7/file.g
 ../test5/test6/test7/test8/file.f
-../test9/afile
-../test9/bfile
-../test9/c.file
-../test9/d.file
-../test9/foo
+afile
+bfile
+c.file
+d.file
+foo
  '============================================================================
 

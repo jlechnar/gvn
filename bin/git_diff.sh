@@ -25,7 +25,7 @@ merge_case=""
 while getopts "m:icNfwbBWls" o; do
     case "${o}" in
         i)
-            opts="$opts --ignore-all-space --ignore-blank-lines --ignore-space-change"
+            opts="$opts --ignore-all-space --ignore-blank-lines --ignore-space-change --ignore-cr-at-eol"
             ;;
         c)
             opts="$opts --cached"

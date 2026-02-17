@@ -39,7 +39,7 @@ export GIT_WORK_TREE=$root
 $GVN check-for-branch-name-match
 
 if [[ $do_stash ]]; then
-  changes=`$GIT stash-local-changes-if-any`; \
+  changes=`$GIT stash-local-changes-if-any "auto generated stash for gvn update"`; \
 else
   $GIT check-for-unexpected-local-changes
 fi

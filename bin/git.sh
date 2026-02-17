@@ -10,10 +10,6 @@
 # alias git='~/bin/git.sh'
 # Note that in sub shells the alias is not active, hence we can directly call git rebase/merge/grep/... .
 
-GVN_HISTORY=`git config gvn.history.enable || true`
-GVN_HISTORY_FILE=`git config gvn.history.filename || true`
-GVN_HISTORY_FILE_LENGTH=`git config gvn.history.length || true`
-
 if [[ "$GVN_DEBUG_GIT" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   set -x
   export GIT_TRACE=2
@@ -24,6 +20,14 @@ if [[ "$GVN_DEBUG_GIT" == "1" || "$GVN_DEBUG_ALL" == "1" ]]; then
   export GIT_TRACE_PACKFILE=2
   export GIT_TRACE_SETUP=2
   export GIT_TRACE_SHALLOW=2
+fi
+
+if [[ -n "${GVN_CONFIG_SH_OVERRIDE}" ]]; then
+  source $GVN_CONFIG_SH_OVERRIDE
+else
+  SCRIPT_DIR_REAL=`realpath $0`
+  SCRIPT_DIR=`dirname $SCRIPT_DIR_REAL`
+  source $SCRIPT_DIR/config.sh
 fi
 
 if [[ "$GVN_DEBUG_ALL" == "1" ]]; then
@@ -45,7 +49,7 @@ if [[ "$GVN_DEBUG_CMD" == "1" ]]; then
   fi
 else
   CMD_DEBUG=0
-  if [[ "$GVN_HISTORY" == "1" ]]; then
+  if [[ "$GVN_HISTORY__ENABLE" == "1" ]]; then
     GIT_ENV=`echo $GIT || true`
     if [[ "$GIT_ENV" == "" ]]; then
       git_bin=`realpath ~/bin/git.sh`
@@ -98,17 +102,17 @@ if [[ "$CMD_DEBUG" == "1" ]]; then
   echo "GVN_CMD (GIT): $cmd2" >> /dev/stderr
 fi
 
-if [[ "$GVN_HISTORY" == "1" ]]; then
-  GVN_HISTORY_FILE2=$GVN_HISTORY_FILE
-  GVN_HISTORY_FILE=`eval echo $GVN_HISTORY_FILE2`
+if [[ "$GVN_HISTORY__ENABLE" == "1" ]]; then
+  GVN_HISTORY__FILENAME2=$GVN_HISTORY__FILENAME
+  GVN_HISTORY__FILENAME3=`eval echo $GVN_HISTORY__FILENAME2`
 
-  echo "LS:  -----------------------------" >> $GVN_HISTORY_FILE
+  echo "LS:  -----------------------------" >> $GVN_HISTORY__FILENAME3
   cwd=`pwd`
   datetime=`date +'%Y.%m.%d %H:%M:%S'`
-  echo "DT:  $datetime" >> $GVN_HISTORY_FILE
-  echo "PWD: $cwd"      >> $GVN_HISTORY_FILE
-  echo "CMD: $cmd2"     >> $GVN_HISTORY_FILE
-  echo "$(tail -n $GVN_HISTORY_FILE_LENGTH $GVN_HISTORY_FILE | tr -d '\0')" > $GVN_HISTORY_FILE
+  echo "DT:  $datetime" >> $GVN_HISTORY__FILENAME3
+  echo "PWD: $cwd"      >> $GVN_HISTORY__FILENAME3
+  echo "CMD: $cmd2"     >> $GVN_HISTORY__FILENAME3
+  echo "$(tail -n $GVN_HISTORY__LENGTH $GVN_HISTORY__FILENAME3 | tr -d '\0')" > $GVN_HISTORY__FILENAME3
 fi
 
 eval $cmd2

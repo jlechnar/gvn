@@ -5,30 +5,25 @@
 # Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Source:      https://github.com/jlechnar/gvn
 
-WIDTH_AUTHOR=`$GIT config gvn.lg.width-author || true`
-WIDTH_AUTHOR_DATE=`$GIT config gvn.lg.width-author-date || true`
-WIDTH_GRAPH=`$GIT config gvn.lg.width-graph || true`
-WIDTH_ABBREVIATED_HASH=`$GIT config gvn.lg.width-abbreviated-hash || true`
-
-ABBREVIATED_HASH=`$GIT config gvn.all.width-abbreviated-hash || true`
-COLOR_DATE_TIME=`$GIT config gvn.all.color-date-time || true`
-COLOR_AUTHOR=`$GIT config gvn.all.color-author || true`
-COLOR_REF_NAMES=`$GIT config gvn.all.color-ref-names || true`
-
-COLOR_SUBJECT=`$GIT config gvn.lg.color-subject || true`
-COLOR_BODY=`$GIT config gvn.lg.color-body || true`
-
 if [[ "$GVN_DEBUG" == "1" ]]; then
   set -x
 fi
 set -e
+
+if [[ -n "${GVN_CONFIG_SH_OVERRIDE}" ]]; then
+  source $GVN_CONFIG_SH_OVERRIDE
+else
+  SCRIPT_DIR_REAL=`realpath $0`
+  SCRIPT_DIR=`dirname $SCRIPT_DIR_REAL`
+  source $SCRIPT_DIR/config.sh
+fi
 
 cmd=$0
 is_gvn=`basename $cmd | grep ^gvn_ || true`
 
 usage() { echo "Usage: $0 <-p: pager> <-c: comments> <-a: all> <-f: filenames> <-n: additional newline> ..." 1>&2; exit 1; }
 
-opts="--graph --abbrev=$ABBREVIATED_HASH --abbrev-commit --decorate"
+opts="--graph --abbrev=$GVN_ALL__WIDTH_ABBREVIATED_HASH --abbrev-commit --decorate"
 
 do_follow=1
 
@@ -37,6 +32,7 @@ newline=""
 pager=0
 comments=0
 all=0
+
 
 while getopts "pcafN" o; do
     case "${o}" in
@@ -71,7 +67,6 @@ opts_less=-FSRX
 args="$@"
 root=`$GIT root`
 
-
 if [[ "$do_follow" == "1" ]]; then
   cmd="$GIT log -n 1 --follow $args"
   set +e
@@ -87,15 +82,6 @@ if [[ "$do_follow" == "1" ]]; then
     args="$args $args_addon"
     opts="$opts --follow"
   fi
-
-#  cmd="$GIT log -n 1 $opts --follow $args"
-#  set +e
-#  t=`eval $cmd 2>&1`
-#  set -e
-#  if [[ "$t" =~ "fatal: --follow requires exactly one pathspec" ]]; then
-#    args="$args $root"
-#  fi
-#  opts="$opts --follow"
 fi
 
 
@@ -105,54 +91,52 @@ if [[ "$root" == "" ]]; then
 fi
 
 if [[ $is_gvn ]]; then
-  hashfmt="<hash>%H</hash> "
-  annotate="$GVN cmd-annotate"
-  end_cmd=""
+  dot_git_path=`$GIT get-dot-git-path-abs`
+  hashfmt="%C($GVN_ALL__COLOR_SVN_REVISION)#%H#%C(reset) "
+  annotate_opts="-b"
+  annotate_comment_opts="-f"
+  rev_maps=`find $dot_git_path/svn/refs/remotes -name *.rev_map.* -type f -printf ' -r %p'`
+  annotate="$GVN cmd-annotate $rev_maps"
+  line_end=""
 else
   hashfmt=""
   annotate="grep ^"
-  end_cmd="echo ''"
+  line_end=""
 fi
+
+
+format_base="%C($GVN_LG__WIDTH_GRAPH)%>|($GVN_LG__WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($GVN_ALL__COLOR_DATE_TIME)%<($GVN_LG__WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($GVN_ALL__COLOR_AUTHOR)%<($GVN_LG__WIDTH_AUTHOR,trunc)%an%C(reset) %C($GVN_LG__COLOR_SUBJECT)%s%C(reset) %C($GVN_ALL__COLOR_REF_NAMES)%d%C(reset)"
+format_without_comments="$format_base$line_end"
+format_with_comments="$format_base%n%n%C($GVN_LG__COLOR_BODY)%b%C(reset)$line_end"
 
 if [[ "$comments" == "1" ]]; then
   if [[ "$pager" == "1" ]]; then
     $GIT $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
-      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
+      --format=format:"$format_with_comments$newline" \
       $args | \
-      grep -v '^...$' | \
-      $annotate | \
+      $annotate $annotate_comment_opts | \
       less $opts_less
   else
     $GIT $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
-      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)%n%n%C($COLOR_BODY)%b%C(reset)$newline" \
+      --format=format:"$format_with_comments$newline" \
       $args | \
-      grep -v '^...$' | \
-      $annotate
-    #eval $end_cmd
+      $annotate $annotate_comment_opts
   fi
 else
   if [[ "$pager" == "1" ]]; then
     $GIT $wt --no-pager log $opts \
       --date=format-local:'%Y-%m-%d %H:%M:%S' \
-      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)$newline" \
+      --format=format:"$format_without_comments$newline" \
       $args | \
-      grep -v '^...$' | \
-      $annotate | \
-      grep -v '^$' | \
+      $annotate $annotate_opts | \
       less $opts_less
   else
     $GIT $wt --no-pager log $opts \
       --date=format-local:"%Y-%m-%d %H:%M:%S" \
-      --format=format:"%C($WIDTH_GRAPH)%>|($WIDTH_ABBREVIATED_HASH)%h%C(reset) ${hashfmt}%C($COLOR_DATE_TIME)%<($WIDTH_AUTHOR_DATE,trunc)%ad%C(reset) %C($COLOR_AUTHOR)%<($WIDTH_AUTHOR,trunc)%an%C(reset) %C($COLOR_SUBJECT)%s%C(reset) %C($COLOR_REF_NAMES)%d%C(reset)$newline" \
+      --format=format:"$format_without_comments$newline" \
       $args | \
-      grep -v '^...$' | \
-      $annotate |
-      grep -v '^$'
-    #eval $end_cmd
+      $annotate $annotate_opts
   fi
 fi
-
-
-

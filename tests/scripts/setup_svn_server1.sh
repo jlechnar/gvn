@@ -23,7 +23,7 @@ cd ..
 setup_path "server1_create" "create local / sandbox repository"
 
 # initialize local repository
-execute "svn checkout file://$REPO_PATH ." ""
+execute "svn checkout --username \"server1_create\"  file://$REPO_PATH ." ""
 
 for path in "trunk branches tags"; do
   mkdir $path
