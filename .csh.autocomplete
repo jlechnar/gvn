@@ -1,0 +1,9 @@
+
+# Description: GVN - Git sVN - git configuration and more for easier usage of git-svn, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/gvn
+
+complete gvn 'p@1@`git config --list | grep alias.gvn | sort  | sed 's,=, ,g' | awk '{print $1}' | sed 's,alias.gvn-,,g' | tr '\n' ' '`@'
+
+complete cdw 'p@1@`git worktree-list | rev | awk '{print $1}' | rev | sed 's,\[,,g' | sed 's,\],,g' | tr '\n' ' '`@'

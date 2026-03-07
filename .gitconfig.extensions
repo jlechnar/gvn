@@ -213,20 +213,26 @@
         # --------------------------
         # diff
         d = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -- \"$@\"' --"
-        dnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -N -- \"$@\"' --"
-        diffc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -c -- \"$@\"' --"
+        diff-no-color = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -N -- \"$@\"' --"
+        dnc = "diff-no-color"
+        diff-cached = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -c -- \"$@\"' --"
+        diffc = "diff-cached"
         dc = "diffc"
-        dcnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -N -c -- \"$@\"' --"
+        diff-cached-no-color = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -f -N -c -- \"$@\"' --"
+        dcnc = "diff-cached-no-color"
 
         diff-wordwise-no-follow = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -- \"$@\"' --"
         dwnf = "diff-wordwise-no-follow"
 
-        dw = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -- \"$@\"' --"
-        diff-wordwise = "dw"
-        diffw = "dw"
-        dwc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -- \"$@\"' --"
-        dwnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -N -- \"$@\"' --"
-        dwcnc = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -N -- \"$@\"' --"
+        diff-wordwise = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -- \"$@\"' --"
+        diffw = "diff-wordwise"
+        dw = "diff-wordwise"
+        diff-wordwise-cached = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -- \"$@\"' --"
+        dwc = "diff-wordwise-cached"
+        diff-wordwise-no-color = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -N -- \"$@\"' --"
+        dwnc = "diff-wordwise-no-color"
+        diff-wordwise-cached-no-color = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -w -f -c -N -- \"$@\"' --"
+        dwcnc = "diff-wordwise-cached-no-color"
 
         dw3 = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -W -f -- \"$@\"' --"
         dw3c = "!bash -c 'cd -- \"${GIT_PREFIX:-.}\"; ~/bin/bin_gvn/git_diff.sh -W -f -c -- \"$@\"' --"
@@ -423,9 +429,13 @@
         # rebase
         rbi = "rebase -i"
         rbc = "rebase -continue"
+        rba = "rebase -abort"
 
         # --------------------------
         # adding
+        add-patch = "add --patch"
+        ap = "add-patch"
+
         add-interactive = "add -i"
         ai = "add-interactive"
         #
@@ -438,6 +448,8 @@
         rs = "restore-staged"
         restore-staged-all = "restore --staged :/"
         rsa = "restore-staged-all"
+        restore-all = "restore :/"
+        ra = "restore-all"
 
         # --------------------------
         # remove r
@@ -452,16 +464,57 @@
         restore = "checkout --"
 
         # --------------------------
+        rl = "reflog"
+        rlf = "reflog --name-only"
+        rla = "reflog --all"
+        rlaf = "reflog --all --name-only"
+
+        # --------------------------
         # stash
+
+        stash-unstaged-only = "stash push --keep-index"
+        su = "stash-unstaged-only"
+
+        stash-staged-only = "stash push --staged"
+        ss = "stash-staged-only"
+        spushs = "stash-staged-only"
+        spus = "stash-staged-only"
+        # staged = cached
+        sc = "stash-staged-only"
+        spushc = "stash-staged-only"
+        spuc = "stash-staged-only"
+
+        stash-interactive = "stash push --patch"
+        si = "stash-interactive"
+
+        stash-include-untracked = "stash --include-untracked"
+        #su = "stash-include-untracked"
+        stash-all = "stash --all"
+        #sa = "stash-all"
+        stash-include-ignored = "stash --all --no-include-untracked"
+        #si = "stash-include-ignored"
 
         s = "stash"
         # pop = apply + drop
-        sp = "stash pop"
+        spop = "stash pop"
+        sp = "spop"
+        spush = "stash push"
+        spu = "spush"
         sa = "stash apply"
         sdrop = "stash drop"
+        #sd = "stash drop"
         sl = "stash list"
         #
         #stash-diff = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; git stash show -p $id;' --"
+        stash-diff-wordwise = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; ~/bin/bin_gvn/git_diff.sh -w -f \"stash@{$id}\"^ \"stash@{$id}\";' --"
+        sdw = "stash-diff-wordwise"
+
+        stash-diff-blockwise = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; ~/bin/bin_gvn/git_diff.sh -b -f \"stash@{$id}\"^ \"stash@{$id}\";' --"
+        sdb = "stash-diff-blockwise"
+
+        stash-diff-list = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; ~/bin/bin_gvn/git_diff.sh -l -f \"stash@{$id}\"^ \"stash@{$id}\";' --"
+        sdl = "stash-diff-list"
+
         stash-diff = "!bash -c 'set -e; if [ -z ${1+x} ]; then id=\"0\"; else id=\"$1\"; fi; git diff \"stash@{$id}\"^ \"stash@{$id}\";' --"
         sd = "stash-diff"
         #
