@@ -944,6 +944,7 @@ HEAD is now at <HASH> changes_trunk_worktree_merge_svn_change
  | Executing:  .../../bin/gvn.sh wa test3 test4 HEAD^
  |============================================================================
 Preparing worktree (new branch 'test3')
+Updating files:  70% (7/10)Updating files:  80% (8/10)Updating files:  90% (9/10)Updating files: 100% (10/10)Updating files: 100% (10/10), done.
 HEAD is now at <HASH> changes_trunk_worktree_merge_svn_change
  '============================================================================
 

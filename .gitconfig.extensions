@@ -431,6 +431,11 @@
         rbc = "rebase -continue"
         rba = "rebase -abort"
 
+        remove-patch = "reset --patch"
+        rp = "remove-patch"
+        remover-interactive = "remove-patch"
+        # ri = "remove-patch"
+
         # --------------------------
         # adding
         add-patch = "add --patch"

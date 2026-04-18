@@ -739,7 +739,8 @@ Checked out HEAD:
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
-│   │   │   ├── <HASH>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
@@ -801,7 +802,7 @@ Checked out HEAD:
     ├── full_adder.v
     └── halve_adder.v
 
-52 directories, 70 files
+53 directories, 70 files
 [1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb1[0m [38;5;55;1m[0m $ [1;31mcat .git/config[0m
 [core]
 	repositoryformatversion = 0
@@ -913,6 +914,10 @@ Checked out HEAD:
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
+│   │   │   ├── <HASH>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   ├── <HASH>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
@@ -921,14 +926,7 @@ Checked out HEAD:
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
+│   │   │   ├── <HASH>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
@@ -983,7 +981,7 @@ Checked out HEAD:
     ├── full_adder.v
     └── halve_adder.v
 
-57 directories, 70 files
+54 directories, 70 files
 [1;36mRUN:[0m [1;32muser1.git_svn[0m @ [38;5;67;1m../test/user1_git_svn_sb2[0m [38;5;55;1m[0m $ [1;31mcat .git/config[0m
 [core]
 	repositoryformatversion = 0
@@ -1102,35 +1100,35 @@ Checked out HEAD:
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
+│   │   │   └── <HASH>
+│   │   ├── <HASH_INDEX>
 │   │   │   ├── <HASH>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
-│   │   │   └── <HASH>
-│   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
 │   │   ├── <HASH_INDEX>
 │   │   │   └── <HASH>
